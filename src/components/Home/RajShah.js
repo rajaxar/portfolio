@@ -19,7 +19,13 @@ const colorList = [
 ]
 
 function RajShah() {
-    const [style, setStyle] = useState({});
+    const [style, setStyle] = useState({
+        fontFamily: "Graphik",
+        fontWeight: 700,
+        fontSize: "clamp(2rem, 29dvw, 38dvh)",
+        lineHeight: .8,
+        color: baseColor,
+    });    
     const [currColor, setCurrColor] = useState(0);
     const textRef = useRef(null);
 
@@ -54,7 +60,7 @@ function RajShah() {
         setStyle({
             fontFamily: "Graphik",
             fontWeight: 700,
-            fontSize: "clamp(2rem, 30dvw, 40dvh)",
+            fontSize: "clamp(2rem, 29dvw, 38dvh)",
             lineHeight: .8,
             textShadow,
             color: color || baseColor,
@@ -69,7 +75,7 @@ function RajShah() {
                 flexDirection: 'column',
                 width: '100%',
                 height: '100%',
-                marginTop: "clamp(2rem, 5dvh, 10rem)",
+                marginTop: "clamp(1.5rem, 4dvh, 3rem)",
             }}
         >
             <h2
