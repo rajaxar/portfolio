@@ -1,80 +1,62 @@
-import React from "react";
-import { FaBars } from "react-icons/fa";
+import React, { useState } from "react";
 import { NavLink as Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Nav = styled.nav`
-    background: #ffb3ff;
-    height: 85px;
+    background: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    height: 3rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: left;
     padding: 0.2rem calc((100vw - 1000px) / 2);
     z-index: 12;
+    margin-bottom: 1rem;
+    padding-left: 1rem;
 `;
- 
-const NavLink = styled(Link)`
-    color: #808080;
+
+const NavLink = styled.div`
+    color: #FCF3D9;
     display: flex;
     align-items: center;
     text-decoration: none;
-    padding: 0 1rem;
+    padding: clamp(0rem, 1vw, 2rem);
     height: 100%;
     cursor: pointer;
-    &.active {
-        color: #4d4dff;
-    }
+    font-weight: 300;
+    ${props => props.isActive ? `
+        color: #213052;
+        font-weight: 500;
+    ` : ''}
+    font-family: "Publico";
+    font-size: clamp(1rem, 1.6dvw, 2rem);
 `;
- 
-const Bars = styled(FaBars)`
-    display: none;
-    color: #808080;
-    @media screen and (max-width: 768px) {
-        display: block;
-        position: absolute;
-        top: 0;
-        right: 0;
-        transform: translate(-100%, 75%);
-        font-size: 1.8rem;
-        cursor: pointer;
-    }
-`;
- 
+
 const NavMenu = styled.div`
     display: flex;
     align-items: center;
-    margin-right: -24px;
-    /* Second Nav */
-    /* margin-right: 24px; */
-    /* Third Nav */
-    /* width: 100vw;
-white-space: nowrap; */
-    @media screen and (max-width: 768px) {
-        display: none;
-    }
 `;
 
-
-const Navbar = () => {
+const Navbar = ({ page, setPage }) => {
     return (
         <>
             <Nav>
                 <NavMenu>
-                    <NavLink to="/about" activeStyle>
-                        About
+                    <NavLink isActive={page === "home"} onClick={() => setPage("home")}>
+                        Home
                     </NavLink>
-                    <NavLink to="/contact" activeStyle>
-                        Contact Us
+                    <NavLink isActive={page === "about"} onClick={() => setPage("about")}>
+                        About Me
                     </NavLink>
-                    <NavLink to="/blogs" activeStyle>
-                        Blogs
+                    <NavLink isActive={page === "learnings"} onClick={() => setPage("learnings")}>
+                        What I Hope to Learn
                     </NavLink>
-                    <NavLink to="/sign-up" activeStyle>
-                        Sign Up
+                    <NavLink isActive={page === "projects"} onClick={() => setPage("projects")}>
+                        Portfolio Projects
                     </NavLink>
                 </NavMenu>
             </Nav>
         </>
     );
 };
- 
+
 export default Navbar;

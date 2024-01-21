@@ -85,7 +85,7 @@ function RajShah() {
                     fontWeight: 700,
                     fontSize: `clamp(1rem, 12dvw, 16dvh)`,
                     marginBlockStart: "1dvh",
-                    marginBlockEnd: "1.5dvh",
+                    marginBlockEnd: "1.2dvh",
                     marginInlineStart: "1.3dvw",
                     color: colorList[currColor],
                 }}
