@@ -20,10 +20,23 @@ function Home() {
                     fontWeight: 300,
                     fontSize: `clamp(1rem, 1dvw, 16dvh)`,
                     color: "#ffffff",
-                    marginBottom: "2rem"
+                    marginBottom: "0rem"
                 }}
             >
                 Eventually, this will be a portfolio website.
+            </h3>
+            <h3
+                style={{
+                    cursor: 'default',
+                    fontFamily: "Publico",
+                    fontWeight: 400,
+                    fontSize: `clamp(.6rem, .6dvw, 10dvh)`,
+                    color: "#ffffff",
+                    marginTop: ".2rem",
+                    marginBottom: "2rem"
+                }}
+            >
+                Eventually.
             </h3>
         </div>
 
