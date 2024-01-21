@@ -17,9 +17,9 @@ function App() {
       }}
     >
         <Layout>
-        <Routes>
-            <Route exact path="/" element={<Index />} />
-        </Routes>
+          <Routes>
+              <Route exact path="/" element={<Index />} />
+          </Routes>
         </Layout>
     </Router>
 );

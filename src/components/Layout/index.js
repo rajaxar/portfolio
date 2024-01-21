@@ -1,18 +1,18 @@
 function Layout(props) {
     const { children } = props;
     return (
-        <div 
-            id="gradient" 
+        <div
+            id="gradient"
             style={{
-                "width": "99dvw",
-                "height": "99dvh",
-                "paddingBlock": "1rem",
-                "paddingInline": "2rem",
+                "overflow": "scroll",
+                "height": "100%",
+                "width": "100%",
+                "position": "absolute",
+                "top": "0",
+                "left": "0"
             }}
         >
-            <div className="flex flex-col w-full bg-secondary">
-                {children}
-            </div>
+            {children}
         </div>
     );
 }
