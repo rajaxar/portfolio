@@ -21,7 +21,6 @@ function Home() {
                     fontWeight: 300,
                     fontSize: `clamp(1rem, 1dvw, 16dvh)`,
                     color: "#ffffff",
-                    marginTop: "-8rem",
                 }}
             >
                 Welcome to my website!

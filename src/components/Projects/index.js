@@ -1,43 +1,80 @@
+import { Group, Avatar, Text, Accordion } from '@mantine/core';
+import GovDebt from './govDebt';
 
-function Projects() {
+const projectList = [
+    {
+        id: 'gov_debt',
+        label: 'Visualizing Government Debt',
+        description: 'A visualization of government debt from 1995 to 2019.',
+        content: <GovDebt />,
+    }
+]
+
+function AccordionLabel({ label, description }) {
     return (
-        <div
-            style={{
-                display: 'flex',
-                flexDirection: 'column',
-                width: '75%',
-                height: '100%',
-                marginLeft: "clamp(2rem, 5dvw, 10rem)",
-            }}
-        >
-            <h3
-                style={{
-                    color: "#ffffff",
-                    cursor: 'default',
-                    fontFamily: "Publico",
-                    fontWeight: 300,
-                    fontSize: `clamp(1rem, 1dvw, 16dvh)`,
-                    lineHeight: 1.2,
-                    marginBottom: "0rem"
-                }}
-            >
-                Coming Soon!
-            </h3>
-            <h3
-                style={{
-                    cursor: 'default',
-                    fontFamily: "Publico",
-                    fontWeight: 400,
-                    fontSize: `clamp(.6rem, .6dvw, 10dvh)`,
-                    color: "#ffffff",
-                    marginTop: ".2rem",
-                    marginBottom: "2rem"
-                }}
-            >
-                TODO: add more
-            </h3>
-        </div>
+        <Group wrap="nowrap">
+            <div>
+                <h3
+                    style={{
+                        marginBlock: 2,
+                        marginLeft: '1rem',
+                        fontFamily: "Graphik",
+                        fontWeight: 800,
+                        fontSize: `clamp(1rem, 4dvw, 2.5rem)`,
+                    }}
+                >{label}
+                </h3>
+                <Text size="md" c="dark" fw={400} ff={"mono"} style={{ marginLeft: '1rem' }}>
+                    {description}
+                </Text>
+            </div>
+        </Group>
+    );
+}
 
+
+function Projects({ windowDict }) {
+    const projects = projectList.map((item) => {
+        return (
+            <Accordion.Item
+                value={item.id} key={item.label}
+                style={{
+                    backgroundColor: "#FCF3D9",
+                }}
+            >
+                <Accordion.Control>
+                    <AccordionLabel {...item} />
+                </Accordion.Control>
+                <Accordion.Panel style={{ paddingInline: '1.5rem', paddingBlockEnd: '1.5rem' }}>
+                    {item.content}
+                </Accordion.Panel>
+            </Accordion.Item>
+
+        )
+    });
+
+    let project = null;
+    if (windowDict.ref && windowDict.ref === 'projects') {
+        if (windowDict.project) {
+            project = windowDict.project;
+            delete windowDict.project;
+        }
+        delete windowDict.ref;
+    }
+
+    return (
+        <Accordion
+            variant="separated"
+            radius="md"
+            defaultValue={project}
+            style={{
+                width: '85%',
+                margin: 'auto',
+                marginTop: '2rem',
+                marginBottom: '2rem',
+            }}>
+            {projects}
+        </Accordion>
     )
 }
 

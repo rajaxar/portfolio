@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import './styles/styles.css';
+import '@mantine/core/styles.css';
 import Layout from "./components/Layout";
 import Home from "./components/Home";
 import About from "./components/About";
@@ -8,7 +9,15 @@ import Learnings from "./components/Learnings";
 import Projects from "./components/Projects";
 
 function App() {
-  const [page, setPage] = useState("");
+  let windowDict = {};
+  try {
+    windowDict = window.location.search.split('?')[1].split('&').reduce((acc, curr) => {
+      const [key, value] = curr.split('=');
+      acc[key] = value;
+      return acc;
+    }, {});
+  } catch (e) {}
+  const [page, setPage] = useState(windowDict.ref? windowDict.ref : '');
   let Component;
   switch (page) {
     case 'home':
@@ -30,7 +39,7 @@ function App() {
   return (
     <Router>
       <Layout setPage={setPage} page={page}>
-        <Component />
+        <Component windowDict={windowDict}/>
       </Layout>
     </Router>
   );
