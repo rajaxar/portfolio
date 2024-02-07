@@ -1,7 +1,14 @@
-import { Group, Avatar, Text, Accordion } from '@mantine/core';
+import { Group, Text, Accordion } from '@mantine/core';
 import GovDebt from './govDebt';
+import USProportions from './usProportions';
 
 const projectList = [
+    {
+        id: 'us_proportions',
+        label: 'Americans on Proportions',
+        description: 'An exercise in critiquing existing visualizations.',
+        content: <USProportions />,
+    },
     {
         id: 'gov_debt',
         label: 'Visualizing Government Debt',
@@ -40,6 +47,7 @@ function Projects({ windowDict }) {
                 value={item.id} key={item.label}
                 style={{
                     backgroundColor: "#FCF3D9",
+                    marginBlock: '1rem',
                 }}
             >
                 <Accordion.Control>

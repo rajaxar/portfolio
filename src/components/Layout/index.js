@@ -20,6 +20,7 @@ function Layout(props) {
                     "marginTop": "0rem",
                     "position": "absolute",
                     "top": "4rem",
+                    overflow: "scroll",
                 }}
             >
             {children}
