@@ -46,9 +46,9 @@ const Navbar = ({ page, setPage }) => {
                     <NavLink isActive={page === "about"} onClick={() => setPage("about")}>
                         About Me
                     </NavLink>
-                    <NavLink isActive={page === "learnings"} onClick={() => setPage("learnings")}>
+                    {/* <NavLink isActive={page === "learnings"} onClick={() => setPage("learnings")}>
                         What I Hope to Learn
-                    </NavLink>
+                    </NavLink> */}
                     <NavLink isActive={page === "projects"} onClick={() => setPage("projects")}>
                         Data Vis Portfolio Projects
                     </NavLink>
