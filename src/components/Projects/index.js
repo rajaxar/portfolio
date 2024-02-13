@@ -1,13 +1,14 @@
 import { Group, Text, Accordion } from '@mantine/core';
 import GovDebt from './govDebt';
 import USProportions from './usProportions';
+import NBAOne from './nba_one';
 
 const projectList = [
     {
         id: 'nba_part_1',
-        label: 'Contract Years and Performance in the NBA - Part 1',
+        label: 'Contract Year vs Performance in the NBA - Part 1',
         description: 'Part One of an analysis of the relationship between contract years and player performance in the NBA.',
-        content: <div>Coming soon...</div>,
+        content: <NBAOne />,
     },
     {
         id: 'us_proportions',
