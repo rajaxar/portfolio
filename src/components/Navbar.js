@@ -50,7 +50,7 @@ const Navbar = ({ page, setPage }) => {
                         What I Hope to Learn
                     </NavLink>
                     <NavLink isActive={page === "projects"} onClick={() => setPage("projects")}>
-                        Portfolio Projects
+                        Data Vis Portfolio Projects
                     </NavLink>
                 </NavMenu>
             </Nav>
