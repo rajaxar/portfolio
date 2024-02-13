@@ -225,6 +225,7 @@ function USProportions() {
                     width: '100%',
                 }}
             >
+                Note: Please click the laptop icon to view the graph properly.
                 <TableauReport
                     url="https://public.tableau.com/views/American_Data/Dashboard1?:language=en-US&publish=yes&:display_count=n&:origin=viz_share_link"
                     options={{
