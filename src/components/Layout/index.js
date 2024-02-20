@@ -2,6 +2,7 @@ import Navbar from '../Navbar';
 
 function Layout(props) {
     const { children, setPage, page } = props;
+        
     return (
         <div
             id="gradient"
@@ -12,14 +13,14 @@ function Layout(props) {
                 "left": "0",
             }}
         >
-            <Navbar setPage={setPage} page={page}/>
+            {page !== 'nba_wireframe' && <Navbar setPage={setPage} page={page}/>}
             <div
                 style={{
                     "width": "100dvw",
-                    "height": "calc(100dvh - 2rem)",
+                    "height": "100dvh",
                     "marginTop": "0rem",
                     "position": "absolute",
-                    "top": "4rem",
+                    "top": (page === 'nba_wireframe' ? "0rem" : "4rem"),
                     overflow: "scroll",
                 }}
             >

@@ -7,6 +7,7 @@ import Home from "./components/Home";
 import About from "./components/About";
 import Learnings from "./components/Learnings";
 import Projects from "./components/Projects";
+import NBAWireframe from "./components/Projects/nba_wireframe";
 
 function App() {
   let windowDict = {};
@@ -31,6 +32,9 @@ function App() {
       break;
     case 'projects':
       Component = Projects;
+      break;
+    case 'nba_wireframe':
+      Component = NBAWireframe;
       break;
     default:
       Component = Home;

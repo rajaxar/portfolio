@@ -5,6 +5,17 @@ import NBAOne from './nba_one';
 
 const projectList = [
     {
+        id: 'nba_part_2',
+        label: 'Contract Year vs Performance in the NBA - Part 2',
+        description: 'Part Two of an analysis of the relationship between contract years and player performance in the NBA.',
+        content: 
+            <>
+                <a href={process.env.PUBLIC_URL + '?ref=nba_wireframe'} >
+                    Click Here.
+                </a>
+            </>
+    },
+    {
         id: 'nba_part_1',
         label: 'Contract Year vs Performance in the NBA - Part 1',
         description: 'Part One of an analysis of the relationship between contract years and player performance in the NBA.',
