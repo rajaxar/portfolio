@@ -36,7 +36,7 @@ function NBAWireframe() {
                 style={{
                     display: 'flex',
                     flexDirection: 'column',
-                    marginTop: '2rem',
+                    marginTop: '6rem',
                 }}
             >
                 <img
@@ -52,7 +52,7 @@ function NBAWireframe() {
                 <h3
                     style={{
                         marginTop: '0rem',
-                        marginBottom: '-20rem',
+                        marginBottom: '-24rem',
                         fontFamily: "Grouch",
                         fontWeight: 400,
                         fontSize: `1.5rem`,
