@@ -1,5 +1,3 @@
-import TableauReport from 'tableau-react';
-
 function NBAOne() {
     return (
         <div

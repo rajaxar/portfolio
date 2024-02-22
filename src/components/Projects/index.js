@@ -2,6 +2,7 @@ import { Group, Text, Accordion } from '@mantine/core';
 import GovDebt from './govDebt';
 import USProportions from './usProportions';
 import NBAOne from './nba_one';
+import NBATwo from './nba_two';
 
 const projectList = [
     {
@@ -11,8 +12,9 @@ const projectList = [
         content: 
             <>
                 <a href={process.env.PUBLIC_URL + '?ref=nba_wireframe'} >
-                    Click Here.
+                    Click Here to see the Actual Story
                 </a>
+                <NBATwo />
             </>
     },
     {
@@ -38,7 +40,8 @@ const projectList = [
 function AccordionLabel({ label, description }) {
     return (
         <Group wrap="nowrap">
-            <div>
+            <div
+            >
                 <h3
                     style={{
                         marginBlock: 2,

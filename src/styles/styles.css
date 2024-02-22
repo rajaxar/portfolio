@@ -9,6 +9,17 @@ iframe#webpack-dev-server-client-overlay{display:none!important}
     padding: 1rem;
   }
 
+  #scrolly-reverse {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-direction: row-reverse;
+    background-color: #f3f3f3;
+    padding: 1rem;
+  }
+
+
   #scrolly > * {
     -webkit-box-flex: 1;
     -ms-flex: 1;

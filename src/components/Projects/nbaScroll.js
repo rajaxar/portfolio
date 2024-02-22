@@ -1,4 +1,4 @@
-import React, { PureComponent, useState } from 'react';
+import React, { PureComponent } from 'react';
 import injectSheet from 'react-jss';
 import { Scrollama, Step } from 'react-scrollama';
 import * as d3 from 'd3';
@@ -54,7 +54,8 @@ const styles = {
 class NBAScroll extends PureComponent {
   state = {
     data: 0,
-    steps: [0, 1, 2, 3],
+    maxData: 0,
+    steps: [0, 1, 2, 3, 4],
     progress: 0,
     stepLines: {
       1: [{
@@ -104,11 +105,130 @@ class NBAScroll extends PureComponent {
         2: 9.036877
       }]
     },
+    linesStepFour:
+      [
+        {
+          0: 18.821185,
+          1: 15.749734,
+          2: 15.781945
+        },
+        {
+          0: 9.812819,
+          1: 12.779258,
+          2: 12.854682
+        },
+        {
+          0: 17.460716,
+          1: 11.269003,
+          2: 13.866494
+        },
+        {
+          0: 15.171001,
+          1: 10.4098,
+          2: 15.474282
+        },
+        {
+          0: 6.82265,
+          1: 9.961005,
+          2: 10.207918
+        },
+        {
+          0: 12.812293,
+          1: 9.609615,
+          2: 15.49317
+        },
+        {
+          0: 6.936771,
+          1: 8.663923,
+          2: 10.440578
+        },
+        {
+          0: 12.613104,
+          1: 8.439489,
+          2: 9.559727
+        },
+        {
+          0: 11.82031,
+          1: 8.168875,
+          2: 13.388273
+        },
+        {
+          0: 11.38429,
+          1: 8.036814,
+          2: 8.145941
+        },
+        {
+          0: 2.610856,
+          1: 7.640206,
+          2: 8.027998
+        },
+        {
+          0: 8.712799,
+          1: 7.489068,
+          2: 11.102544
+        },
+        {
+          0: 5.728777,
+          1: 6.808769,
+          2: 13.463203
+        },
+        {
+          0: 5.52653,
+          1: 5.800908,
+          2: 6.144882
+        },
+        {
+          0: 13.635096,
+          1: 5.448406,
+          2: 11.181605
+        },
+        {
+          0: 6.072382,
+          1: 5.027453,
+          2: 8.591823
+        },
+        {
+          0: 1.871838,
+          1: 4.723256,
+          2: 6.196109
+        },
+        {
+          0: 14.083028,
+          1: 4.642853,
+          2: 6.899655
+        },
+        {
+          0: 5.308685,
+          1: 4.633684,
+          2: 5.253617
+        },
+        {
+          0: 3.437307,
+          1: 4.389676,
+          2: 5.227056
+        },
+        {
+          0: 1.307767,
+          1: 4.352462,
+          2: 4.699337
+        },
+        {
+          0: 4.987899,
+          1: 4.11851,
+          2: 10.105761
+        },
+        {
+          0: 6.305778,
+          1: 3.902766,
+          2: 10.233139
+        }
+      ],
     stepText: {
-      0: "<div style='padding-inline:4rem; width: 300%'>In the NBA, the \"<span style='color: #86020e; font-family: Grouch'>Contract Year Phenomenon</span>\" is the idea that players perform better in the final year of their contract. The theory goes, if you want to make more money, you have to show you earned it.</div><br/><br/><div style='padding-inline:6rem; width: 300%'>On the flip side, players apparently perform worse the first year of their new contract.</div>",
-      1: "<div style='font-size:1.7rem; text-align: left'>For example, let's look at RAPTOR WAR, a player's overall contribution to their team. In the 2008-2009 season, <span style='color: #552583; font-weight:500'>Kobe Bryant</span> went from having a 14.34 WAR to a 20.76 WAR. And then he slightly dipped down the next season - right after signing a new contract.</div>",
+      0: "<div style='padding-inline:4rem; width: 300%'>In the NBA, the \"<span style='color: #86020e; font-family: Grouch'>Contract Year Phenomenon</span>\" is the idea that players perform better in the final year of their contract. The theory goes, if you want to make more money, you have to show you earned it.</div><br/><br/><div style='padding-inline:6rem; width: 300%'>On the flip side, players apparently perform worse the first year of their new contract. <br/><br/> <span style='color:black; font-weight:300; font-size:1.2rem'>Scroll Down ↓</span></div>",
+      1: "<div style='font-size:1.7rem; text-align: left'>For example, let's look at RAPTOR WAR, a player's overall contribution to their team. In short, a statistically robust measure of a player's performance.<br/><br/>In the 2008-2009 season, <span style='color: #552583; font-weight:500'>Kobe Bryant</span> went from having a 14.34 WAR to a 20.76 WAR. And then he slightly dipped down the next season - right after signing a new contract.</div>",
       2: "<div style='font-size:1.7rem; text-align: left'>The very next year, <span style='color: #6F263D; font-weight:500'>LeBron James</span> and <span style='color: #98002E; font-weight:500'>Dwyane Wade</span> had a fantastic year - a precursor to <span style='font-weight: 600'>The Big Three</span>. The next year, they had new contracts, and they weren't as good.</div>",
-      3: "<div style='font-size:1.7rem; text-align: left'>They aren't the only players to have seemingly had an above-average <span style='font-family: Grouch; color: #86020e'>Contract Year.</span></div>"
+      3: "<div style='font-size:1.7rem; text-align: left'>They aren't the only players to have seemingly had an above-average <span style='font-family: Grouch; color: #86020e'>Contract Year.</span></div>",
+      4: "<div style='font-size:1.7rem; text-align: left'>But in these discussions, we sometimes forget about other players. Players that didn't have necessarily get worse after they signed, or players that only did worse their contract year. <br/><br/> <span style='font-size: 1.8rem'>Let's talk about them.</span></div>"
     },
     metadata: {
       1: {
@@ -188,6 +308,192 @@ class NBAScroll extends PureComponent {
             'teamColor': '#E03A3E'
           }
         }
+      },
+      4: {
+        0: {
+          'tooltip': {
+            'name': 'Chris Paul',
+            'team': 'LA Clippers',
+            'year': '2012',
+            'teamColor': '#ED174C'
+          }
+        },
+        1: {
+          'tooltip': {
+            'name': 'Kawhi Leonard',
+            'team': 'San Antonio Spurs',
+            'year': '2014',
+            'teamColor': '#008348'
+          }
+        },
+        2: {
+          'tooltip': {
+            'name': 'Ben Wallace',
+            'team': 'Detroit Pistons',
+            'year': '2005',
+            'teamColor': '#00538C'
+          }
+        },
+        3: {
+          'tooltip': {
+            'name': 'Jason Kidd',
+            'team': 'New Jersey Nets',
+            'year': '2008',
+            'teamColor': '#006BB6'
+          }
+        },
+        4: {
+          'tooltip': {
+            'name': 'Kevin Garnett',
+            'team': 'Boston Celtics',
+            'year': '2011',
+            'teamColor': '#E03A3E'
+          }
+        },
+        5: {
+          'tooltip': {
+            'name': 'Anthony Davis',
+            'team': 'New Orleans Pelicans',
+            'year': '2019',
+            'teamColor': '#86020e'
+          }
+        },
+        6: {
+          'tooltip': {
+            'name': 'Jimmy Butler',
+            'team': 'Chicago Bulls',
+            'year': '2014',
+            'teamColor': '#552583'
+          }
+        },
+        7: {
+          'tooltip': {
+            'name': 'Dirk Nowitzki',
+            'team': 'Dallas Mavericks',
+            'year': '2009',
+            'teamColor': '#6F263D'
+          }
+        },
+        8: {
+          'tooltip': {
+            'name': 'Ray Allen',
+            'team': 'Seattle SuperSonics',
+            'year': '2004',
+            'teamColor': '#98002E'
+          }
+        },
+        9: {
+          'tooltip': {
+            'name': 'Tim Duncan',
+            'team': 'San Antonio Spurs',
+            'year': '2011',
+            'teamColor': '#002A60'
+          }
+        },
+        10: {
+          'tooltip': {
+            'name': 'Khris Middleton',
+            'team': 'Milwaukee Bucks',
+            'year': '2018',
+            'teamColor': '#008348'
+          }
+        },
+        11: {
+          'tooltip': {
+            'name': 'Kyrie Irving',
+            'team': 'Boston Celtics',
+            'year': '2018',
+            'teamColor': '#00538C'
+          }
+        },
+        12: {
+          'tooltip': {
+            'name': 'Kyle Lowry',
+            'team': 'Toronto Raptors',
+            'year': '2013',
+            'teamColor': '#006BB6'
+          }
+        },
+        13: {
+          'tooltip': {
+            'name': 'Chris Bosh',
+            'team': 'Miami Heat',
+            'year': '2013',
+            'teamColor': '#E03A3E'
+          }
+        },
+        14: {
+          'tooltip': {
+            'name': 'Marc Gasol',
+            'team': 'Memphis Grizzlies',
+            'year': '2014',
+            'teamColor': '#86020e'
+          }
+        },
+        15: {
+          'tooltip': {
+            'name': 'Andre Miller',
+            'team': 'Philadelphia 76ers',
+            'year': '2008',
+            'teamColor': '#552583'
+          }
+        },
+        16: {
+          'tooltip': {
+            'name': 'Jeremy Lamb',
+            'team': 'Charlotte Hornets',
+            'year': '2018',
+            'teamColor': '#6F263D'
+          }
+        },
+        17: {
+          'tooltip': {
+            'name': 'Manu Ginobili',
+            'team': 'San Antonio Spurs',
+            'year': '2012',
+            'teamColor': '#98002E'
+          }
+        },
+        18: {
+          'tooltip': {
+            'name': 'Scottie Pippen',
+            'team': 'Portland Trail Blazers',
+            'year': '2002',
+            'teamColor': '#002A60'
+          }
+        },
+        19: {
+          'tooltip': {
+            'name': 'Tim Hardaway Jr.',
+            'team': 'Dallas Mavericks',
+            'year': '2020',
+            'teamColor': '#008348'
+          }
+        },
+        20: {
+          'tooltip': {
+            'name': 'Eric Bledsoe',
+            'team': 'LA Clippers',
+            'year': '2013',
+            'teamColor': '#00538C'
+          }
+        },
+        21: {
+          'tooltip': {
+            'name': 'Danny Green',
+            'team': 'San Antonio Spurs',
+            'year': '2018',
+            'teamColor': '#006BB6'
+          }
+        },
+        22: {
+          'tooltip': {
+            'name': 'Dirk Nowitzki',
+            'team': 'Dallas Mavericks',
+            'year': '2013',
+            'teamColor': '#E03A3E'
+          }
+        }
       }
     }
   };
@@ -202,14 +508,14 @@ class NBAScroll extends PureComponent {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.data !== this.state.data) {
-      this.updateLineChart();
+          this.updateLineChart();
     }
   }
 
   initLineChart = (config) => {
     config = {
       ...config,
-      xScale: d3.scaleLinear().domain([-0.5, 2.5]),
+      xScale: d3.scaleLinear().domain([-0.2, 2.1]),
       yScale: d3.scaleLinear().domain([0, 30]),
       margin: {
         top: 10,
@@ -248,7 +554,6 @@ class NBAScroll extends PureComponent {
 
   updateLineChart = () => {
     const svg = d3.select(this.refs.chart).select('svg');
-
     if (this.state.data in this.state.stepLines) {
       // Iterate over the list of dictionaries for the current step
       this.state.stepLines[this.state.data].forEach((dict, index) => {
@@ -257,8 +562,8 @@ class NBAScroll extends PureComponent {
         // Create a line generator with a Bezier curve
         const line = d3.line()
           .curve(d3.curveBasis) // This generates a cubic Bezier curve
-          .x(d => this.xScale(d.x)) // Use the xScale to scale the x values
-          .y(d => this.yScale(d.y)); // Use the yScale to scale the y values
+          .x(d => this.xScale(d.x * (1+(Math.random()/30)))) // Use the xScale to scale the x values
+          .y(d => this.yScale(d.y * (1+(Math.random()/30)))); // Use the yScale to scale the y values
 
         const xScale = this.xScale;
         const rgb = hexToRgb(tooltip.teamColor);
@@ -268,7 +573,7 @@ class NBAScroll extends PureComponent {
           .datum(currentStepData)
           .attr('fill', 'none')
           .attr('stroke', `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.5)`)
-          .attr('stroke-width', 3)
+          .attr('stroke-width', 3.5)
           .attr('d', line);
 
         const totalLength = path.node().getTotalLength();
@@ -281,16 +586,85 @@ class NBAScroll extends PureComponent {
           .attr('stroke-dashoffset', 0);
 
 
-        const invisiblePath = svg.append('path')
+        svg.append('path')
           .datum(currentStepData)
           .attr('fill', 'none')
           .attr('stroke', 'transparent') // The stroke is transparent
-          .attr('stroke-width', 20) // The stroke width is larger
+          .attr('stroke-width', 25) // The stroke width is larger
           .attr('d', line)
           .on('mouseover', function (event) {
 
             const mouseX = event.clientX;
-            const closestXValue = Math.round(xScale.invert(mouseX) - 2.5);
+            const closestXValue = Math.round(xScale.invert(mouseX) - 2);
+            const closestDataPoint = currentStepData.find(d => d.x === closestXValue);
+            // On mouseover, show the tooltip and set its content
+            d3.select('#tooltip')
+              .style('visibility', 'visible')
+              .html(`<p style="font-family: Futura Condensed; font-size: 1rem; font-weight: 600; margin: 0;">${tooltip.name}</p>
+                     <p style="font-family: Futura; font-size: .8rem; font-weight: 400; margin: 0; color: ${tooltip.teamColor}">${tooltip.team}</p>
+                     <p style="font-family: Futura; font-size: .8rem; font-weight: 400; margin: 0; color: ${tooltip.teamColor}">${tooltip.year}</p>
+                     <p style="font-family: Futura; font-size: .8rem; font-weight: 400; margin: 0; color: ${tooltip.teamColor}">WAR: ${closestDataPoint.y}</p>`)
+          })
+          .on('mousemove', function (event) {
+            // On mousemove, update the position of the tooltip
+            d3.select('#tooltip')
+              .style('top', (event.pageY - 10) + 'px')
+              .style('left', (event.pageX + 10) + 'px');
+          })
+          .on('mouseout', function () {
+            // On mouseout, hide the tooltip
+            d3.select('#tooltip')
+              .style('visibility', 'hidden');
+          });
+
+      });
+    } else if (this.state.data === 4) {
+      svg.selectAll('path')
+      .transition()
+      .duration(500)
+      .style('opacity', 0.25);
+  
+
+      this.state.linesStepFour.forEach((dict, index) => {
+        const currentStepData = Object.entries(dict).map(([x, y]) => ({ x: Number(x), y }));
+        const tooltip = this.state.metadata[4][index]['tooltip'];
+        // Create a line generator with a Bezier curve
+        const line = d3.line()
+          .curve(d3.curveBasis) // This generates a cubic Bezier curve
+          .x(d => this.xScale(d.x * (1+(Math.random()/30)))) // Use the xScale to scale the x values
+          .y(d => this.yScale(d.y * (1+(Math.random()/30)))); // Use the yScale to scale the y values
+
+        const xScale = this.xScale;
+        const rgb = hexToRgb(tooltip.teamColor);
+
+        // Create a new path for the current step data
+        const path = svg.append('path')
+          .datum(currentStepData)
+          .attr('fill', 'none')
+          .attr('stroke', `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.45)`)
+          .attr('stroke-width', 3)
+          .attr('d', line);
+
+        const totalLength = path.node().getTotalLength();
+
+        // Set up the transition
+        path.attr('stroke-dasharray', totalLength + ' ' + totalLength)
+          .attr('stroke-dashoffset', totalLength)
+          .transition()
+          .duration(750) // Duration of the transition in milliseconds
+          .attr('stroke-dashoffset', 0);
+
+
+        svg.append('path')
+          .datum(currentStepData)
+          .attr('fill', 'none')
+          .attr('stroke', 'transparent') // The stroke is transparent
+          .attr('stroke-width', 25) // The stroke width is larger
+          .attr('d', line)
+          .on('mouseover', function (event) {
+
+            const mouseX = event.clientX;
+            const closestXValue = Math.round(xScale.invert(mouseX) - 2);
             const closestDataPoint = currentStepData.find(d => d.x === closestXValue);
             // On mouseover, show the tooltip and set its content
             d3.select('#tooltip')
@@ -336,7 +710,11 @@ class NBAScroll extends PureComponent {
     const { classes } = this.props;
 
     return (
-      <div>
+      <div
+        style={{
+          marginBottom: '-10rem',
+        }}
+      >
         <div className={classes.graphicContainer}>
           <div className={classes.scroller}>
             <Scrollama
@@ -344,7 +722,7 @@ class NBAScroll extends PureComponent {
               onStepExit={this.onStepExit}
               progress
               onStepProgress={this.onStepProgress}
-              debug
+              // debug
               offset={0.4}
             >
               {steps.map(value => {
@@ -368,6 +746,19 @@ class NBAScroll extends PureComponent {
             </Scrollama>
           </div>
           <div className={classes.graphic} ref="chart" style={{ display: this.state.data === 0 ? 'none' : 'block' }}>
+            <p
+              style={{
+                visibility: this.state.data === 0 ? 'hidden' : 'visible',
+                opacity: this.state.data === 0 ? 0 : 1,
+                fontFamily: "Graphik",
+                fontWeight: 400,
+                fontSize: '.5rem',
+                alignSelf: 'left',
+                color: 'black',
+              }}
+            >
+              todo: add axes info, fix scrollup behavior
+            </p>
           </div>
           <div
             id="tooltip"
@@ -380,10 +771,6 @@ class NBAScroll extends PureComponent {
             }}>
           </div>
         </div>
-        <p>
-          Test
-        </p>
-
       </div>
     );
   }

@@ -7,7 +7,7 @@ function Layout(props) {
         <div
             id="gradient"
             style={{
-                "overflow": "scroll",
+                "overflow": "auto",
                 "position": "absolute",
                 "top": "0",
                 "left": "0",
@@ -21,7 +21,7 @@ function Layout(props) {
                     "marginTop": "0rem",
                     "position": "absolute",
                     "top": (page === 'nba_wireframe' ? "0rem" : "4rem"),
-                    overflow: "scroll",
+                    "overflow": (page !== 'nba_wireframe' ? "auto" : "hidden")
                 }}
             >
             {children}

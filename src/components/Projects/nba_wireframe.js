@@ -1,4 +1,6 @@
 import NBAScroll from "./nbaScroll";
+import NBASalaryScatterplot from "./nba_scatterplot";
+// import NBAKDE from "./nba_kde";
 
 function NBAWireframe() {
     return (
@@ -6,7 +8,7 @@ function NBAWireframe() {
             style={{
                 height: '100%',
                 scrollBehavior: 'smooth',
-                overflow: 'scroll',
+                overflow: 'auto',
                 backgroundColor: '#f6eee3',
                 marginBottom: "0rem"
             }}
@@ -36,23 +38,37 @@ function NBAWireframe() {
                 style={{
                     display: 'flex',
                     flexDirection: 'column',
-                    marginTop: '6rem',
+                    marginTop: '0rem',
                 }}
             >
+                <div
+                    style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        marginTop: '0rem',
+                        marginBottom: '-20rem'
+                    }}
+                >
+                </div>
+
+                <NBAScroll />
                 <img
                     src={process.env.PUBLIC_URL + "/title_nba.png"}
                     alt="The Contract Year Phenomenon"
                     style={{
-                        maxHeight: '50rem',
-                        maxWidth: '40rem',
+                        maxHeight: '55rem',
+                        maxWidth: '45rem',
                         alignSelf: 'center',
+                        marginTop: '-4rem',
                         marginBottom: '0rem'
                     }}
                 />
                 <h3
                     style={{
                         marginTop: '0rem',
-                        marginBottom: '-24rem',
+                        marginBottom: '12rem',
                         fontFamily: "Grouch",
                         fontWeight: 400,
                         fontSize: `1.5rem`,
@@ -64,7 +80,53 @@ function NBAWireframe() {
                 >
                     Story by Raj Shah
                 </h3>
-                <NBAScroll />
+                <p
+                    style={{
+                        fontFamily: "Graphik",
+                        fontWeight: 400,
+                        fontSize: `1.7rem`,
+                        lineHeight: 1.4,
+                        width: '100%',
+                        paddingInline: '5rem',
+                        color: '#213052',
+                        marginBottom: '8rem'
+                    }}
+                >
+
+                    In 2020, the world was grappling with a global pandemic, and the NBA was also struggling.
+                    The league somehow pulled off playoffs after a total hiatus in both games and training, leading to a spectacular Bubble Season.<br /><br />
+                    <span
+                        style={{
+                            fontSize: `1.3rem`,
+                            marginBlock: '0rem',
+                        }}
+                    >
+                        I'm still wondering where that <span style={{ color: '#86020e', fontWeight: 500 }}>
+                            2020 Heat Team </span> went. </span><br /><br />
+
+                    Players went on the record to discuss how they felt uncertain about playing that year - Jayson Tatum famously said that free agent players were{' '}
+                    <a href="https://www.espn.com/nba/story/_/id/29423982/celtics-jayson-tatum-says-nba-players-contract-years-putting-lot-line" target="_blank" rel="noreferrer">
+                        "putting a lot on the line"
+                    </a>
+                    {' '}by deciding they had to risk their health to secure a good contract.
+
+                    <br /><br /><br />
+
+                    Let's check the data to see how valid those concerns are.
+                </p>
+
+                <div
+                    style={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        marginTop: '-2rem',
+                        marginBottom: '-12rem'
+                    }}
+                >
+                    <NBASalaryScatterplot />
+                </div>
+                {/* <NBAKDE /> */}
             </div>
         </div>
     )
