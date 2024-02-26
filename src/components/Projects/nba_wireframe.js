@@ -107,13 +107,12 @@ function NBAWireframe() {
                         display: 'flex',
                         justifyContent: 'center',
                         alignItems: 'center',
-                        marginTop: '-2rem',
-                        marginBottom: '-12rem'
+                        marginTop: '-20rem',
+                        marginBottom: '-10rem'
                     }}
                 >
-                    {/* <NBASalaryScatterplot /> */}
-                </div>
                 <NBAKDE />
+                </div>
             </div>
         </div>
     )
