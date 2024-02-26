@@ -3,6 +3,9 @@ import injectSheet from 'react-jss';
 import { Scrollama, Step } from 'react-scrollama';
 import * as d3 from 'd3';
 
+let maxData = 0;
+let done = false;
+
 function hexToRgb(hex) {
   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
   return result ? {
@@ -54,7 +57,6 @@ const styles = {
 class NBAScroll extends PureComponent {
   state = {
     data: 0,
-    maxData: 0,
     steps: [0, 1, 2, 3, 4],
     progress: 0,
     stepLines: {
@@ -74,36 +76,36 @@ class NBAScroll extends PureComponent {
         2: 18.96
       }],
       3: [
-      {
-        0: 9.575629,
-        1: 14.288803,
-        2: 11.426555
-      },
-      {
-        0: 11.021666,
-        1: 13.764027,
-        2: 11.090932
-      },
-      {
-        0: 3.091768,
-        1: 11.575403,
-        2: 7.927774
-      },
-      {
-        0: 10.716457,
-        1: 11.042433,
-        2: 8.408654
-      },
-      {
-        0: 8.352408,
-        1: 10.834085,
-        2: 10.567995
-      },
-      {
-        0: 6.53109,
-        1: 10.177798,
-        2: 9.036877
-      }]
+        {
+          0: 9.575629,
+          1: 14.288803,
+          2: 11.426555
+        },
+        {
+          0: 11.021666,
+          1: 13.764027,
+          2: 11.090932
+        },
+        {
+          0: 3.091768,
+          1: 11.575403,
+          2: 7.927774
+        },
+        {
+          0: 10.716457,
+          1: 11.042433,
+          2: 8.408654
+        },
+        {
+          0: 8.352408,
+          1: 10.834085,
+          2: 10.567995
+        },
+        {
+          0: 6.53109,
+          1: 10.177798,
+          2: 9.036877
+        }]
     },
     linesStepFour:
       [
@@ -508,20 +510,20 @@ class NBAScroll extends PureComponent {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.data !== this.state.data) {
-          this.updateLineChart();
+      this.updateLineChart();
     }
   }
 
   initLineChart = (config) => {
     config = {
       ...config,
-      xScale: d3.scaleLinear().domain([-0.2, 2.1]),
+      xScale: d3.scaleLinear().domain([-0.3, 2.3]),
       yScale: d3.scaleLinear().domain([0, 30]),
       margin: {
         top: 10,
         right: 10,
         bottom: 20,
-        left: 25,
+        left: 70,
       }
     };
     const { width, height, margin } = config;
@@ -534,173 +536,222 @@ class NBAScroll extends PureComponent {
     const svg = d3
       .select(this.refs.chart)
       .append("svg")
-      .attr("width", width)
-      .attr("height", height)
+      .attr("width", width + margin.left + margin.right + margin.right)  // Increase the width of the SVG
+      .attr("height", height + margin.top + margin.bottom)  // Increase the height of the SVG
       .append("g")
       .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
-    const tickValues = d3.range(0, 31, 5);
+    const tickValues = d3.range(10, 31, 10);
 
     // Set the tick values for the y-axis
-    svg.call(d3.axisLeft(config.yScale.range([h, 0])).tickValues(tickValues));
+    svg
+      .call(d3.axisLeft(this.yScale).tickValues(tickValues))
+      .attr("class", "y axis")
+      .style("font-size", "16px")
+      .style("font-family", "Graphik");
+
+    const xLabels = ["Year Before Contract Expires", "End of Contract", "Year After Contract"];
 
     svg
       .append("g")
       .attr("transform", `translate(0, ${h})`)
-      .call(d3.axisBottom(config.xScale.range([0, w])));
+      .attr("class", "x axis")
+      .style("font-size", "16px")
+      .style("font-family", "Graphik")
+      .call(
+        d3.axisBottom(this.xScale)
+          .tickValues([0, 1, 2])  // Set the tick values
+          .tickFormat((d, i) => xLabels[i])  // Set the tick labels
+      );
 
+    [0, 1, 2].forEach((x) => {
+      svg
+        .append("line")
+        .attr("x1", config.xScale(x))
+        .attr("x2", config.xScale(x))
+        .attr("y1", 0)
+        .attr("y2", h)
+        .style("stroke", "lightgray")
+        .style("stroke-dasharray", "3,3");
+    });
+    svg.append("text")
+      .attr("text-anchor", "end")
+      .attr("x", w / 2 + 2 * margin.left) // Center the text in the drawable area
+      .attr("y", h + margin.top + 40) // Adjust this value to position below the x-axis
+      .text("Year in Relation to Contract")
+      .style("font-family", "Graphik")
+      .style("fill", "black")
+      .style("font-size", "20px");
+
+    // Add Y-axis title
+    svg.append("text")
+      .attr("text-anchor", "end")
+      .attr("transform", "rotate(-90)")  // Rotate the text for y-axis
+      .attr("y", -margin.left + 15) // Adjust positioning to the left of the y-axis
+      .attr("x", margin.bottom - h/4) // Center the text along the y-axis height
+      .text("Performance (WAR)")
+      .style("fill", "black")
+      .style("font-family", "Graphik")
+      .style("font-size", "20px");
     return svg;
   };
 
   updateLineChart = () => {
     const svg = d3.select(this.refs.chart).select('svg');
-    if (this.state.data in this.state.stepLines) {
-      // Iterate over the list of dictionaries for the current step
-      this.state.stepLines[this.state.data].forEach((dict, index) => {
-        const currentStepData = Object.entries(dict).map(([x, y]) => ({ x: Number(x), y }));
-        const tooltip = this.state.metadata[this.state.data][index]['tooltip'];
-        // Create a line generator with a Bezier curve
-        const line = d3.line()
-          .curve(d3.curveBasis) // This generates a cubic Bezier curve
-          .x(d => this.xScale(d.x * (1+(Math.random()/30)))) // Use the xScale to scale the x values
-          .y(d => this.yScale(d.y * (1+(Math.random()/30)))); // Use the yScale to scale the y values
+    if (this.state.data === maxData && !done) {
+      if (this.state.data in this.state.stepLines) {
+        // Iterate over the list of dictionaries for the current step
+        this.state.stepLines[this.state.data].forEach((dict, index) => {
+          const currentStepData = Object.entries(dict).map(([x, y]) => ({ x: Number(x), y }));
+          const tooltip = this.state.metadata[this.state.data][index]['tooltip'];
+          // Create a line generator with a Bezier curve
+          const line = d3.line()
+            .curve(d3.curveBasis) // This generates a cubic Bezier curve
+            .x(d => this.xScale(d.x) + 70)
+            .y(d => this.yScale(d.y + Math.random() - 0.5) - 20);
 
-        const xScale = this.xScale;
-        const rgb = hexToRgb(tooltip.teamColor);
+          const xScale = this.xScale;
 
-        // Create a new path for the current step data
-        const path = svg.append('path')
-          .datum(currentStepData)
-          .attr('fill', 'none')
-          .attr('stroke', `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.5)`)
-          .attr('stroke-width', 3.5)
-          .attr('d', line);
+          const rgb = hexToRgb(tooltip.teamColor);
 
-        const totalLength = path.node().getTotalLength();
+          // Create a new path for the current step data
+          const path = svg.append('path')
+            .datum(currentStepData)
+            .attr('fill', 'none')
+            .attr('stroke', `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.75)`)
+            .attr('stroke-width', 5)
+            .attr('d', line);
 
-        // Set up the transition
-        path.attr('stroke-dasharray', totalLength + ' ' + totalLength)
-          .attr('stroke-dashoffset', totalLength)
+          const totalLength = path.node().getTotalLength();
+
+          // Set up the transition
+          path.attr('stroke-dasharray', totalLength + ' ' + totalLength)
+            .attr('stroke-dashoffset', totalLength)
+            .transition()
+            .duration(500) // Duration of the transition in milliseconds
+            .attr('stroke-dashoffset', 0);
+
+
+          svg.append('path')
+            .datum(currentStepData)
+            .attr('fill', 'none')
+            .attr('stroke', 'transparent') // The stroke is transparent
+            .attr('stroke-width', 25) // The stroke width is larger
+            .attr('d', line)
+            .on('mouseover', function (event) {
+
+              const mouseX = event.clientX;
+              const closestXValue = Math.round(xScale.invert(mouseX) - 2);
+              const closestDataPoint = currentStepData.find(d => d.x === closestXValue);
+              // On mouseover, show the tooltip and set its content
+              d3.select('#tooltip')
+                .style('visibility', 'visible')
+                .html(`<p style="font-family: Futura Condensed; font-size: 1rem; font-weight: 600; margin: 0;">${tooltip.name}</p>
+                       <p style="font-family: Futura; font-size: .8rem; font-weight: 400; margin: 0; color: ${tooltip.teamColor}">${tooltip.team}</p>
+                       <p style="font-family: Futura; font-size: .8rem; font-weight: 400; margin: 0; color: ${tooltip.teamColor}">${tooltip.year}</p>
+                       <p style="font-family: Futura; font-size: .8rem; font-weight: 400; margin: 0; color: ${tooltip.teamColor}">WAR: ${closestDataPoint.y}</p>`)
+            })
+            .on('mousemove', function (event) {
+              // On mousemove, update the position of the tooltip
+              d3.select('#tooltip')
+                .style('top', (event.pageY - 10) + 'px')
+                .style('left', (event.pageX + 10) + 'px');
+            })
+            .on('mouseout', function () {
+              // On mouseout, hide the tooltip
+              d3.select('#tooltip')
+                .style('visibility', 'hidden');
+            });
+
+        });
+      } else if (this.state.data === 4) {
+        svg.selectAll('path')
           .transition()
-          .duration(500) // Duration of the transition in milliseconds
-          .attr('stroke-dashoffset', 0);
+          .duration(500)
+          .style('opacity', 0.1)
 
 
-        svg.append('path')
-          .datum(currentStepData)
-          .attr('fill', 'none')
-          .attr('stroke', 'transparent') // The stroke is transparent
-          .attr('stroke-width', 25) // The stroke width is larger
-          .attr('d', line)
-          .on('mouseover', function (event) {
+        this.state.linesStepFour.forEach((dict, index) => {
+          const currentStepData = Object.entries(dict).map(([x, y]) => ({ x: Number(x), y }));
+          const tooltip = this.state.metadata[4][index]['tooltip'];
+          // Create a line generator with a Bezier curve
+          const line = d3.line()
+            .curve(d3.curveBasis) // This generates a cubic Bezier curve
+            .x(d => this.xScale(d.x) + 70)
+            .y(d => this.yScale(d.y + Math.random() - 0.5) - 20);
 
-            const mouseX = event.clientX;
-            const closestXValue = Math.round(xScale.invert(mouseX) - 2);
-            const closestDataPoint = currentStepData.find(d => d.x === closestXValue);
-            // On mouseover, show the tooltip and set its content
-            d3.select('#tooltip')
-              .style('visibility', 'visible')
-              .html(`<p style="font-family: Futura Condensed; font-size: 1rem; font-weight: 600; margin: 0;">${tooltip.name}</p>
-                     <p style="font-family: Futura; font-size: .8rem; font-weight: 400; margin: 0; color: ${tooltip.teamColor}">${tooltip.team}</p>
-                     <p style="font-family: Futura; font-size: .8rem; font-weight: 400; margin: 0; color: ${tooltip.teamColor}">${tooltip.year}</p>
-                     <p style="font-family: Futura; font-size: .8rem; font-weight: 400; margin: 0; color: ${tooltip.teamColor}">WAR: ${closestDataPoint.y}</p>`)
-          })
-          .on('mousemove', function (event) {
-            // On mousemove, update the position of the tooltip
-            d3.select('#tooltip')
-              .style('top', (event.pageY - 10) + 'px')
-              .style('left', (event.pageX + 10) + 'px');
-          })
-          .on('mouseout', function () {
-            // On mouseout, hide the tooltip
-            d3.select('#tooltip')
-              .style('visibility', 'hidden');
-          });
+          const xScale = this.xScale;
+          const rgb = hexToRgb(tooltip.teamColor);
 
-      });
-    } else if (this.state.data === 4) {
-      svg.selectAll('path')
-      .transition()
-      .duration(500)
-      .style('opacity', 0.25);
-  
+          // Create a new path for the current step data
+          const path = svg.append('path')
+            .datum(currentStepData)
+            .attr('fill', 'none')
+            .attr('stroke', `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.5)`)
+            .attr('stroke-width', 3)
+            .attr('d', line);
 
-      this.state.linesStepFour.forEach((dict, index) => {
-        const currentStepData = Object.entries(dict).map(([x, y]) => ({ x: Number(x), y }));
-        const tooltip = this.state.metadata[4][index]['tooltip'];
-        // Create a line generator with a Bezier curve
-        const line = d3.line()
-          .curve(d3.curveBasis) // This generates a cubic Bezier curve
-          .x(d => this.xScale(d.x * (1+(Math.random()/30)))) // Use the xScale to scale the x values
-          .y(d => this.yScale(d.y * (1+(Math.random()/30)))); // Use the yScale to scale the y values
+          const totalLength = path.node().getTotalLength();
 
-        const xScale = this.xScale;
-        const rgb = hexToRgb(tooltip.teamColor);
-
-        // Create a new path for the current step data
-        const path = svg.append('path')
-          .datum(currentStepData)
-          .attr('fill', 'none')
-          .attr('stroke', `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.45)`)
-          .attr('stroke-width', 3)
-          .attr('d', line);
-
-        const totalLength = path.node().getTotalLength();
-
-        // Set up the transition
-        path.attr('stroke-dasharray', totalLength + ' ' + totalLength)
-          .attr('stroke-dashoffset', totalLength)
-          .transition()
-          .duration(750) // Duration of the transition in milliseconds
-          .attr('stroke-dashoffset', 0);
+          // Set up the transition
+          path.attr('stroke-dasharray', totalLength + ' ' + totalLength)
+            .attr('stroke-dashoffset', totalLength)
+            .transition()
+            .duration(750) // Duration of the transition in milliseconds
+            .attr('stroke-dashoffset', 0);
 
 
-        svg.append('path')
-          .datum(currentStepData)
-          .attr('fill', 'none')
-          .attr('stroke', 'transparent') // The stroke is transparent
-          .attr('stroke-width', 25) // The stroke width is larger
-          .attr('d', line)
-          .on('mouseover', function (event) {
+          svg.append('path')
+            .datum(currentStepData)
+            .attr('fill', 'none')
+            .attr('stroke', 'transparent') // The stroke is transparent
+            .attr('stroke-width', 25) // The stroke width is larger
+            .attr('d', line)
+            .on('mouseover', function (event) {
 
-            const mouseX = event.clientX;
-            const closestXValue = Math.round(xScale.invert(mouseX) - 2);
-            const closestDataPoint = currentStepData.find(d => d.x === closestXValue);
-            // On mouseover, show the tooltip and set its content
-            d3.select('#tooltip')
-              .style('visibility', 'visible')
-              .html(`<p style="font-family: Futura Condensed; font-size: 1rem; font-weight: 600; margin: 0;">${tooltip.name}</p>
-                     <p style="font-family: Futura; font-size: .8rem; font-weight: 400; margin: 0; color: ${tooltip.teamColor}">${tooltip.team}</p>
-                     <p style="font-family: Futura; font-size: .8rem; font-weight: 400; margin: 0; color: ${tooltip.teamColor}">${tooltip.year}</p>
-                     <p style="font-family: Futura; font-size: .8rem; font-weight: 400; margin: 0; color: ${tooltip.teamColor}">WAR: ${closestDataPoint.y}</p>`)
-          })
-          .on('mousemove', function (event) {
-            // On mousemove, update the position of the tooltip
-            d3.select('#tooltip')
-              .style('top', (event.pageY - 10) + 'px')
-              .style('left', (event.pageX + 10) + 'px');
-          })
-          .on('mouseout', function () {
-            // On mouseout, hide the tooltip
-            d3.select('#tooltip')
-              .style('visibility', 'hidden');
-          });
+              const mouseX = event.clientX;
+              const closestXValue = Math.round(xScale.invert(mouseX) - 2);
+              const closestDataPoint = currentStepData.find(d => d.x === closestXValue);
+              // On mouseover, show the tooltip and set its content
+              d3.select('#tooltip')
+                .style('visibility', 'visible')
+                .html(`<p style="font-family: Futura Condensed; font-size: 1rem; font-weight: 600; margin: 0;">${tooltip.name}</p>
+                       <p style="font-family: Futura; font-size: .8rem; font-weight: 400; margin: 0; color: ${tooltip.teamColor}">${tooltip.team}</p>
+                       <p style="font-family: Futura; font-size: .8rem; font-weight: 400; margin: 0; color: ${tooltip.teamColor}">${tooltip.year}</p>
+                       <p style="font-family: Futura; font-size: .8rem; font-weight: 400; margin: 0; color: ${tooltip.teamColor}">WAR: ${closestDataPoint.y}</p>`)
+            })
+            .on('mousemove', function (event) {
+              // On mousemove, update the position of the tooltip
+              d3.select('#tooltip')
+                .style('top', (event.pageY - 10) + 'px')
+                .style('left', (event.pageX + 10) + 'px');
+            })
+            .on('mouseout', function () {
+              // On mouseout, hide the tooltip
+              d3.select('#tooltip')
+                .style('visibility', 'hidden');
+            });
 
-      });
+        });
+        done = true;
+      }
     }
   };
 
   onStepEnter = e => {
     const { data, entry, direction } = e;
     this.setState({ data });
+    if (data > maxData) {
+      maxData = data;
+    }
   };
-  
+
   onStepExit = ({ direction, data }) => {
     if (direction === 'up' && data === this.state.steps[0]) {
       this.setState({ data: 0 });
     }
   };
-  
+
   onStepProgress = ({ progress }) => {
     this.setState({ progress });
   };
@@ -752,12 +803,12 @@ class NBAScroll extends PureComponent {
                 opacity: this.state.data === 0 ? 0 : 1,
                 fontFamily: "Graphik",
                 fontWeight: 400,
-                fontSize: '.5rem',
+                fontSize: '1.5rem',
                 alignSelf: 'left',
                 color: 'black',
               }}
             >
-              todo: add axes info, fix scrollup behavior
+              Player Performance Before, During, and After Contract Years
             </p>
           </div>
           <div
