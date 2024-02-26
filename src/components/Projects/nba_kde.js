@@ -118,7 +118,7 @@ class NBAKDE extends Component {
         // X-axis label
         svg.append("text")
             .attr("text-anchor", "end")
-            .attr("x", width / 2)
+            .attr("x", width / 2 + margin.left)
             .attr("y", height + margin.bottom - 20)
             .text("Performance (WAR) Values")
             .style("font-family", "Graphik")
