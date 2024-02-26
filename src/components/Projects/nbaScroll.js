@@ -14,6 +14,7 @@ function hexToRgb(hex) {
     b: parseInt(result[3], 16)
   } : null;
 }
+
 const styles = {
   graphicContainer: {
     padding: '40vh 2vw 20vh',
@@ -46,10 +47,10 @@ const styles = {
       textAlign: 'center',
       padding: '1rem',
       fontSize: '1.8rem',
-      marginBottom: '7rem',
+      marginBottom: '10rem',
     },
     '&:last-child': {
-      marginBottom: '15rem',
+      marginBottom: '18rem',
     },
   }
 };
@@ -560,11 +561,11 @@ class NBAScroll extends PureComponent {
       .style("font-family", "Graphik")
       .call(
         d3.axisBottom(this.xScale)
-          .tickValues([0, 1, 2])  // Set the tick values
+          .tickValues([0.05, 1, 1.95])  // Set the tick values
           .tickFormat((d, i) => xLabels[i])  // Set the tick labels
       );
 
-    [0, 1, 2].forEach((x) => {
+    [.05, 1, 1.95].forEach((x) => {
       svg
         .append("line")
         .attr("x1", config.xScale(x))
@@ -587,7 +588,7 @@ class NBAScroll extends PureComponent {
     svg.append("text")
       .attr("text-anchor", "end")
       .attr("transform", "rotate(-90)")  // Rotate the text for y-axis
-      .attr("y", -margin.left + 15) // Adjust positioning to the left of the y-axis
+      .attr("y", -margin.left) // Adjust positioning to the left of the y-axis
       .attr("x", margin.bottom - h/4) // Center the text along the y-axis height
       .text("Performance (WAR)")
       .style("fill", "black")
@@ -759,7 +760,6 @@ class NBAScroll extends PureComponent {
   render() {
     const { data, steps, progress } = this.state;
     const { classes } = this.props;
-
     return (
       <div
         style={{

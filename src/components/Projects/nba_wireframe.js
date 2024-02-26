@@ -1,6 +1,6 @@
 import NBAScroll from "./nbaScroll";
 import NBASalaryScatterplot from "./nba_scatterplot";
-// import NBAKDE from "./nba_kde";
+import NBAKDE from "./nba_kde";
 
 function NBAWireframe() {
     return (
@@ -41,18 +41,6 @@ function NBAWireframe() {
                     marginTop: '0rem',
                 }}
             >
-                <div
-                    style={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        marginTop: '0rem',
-                        marginBottom: '-20rem'
-                    }}
-                >
-                </div>
-
                 <NBAScroll />
                 <img
                     src={process.env.PUBLIC_URL + "/title_nba.png"}
@@ -61,7 +49,7 @@ function NBAWireframe() {
                         maxHeight: '55rem',
                         maxWidth: '45rem',
                         alignSelf: 'center',
-                        marginTop: '-4rem',
+                        marginTop: '10rem',
                         marginBottom: '0rem'
                     }}
                 />
@@ -110,9 +98,8 @@ function NBAWireframe() {
                     </a>
                     {' '}by deciding they had to risk their health to secure a good contract.
 
-                    <br /><br /><br />
-
-                    Let's check the data to see how valid those concerns are.
+                    <br />< br />
+                    So that makes sense - players are concerned about how much they can earn in the future. Let's see how this is reflected in their performance.
                 </p>
 
                 <div
@@ -124,9 +111,9 @@ function NBAWireframe() {
                         marginBottom: '-12rem'
                     }}
                 >
-                    <NBASalaryScatterplot />
+                    {/* <NBASalaryScatterplot /> */}
                 </div>
-                {/* <NBAKDE /> */}
+                <NBAKDE />
             </div>
         </div>
     )
