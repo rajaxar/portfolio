@@ -285,14 +285,55 @@ function NBAWireframe() {
                         fontSize: `.8rem`,
                         lineHeight: 1.4,
                         width: '100%',
-                        paddingInline: '15rem',
                         marginBottom: '10rem',
                         display: 'block',
                         textAlign: 'center',
                 }}
                     >
-                        Raj Shah
-                    </p>
+                        Made by Raj Shah <br/>
+                        94470 Telling Stories With Data <br/>
+                        Christopher Goranson
+                    </p> 
+                {/* Data Sources */}
+                <div
+                    style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        marginBottom: '5rem',
+                        paddingInline: '10rem',
+                    }}
+                > 
+                <span
+                    style={{
+                        fontSize: `1.5rem`,
+                        fontWeight: 500,
+                    }}
+                >
+                    Sources
+                </span>
+                <ul>
+                    <li>
+                        <a href="https://github.com/erikgregorywebb/datasets/blob/master/nba-salaries.csv" target="_blank" rel="noreferrer">
+                            NBA Salaries by Erik Webb
+                        </a> - This dataset contains player salaries from 2000 to 2020.
+                    </li>
+                    <li>
+                        <a href="https://github.com/fivethirtyeight/nba-player-advanced-metrics" target="_blank" rel="noreferrer">
+                            WAR Metrics by FiveThirtyEight
+                        </a> - This dataset contains advanced metrics for NBA players from 1977 to 2020.
+                    </li>
+                    <li>
+                        <a href="https://www.kaggle.com/datasets/justinas/nba-players-data" target="_blank" rel="noreferrer">
+                            NBA Players Kaggle Set
+                        </a> - This dataset gives age data for players from 1996 to 2022.
+                    </li>
+                    <li>
+                        <a href="https://www.spotrac.com/nba/free-agents/2020/" target="_blank" rel="noreferrer">
+                            Spotrac
+                        </a> - This website contains free agent data for different years.
+                    </li>
+                </ul>
+                </div>
             </div>
         </div>
     )
