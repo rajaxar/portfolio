@@ -35,6 +35,7 @@ const styles = {
             color: '#fff',
         },
         marginLeft: '4rem',
+        marginRight: '4rem',
     },
     scroller: {
         flexBasis: '35%',
@@ -63,10 +64,10 @@ class NBAKDE extends Component {
         kdeMaxX: 0,
         steps: [0, 1, 2, 3],
         stepText: {
-            0: "<div style='font-size:1.7rem;'> <span style='font-size:1.2rem'>Let's look at some stats. </br></span>On the left, we have an Estimate of the Distribution of Player Performance during their <span style='color: #69b3a2; font-weight:500'>Contract Year.</span> <br/><br/><span style='font-size:1.2rem; line-height: 1px;'>This is technically a Kernel Density Estimator, which estimates the probability of a player having a certain Wins Above Replacement (WAR) during their Contract Year. </span>",
+            0: "<div style='font-size:1.7rem;'> <span style='font-size:1.2rem'>Let's look at some stats. </br></span>On the left, we have an Estimate of the Distribution of Player Performance during their <span style='color: #69b3a2; font-weight:500'>Contract Year.</span> <br/><br/><span style='font-size:1.2rem; line-height: 1px;'>The data is from a subset of players that had contracts expire between 2003 and 2020. <br/><br/>This is technically a Kernel Density Estimator, which estimates the probability of a player having a certain Wins Above Replacement (WAR) during their Contract Year.</span>",
             1: "<div style='font-size:1.7rem;'>Essentially, most players had between 0 to 3 Wins Above Replacement during their <span style='color: #69b3a2; font-weight:500'>Contract Year.</span><br/><br/><span style='font-size:1.2rem; line-height: 1px;'>This means that the majority of contract year players netted their teams a few additional wins compared to a replacement-level player.</span></div>",
             2: "<div style='font-size:1.7rem;'>Now let's look at these same players, but the<span style='color: #B299D4; font-weight:500'> year before</span>. As you can see, the distribution looks really similar.<br/><br/><span style='font-size:1.2rem; line-height: 1px;'>Note: Any differences are not statistically signficant, even with a pairwise T-Test.</span></div>",
-            3: "<div style='font-size:1.7rem;'>And now performance <span style='color: #FDB36D; font-weight:500'>during the next year</span>. <br/><br/>This distribution is a little different. But it shows that there's <span style='font-weight:500;'>more</span> players performing better in their new contract.</div>"
+            3: "<div style='font-size:1.7rem;'>And now performance <span style='color: #FDB36D; font-weight:500'>during the next year</span>. <br/><br/>This distribution is a little different. But it shows that there's <span style='font-weight:500;'>more</span> players performing better in their new contract.<br/><br/>So - does that mean the <span style='color: #86020e; font-family: Grouch'>Contract Year</span> doesn't exist?</div>"
         },
         svg: null,
         x: null,
@@ -166,7 +167,7 @@ class NBAKDE extends Component {
 
     loadData = () => {
         return new Promise(resolve => {
-            d3.csv(process.env.PUBLIC_URL + '/player_kde.csv').then(datum => {
+            d3.csv(process.env.PUBLIC_URL + '/final_kde.csv').then(datum => {
                 const parsedData = datum.map(d => ({
                     ...d,
                     contract_war: +d.contract_war,
