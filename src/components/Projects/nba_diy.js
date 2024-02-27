@@ -72,6 +72,7 @@ function NBADIY() {
                     label="Position"
                     size='lg'
                     w={350}
+                    h={100}
                 />
                 <MultiSelect
                     data={ageOptions}
@@ -81,6 +82,7 @@ function NBADIY() {
                     label="Age"
                     size='lg'
                     w={350}
+                    h={100}
                 />
                 <MultiSelect
                     data={salaryOptions}
@@ -90,6 +92,7 @@ function NBADIY() {
                     label="Salary"
                     size='lg'
                     w={350}
+                    h={100}
                 />
             </div>
             <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly' }}>
