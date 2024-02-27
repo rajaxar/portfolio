@@ -524,7 +524,7 @@ class NBAScroll extends PureComponent {
         top: 10,
         right: 10,
         bottom: 20,
-        left: 100,
+        left: 70,
       }
     };
     const { width, height, margin } = config;

@@ -15,7 +15,7 @@ function NBAWireframe() {
         >
             {/* Button that returns back to main page, stickied on top left. */}
             <a
-                href="portfolio?ref=projects"
+                href="?ref=projects"
                 style={{
                     position: 'fixed',
                     top: '1rem',
