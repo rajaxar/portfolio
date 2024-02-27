@@ -11,7 +11,7 @@ const projectList = [
         description: 'Part Two of an analysis of the relationship between contract years and player performance in the NBA.',
         content: 
             <>
-                <a href={process.env.PUBLIC_URL + '?ref=nba_wireframe'} >
+                <a href={process.env.PUBLIC_URL + '?ref=nba_contract'} >
                     Click Here to see the Actual Story
                 </a>
                 <NBATwo />

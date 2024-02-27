@@ -18,7 +18,7 @@ class NBASalaryScatterplot extends Component {
 
   drawScatterplot = () => {
     const totalWidth = 600;
-    const totalHeight = 600;
+    const totalHeight = 500;
     const margin = { top: 10, right: 80, bottom: 60, left: 80 };
     const width = totalWidth - margin.left - margin.right;
     const height = totalHeight - margin.top - margin.bottom;
@@ -81,8 +81,8 @@ class NBASalaryScatterplot extends Component {
 
     svg.append('text')
       .attr('transform', 'rotate(-90)')
-      .attr('x', xScale(-29.5))
-      .attr('y', yScale(.625))
+      .attr('x', xScale(-27.2))
+      .attr('y', yScale(.55))
       .text('Played Worse, Paid Worse')
       .style('font-family', 'Graphik')
       .style('font-size', '12px')
