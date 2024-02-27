@@ -524,7 +524,7 @@ class NBAScroll extends PureComponent {
         top: 10,
         right: 10,
         bottom: 20,
-        left: 70,
+        left: 100,
       }
     };
     const { width, height, margin } = config;
@@ -588,7 +588,7 @@ class NBAScroll extends PureComponent {
     svg.append("text")
       .attr("text-anchor", "end")
       .attr("transform", "rotate(-90)")  // Rotate the text for y-axis
-      .attr("y", -margin.left) // Adjust positioning to the left of the y-axis
+      .attr("y", -45) // Adjust positioning to the left of the y-axis
       .attr("x", margin.bottom - h/4) // Center the text along the y-axis height
       .text("Performance (WAR)")
       .style("fill", "black")
