@@ -278,22 +278,6 @@ function NBAWireframe() {
                         </li>
                     </ul>
                 </p>
-                <p
-                    style={{
-                        fontFamily: "Graphik",
-                        fontWeight: 400,
-                        fontSize: `.8rem`,
-                        lineHeight: 1.4,
-                        width: '100%',
-                        marginBottom: '10rem',
-                        display: 'block',
-                        textAlign: 'center',
-                }}
-                    >
-                        Made by Raj Shah <br/>
-                        94470 Telling Stories With Data <br/>
-                        Christopher Goranson
-                    </p> 
                 {/* Data Sources */}
                 <div
                     style={{
@@ -333,6 +317,24 @@ function NBAWireframe() {
                         </a> - This website contains free agent data for different years.
                     </li>
                 </ul>
+                <p
+                    style={{
+                        fontFamily: "Graphik",
+                        fontWeight: 400,
+                        fontSize: `.8rem`,
+                        lineHeight: 1.4,
+                        width: '100%',
+                        marginBottom: '10rem',
+                        marginTop: '5rem',
+                        display: 'block',
+                        textAlign: 'center',
+                }}
+                    >
+                        Made by Raj Shah <br/>
+                        94470 Telling Stories With Data <br/>
+                        Christopher Goranson
+                    </p> 
+
                 </div>
             </div>
         </div>
