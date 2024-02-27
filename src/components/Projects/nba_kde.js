@@ -167,7 +167,7 @@ class NBAKDE extends Component {
 
     loadData = () => {
         return new Promise(resolve => {
-            d3.csv(process.env.PUBLIC_URL + '/final_kde.csv').then(datum => {
+            d3.csv(process.env.PUBLIC_URL + '/final_KDE.csv').then(datum => {
                 const parsedData = datum.map(d => ({
                     ...d,
                     contract_war: +d.contract_war,
