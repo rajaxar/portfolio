@@ -3,8 +3,21 @@ import GovDebt from './govDebt';
 import USProportions from './usProportions';
 import NBAOne from './nba_one';
 import NBATwo from './nba_two';
+import NBAThree from './nba_three';
 
 const projectList = [
+    {
+        id: 'nba_part_3',
+        label: 'Contract Year vs Performance in the NBA - Part 3',
+        description: 'Part Three of an analysis of the relationship between contract years and player performance in the NBA.',
+        content: 
+            <>
+                <a href={process.env.PUBLIC_URL + '?ref=nba_contract'} >
+                    Click Here to see the Actual Story.
+                </a> Scroll Down to See Parts 1 and 2.
+                <NBAThree />
+            </>
+    },
     {
         id: 'nba_part_2',
         label: 'Contract Year vs Performance in the NBA - Part 2',
