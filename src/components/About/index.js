@@ -12,7 +12,7 @@ function About() {
         >
             <h1
                 style={{
-                    color: "#ffffff",
+                    color: "#F7DEC4",
                     cursor: 'default',
                     fontFamily: "Graphik",
                     fontWeight: 800,
