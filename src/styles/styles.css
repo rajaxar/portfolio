@@ -1,5 +1,17 @@
 iframe#webpack-dev-server-client-overlay{display:none!important}
 
+.accordion-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+@media screen and (min-width: 900px) {
+  .accordion-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+
 #scrolly {
     position: relative;
     display: -webkit-box;

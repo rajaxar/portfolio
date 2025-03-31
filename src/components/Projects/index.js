@@ -1,123 +1,173 @@
-import { Group, Text, Accordion } from '@mantine/core';
-import GovDebt from './govDebt';
-import USProportions from './usProportions';
-import NBAOne from './nba_one';
-import NBATwo from './nba_two';
-import NBAThree from './nba_three';
+import React, { useState } from 'react';
+
+import {
+    Card,
+    Image,
+    Text,
+    Title,
+    Button,
+    Grid,
+    Container
+} from '@mantine/core';
+import { clamp } from '@mantine/hooks';
 
 const projectList = [
     {
-        id: 'nba_part_3',
-        label: 'Contract Year vs Performance in the NBA - Part 3',
-        description: 'Part Three of an analysis of the relationship between contract years and player performance in the NBA.',
-        content: 
-            <>
-                <a href={process.env.PUBLIC_URL + '?ref=nba_contract'} >
-                    Click Here to see the Actual Story.
-                </a> Scroll Down to See Parts 1 and 2.
-                <NBAThree />
-            </>
+        id: 'nba',
+        label: 'Contract Year vs. Performance in the NBA',
+        description: 'This project is an experiment in data-storytelling. I use D3.JS to visualize the relationship between contract' +
+            ' years and player performance in the NBA. The project includes animated components and interactive components that allow' +
+            ' the user to explore the data in a more engaging way.',
+        image: process.env.PUBLIC_URL + "/title_nba.png",
+        link: process.env.PUBLIC_URL + "?ref=nba_contract"
     },
     {
-        id: 'nba_part_2',
-        label: 'Contract Year vs Performance in the NBA - Part 2',
-        description: 'Part Two of an analysis of the relationship between contract years and player performance in the NBA.',
-        content: 
-            <>
-                <a href={process.env.PUBLIC_URL + '?ref=nba_contract'} >
-                    Click Here to see the Actual Story
-                </a>
-                <NBATwo />
-            </>
+        id: 'idl',
+        label: 'Achieving Fairness in Federated Learning',
+        description: 'This group project implemented a novel approach to improve individual fairness in Federated Instances using the ' +
+            'Flower framework. We trained a Neural Network model on recidivism cases from the COMPAS dataset, and were able to achieve ' +
+            'increases in group and individual fairness metrics without sacrificing accuracy.',
+        image: process.env.PUBLIC_URL + "/IDL.png",
+        link: "https://drive.google.com/file/d/18o0HTSjobRYRX5yXMQSVGRwoyJZB7Lbb/view?usp=sharing"
     },
     {
-        id: 'nba_part_1',
-        label: 'Contract Year vs Performance in the NBA - Part 1',
-        description: 'Part One of an analysis of the relationship between contract years and player performance in the NBA.',
-        content: <NBAOne />,
+        id: 'fund_vote',
+        label: 'Reducing Voter Wait Times using Optimization',
+        description: 'This project used optimization techniques to reduce voter wait times in Allegheny County. We used census data and ' +
+            'historical voting data to create a model that predicts wait times at polling places. We then used this model to optimize the ' +
+            'allocation of voting machines and poll workers to reduce wait times.',
+        image: process.env.PUBLIC_URL + "/fund_vote.png",
+        link: "https://drive.google.com/file/d/1zSonvwBOezt0recD4NiNXHyRVB9xGxiE/view?usp=sharing"
+
     },
     {
-        id: 'us_proportions',
-        label: 'Americans on Proportions',
-        description: 'An exercise in critiquing existing visualizations.',
-        content: <USProportions />,
-    },
-    {
-        id: 'gov_debt',
-        label: 'Visualizing Government Debt',
-        description: 'A visualization of government debt from 1995 to 2019.',
-        content: <GovDebt />,
+        id: 'gis',
+        label: 'Changes in Industry in Pittsburgh using GIS',
+        description: 'This ArcGIS Dashboard visualizes changes in occupational makeup across the greater Pittsburgh area. It uses ' +
+            'historical census data with Multivariate Cluster Analysis to identify trends across different precincts. The dashboard allows ' +
+            'users to stratify data by industry and by year.',
+        image: process.env.PUBLIC_URL + "/pitt.png",
+        link: "https://carnegiemellon.maps.arcgis.com/apps/dashboards/5e8c1eabf493431db79e6a2bbf66a554"
     }
+
 ]
 
-function AccordionLabel({ label, description }) {
+function ProjectCard({ item }) {
+    const [hovered, setHovered] = useState(false);
+
     return (
-        <Group wrap="nowrap">
+        <Card
+            component="a"
+            href={item.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            shadow="sm"
+            padding="md"
+            radius="md"
+            withBorder
+            style={{
+                backgroundColor: "#FCF3D9",
+                cursor: 'pointer',
+                textDecoration: 'none'
+            }}
+            onMouseEnter={() => setHovered(true)}
+            onMouseLeave={() => setHovered(false)}
+        >
+            <Card.Section>
+                <h1
+                    style={{
+                        color: "#000",
+                        cursor: 'pointer',
+                        fontFamily: "Publico",
+                        fontWeight: 800,
+                        marginTop: ".75rem",
+                        marginBottom: ".25rem",
+                        textAlign: "center",
+                        lineHeight: 1.1,
+                        paddingLeft: "3rem",
+                        paddingRight: "3rem",
+                    }}
+                >
+                    {item.label}
+                </h1>
+
+                <Image
+                    src={item.image}
+                    alt={item.label}
+                    height={120}
+                    fit="contain"
+                    style={{
+                        paddingLeft: "1.5rem",
+                        paddingRight: "1.5rem",
+                    }}
+                    
+                />
+            </Card.Section>
+
             <div
+                style={{
+                    maxHeight: hovered ? '200px' : '0px',
+                    opacity: hovered ? 1 : 0,
+                    overflow: 'hidden',
+                    transition: 'max-height 0.5s ease, opacity 0.5s ease'
+                }}
             >
                 <h3
                     style={{
-                        marginBlock: 2,
-                        marginLeft: '1rem',
+                        color: "#000",
+                        cursor: 'pointer',
                         fontFamily: "Graphik",
-                        fontWeight: 800,
-                        fontSize: `clamp(1rem, 4dvw, 2.5rem)`,
+                        fontWeight: 370,
+                        fontSize: `clamp(0.6rem, 1rem, 12dvh)`,
+                        lineHeight: 1.3,
+                        marginBottom: "0rem",
+                        paddingLeft: "1.5rem",
+                        paddingRight: "1.5rem",
                     }}
-                >{label}
+                >
+                    {item.description}
                 </h3>
-                <Text size="md" c="dark" fw={400} ff={"mono"} style={{ marginLeft: '1rem' }}>
-                    {description}
-                </Text>
             </div>
-        </Group>
+
+            <Button
+                onClick={(e) => e.stopPropagation()}
+                component="a"
+                href={item.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                variant="light"
+                fullWidth
+                mt="md"
+                ff={"Graphik"}
+                fw={500}
+            >
+                Visit Project
+            </Button>
+        </Card>
     );
 }
 
 
-function Projects({ windowDict }) {
-    const projects = projectList.map((item) => {
-        return (
-            <Accordion.Item
-                value={item.id} key={item.label}
-                style={{
-                    backgroundColor: "#FCF3D9",
-                    marginBlock: '1rem',
-                }}
-            >
-                <Accordion.Control>
-                    <AccordionLabel {...item} />
-                </Accordion.Control>
-                <Accordion.Panel style={{ paddingInline: '1.5rem', paddingBlockEnd: '1.5rem' }}>
-                    {item.content}
-                </Accordion.Panel>
-            </Accordion.Item>
-
-        )
-    });
-
-    let project = null;
-    if (windowDict.ref && windowDict.ref === 'projects') {
-        if (windowDict.project) {
-            project = windowDict.project;
-            delete windowDict.project;
-        }
-        delete windowDict.ref;
-    }
-
+function Projects() {
     return (
-        <Accordion
-            variant="separated"
-            radius="md"
-            defaultValue={project}
-            style={{
-                width: '85%',
-                margin: 'auto',
-                marginTop: '2rem',
-                marginBottom: '2rem',
-            }}>
-            {projects}
-        </Accordion>
-    )
+        <Container size="xxl" style={{ marginTop: '2rem', marginBottom: '2rem', paddingLeft: 'clamp(2rem, 5dvw, 10rem)', paddingRight: 'clamp(2rem, 5dvw, 10rem)' }}>
+
+            <Grid
+                gutter="lg"
+                type="container"
+                breakpoints={{ sm: '500px', md: '1200px', lg: '2400px', xl: '3200px' }}
+            >
+                {projectList.map((item) => (
+                    <Grid.Col
+                        span={{ base: 12, sm: 12, md: 6, lg: 6, xl: 4 }}
+                        key={item.id}
+                    >
+                        <ProjectCard item={item} />
+                    </Grid.Col>
+                ))}
+            </Grid>
+        </Container>
+    );
 }
 
 export default Projects;
