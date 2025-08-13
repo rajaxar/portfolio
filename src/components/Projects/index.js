@@ -53,7 +53,7 @@ const projectList = [
         id: 'fakebook',
         label: 'Full-Stack CNN for Identifying GAN Media',
         description: 'This project uses a Convolutional Neural Network to identify GAN-generated media. The project was deployed on Amazon ' +
-            'Web Services and was served via a Chrome Extension with React. The project acheived an accuracy of 97.2% on our test set ' +
+            'Web Services and was served via a Chrome Extension with React. The project achieved an accuracy of 97.2% on our test set ' +
             'and the project was a Top Ten Finalist in Booz Allen Hamilton\'s 2019 Summer Games.',
         image: process.env.PUBLIC_URL + "/fakebook.png",
         link: "https://drive.google.com/file/d/1A7DYSkxohtBkIaL4D1_LJD2QY5pbcOx7/view?usp=sharing"
