@@ -1,0 +1,137 @@
+.nba-title-img {
+  max-width: 45vw;
+  max-height: 55vh;
+  align-self: center;
+  margin-top: 10vh;
+  margin-bottom: 0;
+}
+
+.nba-subhead {
+  margin-top: 0;
+  margin-bottom: 12vh;
+  font-family: 'Grouch';
+  font-weight: 400;
+  font-size: 2vw;
+  line-height: 1.4;
+  width: 100%;
+  text-align: center;
+  color: #86020e;
+}
+
+.nba-paragraph {
+  font-family: 'Graphik';
+  font-weight: 400;
+  line-height: 1.4;
+  width: 100%;
+  padding-inline: 5vw;
+  color: #213052;
+  margin-bottom: 8vh;
+  font-size: 2.2vw;
+}
+
+.nba-paragraph-wide {
+  font-family: 'Graphik';
+  font-weight: 400;
+  line-height: 1.4;
+  width: 100%;
+  padding-inline: 10vw;
+  margin-bottom: 8vh;
+  font-size: 1.8vw;
+  text-align: justify;
+}
+
+.nba-paragraph-wider {
+  font-family: 'Graphik';
+  font-weight: 400;
+  line-height: 1.4;
+  width: 100%;
+  padding-inline: 15vw;
+  margin-bottom: 5vh;
+  font-size: 1.8vw;
+  text-align: justify;
+}
+
+.nba-small-text {
+  font-size: 1.8vw;
+}
+
+.nba-caption {
+  font-size: 1.5vw;
+}
+
+.nba-section-title {
+  display: block;
+  text-align: center;
+  font-size: 3vw;
+  margin-block: 2rem;
+  color: #86020e;
+  font-family: 'Grouch';
+}
+
+.chart-title {
+  font-family: 'Graphik';
+  font-weight: 400;
+  font-size: 2vw;
+  align-self: left;
+  color: black;
+}
+
+.nba-chart-wrapper {
+  padding-inline: 5vw;
+}
+
+.nba-sources {
+  padding-inline: 10vw;
+}
+
+.nba-footer {
+  font-family: 'Graphik';
+  font-weight: 400;
+  font-size: 1vw;
+  line-height: 1.4;
+  width: 100%;
+  margin-bottom: 10vh;
+  margin-top: 5vh;
+  display: block;
+  text-align: center;
+}
+
+.back-button {
+  font-size: 1.5vw;
+}
+
+@media (max-width: 768px) {
+  .nba-title-img {
+    max-width: 80vw;
+  }
+  .nba-subhead {
+    font-size: 4vw;
+  }
+  .nba-paragraph {
+    font-size: 4vw;
+    padding-inline: 3vw;
+  }
+  .nba-paragraph-wide {
+    font-size: 3.5vw;
+    padding-inline: 5vw;
+  }
+  .nba-paragraph-wider {
+    font-size: 3.5vw;
+    padding-inline: 8vw;
+  }
+  .nba-small-text {
+    font-size: 3vw;
+  }
+  .nba-caption {
+    font-size: 2.5vw;
+  }
+  .chart-title {
+    font-size: 4vw;
+  }
+  .back-button {
+    font-size: 3vw;
+  }
+  .nba-footer {
+    font-size: 2.5vw;
+  }
+}

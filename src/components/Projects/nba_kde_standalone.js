@@ -14,9 +14,11 @@ class NBAKDEPlot extends Component {
         super(props);
         this.ref = React.createRef();
         this.tooltipRef = React.createRef();
+        this.containerRef = React.createRef();
     }
 
     componentDidMount() {
+        window.addEventListener('resize', this.drawDensityplot);
         this.drawDensityplot();
     }
 
@@ -26,8 +28,12 @@ class NBAKDEPlot extends Component {
         }
     }
 
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.drawDensityplot);
+    }
+
     drawDensityplot = () => {
-        const totalWidth = 600;
+        const totalWidth = this.containerRef.current.getBoundingClientRect().width;
         const totalHeight = 500;
         const margin = { top: 10, right: 80, bottom: 60, left: 80 };
         const width = totalWidth - margin.left - margin.right;
@@ -162,7 +168,7 @@ class NBAKDEPlot extends Component {
 
     render() {
         return (
-            <div>
+            <div ref={this.containerRef} style={{ width: '100%' }}>
                 <div ref={this.tooltipRef} style={{ position: 'absolute', visibility: 'hidden' }} />
                 <svg ref={this.ref} />
             </div>

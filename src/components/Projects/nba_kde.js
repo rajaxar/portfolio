@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import * as d3 from 'd3';
 import injectSheet from 'react-jss';
 import { Scrollama, Step } from 'react-scrollama';
+import "../../styles/nba.css";
 
 function epanechnikov(bandwidth) {
     return x => Math.abs(x /= bandwidth) <= 1 ? (0.75 * (1 - x * x)) / bandwidth : 0;
@@ -57,6 +58,7 @@ const styles = {
 };
 
 class NBAKDE extends Component {
+    chartRef = React.createRef();
     state = {
         data: 0,
         kde_data: [],
@@ -75,20 +77,34 @@ class NBAKDE extends Component {
     };
 
     componentDidMount() {
+        window.addEventListener('resize', this.handleResize);
         this.loadData().then(() => {
-            this.setupVisualization([this.state.kde_data]);
+            this.updateChart();
         });
     }
 
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.handleResize);
+    }
+
+    updateChart = () => {
+        d3.select(this.chartRef.current).selectAll('*').remove();
+        this.setupVisualization([this.state.kde_data]);
+    }
+
+    handleResize = () => {
+        this.updateChart();
+    }
+
     setupVisualization = (kde_data_set) => {
-        const totalWidth = window.innerWidth * 0.45;
+        const totalWidth = this.chartRef.current.getBoundingClientRect().width;
         const totalHeight = 400;
         const margin = { top: 20, right: 10, bottom: 80, left: 80 };
         const width = totalWidth - margin.left - margin.right;
         const height = totalHeight - margin.top - margin.bottom;
     
         // Create the SVG container
-        const svg = d3.select(this.refs.chart)
+        const svg = d3.select(this.chartRef.current)
             .append("svg")
             .attr("width", totalWidth)
             .attr("height", totalHeight)
@@ -343,15 +359,10 @@ class NBAKDE extends Component {
                         </Scrollama>
                     </div>
 
-                    <div className={classes.graphic} ref="chart" style={{ display: 'block' }}>
+                    <div className={classes.graphic} ref={this.chartRef} style={{ display: 'block' }}>
                         <p
+                            className="chart-title"
                             style={{
-                                fontFamily: "Graphik",
-                                fontWeight: 400,
-                                fontSize: '1.5rem',
-                                alignSelf: 'left',
-                                color: 'black',
-                                paddingInline: '16rem',
                                 marginLeft: '-16rem',
                                 marginBottom: '0rem',
                             }}

@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import injectSheet from 'react-jss';
 import { Scrollama, Step } from 'react-scrollama';
 import * as d3 from 'd3';
+import "../../styles/nba.css";
 
 let maxData = 0;
 let done = false;
@@ -56,6 +57,7 @@ const styles = {
 };
 
 class NBAScroll extends PureComponent {
+  chartRef = React.createRef();
   state = {
     data: 0,
     steps: [0, 1, 2, 3, 4],
@@ -502,11 +504,25 @@ class NBAScroll extends PureComponent {
   };
 
   componentDidMount() {
+    window.addEventListener('resize', this.handleResize);
     this.initLineChart({
-      width: window.innerWidth * 0.55,
+      width: this.chartRef.current.getBoundingClientRect().width,
       height: 400
     });
     this.onStepEnter({ data: this.state.steps[0] });
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleResize);
+  }
+
+  handleResize = () => {
+    d3.select(this.chartRef.current).selectAll('*').remove();
+    this.initLineChart({
+      width: this.chartRef.current.getBoundingClientRect().width,
+      height: 400
+    });
+    this.updateLineChart();
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -535,7 +551,7 @@ class NBAScroll extends PureComponent {
     this.yScale = config.yScale.range([h, 0]);
 
     const svg = d3
-      .select(this.refs.chart)
+      .select(this.chartRef.current)
       .append("svg")
       .attr("width", width + margin.left + margin.right + margin.right)  // Increase the width of the SVG
       .attr("height", height + margin.top + margin.bottom)  // Increase the height of the SVG
@@ -598,7 +614,7 @@ class NBAScroll extends PureComponent {
   };
 
   updateLineChart = () => {
-    const svg = d3.select(this.refs.chart).select('svg');
+    const svg = d3.select(this.chartRef.current).select('svg');
     if (this.state.data === maxData && !done) {
       if (this.state.data in this.state.stepLines) {
         // Iterate over the list of dictionaries for the current step
@@ -796,16 +812,12 @@ class NBAScroll extends PureComponent {
               })}
             </Scrollama>
           </div>
-          <div className={classes.graphic} ref="chart" style={{ display: this.state.data === 0 ? 'none' : 'block' }}>
+          <div className={classes.graphic} ref={this.chartRef} style={{ display: this.state.data === 0 ? 'none' : 'block' }}>
             <p
+              className="chart-title"
               style={{
                 visibility: this.state.data === 0 ? 'hidden' : 'visible',
                 opacity: this.state.data === 0 ? 0 : 1,
-                fontFamily: "Graphik",
-                fontWeight: 400,
-                fontSize: '1.5rem',
-                alignSelf: 'left',
-                color: 'black',
               }}
             >
               Player Performance Before, During, and After Contract Years
