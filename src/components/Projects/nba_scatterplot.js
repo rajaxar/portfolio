@@ -34,6 +34,12 @@ class NBASalaryScatterplot extends Component {
     const width = totalWidth - margin.left - margin.right;
     const height = totalHeight - margin.top - margin.bottom;
 
+    const fontScale = totalWidth / 600;
+    const smallFont = 12 * fontScale;
+    const axisFont = 16 * fontScale;
+    const labelFont = 20 * fontScale;
+    const legendFont = 14 * fontScale;
+
     d3.select(this.ref.current).selectAll("*").remove();
 
     const positions = [" PG", " SG", " SF", " PF", " C"];
@@ -78,7 +84,7 @@ class NBASalaryScatterplot extends Component {
       .attr('y', yScale(0.9))
       .text('Played Better, Paid Better')
       .style('font-family', 'Graphik')
-      .style('font-size', '12px')
+      .style('font-size', `${smallFont}px`)
       .style('fill','#333')
       .attr('text-anchor', 'end');
 
@@ -97,7 +103,7 @@ class NBASalaryScatterplot extends Component {
       .attr('y', yScale(.55))
       .text('Played Worse, Paid Worse')
       .style('font-family', 'Graphik')
-      .style('font-size', '12px')
+      .style('font-size', `${smallFont}px`)
       .style('fill', '#333')
       .attr('text-anchor', 'start');
 
@@ -105,12 +111,12 @@ class NBASalaryScatterplot extends Component {
     const xValues = d3.range(-10, 11, 5);
 
     g.append('g')
-      .style("font-size", "16px")
+      .style("font-size", `${axisFont}px`)
       .style("font-family", "Graphik")
       .call(d3.axisLeft(yScale).tickValues(yValues));
 
     g.append('g')
-      .style("font-size", "16px")
+      .style("font-size", `${axisFont}px`)
       .style("font-family", "Graphik")
       .attr('transform', `translate(0,${height})`)
       .call(d3.axisBottom(xScale).tickValues(xValues));
@@ -179,7 +185,7 @@ class NBASalaryScatterplot extends Component {
       .text("Deviation in WAR")
       .style("font-family", "Graphik")
       .style("fill", "black")
-      .style("font-size", "20px");
+      .style("font-size", `${labelFont}px`);
 
     // Y-axis label
     svg.append("text")
@@ -190,19 +196,64 @@ class NBASalaryScatterplot extends Component {
       .text("Change in Salary")
       .style("fill", "black")
       .style("font-family", "Graphik")
-      .style("font-size", "20px");
+      .style("font-size", `${labelFont}px`);
 
 
-    svg.append("circle").attr("cx", xScale(7)).attr("cy", yScale(-.4)).attr("r", 4).style("fill", "#1f77b4")
-    svg.append("text").attr("x", xScale(7.4)).attr("y", yScale(-.401)).text("Point Guard").style("font-size", "14px").attr("alignment-baseline", "middle")
-    svg.append("circle").attr("cx", xScale(7)).attr("cy", yScale(-.475)).attr("r", 4).style("fill", "#ff7f0e")
-    svg.append("text").attr("x", xScale(7.4)).attr("y", yScale(-.476)).text("Shooting Guard").style("font-size", "14px").attr("alignment-baseline", "middle")
-    svg.append("circle").attr("cx", xScale(7)).attr("cy", yScale(-.55)).attr("r", 4).style("fill", "#2ca02c")
-    svg.append("text").attr("x", xScale(7.4)).attr("y", yScale(-.551)).text("Small Forward").style("font-size", "14px").attr("alignment-baseline", "middle")
-    svg.append("circle").attr("cx", xScale(7)).attr("cy", yScale(-.625)).attr("r", 4).style("fill", "#d62728")
-    svg.append("text").attr("x", xScale(7.4)).attr("y", yScale(-.626)).text("Power Forward").style("font-size", "14px").attr("alignment-baseline", "middle")
-    svg.append("circle").attr("cx", xScale(7)).attr("cy", yScale(-.7)).attr("r", 4).style("fill", "#9467bd")
-    svg.append("text").attr("x", xScale(7.4)).attr("y", yScale(-.701)).text("Center").style("font-size", "14px").attr("alignment-baseline", "middle")
+    svg.append("circle")
+      .attr("cx", xScale(7))
+      .attr("cy", yScale(-.4))
+      .attr("r", 4)
+      .style("fill", "#1f77b4");
+    svg.append("text")
+      .attr("x", xScale(7.4))
+      .attr("y", yScale(-.401))
+      .text("Point Guard")
+      .style("font-size", `${legendFont}px`)
+      .attr("alignment-baseline", "middle");
+    svg.append("circle")
+      .attr("cx", xScale(7))
+      .attr("cy", yScale(-.475))
+      .attr("r", 4)
+      .style("fill", "#ff7f0e");
+    svg.append("text")
+      .attr("x", xScale(7.4))
+      .attr("y", yScale(-.476))
+      .text("Shooting Guard")
+      .style("font-size", `${legendFont}px`)
+      .attr("alignment-baseline", "middle");
+    svg.append("circle")
+      .attr("cx", xScale(7))
+      .attr("cy", yScale(-.55))
+      .attr("r", 4)
+      .style("fill", "#2ca02c");
+    svg.append("text")
+      .attr("x", xScale(7.4))
+      .attr("y", yScale(-.551))
+      .text("Small Forward")
+      .style("font-size", `${legendFont}px`)
+      .attr("alignment-baseline", "middle");
+    svg.append("circle")
+      .attr("cx", xScale(7))
+      .attr("cy", yScale(-.625))
+      .attr("r", 4)
+      .style("fill", "#d62728");
+    svg.append("text")
+      .attr("x", xScale(7.4))
+      .attr("y", yScale(-.626))
+      .text("Power Forward")
+      .style("font-size", `${legendFont}px`)
+      .attr("alignment-baseline", "middle");
+    svg.append("circle")
+      .attr("cx", xScale(7))
+      .attr("cy", yScale(-.7))
+      .attr("r", 4)
+      .style("fill", "#9467bd");
+    svg.append("text")
+      .attr("x", xScale(7.4))
+      .attr("y", yScale(-.701))
+      .text("Center")
+      .style("font-size", `${legendFont}px`)
+      .attr("alignment-baseline", "middle");
   }
 
   render() {

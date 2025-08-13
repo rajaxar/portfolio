@@ -44,8 +44,12 @@ class NBAKDEPlot extends Component {
         const width = totalWidth - margin.left - margin.right;
         const height = totalHeight - margin.top - margin.bottom;
 
-        const root = d3.select(this.ref.current);
-        root.selectAll('*').remove();
+        const fontScale = totalWidth / 600;
+        const axisFont = 16 * fontScale;
+        const labelFont = 20 * fontScale;
+        const legendFont = 15 * fontScale;
+
+        d3.select(this.ref.current).selectAll("*").filter(".kde").remove();
 
         const svg = d3.select(this.ref.current)
             .attr('viewBox', `0 0 ${totalWidth} ${totalHeight}`)
@@ -68,16 +72,24 @@ class NBAKDEPlot extends Component {
             .domain([0, 0.25])
             .range([height, 0]);
 
-        staticGroup.append('g')
-            .attr('transform', `translate(0,${height})`)
-            .style('font-size', '16px')
-            .style('font-family', 'Graphik')
+        d3.select(this.ref.current).selectAll(".kde").transition()
+            .duration(500) // Adjust time as needed
+            .attr("d", d3.line()
+                .curve(d3.curveBasis)
+                .x(d => xScale(d[0]))
+                .y(() => yScale.range()[0]) // Move to the bottom
+            )
+
+        svg.append('g')
+            .attr("transform", `translate(0,${height})`)
+            .style("font-size", `${axisFont}px`)
+            .style("font-family", "Graphik")
             .call(d3.axisBottom(xScale));
 
-        staticGroup.append('g')
-            .style('font-size', '16px')
-            .style('font-family', 'Graphik')
-            .call(d3.axisLeft(yScale).tickFormat(d3.format('.0%')));
+        svg.append('g')
+            .style("font-size", `${axisFont}px`)
+            .style("font-family", "Graphik")
+            .call(d3.axisLeft(yScale).tickFormat(d3.format(".0%")));
 
         staticGroup.append('text')
             .attr('text-anchor', 'end')
@@ -88,15 +100,24 @@ class NBAKDEPlot extends Component {
             .style('fill', 'black')
             .style('font-size', '20px');
 
-        staticGroup.append('text')
-            .attr('text-anchor', 'end')
-            .attr('transform', 'rotate(-90)')
-            .attr('y', -margin.left + 25)
-            .attr('x', -height / 3)
-            .text('Percentage of Players')
-            .style('fill', 'black')
-            .style('font-family', 'Graphik')
-            .style('font-size', '20px');
+        svg.append("text")
+            .attr("text-anchor", "end")
+            .attr("x", width - margin.left)
+            .attr("y", height + margin.bottom)
+            .text("Performance (WAR) Values")
+            .style("font-family", "Graphik")
+            .style("fill", "black")
+            .style("font-size", `${labelFont}px`);
+
+        svg.append("text")
+            .attr("text-anchor", "end")
+            .attr("transform", "rotate(-90)")
+            .attr("y", -margin.left + 25)
+            .attr("x", -height / 3)
+            .text("Percentage of Players")
+            .style("fill", "black")
+            .style("font-family", "Graphik")
+            .style("font-size", `${labelFont}px`);
 
         let line = d3.line()
             .curve(d3.curveBasis)
@@ -123,8 +144,8 @@ class NBAKDEPlot extends Component {
             .duration(500)
             .attr('d', line.y(d => yScale(d[1])));
 
-        staticGroup.append('circle').attr('cx', xScale(15)).attr('cy', yScale(0.12)).attr('r', 6).style('fill', '#69b3a2');
-        staticGroup.append('text').attr('x', xScale(16)).attr('y', yScale(0.1195)).text('Contract Year').style('font-size', '15px').attr('alignment-baseline', 'middle');
+        svg.append("circle").attr("cx", xScale(15)).attr("cy", yScale(.12)).attr("r", 6).style("fill", "#69b3a2")
+        svg.append("text").attr("x", xScale(16)).attr("y", yScale(.1195)).text("Contract Year").style("font-size", `${legendFont}px`).attr("alignment-baseline", "middle")
 
         sigma = d3.deviation(jiggeredData, d => d.previous_war);
         bandwidth = Math.pow(n, -1 / 8) * sigma;
@@ -141,12 +162,8 @@ class NBAKDEPlot extends Component {
             .attr('stroke-linejoin', 'round')
             .attr('d', line.y(() => yScale(0)));
 
-        path.transition()
-            .duration(500)
-            .attr('d', line.y(d => yScale(d[1])));
-
-        staticGroup.append('circle').attr('cx', xScale(15)).attr('cy', yScale(0.11)).attr('r', 6).style('fill', '#beaed4');
-        staticGroup.append('text').attr('x', xScale(16)).attr('y', yScale(0.1095)).text('Pre-Contract Year').style('font-size', '15px').attr('alignment-baseline', 'middle');
+        svg.append("circle").attr("cx", xScale(15)).attr("cy", yScale(.11)).attr("r", 6).style("fill", "#beaed4")
+        svg.append("text").attr("x", xScale(16)).attr("y", yScale(.1095)).text("Pre-Contract Year").style("font-size", `${legendFont}px`).attr("alignment-baseline", "middle")
 
         sigma = d3.deviation(jiggeredData, d => d.post_contract_war);
         bandwidth = Math.pow(n, -1 / 8) * sigma;
@@ -167,8 +184,8 @@ class NBAKDEPlot extends Component {
             .duration(500)
             .attr('d', line.y(d => yScale(d[1])));
 
-        staticGroup.append('circle').attr('cx', xScale(15)).attr('cy', yScale(0.10)).attr('r', 6).style('fill', '#FDC086');
-        staticGroup.append('text').attr('x', xScale(16)).attr('y', yScale(0.0995)).text('Post-Contract Year').style('font-size', '15px').attr('alignment-baseline', 'middle');
+        svg.append("circle").attr("cx", xScale(15)).attr("cy", yScale(.10)).attr("r", 6).style("fill", "#FDC086")
+        svg.append("text").attr("x", xScale(16)).attr("y", yScale(.0995)).text("Post-Contract Year").style("font-size", `${legendFont}px`).attr("alignment-baseline", "middle")
     }
 
     render() {

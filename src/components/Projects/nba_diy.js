@@ -7,6 +7,7 @@ import { MultiSelect, NumberInput, Checkbox, Group } from '@mantine/core';
 function NBADIY() {
     const [total_data, setTotalData] = useState([]);
     const [filtered_data, setFilteredData] = useState([]);
+    const [isSmallScreen, setIsSmallScreen] = useState(false);
 
     const [filters, setFilters] = useState({
         position: [],
@@ -27,6 +28,13 @@ function NBADIY() {
         { value: '5000000-10000000', label: '5M-10M' },
         { value: '10000000+', label: '10M+' }
     ];
+
+    useEffect(() => {
+        const handleResize = () => setIsSmallScreen(window.innerWidth < 600);
+        handleResize();
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     useEffect(() => {
         d3.csv(process.env.PUBLIC_URL + "/final_KDE.csv").then(data => {
@@ -63,16 +71,21 @@ function NBADIY() {
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column' }}>
-            <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', marginBottom: '3rem', fontFamily: "Graphik"}}>
+            <div style={{
+                display: 'flex',
+                flexDirection: isSmallScreen ? 'column' : 'row',
+                justifyContent: 'space-evenly',
+                marginBottom: '3rem',
+                fontFamily: "Graphik"
+            }}>
                 <MultiSelect
                     data={positionOptions}
                     value={filters.position}
                     onChange={(value) => setFilters(prev => ({ ...prev, position: value }))}
                     placeholder="Filter by position"
                     label="Position"
-                    size='lg'
-                    w={350}
-                    h={100}
+                    size={isSmallScreen ? 'sm' : 'lg'}
+                    style={{ width: isSmallScreen ? '100%' : 350, marginBottom: isSmallScreen ? '1rem' : 0 }}
                 />
                 <MultiSelect
                     data={ageOptions}
@@ -80,9 +93,8 @@ function NBADIY() {
                     onChange={(value) => setFilters(prev => ({ ...prev, age: value }))}
                     placeholder="Filter by age"
                     label="Age"
-                    size='lg'
-                    w={350}
-                    h={100}
+                    size={isSmallScreen ? 'sm' : 'lg'}
+                    style={{ width: isSmallScreen ? '100%' : 350, marginBottom: isSmallScreen ? '1rem' : 0 }}
                 />
                 <MultiSelect
                     data={salaryOptions}
@@ -90,12 +102,16 @@ function NBADIY() {
                     onChange={(value) => setFilters(prev => ({ ...prev, salary: value }))}
                     placeholder="Filter by salary"
                     label="Salary"
-                    size='lg'
-                    w={350}
-                    h={100}
+                    size={isSmallScreen ? 'sm' : 'lg'}
+                    style={{ width: isSmallScreen ? '100%' : 350 }}
                 />
             </div>
-            <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly' }}>
+            <div style={{
+                display: 'flex',
+                flexDirection: isSmallScreen ? 'column' : 'row',
+                justifyContent: 'space-evenly',
+                alignItems: 'center'
+            }}>
                 <NBAKDEPlot data={filtered_data} />
                 <NBASalaryScatterplot data={filtered_data} />
             </div>
