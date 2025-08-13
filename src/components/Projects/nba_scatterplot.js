@@ -10,30 +10,42 @@ class NBASalaryScatterplot extends Component {
 
   componentDidMount() {
     this.drawScatterplot();
+    window.addEventListener('resize', this.drawScatterplot);
   }
 
   componentDidUpdate() {
     this.drawScatterplot();
   }
 
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.drawScatterplot);
+  }
+
   drawScatterplot = () => {
-    const totalWidth = 600;
-    const totalHeight = 500;
-    const margin = { top: 10, right: 80, bottom: 60, left: 80 };
+    const containerWidth = this.ref.current.parentNode.getBoundingClientRect().width;
+    const totalWidth = containerWidth;
+    const totalHeight = totalWidth * (500 / 600);
+    const margin = {
+      top: totalWidth * (10 / 600),
+      right: totalWidth * (80 / 600),
+      bottom: totalWidth * (60 / 600),
+      left: totalWidth * (80 / 600)
+    };
     const width = totalWidth - margin.left - margin.right;
     const height = totalHeight - margin.top - margin.bottom;
 
     d3.select(this.ref.current).selectAll("*").remove();
 
-  
     const positions = [" PG", " SG", " SF", " PF", " C"];
     const colorScale = d3.scaleOrdinal()
       .domain(positions)
       .range(["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd"]);
 
     const svg = d3.select(this.ref.current)
-      .attr('width', totalWidth)
-      .attr('height', totalHeight);
+      .attr('viewBox', `0 0 ${totalWidth} ${totalHeight}`)
+      .attr('preserveAspectRatio', 'xMidYMid meet')
+      .style('width', '100%')
+      .style('height', 'auto');
 
     const data = this.props.data;
     const jiggeredData = data

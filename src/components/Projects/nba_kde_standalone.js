@@ -18,6 +18,7 @@ class NBAKDEPlot extends Component {
 
     componentDidMount() {
         this.drawDensityplot();
+        window.addEventListener('resize', this.drawDensityplot);
     }
 
     componentDidUpdate(prevProps) {
@@ -26,21 +27,31 @@ class NBAKDEPlot extends Component {
         }
     }
 
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.drawDensityplot);
+    }
+
     drawDensityplot = () => {
-        const totalWidth = 600;
-        const totalHeight = 500;
-        const margin = { top: 10, right: 80, bottom: 60, left: 80 };
+        const containerWidth = this.ref.current.parentNode.getBoundingClientRect().width;
+        const totalWidth = containerWidth;
+        const totalHeight = totalWidth * (500 / 600);
+        const margin = {
+            top: totalWidth * (10 / 600),
+            right: totalWidth * (80 / 600),
+            bottom: totalWidth * (60 / 600),
+            left: totalWidth * (80 / 600)
+        };
         const width = totalWidth - margin.left - margin.right;
         const height = totalHeight - margin.top - margin.bottom;
 
         const root = d3.select(this.ref.current);
         root.selectAll('*').remove();
 
-        root
-            .attr('width', totalWidth)
-            .attr('height', totalHeight);
-
-        const svg = root
+        const svg = d3.select(this.ref.current)
+            .attr('viewBox', `0 0 ${totalWidth} ${totalHeight}`)
+            .attr('preserveAspectRatio', 'xMidYMid meet')
+            .style('width', '100%')
+            .style('height', 'auto')
             .append('g')
             .attr('transform', `translate(${margin.left},${margin.top})`);
 
