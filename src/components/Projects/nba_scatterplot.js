@@ -10,22 +10,27 @@ class NBASalaryScatterplot extends Component {
 
   componentDidMount() {
     this.drawScatterplot();
+    window.addEventListener('resize', this.handleResize);
   }
 
   componentDidUpdate() {
     this.drawScatterplot();
   }
 
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleResize);
+  }
+
   drawScatterplot = () => {
-    const totalWidth = 600;
-    const totalHeight = 500;
+    const containerWidth = this.ref.current.parentNode.getBoundingClientRect().width;
+    const totalWidth = containerWidth;
+    const totalHeight = containerWidth * 0.83;
     const margin = { top: 10, right: 80, bottom: 60, left: 80 };
     const width = totalWidth - margin.left - margin.right;
     const height = totalHeight - margin.top - margin.bottom;
 
     d3.select(this.ref.current).selectAll("*").remove();
 
-  
     const positions = [" PG", " SG", " SF", " PF", " C"];
     const colorScale = d3.scaleOrdinal()
       .domain(positions)
@@ -192,6 +197,10 @@ class NBASalaryScatterplot extends Component {
     svg.append("circle").attr("cx", xScale(7)).attr("cy", yScale(-.7)).attr("r", 4).style("fill", "#9467bd")
     svg.append("text").attr("x", xScale(7.4)).attr("y", yScale(-.701)).text("Center").style("font-size", "14px").attr("alignment-baseline", "middle")
   }
+
+  handleResize = () => {
+    this.drawScatterplot();
+  };
 
   render() {
     return (

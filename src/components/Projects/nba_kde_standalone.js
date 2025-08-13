@@ -18,6 +18,11 @@ class NBAKDEPlot extends Component {
 
     componentDidMount() {
         this.drawDensityplot();
+        window.addEventListener('resize', this.handleResize);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.handleResize);
     }
 
     componentDidUpdate(prevProps) {
@@ -27,8 +32,9 @@ class NBAKDEPlot extends Component {
     }
 
     drawDensityplot = () => {
-        const totalWidth = 600;
-        const totalHeight = 500;
+        const containerWidth = this.ref.current.parentNode.getBoundingClientRect().width;
+        const totalWidth = containerWidth;
+        const totalHeight = containerWidth * 0.83;
         const margin = { top: 10, right: 80, bottom: 60, left: 80 };
         const width = totalWidth - margin.left - margin.right;
         const height = totalHeight - margin.top - margin.bottom;
@@ -158,6 +164,10 @@ class NBAKDEPlot extends Component {
 
         staticGroup.append('circle').attr('cx', xScale(15)).attr('cy', yScale(0.10)).attr('r', 6).style('fill', '#FDC086');
         staticGroup.append('text').attr('x', xScale(16)).attr('y', yScale(0.0995)).text('Post-Contract Year').style('font-size', '15px').attr('alignment-baseline', 'middle');
+    }
+
+    handleResize = () => {
+        this.drawDensityplot();
     }
 
     render() {
