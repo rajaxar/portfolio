@@ -3,9 +3,6 @@ import injectSheet from 'react-jss';
 import { Scrollama, Step } from 'react-scrollama';
 import * as d3 from 'd3';
 
-let maxData = 0;
-let done = false;
-
 function hexToRgb(hex) {
   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
   return result ? {
@@ -599,157 +596,110 @@ class NBAScroll extends PureComponent {
 
   updateLineChart = () => {
     const svg = d3.select(this.refs.chart).select('svg');
-    if (this.state.data === maxData && !done) {
-      if (this.state.data in this.state.stepLines) {
-        // Iterate over the list of dictionaries for the current step
-        this.state.stepLines[this.state.data].forEach((dict, index) => {
-          const currentStepData = Object.entries(dict).map(([x, y]) => ({ x: Number(x), y }));
-          const tooltip = this.state.metadata[this.state.data][index]['tooltip'];
-          // Create a line generator with a Bezier curve
-          const line = d3.line()
-            .curve(d3.curveBasis) // This generates a cubic Bezier curve
-            .x(d => this.xScale(d.x) + 70)
-            .y(d => this.yScale(d.y + Math.random() - 0.5) - 20);
+    const step = this.state.data;
+    if (step === 0) return;
 
-          const xScale = this.xScale;
-
-          const rgb = hexToRgb(tooltip.teamColor);
-
-          // Create a new path for the current step data
-          const path = svg.append('path')
-            .datum(currentStepData)
-            .attr('fill', 'none')
-            .attr('stroke', `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.75)`)
-            .attr('stroke-width', 5)
-            .attr('d', line);
-
-          const totalLength = path.node().getTotalLength();
-
-          // Set up the transition
-          path.attr('stroke-dasharray', totalLength + ' ' + totalLength)
-            .attr('stroke-dashoffset', totalLength)
-            .transition()
-            .duration(500) // Duration of the transition in milliseconds
-            .attr('stroke-dashoffset', 0);
-
-
-          svg.append('path')
-            .datum(currentStepData)
-            .attr('fill', 'none')
-            .attr('stroke', 'transparent') // The stroke is transparent
-            .attr('stroke-width', 25) // The stroke width is larger
-            .attr('d', line)
-            .on('mouseover', function (event) {
-
-              const mouseX = event.clientX;
-              const closestXValue = Math.round(xScale.invert(mouseX) - 2);
-              const closestDataPoint = currentStepData.find(d => d.x === closestXValue);
-              // On mouseover, show the tooltip and set its content
-              d3.select('#tooltip')
-                .style('visibility', 'visible')
-                .html(`<p style="font-family: Futura Condensed; font-size: 1rem; font-weight: 600; margin: 0;">${tooltip.name}</p>
-                       <p style="font-family: Futura; font-size: .8rem; font-weight: 400; margin: 0; color: ${tooltip.teamColor}">${tooltip.team}</p>
-                       <p style="font-family: Futura; font-size: .8rem; font-weight: 400; margin: 0; color: ${tooltip.teamColor}">${tooltip.year}</p>
-                       <p style="font-family: Futura; font-size: .8rem; font-weight: 400; margin: 0; color: ${tooltip.teamColor}">WAR: ${closestDataPoint.y}</p>`)
-            })
-            .on('mousemove', function (event) {
-              // On mousemove, update the position of the tooltip
-              d3.select('#tooltip')
-                .style('top', (event.pageY - 10) + 'px')
-                .style('left', (event.pageX + 10) + 'px');
-            })
-            .on('mouseout', function () {
-              // On mouseout, hide the tooltip
-              d3.select('#tooltip')
-                .style('visibility', 'hidden');
-            });
-
-        });
-      } else if (this.state.data === 4) {
-        svg.selectAll('path')
-          .transition()
-          .duration(500)
-          .style('opacity', 0.1)
-
-
-        this.state.linesStepFour.forEach((dict, index) => {
-          const currentStepData = Object.entries(dict).map(([x, y]) => ({ x: Number(x), y }));
-          const tooltip = this.state.metadata[4][index]['tooltip'];
-          // Create a line generator with a Bezier curve
-          const line = d3.line()
-            .curve(d3.curveBasis) // This generates a cubic Bezier curve
-            .x(d => this.xScale(d.x) + 70)
-            .y(d => this.yScale(d.y + Math.random() - 0.5) - 20);
-
-          const xScale = this.xScale;
-          const rgb = hexToRgb(tooltip.teamColor);
-
-          // Create a new path for the current step data
-          const path = svg.append('path')
-            .datum(currentStepData)
-            .attr('fill', 'none')
-            .attr('stroke', `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.5)`)
-            .attr('stroke-width', 3)
-            .attr('d', line);
-
-          const totalLength = path.node().getTotalLength();
-
-          // Set up the transition
-          path.attr('stroke-dasharray', totalLength + ' ' + totalLength)
-            .attr('stroke-dashoffset', totalLength)
-            .transition()
-            .duration(750) // Duration of the transition in milliseconds
-            .attr('stroke-dashoffset', 0);
-
-
-          svg.append('path')
-            .datum(currentStepData)
-            .attr('fill', 'none')
-            .attr('stroke', 'transparent') // The stroke is transparent
-            .attr('stroke-width', 25) // The stroke width is larger
-            .attr('d', line)
-            .on('mouseover', function (event) {
-
-              const mouseX = event.clientX;
-              const closestXValue = Math.round(xScale.invert(mouseX) - 2);
-              const closestDataPoint = currentStepData.find(d => d.x === closestXValue);
-              // On mouseover, show the tooltip and set its content
-              d3.select('#tooltip')
-                .style('visibility', 'visible')
-                .html(`<p style="font-family: Futura Condensed; font-size: 1rem; font-weight: 600; margin: 0;">${tooltip.name}</p>
-                       <p style="font-family: Futura; font-size: .8rem; font-weight: 400; margin: 0; color: ${tooltip.teamColor}">${tooltip.team}</p>
-                       <p style="font-family: Futura; font-size: .8rem; font-weight: 400; margin: 0; color: ${tooltip.teamColor}">${tooltip.year}</p>
-                       <p style="font-family: Futura; font-size: .8rem; font-weight: 400; margin: 0; color: ${tooltip.teamColor}">WAR: ${closestDataPoint.y}</p>`)
-            })
-            .on('mousemove', function (event) {
-              // On mousemove, update the position of the tooltip
-              d3.select('#tooltip')
-                .style('top', (event.pageY - 10) + 'px')
-                .style('left', (event.pageX + 10) + 'px');
-            })
-            .on('mouseout', function () {
-              // On mouseout, hide the tooltip
-              d3.select('#tooltip')
-                .style('visibility', 'hidden');
-            });
-
-        });
-        done = true;
-      }
+    let rawData = [];
+    if (step === 4) {
+      rawData = this.state.linesStepFour;
+      svg.selectAll('path.line')
+        .transition()
+        .duration(500)
+        .style('opacity', 0.1);
+    } else if (this.state.stepLines[step]) {
+      rawData = this.state.stepLines[step];
+    } else {
+      return;
     }
+
+    const line = d3.line()
+      .curve(d3.curveBasis)
+      .x(d => this.xScale(d.x) + 70)
+      .y(d => this.yScale(d.y + Math.random() - 0.5) - 20);
+
+    const data = rawData.map((dict, index) => {
+      const points = Object.entries(dict).map(([x, y]) => ({ x: Number(x), y }));
+      const tooltip = this.state.metadata[step]?.[index]?.tooltip;
+      return { points, tooltip };
+    });
+
+    svg.selectAll(`g.step-${step}`)
+      .data(data, (_, i) => i)
+      .join(
+        enter => {
+          const g = enter.append('g').attr('class', `step-${step}`);
+          const path = g.append('path')
+            .attr('class', `line step-${step}`)
+            .attr('fill', 'none')
+            .attr('stroke', d => {
+              const rgb = hexToRgb(d.tooltip.teamColor);
+              const opacity = step === 4 ? 0.5 : 0.75;
+              return `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${opacity})`;
+            })
+            .attr('stroke-width', step === 4 ? 3 : 5)
+            .attr('d', d => line(d.points));
+
+          path.each(function () {
+            const totalLength = this.getTotalLength();
+            d3.select(this)
+              .attr('stroke-dasharray', totalLength + ' ' + totalLength)
+              .attr('stroke-dashoffset', totalLength)
+              .transition()
+              .duration(step === 4 ? 750 : 500)
+              .attr('stroke-dashoffset', 0);
+          });
+
+          g.append('path')
+            .attr('class', `hover step-${step}`)
+            .attr('fill', 'none')
+            .attr('stroke', 'transparent')
+            .attr('stroke-width', 25)
+            .attr('d', d => line(d.points))
+            .on('mouseover', (event, d) => {
+              const mouseX = event.clientX;
+              const closestXValue = Math.round(this.xScale.invert(mouseX) - 2);
+              const closestDataPoint = d.points.find(p => p.x === closestXValue);
+              d3.select('#tooltip')
+                .style('visibility', 'visible')
+                .html(`<p style="font-family: Futura Condensed; font-size: 1rem; font-weight: 600; margin: 0;">${d.tooltip.name}</p>` +
+                      `<p style="font-family: Futura; font-size: .8rem; font-weight: 400; margin: 0; color: ${d.tooltip.teamColor}">${d.tooltip.team}</p>` +
+                      `<p style="font-family: Futura; font-size: .8rem; font-weight: 400; margin: 0; color: ${d.tooltip.teamColor}">${d.tooltip.year}</p>` +
+                      `<p style="font-family: Futura; font-size: .8rem; font-weight: 400; margin: 0; color: ${d.tooltip.teamColor}">WAR: ${closestDataPoint.y}</p>`);
+            })
+            .on('mousemove', (event) => {
+              d3.select('#tooltip')
+                .style('top', (event.pageY - 10) + 'px')
+                .style('left', (event.pageX + 10) + 'px');
+            })
+            .on('mouseout', () => {
+              d3.select('#tooltip').style('visibility', 'hidden');
+            });
+
+          return g;
+        },
+        update => update,
+        exit => exit.remove()
+      );
   };
 
   onStepEnter = e => {
-    const { data, entry, direction } = e;
+    const { data } = e;
     this.setState({ data });
-    if (data > maxData) {
-      maxData = data;
-    }
   };
 
   onStepExit = ({ direction, data }) => {
-    if (direction === 'up' && data === this.state.steps[0]) {
-      this.setState({ data: 0 });
+    if (direction === 'up') {
+      const svg = d3.select(this.refs.chart).select('svg');
+      svg.selectAll(`.step-${data}`).remove();
+      if (data === 4) {
+        svg.selectAll('path.line')
+          .transition()
+          .duration(500)
+          .style('opacity', 0.75);
+      }
+      if (data === this.state.steps[0]) {
+        this.setState({ data: 0 });
+      }
     }
   };
 
