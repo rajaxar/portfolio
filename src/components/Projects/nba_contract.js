@@ -97,8 +97,7 @@ function NBAWireframe() {
                         "putting a lot on the line"
                     </a>
                     {' '}by deciding they had to risk their health to secure a good contract.
-
-                    <br />< br />
+                    <br /><br />
                     So that makes sense - players are concerned about how much they can earn in the future. Let's see how this is reflected in their performance.
                 </p>
 
