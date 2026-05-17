@@ -1,0 +1,25 @@
+window,stage,race_gender_group,count,pct_of_stage
+S1-S40,Beginning,BIPOC men,85,11.63
+S1-S40,Beginning,BIPOC women,115,15.73
+S1-S40,Beginning,White men,282,38.58
+S1-S40,Beginning,White women,249,34.06
+S1-S40,Merge,BIPOC men,52,11.74
+S1-S40,Merge,BIPOC women,57,12.87
+S1-S40,Merge,White men,182,41.08
+S1-S40,Merge,White women,152,34.31
+S1-S40,Finalist,BIPOC men,14,13.33
+S1-S40,Finalist,BIPOC women,13,12.38
+S1-S40,Finalist,White men,40,38.1
+S1-S40,Finalist,White women,38,36.19
+S1-S49,Beginning,BIPOC men,136,15.26
+S1-S49,Beginning,BIPOC women,158,17.73
+S1-S49,Beginning,White men,312,35.02
+S1-S49,Beginning,White women,285,31.99
+S1-S49,Merge,BIPOC men,85,15.74
+S1-S49,Merge,BIPOC women,83,15.37
+S1-S49,Merge,White men,199,36.85
+S1-S49,Merge,White women,173,32.04
+S1-S49,Finalist,BIPOC men,22,16.67
+S1-S49,Finalist,BIPOC women,20,15.15
+S1-S49,Finalist,White men,46,34.85
+S1-S49,Finalist,White women,44,33.33
