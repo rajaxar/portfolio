@@ -8,20 +8,19 @@ function Layout(props) {
             id="gradient"
             style={{
                 "overflow": "auto",
-                "position": "absolute",
-                "top": "0",
-                "left": "0",
+                "position": "fixed",
+                "inset": "0",
             }}
         >
-            {page !== 'nba_contract' && <Navbar setPage={setPage} page={page}/>}
+            {page !== 'nba_contract' && page !== 'survivor' && <Navbar setPage={setPage} page={page}/>}
             <div
                 style={{
                     "width": "100dvw",
                     "height": "100dvh",
                     "marginTop": "0rem",
                     "position": "absolute",
-                    "top": (page === 'nba_contract' ? "0rem" : "4rem"),
-                    "overflow": (page !== 'nba_contract' ? "auto" : "hidden")
+                    "top": (page === 'nba_contract' || page === 'survivor' ? "0rem" : "4rem"),
+                    "overflow": (page !== 'nba_contract' && page !== 'survivor' ? "auto" : "hidden")
                 }}
             >
             {children}

@@ -1,0 +1,894 @@
+season,era,castaway_id,castaway,age,gender,bipoc,race_gender_group,order,result,jury,finalist,winner,stage_reached
+49,S41-S49,US0744,Nicole,26.0,Female,False,White women,1.0,1st voted out,False,False,False,Voted out pre-merge
+49,S41-S49,US0735,Annie,49.0,Female,False,White women,2.0,2nd voted out,False,False,False,Voted out pre-merge
+49,S41-S49,US0736,Jake,35.0,Male,False,White men,3.0,Medically evacuated,False,False,False,Voted out pre-merge
+49,S41-S49,US0739,Jeremiah,38.0,Male,True,BIPOC men,4.0,3rd voted out,False,False,False,Voted out pre-merge
+49,S41-S49,US0741,Matt,52.0,Male,False,White men,5.0,4th voted out,False,False,False,Voted out pre-merge
+49,S41-S49,US0737,Jason,32.0,Male,True,BIPOC men,6.0,5th voted out,False,False,False,Voted out pre-merge
+49,S41-S49,US0748,Shannon,27.0,Female,False,White women,7.0,6th voted out,False,False,False,Voted out pre-merge
+49,S41-S49,US0743,Nate,47.0,Male,True,BIPOC men,8.0,7th voted out,True,False,False,Made merge
+49,S41-S49,US0742,MC,29.0,Female,True,BIPOC women,9.0,8th voted out,True,False,False,Made merge
+49,S41-S49,US0734,Alex,26.0,Male,True,BIPOC men,10.0,9th voted out,True,False,False,Made merge
+49,S41-S49,US0738,Jawan,28.0,Male,True,BIPOC men,11.0,10th voted out,True,False,False,Made merge
+49,S41-S49,US0750,Sophie,31.0,Female,False,White women,12.0,11th voted out,True,False,False,Made merge
+49,S41-S49,US0751,Steven,35.0,Male,False,White men,13.0,12th voted out,True,False,False,Made merge
+49,S41-S49,US0740,Kristina,35.0,Female,True,BIPOC women,14.0,13th voted out,True,False,False,Made merge
+49,S41-S49,US0745,Rizo,25.0,Male,False,White men,15.0,Lost final 4 fire challenge,True,False,False,Made merge
+49,S41-S49,US0746,Sage,30.0,Female,False,White women,16.0,2nd runner-up,False,True,False,Finalist
+49,S41-S49,US0749,Sophi,27.0,Female,True,BIPOC women,17.0,Runner-up,False,True,False,Finalist
+49,S41-S49,US0747,Savannah,31.0,Female,True,BIPOC women,18.0,Sole Survivor,False,True,True,Sole Survivor
+48,S41-S49,US0732,Stephanie,37.0,Female,False,White women,1.0,1st voted out,False,False,False,Voted out pre-merge
+48,S41-S49,US0725,Kevin,33.0,Male,True,BIPOC men,2.0,2nd voted out,False,False,False,Voted out pre-merge
+48,S41-S49,US0723,Justin,29.0,Male,False,White men,3.0,3rd voted out,False,False,False,Voted out pre-merge
+48,S41-S49,US0733,Thomas,34.0,Male,False,White men,4.0,4th voted out,False,False,False,Voted out pre-merge
+48,S41-S49,US0716,Bianca,32.0,Female,False,White women,5.0,5th voted out,False,False,False,Voted out pre-merge
+48,S41-S49,US0718,Charity,33.0,Female,False,White women,6.0,6th voted out,False,False,False,Voted out pre-merge
+48,S41-S49,US0729,Sai,29.0,Female,True,BIPOC women,7.0,7th voted out,False,False,False,Voted out pre-merge
+48,S41-S49,US0717,Cedrek,45.0,Male,True,BIPOC men,8.0,8th voted out,True,False,False,Made merge
+48,S41-S49,US0719,Chrissy,54.0,Female,False,White women,9.0,9th voted out,True,False,False,Made merge
+48,S41-S49,US0720,David,38.0,Male,False,White men,10.0,10th voted out,True,False,False,Made merge
+48,S41-S49,US0731,Star,27.0,Female,True,BIPOC women,11.0,11th voted out,True,False,False,Made merge
+48,S41-S49,US0727,Mary,30.0,Female,True,BIPOC women,12.0,12th voted out,True,False,False,Made merge
+48,S41-S49,US0730,Shauhin,37.0,Male,True,BIPOC men,13.0,13th voted out,True,False,False,Made merge
+48,S41-S49,US0728,Mitch,34.0,Male,True,BIPOC men,14.0,14th voted out,True,False,False,Made merge
+48,S41-S49,US0724,Kamilla,30.0,Female,True,BIPOC women,15.0,Lost final 4 fire challenge,True,False,False,Made merge
+48,S41-S49,US0722,Joe,45.0,Male,True,BIPOC men,16.0,2nd runner-up,False,True,False,Finalist
+48,S41-S49,US0721,Eva,23.0,Female,False,White women,17.0,Runner-up,False,True,False,Finalist
+48,S41-S49,US0726,Kyle,30.0,Male,True,BIPOC men,18.0,Sole Survivor,False,True,True,Sole Survivor
+47,S41-S49,US0704,Jon,41.0,Male,False,White men,1.0,1st voted out,False,False,False,Voted out pre-merge
+47,S41-S49,US0715,TK,31.0,Male,True,BIPOC men,2.0,2nd voted out,False,False,False,Voted out pre-merge
+47,S41-S49,US0700,Aysha,32.0,Female,True,BIPOC women,3.0,3rd voted out,False,False,False,Voted out pre-merge
+47,S41-S49,US0705,Kishan,27.0,Male,True,BIPOC men,4.0,4th voted out,False,False,False,Voted out pre-merge
+47,S41-S49,US0699,Anika,26.0,Female,True,BIPOC women,5.0,5th voted out,False,False,False,Voted out pre-merge
+47,S41-S49,US0708,Rome,30.0,Male,True,BIPOC men,6.0,6th voted out,False,False,False,Voted out pre-merge
+47,S41-S49,US0714,Tiyana,27.0,Female,False,White women,7.0,7th voted out,False,False,False,Voted out pre-merge
+47,S41-S49,US0710,Sierra,26.0,Female,False,White women,8.0,8th voted out,True,False,False,Made merge
+47,S41-S49,US0711,Sol,43.0,Male,True,BIPOC men,9.0,9th voted out,True,False,False,Made merge
+47,S41-S49,US0702,Gabe,26.0,Male,True,BIPOC men,10.0,10th voted out,True,False,False,Made merge
+47,S41-S49,US0706,Kyle,31.0,Male,False,White men,11.0,11th voted out,True,False,False,Made merge
+47,S41-S49,US0701,Caroline,27.0,Female,False,White women,12.0,12th voted out,True,False,False,Made merge
+47,S41-S49,US0698,Andy,31.0,Male,True,BIPOC men,13.0,13th voted out,True,False,False,Made merge
+47,S41-S49,US0703,Genevieve,32.0,Female,False,White women,14.0,14th voted out,True,False,False,Made merge
+47,S41-S49,US0713,Teeny,23.0,Non-binary,False,,15.0,Lost final 4 fire challenge,True,False,False,Made merge
+47,S41-S49,US0712,Sue,58.0,Female,False,White women,16.0,2nd runner-up,False,True,False,Finalist
+47,S41-S49,US0709,Sam,24.0,Male,False,White men,17.0,Runner-up,False,True,False,Finalist
+47,S41-S49,US0707,Rachel,34.0,Female,True,BIPOC women,18.0,Sole Survivor,False,True,True,Sole Survivor
+46,S41-S49,US0683,Jelinsky,21.0,Male,False,White men,1.0,1st voted out,False,False,False,Voted out pre-merge
+46,S41-S49,US0686,Jess,37.0,Female,True,BIPOC women,2.0,2nd voted out,False,False,False,Voted out pre-merge
+46,S41-S49,US0692,Randen,40.0,Male,True,BIPOC men,3.0,Medically evacuated,False,False,False,Voted out pre-merge
+46,S41-S49,US0681,Bhanu,41.0,Male,True,BIPOC men,4.0,3rd voted out,False,False,False,Voted out pre-merge
+46,S41-S49,US0685,Jem,31.0,Female,True,BIPOC women,5.0,4th voted out,False,False,False,Voted out pre-merge
+46,S41-S49,US0690,Moriah,28.0,Female,False,White women,6.0,5th voted out,False,False,False,Voted out pre-merge
+46,S41-S49,US0696,Tim,30.0,Male,True,BIPOC men,7.0,6th voted out,False,False,False,Voted out pre-merge
+46,S41-S49,US0693,Soda,27.0,Female,True,BIPOC women,8.0,7th voted out,True,False,False,Made merge
+46,S41-S49,US0694,Tevin,24.0,Male,True,BIPOC men,9.0,8th voted out,True,False,False,Made merge
+46,S41-S49,US0684,Hunter,27.0,Male,False,White men,10.0,9th voted out,True,False,False,Made merge
+46,S41-S49,US0695,Tiffany,32.0,Female,True,BIPOC women,11.0,10th voted out,True,False,False,Made merge
+46,S41-S49,US0697,Venus,24.0,Female,True,BIPOC women,12.0,11th voted out,True,False,False,Made merge
+46,S41-S49,US0691,Q,29.0,Male,True,BIPOC men,13.0,12th voted out,True,False,False,Made merge
+46,S41-S49,US0689,Maria,47.0,Female,True,BIPOC women,14.0,13th voted out,True,False,False,Made merge
+46,S41-S49,US0688,Liz,35.0,Female,False,White women,15.0,Lost final 4 fire challenge,True,False,False,Made merge
+46,S41-S49,US0680,Ben,31.0,Male,False,White men,16.0,2nd runner-up,False,True,False,Finalist
+46,S41-S49,US0682,Charlie,25.0,Male,False,White men,17.0,Runner-up,False,True,False,Finalist
+46,S41-S49,US0687,Kenzie,28.0,Female,False,White women,18.0,Sole Survivor,False,True,True,Sole Survivor
+45,S41-S49,US0669,Hannah,33.0,Female,False,White women,1.0,Quit,False,False,False,Voted out pre-merge
+45,S41-S49,US0665,Brandon,25.0,Male,False,White men,2.0,1st voted out,False,False,False,Voted out pre-merge
+45,S41-S49,US0677,Sabiyah,27.0,Female,True,BIPOC women,3.0,2nd voted out,False,False,False,Voted out pre-merge
+45,S41-S49,US0678,Sean,34.0,Male,True,BIPOC men,4.0,3rd voted out; Quit,False,False,False,Voted out pre-merge
+45,S41-S49,US0664,Brando,23.0,Male,True,BIPOC men,5.0,4th voted out,False,False,False,Voted out pre-merge
+45,S41-S49,US0670,J. Maya,24.0,Female,True,BIPOC women,6.0,5th voted out,False,False,False,Voted out pre-merge
+45,S41-S49,US0679,Sifu,30.0,Male,True,BIPOC men,7.0,6th voted out,False,False,False,Voted out pre-merge
+45,S41-S49,US0673,Kaleb,29.0,Male,True,BIPOC men,8.0,7th voted out,True,False,False,Made merge
+45,S41-S49,US0675,Kellie,30.0,Female,True,BIPOC women,9.0,8th voted out,True,False,False,Made merge
+45,S41-S49,US0676,Kendra,30.0,Female,False,White women,10.0,9th voted out,True,False,False,Made merge
+45,S41-S49,US0657,Bruce,46.0,Male,True,BIPOC men,11.0,10th voted out,True,False,False,Made merge
+45,S41-S49,US0668,Emily,28.0,Female,False,White women,12.0,11th voted out,True,False,False,Made merge
+45,S41-S49,US0667,Drew,23.0,Male,False,White men,13.0,12th voted out,True,False,False,Made merge
+45,S41-S49,US0672,Julie,49.0,Female,False,White women,14.0,13th voted out,True,False,False,Made merge
+45,S41-S49,US0674,Katurah,34.0,Female,True,BIPOC women,15.0,Lost final 4 fire challenge,True,False,False,Made merge
+45,S41-S49,US0671,Jake,26.0,Male,False,White men,16.0,2nd runner-up,False,True,False,Finalist
+45,S41-S49,US0663,Austin,26.0,Male,True,BIPOC men,17.0,Runner-up,False,True,False,Finalist
+45,S41-S49,US0666,Dee,26.0,Female,True,BIPOC women,18.0,Sole Survivor,False,True,True,Sole Survivor
+44,S41-S49,US0657,Bruce,45.0,Male,True,BIPOC men,1.0,Medically evacuated,False,False,False,Voted out pre-merge
+44,S41-S49,US0649,Maddy,28.0,Female,False,White women,2.0,1st voted out,False,False,False,Voted out pre-merge
+44,S41-S49,US0660,Helen,28.0,Female,True,BIPOC women,3.0,2nd voted out,False,False,False,Voted out pre-merge
+44,S41-S49,US0651,Claire,25.0,Female,True,BIPOC women,4.0,3rd voted out,False,False,False,Voted out pre-merge
+44,S41-S49,US0661,Sarah,26.0,Female,False,White women,5.0,4th voted out,False,False,False,Voted out pre-merge
+44,S41-S49,US0650,Matthew,43.0,Male,False,White men,6.0,Medically evacuated,False,False,False,Voted out pre-merge
+44,S41-S49,US0655,Josh,34.0,Male,True,BIPOC men,7.0,5th voted out,False,False,False,Voted out pre-merge
+44,S41-S49,US0656,Matt,27.0,Male,True,BIPOC men,8.0,6th voted out,True,False,False,Made merge
+44,S41-S49,US0645,Brandon,29.0,Male,True,BIPOC men,9.0,7th voted out,True,False,False,Made merge
+44,S41-S49,US0647,Kane,24.0,Male,False,White men,10.0,8th voted out,True,False,False,Made merge
+44,S41-S49,US0653,Frannie,23.0,Female,False,White women,11.0,9th voted out,True,False,False,Made merge
+44,S41-S49,US0652,Danny,31.0,Male,False,White men,12.0,10th voted out,True,False,False,Made merge
+44,S41-S49,US0646,Jaime,35.0,Female,True,BIPOC women,13.0,11th voted out,True,False,False,Made merge
+44,S41-S49,US0648,Lauren,30.0,Female,True,BIPOC women,14.0,12th voted out,True,False,False,Made merge
+44,S41-S49,US0659,Carson,20.0,Male,False,White men,15.0,Lost final 4 fire challenge,True,False,False,Made merge
+44,S41-S49,US0658,Carolyn,35.0,Female,False,White women,16.0,2nd runner-up,False,True,False,Finalist
+44,S41-S49,US0654,Heidi,42.0,Female,True,BIPOC women,17.0,Runner-up,False,True,False,Finalist
+44,S41-S49,US0662,Yam Yam,35.0,Male,True,BIPOC men,18.0,Sole Survivor,False,True,True,Sole Survivor
+43,S41-S49,US0639,Morriah,28.0,Female,True,BIPOC women,1.0,1st voted out,False,False,False,Voted out pre-merge
+43,S41-S49,US0635,Justine,29.0,Female,True,BIPOC women,2.0,2nd voted out,False,False,False,Voted out pre-merge
+43,S41-S49,US0640,Nneka,43.0,Female,True,BIPOC women,3.0,3rd voted out,False,False,False,Voted out pre-merge
+43,S41-S49,US0637,Lindsay,42.0,Female,False,White women,4.0,4th voted out,False,False,False,Voted out pre-merge
+43,S41-S49,US0631,Geo,35.0,Male,True,BIPOC men,5.0,5th voted out,False,False,False,Voted out pre-merge
+43,S41-S49,US0630,Elie,31.0,Female,True,BIPOC women,6.0,6th voted out,False,False,False,Voted out pre-merge
+43,S41-S49,US0629,Dwight,21.0,Male,True,BIPOC men,7.0,7th voted out,False,False,False,Voted out pre-merge
+43,S41-S49,US0633,Jeanine,24.0,Female,True,BIPOC women,8.0,8th voted out,True,False,False,Made merge
+43,S41-S49,US0632,James,36.0,Male,True,BIPOC men,9.0,9th voted out,True,False,False,Made merge
+43,S41-S49,US0643,Ryan,24.0,Male,True,BIPOC men,10.0,10th voted out,True,False,False,Made merge
+43,S41-S49,US0641,Noelle,25.0,Female,False,White women,11.0,11th voted out,True,False,False,Made merge
+43,S41-S49,US0644,Sami,19.0,Male,True,BIPOC men,12.0,12th voted out,True,False,False,Made merge
+43,S41-S49,US0628,Cody,35.0,Male,False,White men,13.0,13th voted out,True,False,False,Made merge
+43,S41-S49,US0636,Karla,28.0,Female,True,BIPOC women,14.0,14th voted out,True,False,False,Made merge
+43,S41-S49,US0634,Jesse,30.0,Male,True,BIPOC men,15.0,Lost final 4 fire challenge,True,False,False,Made merge
+43,S41-S49,US0642,Owen,29.0,Male,True,BIPOC men,16.0,2nd runner-up,False,True,False,Finalist
+43,S41-S49,US0627,Cassidy,26.0,Female,False,White women,17.0,Runner-up,False,True,False,Finalist
+43,S41-S49,US0638,Gabler,51.0,Male,False,White men,18.0,Sole Survivor,False,True,True,Sole Survivor
+42,S41-S49,US0613,Jackson,47.0,Male,False,White men,1.0,Medically evacuated,False,False,False,Voted out pre-merge
+42,S41-S49,US0626,Zach,21.0,Male,False,White men,2.0,1st voted out,False,False,False,Voted out pre-merge
+42,S41-S49,US0618,Marya,47.0,Female,True,BIPOC women,3.0,2nd voted out,False,False,False,Voted out pre-merge
+42,S41-S49,US0614,Jenny,43.0,Female,True,BIPOC women,4.0,3rd voted out,False,False,False,Voted out pre-merge
+42,S41-S49,US0624,Swati,19.0,Female,True,BIPOC women,5.0,4th voted out,False,False,False,Voted out pre-merge
+42,S41-S49,US0610,Daniel,30.0,Male,False,White men,6.0,5th voted out,False,False,False,Voted out pre-merge
+42,S41-S49,US0617,Lydia,22.0,Female,False,White women,7.0,6th voted out,False,False,False,Voted out pre-merge
+42,S41-S49,US0609,Chanelle,28.0,Female,True,BIPOC women,8.0,7th voted out,True,False,False,Made merge
+42,S41-S49,US0622,Rocksroy,43.0,Male,True,BIPOC men,9.0,8th voted out,True,False,False,Made merge
+42,S41-S49,US0625,Tori,24.0,Female,False,White women,10.0,9th voted out,True,False,False,Made merge
+42,S41-S49,US0612,Hai,29.0,Male,True,BIPOC men,11.0,10th voted out,True,False,False,Made merge
+42,S41-S49,US0611,Drea,34.0,Female,True,BIPOC women,12.0,11th voted out,True,False,False,Made merge
+42,S41-S49,US0621,Omar,31.0,Male,True,BIPOC men,13.0,12th voted out,True,False,False,Made merge
+42,S41-S49,US0616,Lindsay,30.0,Female,False,White women,14.0,13th voted out,True,False,False,Made merge
+42,S41-S49,US0615,Jonathan,28.0,Male,False,White men,15.0,Lost final 4 fire challenge,True,False,False,Made merge
+42,S41-S49,US0623,Romeo,37.0,Male,True,BIPOC men,16.0,2nd runner-up,False,True,False,Finalist
+42,S41-S49,US0620,Mike,57.0,Male,True,BIPOC men,17.0,Runner-up,False,True,False,Finalist
+42,S41-S49,US0619,Maryanne,24.0,Female,True,BIPOC women,18.0,Sole Survivor,False,True,True,Sole Survivor
+41,S41-S49,US0591,Abraham,51.0,Male,True,BIPOC men,1.0,1st voted out,False,False,False,Voted out pre-merge
+41,S41-S49,US0592,Sara,24.0,Female,False,White women,2.0,2nd voted out,False,False,False,Voted out pre-merge
+41,S41-S49,US0607,Voce,35.0,Male,False,White men,3.0,3rd voted out,False,False,False,Voted out pre-merge
+41,S41-S49,US0602,Brad,50.0,Male,False,White men,4.0,4th voted out,False,False,False,Voted out pre-merge
+41,S41-S49,US0603,JD,20.0,Male,True,BIPOC men,5.0,5th voted out,False,False,False,Voted out pre-merge
+41,S41-S49,US0595,Genie,46.0,Female,True,BIPOC women,6.0,6th voted out,False,False,False,Voted out pre-merge
+41,S41-S49,US0605,Sydney,26.0,Female,False,White women,7.0,7th voted out,False,False,False,Voted out pre-merge
+41,S41-S49,US0604,Tiffany,47.0,Female,False,White women,8.0,8th voted out,True,False,False,Made merge
+41,S41-S49,US0600,Naseer,37.0,Male,True,BIPOC men,9.0,9th voted out,True,False,False,Made merge
+41,S41-S49,US0598,Evvie,28.0,Non-binary,False,,10.0,10th voted out,True,False,False,Made merge
+41,S41-S49,US0606,Shan,34.0,Female,True,BIPOC women,11.0,11th voted out,True,False,False,Made merge
+41,S41-S49,US0608,Liana,20.0,Female,True,BIPOC women,12.0,12th voted out,True,False,False,Made merge
+41,S41-S49,US0599,Danny,33.0,Male,True,BIPOC men,13.0,13th voted out,True,False,False,Made merge
+41,S41-S49,US0596,Ricard,31.0,Male,True,BIPOC men,14.0,14th voted out,True,False,False,Made merge
+41,S41-S49,US0593,Heather,52.0,Female,False,White women,15.0,Lost final 4 fire challenge,True,False,False,Made merge
+41,S41-S49,US0597,Xander,20.0,Male,False,White men,16.0,2nd runner-up,False,True,False,Finalist
+41,S41-S49,US0601,Deshawn,26.0,Male,True,BIPOC men,17.0,Runner-up,False,True,False,Finalist
+41,S41-S49,US0594,Erika,32.0,Female,True,BIPOC women,18.0,Sole Survivor,False,True,True,Sole Survivor
+40,S31-S40,US0027,Amber,40.0,Female,False,White women,2.0,2nd voted out,True,False,False,Made merge
+40,S31-S40,US0166,Danni,43.0,Female,False,White women,3.0,3rd voted out,True,False,False,Made merge
+40,S31-S40,US0048,Ethan,45.0,Male,False,White men,4.0,4th voted out,True,False,False,Made merge
+40,S31-S40,US0055,Boston Rob,43.0,Male,False,White men,6.0,6th voted out,True,False,False,Made merge
+40,S31-S40,US0197,Parvati,36.0,Female,False,White women,7.0,7th voted out,True,False,False,Made merge
+40,S31-S40,US0112,Sandra,44.0,Female,True,BIPOC women,8.0,8th voted out; Quit EoE,False,False,False,Voted out pre-merge
+40,S31-S40,US0202,Yul,44.0,Male,True,BIPOC men,9.0,9th voted out,True,False,False,Made merge
+40,S31-S40,US0536,Wendell,35.0,Male,True,BIPOC men,10.0,10th voted out,True,False,False,Made merge
+40,S31-S40,US0498,Adam,28.0,Male,False,White men,11.0,11th voted out,True,False,False,Made merge
+40,S31-S40,US0274,Tyson,39.0,Male,False,White men,12.0,12th voted out,True,False,False,Made merge
+40,S31-S40,US0353,Sophie,29.0,Female,False,White women,13.0,13th voted out,True,False,False,Made merge
+40,S31-S40,US0371,Kim,36.0,Female,False,White women,14.0,14th voted out,True,False,False,Made merge
+40,S31-S40,US0433,Jeremy,41.0,Male,True,BIPOC men,15.0,15th voted out,True,False,False,Made merge
+40,S31-S40,US0556,Nick,28.0,Male,False,White men,16.0,16th voted out,True,False,False,Made merge
+40,S31-S40,US0386,Denise,48.0,Female,False,White women,17.0,17th voted out,True,False,False,Made merge
+40,S31-S40,US0516,Ben,36.0,Male,False,White men,18.0,18th voted out,True,False,False,Made merge
+40,S31-S40,US0414,Sarah,34.0,Female,False,White women,19.0,Lost final 4 fire challenge,True,False,False,Made merge
+40,S31-S40,US0478,Michele,29.0,Female,False,White women,20.0,2nd runner-up,False,True,False,Finalist
+40,S31-S40,US0442,Natalie,33.0,Female,True,BIPOC women,21.0,Runner-up,False,True,False,Finalist
+40,S31-S40,US0424,Tony,45.0,Male,False,White men,22.0,Sole Survivor,False,True,True,Sole Survivor
+39,S31-S40,US0571,Ronnie,36.0,Male,True,BIPOC men,1.0,1st voted out,False,False,False,Voted out pre-merge
+39,S31-S40,US0572,Molly,27.0,Female,False,White women,2.0,2nd voted out,False,False,False,Voted out pre-merge
+39,S31-S40,US0573,Vince,27.0,Male,True,BIPOC men,3.0,3rd voted out,False,False,False,Voted out pre-merge
+39,S31-S40,US0574,Chelsea,27.0,Female,False,White women,4.0,4th voted out,False,False,False,Voted out pre-merge
+39,S31-S40,US0575,Tom,60.0,Male,False,White men,5.0,5th voted out,False,False,False,Voted out pre-merge
+39,S31-S40,US0576,Jason,32.0,Male,False,White men,6.0,6th voted out,False,False,False,Voted out pre-merge
+39,S31-S40,US0577,Jack,23.0,Male,False,White men,7.0,7th voted out,True,False,False,Made merge
+39,S31-S40,US0578,Kellee,29.0,Female,True,BIPOC women,8.0,8th voted out,True,False,False,Made merge
+39,S31-S40,US0579,Jamal,33.0,Male,True,BIPOC men,9.0,9th voted out,True,False,False,Made merge
+39,S31-S40,US0580,Aaron,36.0,Male,True,BIPOC men,10.0,10th voted out,True,False,False,Made merge
+39,S31-S40,US0581,Missy,24.0,Female,True,BIPOC women,11.0,11th voted out,True,False,False,Made merge
+39,S31-S40,US0582,Elizabeth,26.0,Female,False,White women,12.0,12th voted out,True,False,False,Made merge
+39,S31-S40,US0583,Karishma,37.0,Female,True,BIPOC women,13.0,13th voted out,True,False,False,Made merge
+39,S31-S40,US0584,Elaine,41.0,Female,False,White women,14.0,14th voted out,True,False,False,Made merge
+39,S31-S40,US0585,Dan,48.0,Male,False,White men,15.0,Ejected,False,False,False,Voted out pre-merge
+39,S31-S40,US0586,Janet,59.0,Female,False,White women,16.0,15th voted out,True,False,False,Made merge
+39,S31-S40,US0587,Lauren,28.0,Female,True,BIPOC women,17.0,Lost final 4 fire challenge,True,False,False,Made merge
+39,S31-S40,US0588,Noura,36.0,Female,True,BIPOC women,18.0,2nd runner-up,False,True,False,Finalist
+39,S31-S40,US0589,Dean,28.0,Male,False,White men,19.0,Runner-up,False,True,False,Finalist
+39,S31-S40,US0590,Tommy,26.0,Male,False,White men,20.0,Sole Survivor,False,True,True,Sole Survivor
+38,S31-S40,US0557,Reem,46.0,Female,False,White women,1.0,1st voted out,True,False,False,Made merge
+38,S31-S40,US0558,Keith,19.0,Male,True,BIPOC men,2.0,2nd voted out; Quit EoE,False,False,False,Voted out pre-merge
+38,S31-S40,US0477,Aubry,32.0,Female,False,White women,5.0,5th voted out,True,False,False,Made merge
+38,S31-S40,US0561,Wendy,25.0,Female,True,BIPOC women,6.0,6th voted out; Quit EoE,False,False,False,Voted out pre-merge
+38,S31-S40,US0451,Joe,29.0,Male,False,White men,7.0,7th voted out,True,False,False,Made merge
+38,S31-S40,US0562,Eric,34.0,Male,False,White men,8.0,8th voted out,True,False,False,Made merge
+38,S31-S40,US0563,Julia,25.0,Female,True,BIPOC women,9.0,9th voted out,True,False,False,Made merge
+38,S31-S40,US0495,David,44.0,Male,False,White men,10.0,10th voted out,True,False,False,Made merge
+38,S31-S40,US0429,Kelley,32.0,Female,False,White women,11.0,11th voted out,True,False,False,Made merge
+38,S31-S40,US0564,Wardog,38.0,Male,False,White men,12.0,12th voted out,True,False,False,Made merge
+38,S31-S40,US0565,Ron,45.0,Male,False,White men,13.0,13th voted out,True,False,False,Made merge
+38,S31-S40,US0566,Aurora,32.0,Female,False,White women,14.0,14th voted out,True,False,False,Made merge
+38,S31-S40,US0567,Victoria,23.0,Female,True,BIPOC women,15.0,15th voted out,True,False,False,Made merge
+38,S31-S40,US0568,Lauren,21.0,Female,False,White women,16.0,16th voted out,True,False,False,Made merge
+38,S31-S40,US0560,Rick,33.0,Male,False,White men,17.0,Lost final 4 fire challenge,True,False,False,Made merge
+38,S31-S40,US0569,Julie,46.0,Female,False,White women,18.0,2nd runner-up,False,True,False,Finalist
+38,S31-S40,US0570,Gavin,23.0,Male,False,White men,19.0,Runner-up,False,True,False,Finalist
+38,S31-S40,US0559,Chris,25.0,Male,True,BIPOC men,20.0,Sole Survivor,False,True,True,Sole Survivor
+37,S31-S40,US0537,Pat,41.0,Male,False,White men,1.0,Medically evacuated,False,False,False,Voted out pre-merge
+37,S31-S40,US0538,Jessica,19.0,Female,False,White women,2.0,1st voted out,False,False,False,Voted out pre-merge
+37,S31-S40,US0539,Jeremy,40.0,Male,True,BIPOC men,3.0,2nd voted out,False,False,False,Voted out pre-merge
+37,S31-S40,US0540,Bi,28.0,Female,True,BIPOC women,4.0,Quit,False,False,False,Voted out pre-merge
+37,S31-S40,US0541,Natalia,26.0,Female,True,BIPOC women,5.0,3rd voted out,False,False,False,Voted out pre-merge
+37,S31-S40,US0542,Natalie,57.0,Female,True,BIPOC women,6.0,4th voted out,False,False,False,Voted out pre-merge
+37,S31-S40,US0543,Lyrsa,36.0,Female,True,BIPOC women,7.0,5th voted out,False,False,False,Voted out pre-merge
+37,S31-S40,US0544,Elizabeth,31.0,Female,False,White women,8.0,6th voted out,True,False,False,Made merge
+37,S31-S40,US0545,John,38.0,Male,False,White men,9.0,7th voted out,True,False,False,Made merge
+37,S31-S40,US0546,Dan,28.0,Male,False,White men,10.0,8th voted out,True,False,False,Made merge
+37,S31-S40,US0547,Alec,24.0,Male,False,White men,11.0,9th voted out,True,False,False,Made merge
+37,S31-S40,US0548,Carl,41.0,Male,True,BIPOC men,12.0,10th voted out,True,False,False,Made merge
+37,S31-S40,US0549,Gabby,25.0,Female,True,BIPOC women,13.0,11th voted out,True,False,False,Made merge
+37,S31-S40,US0550,Christian,32.0,Male,False,White men,14.0,12th voted out,True,False,False,Made merge
+37,S31-S40,US0551,Davie,30.0,Male,True,BIPOC men,15.0,13th voted out,True,False,False,Made merge
+37,S31-S40,US0552,Alison,28.0,Female,False,White women,16.0,14th voted out,True,False,False,Made merge
+37,S31-S40,US0553,Kara,30.0,Female,False,White women,17.0,Lost final 4 fire challenge,True,False,False,Made merge
+37,S31-S40,US0554,Angelina,28.0,Female,True,BIPOC women,18.0,2nd runner-up,False,True,False,Finalist
+37,S31-S40,US0555,Mike,47.0,Male,False,White men,19.0,Runner-up,False,True,False,Finalist
+37,S31-S40,US0556,Nick,27.0,Male,False,White men,20.0,Sole Survivor,False,True,True,Sole Survivor
+36,S31-S40,US0517,Gonzalez,26.0,Female,True,BIPOC women,1.0,1st voted out,False,False,False,Voted out pre-merge
+36,S31-S40,US0518,Jacob,22.0,Male,False,White men,2.0,2nd voted out,False,False,False,Voted out pre-merge
+36,S31-S40,US0519,Morgan,29.0,Female,False,White women,3.0,3rd voted out,False,False,False,Voted out pre-merge
+36,S31-S40,US0520,Brendan,40.0,Male,False,White men,4.0,4th voted out,False,False,False,Voted out pre-merge
+36,S31-S40,US0521,Stephanie,34.0,Female,False,White women,5.0,5th voted out,False,False,False,Voted out pre-merge
+36,S31-S40,US0522,James,24.0,Male,True,BIPOC men,6.0,6th voted out,False,False,False,Voted out pre-merge
+36,S31-S40,US0523,Bradley,26.0,Male,False,White men,7.0,7th voted out,False,False,False,Voted out pre-merge
+36,S31-S40,US0524,Chris,27.0,Male,False,White men,8.0,8th voted out,True,False,False,Made merge
+36,S31-S40,US0525,Libby,24.0,Female,False,White women,9.0,9th voted out,True,False,False,Made merge
+36,S31-S40,US0526,Desiree,21.0,Female,True,BIPOC women,10.0,10th voted out,True,False,False,Made merge
+36,S31-S40,US0527,Jenna,23.0,Female,False,White women,11.0,11th voted out,True,False,False,Made merge
+36,S31-S40,US0528,Michael,18.0,Male,False,White men,12.0,12th voted out,True,False,False,Made merge
+36,S31-S40,US0529,Chelsea,25.0,Female,False,White women,13.0,13th voted out,True,False,False,Made merge
+36,S31-S40,US0530,Kellyn,30.0,Female,False,White women,14.0,14th voted out,True,False,False,Made merge
+36,S31-S40,US0531,Sebastian,22.0,Male,False,White men,15.0,15th voted out,True,False,False,Made merge
+36,S31-S40,US0532,Donathan,25.0,Male,False,White men,16.0,16th voted out,True,False,False,Made merge
+36,S31-S40,US0533,Angela,42.0,Female,False,White women,17.0,Lost final 4 fire challenge,True,False,False,Made merge
+36,S31-S40,US0534,Laurel,29.0,Female,True,BIPOC women,18.0,2nd runner-up,True,True,False,Finalist
+36,S31-S40,US0535,Domenick,38.0,Male,False,White men,19.0,Runner-up,False,True,False,Finalist
+36,S31-S40,US0536,Wendell,33.0,Male,True,BIPOC men,20.0,Sole Survivor,False,True,True,Sole Survivor
+35,S31-S40,US0499,Katrina,46.0,Female,False,White women,1.0,1st voted out,False,False,False,Voted out pre-merge
+35,S31-S40,US0500,Simone,25.0,Female,True,BIPOC women,2.0,2nd voted out,False,False,False,Voted out pre-merge
+35,S31-S40,US0501,Patrick,24.0,Male,False,White men,3.0,3rd voted out,False,False,False,Voted out pre-merge
+35,S31-S40,US0502,Alan,32.0,Male,True,BIPOC men,4.0,4th voted out,False,False,False,Voted out pre-merge
+35,S31-S40,US0503,Roark,27.0,Female,False,White women,5.0,5th voted out,False,False,False,Voted out pre-merge
+35,S31-S40,US0504,Ali,24.0,Female,True,BIPOC women,6.0,6th voted out,False,False,False,Voted out pre-merge
+35,S31-S40,US0505,Jessica,29.0,Female,False,White women,7.0,7th voted out,False,False,False,Voted out pre-merge
+35,S31-S40,US0506,Desi,27.0,Female,True,BIPOC women,8.0,8th voted out,True,False,False,Made merge
+35,S31-S40,US0507,Cole,24.0,Male,False,White men,9.0,9th voted out,True,False,False,Made merge
+35,S31-S40,US0508,JP,28.0,Male,False,White men,10.0,10th voted out,True,False,False,Made merge
+35,S31-S40,US0509,Joe,34.0,Male,True,BIPOC men,11.0,11th voted out,True,False,False,Made merge
+35,S31-S40,US0510,Lauren,35.0,Female,False,White women,12.0,12th voted out,True,False,False,Made merge
+35,S31-S40,US0511,Ashley,26.0,Female,False,White women,13.0,13th voted out,True,False,False,Made merge
+35,S31-S40,US0512,Mike,43.0,Male,False,White men,14.0,14th voted out,True,False,False,Made merge
+35,S31-S40,US0513,Devon,23.0,Male,True,BIPOC men,15.0,Lost final 4 fire challenge,True,False,False,Made merge
+35,S31-S40,US0514,Ryan,23.0,Male,False,White men,16.0,2nd runner-up,False,True,False,Finalist
+35,S31-S40,US0515,Chrissy,46.0,Female,False,White women,17.0,Runner-up,False,True,False,Finalist
+35,S31-S40,US0516,Ben,34.0,Male,False,White men,18.0,Sole Survivor,False,True,True,Sole Survivor
+34,S31-S40,US0406,Ciera,27.0,Female,False,White women,1.0,1st voted out,False,False,False,Voted out pre-merge
+34,S31-S40,US0424,Tony,42.0,Male,False,White men,2.0,2nd voted out,False,False,False,Voted out pre-merge
+34,S31-S40,US0464,Caleb,28.0,Male,False,White men,3.0,3rd voted out,False,False,False,Voted out pre-merge
+34,S31-S40,US0384,Malcolm,29.0,Male,False,White men,4.0,4th voted out,False,False,False,Voted out pre-merge
+34,S31-S40,US0281,J.T.,31.0,Male,False,White men,5.0,5th voted out,False,False,False,Voted out pre-merge
+34,S31-S40,US0112,Sandra,41.0,Female,True,BIPOC women,6.0,6th voted out,False,False,False,Voted out pre-merge
+34,S31-S40,US0023,Jeff,50.0,Male,False,White men,7.0,7th voted out,False,False,False,Voted out pre-merge
+34,S31-S40,US0450,Hali,26.0,Female,False,White women,8.0,8th voted out,True,False,False,Made merge
+34,S31-S40,US0201,Ozzy,34.0,Male,True,BIPOC men,9.0,9th voted out,True,False,False,Made merge
+34,S31-S40,US0470,Debbie,51.0,Female,False,White women,10.0,10th voted out,True,False,False,Made merge
+34,S31-S40,US0490,Zeke,28.0,Male,False,White men,11.0,11th voted out,True,False,False,Made merge
+34,S31-S40,US0456,Sierra,29.0,Female,False,White women,12.0,12th voted out,True,False,False,Made merge
+34,S31-S40,US0333,Andrea,27.0,Female,False,White women,13.0,13th voted out,True,False,False,Made merge
+34,S31-S40,US0485,Michaela,25.0,Female,True,BIPOC women,14.0,14th voted out,True,False,False,Made merge
+34,S31-S40,US0179,Cirie,45.0,Female,True,BIPOC women,15.0,Eliminated,True,False,False,Made merge
+34,S31-S40,US0477,Aubry,30.0,Female,False,White women,16.0,15th voted out,True,False,False,Made merge
+34,S31-S40,US0476,Tai,52.0,Male,True,BIPOC men,17.0,16th voted out,True,False,False,Made merge
+34,S31-S40,US0364,Troyzan,54.0,Male,False,White men,18.0,2nd runner-up,False,True,False,Finalist
+34,S31-S40,US0401,Brad,47.0,Male,False,White men,19.0,Runner-up,False,True,False,Finalist
+34,S31-S40,US0414,Sarah,32.0,Female,False,White women,20.0,Sole Survivor,False,True,True,Sole Survivor
+33,S31-S40,US0479,Rachel,37.0,Female,True,BIPOC women,1.0,1st voted out,False,False,False,Voted out pre-merge
+33,S31-S40,US0480,Mari,31.0,Female,True,BIPOC women,2.0,2nd voted out,False,False,False,Voted out pre-merge
+33,S31-S40,US0481,Paul,52.0,Male,False,White men,3.0,3rd voted out,False,False,False,Voted out pre-merge
+33,S31-S40,US0482,Lucy,42.0,Female,True,BIPOC women,4.0,4th voted out,False,False,False,Voted out pre-merge
+33,S31-S40,US0483,CeCe,39.0,Female,True,BIPOC women,5.0,5th voted out,False,False,False,Voted out pre-merge
+33,S31-S40,US0484,Figgy,23.0,Female,True,BIPOC women,6.0,6th voted out,False,False,False,Voted out pre-merge
+33,S31-S40,US0485,Michaela,25.0,Female,True,BIPOC women,7.0,7th voted out,False,False,False,Voted out pre-merge
+33,S31-S40,US0486,Michelle,28.0,Female,False,White women,8.0,8th voted out,True,False,False,Made merge
+33,S31-S40,US0487,Taylor,24.0,Male,False,White men,9.0,9th voted out,True,False,False,Made merge
+33,S31-S40,US0488,Chris,38.0,Male,False,White men,10.0,10th voted out,True,False,False,Made merge
+33,S31-S40,US0489,Jessica,37.0,Female,False,White women,11.0,Eliminated,True,False,False,Made merge
+33,S31-S40,US0490,Zeke,28.0,Male,False,White men,12.0,12th voted out,True,False,False,Made merge
+33,S31-S40,US0491,Will,18.0,Male,False,White men,13.0,13th voted out,True,False,False,Made merge
+33,S31-S40,US0492,Sunday,45.0,Female,False,White women,14.0,14th voted out,True,False,False,Made merge
+33,S31-S40,US0493,Jay,27.0,Male,True,BIPOC men,15.0,15th voted out,True,False,False,Made merge
+33,S31-S40,US0494,Bret,42.0,Male,False,White men,16.0,16th voted out,True,False,False,Made merge
+33,S31-S40,US0495,David,42.0,Male,False,White men,17.0,17th voted out,True,False,False,Made merge
+33,S31-S40,US0496,Hannah,24.0,Female,False,White women,18.0,Runner-up,False,True,False,Finalist
+33,S31-S40,US0497,Ken,33.0,Male,False,White men,19.0,Runner-up,False,True,False,Finalist
+33,S31-S40,US0498,Adam,25.0,Male,False,White men,20.0,Sole Survivor,False,True,True,Sole Survivor
+32,S31-S40,US0461,Darnell,27.0,Male,True,BIPOC men,1.0,1st voted out,False,False,False,Voted out pre-merge
+32,S31-S40,US0462,Jennifer,38.0,Female,False,White women,2.0,2nd voted out,False,False,False,Voted out pre-merge
+32,S31-S40,US0463,Liz,27.0,Female,False,White women,3.0,3rd voted out,False,False,False,Voted out pre-merge
+32,S31-S40,US0464,Caleb,27.0,Male,False,White men,4.0,Medically evacuated,False,False,False,Voted out pre-merge
+32,S31-S40,US0465,Alecia,24.0,Female,False,White women,5.0,4th voted out,False,False,False,Voted out pre-merge
+32,S31-S40,US0466,Anna,26.0,Female,False,White women,6.0,5th voted out,False,False,False,Voted out pre-merge
+32,S31-S40,US0467,Peter,34.0,Male,True,BIPOC men,7.0,6th voted out,False,False,False,Voted out pre-merge
+32,S31-S40,US0468,Neal,38.0,Male,False,White men,8.0,Medically evacuated,False,False,False,Voted out pre-merge
+32,S31-S40,US0469,Nick,30.0,Male,False,White men,9.0,7th voted out,True,False,False,Made merge
+32,S31-S40,US0470,Debbie,49.0,Female,False,White women,10.0,8th voted out,True,False,False,Made merge
+32,S31-S40,US0471,Scot,40.0,Male,False,White men,11.0,9th voted out,True,False,False,Made merge
+32,S31-S40,US0472,Julia,19.0,Female,False,White women,12.0,10th voted out,True,False,False,Made merge
+32,S31-S40,US0473,Jason,31.0,Male,False,White men,13.0,11th voted out,True,False,False,Made merge
+32,S31-S40,US0474,Joe,71.0,Male,False,White men,14.0,Medically evacuated,True,False,False,Made merge
+32,S31-S40,US0475,Cydney,22.0,Female,True,BIPOC women,15.0,Lost fire challenge,True,False,False,Made merge
+32,S31-S40,US0476,Tai,51.0,Male,True,BIPOC men,16.0,2nd runner-up,False,True,False,Finalist
+32,S31-S40,US0477,Aubry,29.0,Female,False,White women,17.0,Runner-up,False,True,False,Finalist
+32,S31-S40,US0478,Michele,24.0,Female,False,White women,18.0,Sole Survivor,False,True,True,Sole Survivor
+31,S31-S40,US0402,Vytas,35.0,Male,False,White men,1.0,1st voted out,False,False,False,Voted out pre-merge
+31,S31-S40,US0453,Shirin,32.0,Female,True,BIPOC women,2.0,2nd voted out,False,False,False,Voted out pre-merge
+31,S31-S40,US0233,Peih-Gee,37.0,Female,True,BIPOC women,3.0,3rd voted out,False,False,False,Voted out pre-merge
+31,S31-S40,US0023,Jeff,49.0,Male,False,White men,4.0,4th voted out,False,False,False,Voted out pre-merge
+31,S31-S40,US0295,Monica,30.0,Female,True,BIPOC women,5.0,5th voted out,False,False,False,Voted out pre-merge
+31,S31-S40,US0180,Terry,55.0,Male,False,White men,6.0,Withdrew,False,False,False,Voted out pre-merge
+31,S31-S40,US0423,Woo,31.0,Male,True,BIPOC men,7.0,6th voted out,False,False,False,Voted out pre-merge
+31,S31-S40,US0422,Kass,43.0,Female,False,White women,8.0,7th voted out,True,False,False,Made merge
+31,S31-S40,US0105,Andrew,51.0,Male,False,White men,9.0,8th voted out,True,False,False,Made merge
+31,S31-S40,US0015,Kelly,37.0,Female,False,White women,10.0,9th voted out,True,False,False,Made merge
+31,S31-S40,US0406,Ciera,26.0,Female,False,White women,11.0,10th voted out,True,False,False,Made merge
+31,S31-S40,US0280,Stephen,36.0,Male,False,White men,12.0,11th voted out,True,False,False,Made merge
+31,S31-S40,US0451,Joe,26.0,Male,False,White men,13.0,12th voted out,True,False,False,Made merge
+31,S31-S40,US0383,Abi-Maria,35.0,Female,True,BIPOC women,14.0,13th voted out,True,False,False,Made merge
+31,S31-S40,US0021,Kimmi,42.0,Female,False,White women,15.0,14th voted out,True,False,False,Made merge
+31,S31-S40,US0439,Keith,54.0,Male,False,White men,16.0,15th voted out,True,False,False,Made merge
+31,S31-S40,US0429,Kelley,29.0,Female,False,White women,17.0,16th voted out,True,False,False,Made merge
+31,S31-S40,US0421,Spencer,22.0,Male,False,White men,18.0,Runner-up,False,True,False,Finalist
+31,S31-S40,US0419,Tasha,38.0,Female,True,BIPOC women,19.0,Runner-up,False,True,False,Finalist
+31,S31-S40,US0433,Jeremy,37.0,Male,True,BIPOC men,20.0,Sole Survivor,False,True,True,Sole Survivor
+30,S21-S30,US0443,So,31.0,Female,True,BIPOC women,1.0,1st voted out,False,False,False,Voted out pre-merge
+30,S21-S30,US0444,Vince,32.0,Male,False,White men,2.0,2nd voted out,False,False,False,Voted out pre-merge
+30,S21-S30,US0445,Nina,51.0,Female,True,BIPOC women,3.0,3rd voted out,False,False,False,Voted out pre-merge
+30,S21-S30,US0446,Lindsey,24.0,Female,False,White women,4.0,4th voted out,False,False,False,Voted out pre-merge
+30,S21-S30,US0447,Max,37.0,Male,False,White men,5.0,5th voted out,False,False,False,Voted out pre-merge
+30,S21-S30,US0448,Joaquin,27.0,Male,True,BIPOC men,6.0,6th voted out,False,False,False,Voted out pre-merge
+30,S21-S30,US0449,Kelly,44.0,Female,False,White women,7.0,7th voted out,False,False,False,Voted out pre-merge
+30,S21-S30,US0450,Hali,25.0,Female,False,White women,8.0,8th voted out,True,False,False,Made merge
+30,S21-S30,US0451,Joe,25.0,Male,False,White men,9.0,9th voted out,True,False,False,Made merge
+30,S21-S30,US0452,Jenn,22.0,Female,False,White women,10.0,10th voted out,True,False,False,Made merge
+30,S21-S30,US0453,Shirin,31.0,Female,True,BIPOC women,11.0,11th voted out,True,False,False,Made merge
+30,S21-S30,US0454,Tyler,33.0,Male,False,White men,12.0,12th voted out,True,False,False,Made merge
+30,S21-S30,US0455,Dan,47.0,Male,False,White men,13.0,13th voted out,True,False,False,Made merge
+30,S21-S30,US0456,Sierra,27.0,Female,False,White women,14.0,14th voted out,True,False,False,Made merge
+30,S21-S30,US0457,Rodney,24.0,Male,False,White men,15.0,Lost fire challenge,True,False,False,Made merge
+30,S21-S30,US0458,Will,41.0,Male,True,BIPOC men,16.0,Runner-up,False,True,False,Finalist
+30,S21-S30,US0459,Carolyn,52.0,Female,False,White women,17.0,Runner-up,False,True,False,Finalist
+30,S21-S30,US0460,Mike,38.0,Male,False,White men,18.0,Sole Survivor,False,True,True,Sole Survivor
+29,S21-S30,US0425,Nadiya,28.0,Female,True,BIPOC women,1.0,1st voted out,False,False,False,Voted out pre-merge
+29,S21-S30,US0426,Val,35.0,Female,True,BIPOC women,2.0,2nd voted out,False,False,False,Voted out pre-merge
+29,S21-S30,US0427,John,39.0,Male,False,White men,3.0,3rd voted out,False,False,False,Voted out pre-merge
+29,S21-S30,US0428,Drew,25.0,Male,False,White men,4.0,4th voted out,False,False,False,Voted out pre-merge
+29,S21-S30,US0429,Kelley,28.0,Female,False,White women,5.0,5th voted out,False,False,False,Voted out pre-merge
+29,S21-S30,US0430,Dale,55.0,Male,False,White men,6.0,6th voted out,False,False,False,Voted out pre-merge
+29,S21-S30,US0431,Julie,34.0,Female,False,White women,7.0,Quit,False,False,False,Voted out pre-merge
+29,S21-S30,US0432,Josh,32.0,Male,False,White men,8.0,7th voted out,True,False,False,Made merge
+29,S21-S30,US0433,Jeremy,36.0,Male,True,BIPOC men,9.0,8th voted out,True,False,False,Made merge
+29,S21-S30,US0434,Wes,23.0,Male,False,White men,10.0,9th voted out,True,False,False,Made merge
+29,S21-S30,US0435,Reed,31.0,Male,False,White men,11.0,10th voted out,True,False,False,Made merge
+29,S21-S30,US0436,Alec,22.0,Male,False,White men,12.0,11th voted out,True,False,False,Made merge
+29,S21-S30,US0437,Jon,26.0,Male,False,White men,13.0,12th voted out,True,False,False,Made merge
+29,S21-S30,US0438,Baylor,20.0,Female,False,White women,14.0,13th voted out,True,False,False,Made merge
+29,S21-S30,US0439,Keith,53.0,Male,False,White men,15.0,14th voted out,True,False,False,Made merge
+29,S21-S30,US0440,Missy,47.0,Female,False,White women,16.0,2nd runner-up,False,True,False,Finalist
+29,S21-S30,US0441,Jaclyn,25.0,Female,False,White women,17.0,Runner-up,False,True,False,Finalist
+29,S21-S30,US0442,Natalie,28.0,Female,True,BIPOC women,18.0,Sole Survivor,False,True,True,Sole Survivor
+28,S21-S30,US0407,David,45.0,Male,False,White men,1.0,1st voted out,False,False,False,Voted out pre-merge
+28,S21-S30,US0408,Garrett,27.0,Male,False,White men,2.0,2nd voted out,False,False,False,Voted out pre-merge
+28,S21-S30,US0409,Brice,27.0,Male,True,BIPOC men,3.0,3rd voted out,False,False,False,Voted out pre-merge
+28,S21-S30,US0410,J'Tia,31.0,Female,True,BIPOC women,4.0,4th voted out,False,False,False,Voted out pre-merge
+28,S21-S30,US0411,Cliff,46.0,Male,True,BIPOC men,5.0,5th voted out,False,False,False,Voted out pre-merge
+28,S21-S30,US0412,Lindsey,29.0,Female,False,White women,6.0,Quit,False,False,False,Voted out pre-merge
+28,S21-S30,US0413,Alexis,21.0,Female,True,BIPOC women,7.0,6th voted out,False,False,False,Voted out pre-merge
+28,S21-S30,US0414,Sarah,29.0,Female,False,White women,8.0,7th voted out,True,False,False,Made merge
+28,S21-S30,US0415,Morgan,21.0,Female,False,White women,9.0,8th voted out,True,False,False,Made merge
+28,S21-S30,US0416,LJ,34.0,Male,False,White men,10.0,9th voted out,True,False,False,Made merge
+28,S21-S30,US0417,Jeremiah,34.0,Male,False,White men,11.0,10th voted out,True,False,False,Made merge
+28,S21-S30,US0418,Jefra,22.0,Female,False,White women,12.0,11th voted out,True,False,False,Made merge
+28,S21-S30,US0419,Tasha,37.0,Female,True,BIPOC women,13.0,12th voted out,True,False,False,Made merge
+28,S21-S30,US0420,Trish,48.0,Female,False,White women,14.0,13th voted out,True,False,False,Made merge
+28,S21-S30,US0421,Spencer,21.0,Male,False,White men,15.0,14th voted out,True,False,False,Made merge
+28,S21-S30,US0422,Kass,41.0,Female,False,White women,16.0,15th voted out,True,False,False,Made merge
+28,S21-S30,US0423,Woo,29.0,Male,True,BIPOC men,17.0,Runner-up,False,True,False,Finalist
+28,S21-S30,US0424,Tony,39.0,Male,False,White men,18.0,Sole Survivor,False,True,True,Sole Survivor
+27,S21-S30,US0195,Candice,30.0,Female,False,White women,2.0,2nd voted out,False,False,False,Voted out pre-merge
+27,S21-S30,US0107,Rupert,49.0,Male,False,White men,3.0,Switched,False,False,False,Voted out pre-merge
+27,S21-S30,US0398,Marissa,21.0,Female,True,BIPOC women,4.0,3rd voted out,False,False,False,Voted out pre-merge
+27,S21-S30,US0399,Rachel,33.0,Female,False,White women,5.0,4th voted out,False,False,False,Voted out pre-merge
+27,S21-S30,US0359,Colton,22.0,Male,False,White men,6.0,Quit,False,False,False,Voted out pre-merge
+27,S21-S30,US0400,John,30.0,Male,False,White men,7.0,5th voted out,False,False,False,Voted out pre-merge
+27,S21-S30,US0401,Brad,44.0,Male,False,White men,8.0,6th voted out,False,False,False,Voted out pre-merge
+27,S21-S30,US0365,Kat,23.0,Female,False,White women,10.0,8th voted out,False,False,False,Voted out pre-merge
+27,S21-S30,US0397,Laura B.,44.0,Female,False,White women,11.0,9th voted out,False,False,False,Voted out pre-merge
+27,S21-S30,US0182,Aras,31.0,Male,False,White men,12.0,10th voted out,True,False,False,Made merge
+27,S21-S30,US0402,Vytas,33.0,Male,False,White men,13.0,11th voted out,True,False,False,Made merge
+27,S21-S30,US0292,Laura M.,43.0,Female,False,White women,15.0,13th voted out,True,False,False,Made merge
+27,S21-S30,US0403,Caleb,26.0,Male,False,White men,16.0,14th voted out,True,False,False,Made merge
+27,S21-S30,US0404,Katie,25.0,Female,False,White women,17.0,Eliminated,True,False,False,Made merge
+27,S21-S30,US0405,Hayden,27.0,Male,False,White men,18.0,15th voted out,True,False,False,Made merge
+27,S21-S30,US0406,Ciera,24.0,Female,False,White women,19.0,16th voted out,True,False,False,Made merge
+27,S21-S30,US0032,Tina,52.0,Female,False,White women,20.0,17th voted out,True,False,False,Made merge
+27,S21-S30,US0010,Gervase,43.0,Male,True,BIPOC men,21.0,2nd runner-up,False,True,False,Finalist
+27,S21-S30,US0358,Monica,42.0,Female,False,White women,22.0,Runner-up,False,True,False,Finalist
+27,S21-S30,US0274,Tyson,34.0,Male,False,White men,23.0,Sole Survivor,False,True,True,Sole Survivor
+26,S21-S30,US0322,Francesca,38.0,Female,True,BIPOC women,1.0,1st voted out,False,False,False,Voted out pre-merge
+26,S21-S30,US0387,Allie,25.0,Female,False,White women,2.0,2nd voted out,False,False,False,Voted out pre-merge
+26,S21-S30,US0388,Hope,23.0,Female,False,White women,3.0,3rd voted out,False,False,False,Voted out pre-merge
+26,S21-S30,US0389,Shamar,27.0,Male,True,BIPOC men,4.0,Medically evacuated,False,False,False,Voted out pre-merge
+26,S21-S30,US0390,Laura,23.0,Female,False,White women,5.0,4th voted out,False,False,False,Voted out pre-merge
+26,S21-S30,US0350,Brandon,20.0,Male,False,White men,6.0,5th voted out,False,False,False,Voted out pre-merge
+26,S21-S30,US0391,Matt,38.0,Male,False,White men,7.0,6th voted out,False,False,False,Voted out pre-merge
+26,S21-S30,US0392,Julia,21.0,Female,False,White women,8.0,7th voted out,False,False,False,Voted out pre-merge
+26,S21-S30,US0259,Corinne,33.0,Female,False,White women,9.0,8th voted out,False,False,False,Voted out pre-merge
+26,S21-S30,US0393,Michael,44.0,Male,False,White men,10.0,9th voted out,True,False,False,Made merge
+26,S21-S30,US0337,Phillip,54.0,Male,True,BIPOC men,11.0,10th voted out,True,False,False,Made merge
+26,S21-S30,US0384,Malcolm,25.0,Male,False,White men,12.0,11th voted out,True,False,False,Made merge
+26,S21-S30,US0394,Reynold,30.0,Male,False,White men,13.0,12th voted out,True,False,False,Made merge
+26,S21-S30,US0333,Andrea,23.0,Female,False,White women,14.0,13th voted out,True,False,False,Made merge
+26,S21-S30,US0312,Brenda,29.0,Female,True,BIPOC women,15.0,14th voted out,True,False,False,Made merge
+26,S21-S30,US0246,Erik,27.0,Male,False,White men,16.0,Medically evacuated,True,False,False,Made merge
+26,S21-S30,US0395,Eddie,23.0,Male,False,White men,17.0,15th voted out,True,False,False,Made merge
+26,S21-S30,US0396,Sherri,41.0,Female,False,White women,18.0,Runner-up,False,True,False,Finalist
+26,S21-S30,US0346,Dawn,42.0,Female,False,White women,19.0,Runner-up,False,True,False,Finalist
+26,S21-S30,US0348,Cochran,25.0,Male,False,White men,20.0,Sole Survivor,False,True,True,Sole Survivor
+25,S21-S30,US0372,Zane,28.0,Male,False,White men,1.0,1st voted out,False,False,False,Voted out pre-merge
+25,S21-S30,US0373,Roxy,28.0,Female,True,BIPOC women,2.0,2nd voted out,False,False,False,Voted out pre-merge
+25,S21-S30,US0374,Angie,20.0,Female,False,White women,3.0,3rd voted out,False,False,False,Voted out pre-merge
+25,S21-S30,US0288,Russell,45.0,Male,True,BIPOC men,4.0,4th voted out,False,False,False,Voted out pre-merge
+25,S21-S30,US0375,Dana,32.0,Female,False,White women,5.0,Quit,False,False,False,Voted out pre-merge
+25,S21-S30,US0376,Dawson,28.0,Female,True,BIPOC women,6.0,5th voted out,False,False,False,Voted out pre-merge
+25,S21-S30,US0377,Katie,22.0,Female,False,White women,7.0,6th voted out,False,False,False,Voted out pre-merge
+25,S21-S30,US0378,RC,27.0,Female,False,White women,8.0,7th voted out,True,False,False,Made merge
+25,S21-S30,US0379,Jeff,44.0,Male,False,White men,9.0,8th voted out,True,False,False,Made merge
+25,S21-S30,US0380,Artis,53.0,Male,True,BIPOC men,10.0,9th voted out,True,False,False,Made merge
+25,S21-S30,US0381,Pete,24.0,Male,False,White men,11.0,10th voted out,True,False,False,Made merge
+25,S21-S30,US0196,Jonathan,50.0,Male,False,White men,12.0,11th voted out,True,False,False,Made merge
+25,S21-S30,US0382,Carter,23.0,Male,False,White men,13.0,12th voted out,True,False,False,Made merge
+25,S21-S30,US0383,Abi-Maria,32.0,Female,True,BIPOC women,14.0,13th voted out,True,False,False,Made merge
+25,S21-S30,US0384,Malcolm,25.0,Male,False,White men,15.0,14th voted out,True,False,False,Made merge
+25,S21-S30,US0385,Lisa,49.0,Female,False,White women,16.0,Runner-up,False,True,False,Finalist
+25,S21-S30,US0022,Michael,50.0,Male,False,White men,17.0,Runner-up,False,True,False,Finalist
+25,S21-S30,US0386,Denise,41.0,Female,False,White women,18.0,Sole Survivor,False,True,True,Sole Survivor
+24,S21-S30,US0354,Kourtney,29.0,Female,False,White women,1.0,Medically evacuated,False,False,False,Voted out pre-merge
+24,S21-S30,US0355,Nina,51.0,Female,False,White women,2.0,1st voted out,False,False,False,Voted out pre-merge
+24,S21-S30,US0356,Matt,33.0,Male,False,White men,3.0,2nd voted out,False,False,False,Voted out pre-merge
+24,S21-S30,US0357,Bill,28.0,Male,True,BIPOC men,4.0,3rd voted out,False,False,False,Voted out pre-merge
+24,S21-S30,US0358,Monica,41.0,Female,False,White women,5.0,4th voted out,False,False,False,Voted out pre-merge
+24,S21-S30,US0359,Colton,21.0,Male,False,White men,6.0,Medically evacuated,False,False,False,Voted out pre-merge
+24,S21-S30,US0360,Jonas,37.0,Male,True,BIPOC men,7.0,5th voted out,True,False,False,Made merge
+24,S21-S30,US0361,Michael,30.0,Male,False,White men,8.0,6th voted out,True,False,False,Made merge
+24,S21-S30,US0362,Jay,25.0,Male,False,White men,9.0,7th voted out,True,False,False,Made merge
+24,S21-S30,US0363,Leif,27.0,Male,False,White men,10.0,8th voted out,True,False,False,Made merge
+24,S21-S30,US0364,Troyzan,50.0,Male,False,White men,11.0,9th voted out,True,False,False,Made merge
+24,S21-S30,US0365,Kat,22.0,Female,False,White women,12.0,10th voted out,True,False,False,Made merge
+24,S21-S30,US0366,Tarzan,64.0,Male,False,White men,13.0,11th voted out,True,False,False,Made merge
+24,S21-S30,US0367,Alicia,25.0,Female,True,BIPOC women,14.0,12th voted out,True,False,False,Made merge
+24,S21-S30,US0368,Christina,29.0,Female,True,BIPOC women,15.0,13th voted out,True,False,False,Made merge
+24,S21-S30,US0369,Chelsea,26.0,Female,False,White women,16.0,2nd runner-up,False,True,False,Finalist
+24,S21-S30,US0370,Sabrina,33.0,Female,True,BIPOC women,17.0,Runner-up,False,True,False,Finalist
+24,S21-S30,US0371,Kim,29.0,Female,False,White women,18.0,Sole Survivor,False,True,True,Sole Survivor
+23,S21-S30,US0338,Semhar,24.0,Female,True,BIPOC women,1.0,1st voted out,False,False,False,Voted out pre-merge
+23,S21-S30,US0339,Christine,39.0,Female,True,BIPOC women,2.0,2nd voted out,False,False,False,Voted out pre-merge
+23,S21-S30,US0340,Papa Bear,48.0,Male,False,White men,3.0,3rd voted out,False,False,False,Voted out pre-merge
+23,S21-S30,US0341,Stacey,44.0,Female,True,BIPOC women,4.0,4th voted out,False,False,False,Voted out pre-merge
+23,S21-S30,US0342,Elyse,27.0,Female,True,BIPOC women,5.0,5th voted out,False,False,False,Voted out pre-merge
+23,S21-S30,US0343,Mikayla,22.0,Female,False,White women,6.0,6th voted out,False,False,False,Voted out pre-merge
+23,S21-S30,US0344,Keith,26.0,Male,False,White men,8.0,8th voted out,True,False,False,Made merge
+23,S21-S30,US0345,Jim,35.0,Male,False,White men,10.0,10th voted out,True,False,False,Made merge
+23,S21-S30,US0346,Dawn,41.0,Female,False,White women,11.0,11th voted out,True,False,False,Made merge
+23,S21-S30,US0347,Whitney,27.0,Female,False,White women,12.0,12th voted out,True,False,False,Made merge
+23,S21-S30,US0348,Cochran,24.0,Male,False,White men,13.0,13th voted out,True,False,False,Made merge
+23,S21-S30,US0349,Edna,35.0,Female,True,BIPOC women,14.0,14th voted out,True,False,False,Made merge
+23,S21-S30,US0350,Brandon,19.0,Male,False,White men,15.0,15th voted out,True,False,False,Made merge
+23,S21-S30,US0351,Rick,51.0,Male,False,White men,16.0,16th voted out,True,False,False,Made merge
+23,S21-S30,US0201,Ozzy,29.0,Male,True,BIPOC men,17.0,17th voted out,True,False,False,Made merge
+23,S21-S30,US0352,Albert,26.0,Male,True,BIPOC men,18.0,2nd runner-up,False,True,False,Finalist
+23,S21-S30,US0277,Coach,39.0,Male,False,White men,19.0,Runner-up,False,True,False,Finalist
+23,S21-S30,US0353,Sophie,22.0,Female,False,White women,20.0,Sole Survivor,False,True,True,Sole Survivor
+22,S21-S30,US0322,Francesca,36.0,Female,True,BIPOC women,1.0,1st voted out,False,False,False,Voted out pre-merge
+22,S21-S30,US0300,Russell,37.0,Male,False,White men,3.0,3rd voted out,False,False,False,Voted out pre-merge
+22,S21-S30,US0324,Kristina,46.0,Female,False,White women,4.0,4th voted out,False,False,False,Voted out pre-merge
+22,S21-S30,US0325,Krista,25.0,Female,False,White women,5.0,5th voted out,False,False,False,Voted out pre-merge
+22,S21-S30,US0326,Stephanie,26.0,Female,True,BIPOC women,6.0,6th voted out,False,False,False,Voted out pre-merge
+22,S21-S30,US0327,Sarita,36.0,Female,False,White women,7.0,7th voted out,False,False,False,Voted out pre-merge
+22,S21-S30,US0323,Matt,22.0,Male,False,White men,8.0,8th voted out,True,False,False,Made merge
+22,S21-S30,US0328,Mike,31.0,Male,False,White men,9.0,9th voted out,True,False,False,Made merge
+22,S21-S30,US0329,David,31.0,Male,False,White men,10.0,10th voted out,True,False,False,Made merge
+22,S21-S30,US0330,Julie,50.0,Female,False,White women,11.0,11th voted out,True,False,False,Made merge
+22,S21-S30,US0331,Ralph,45.0,Male,False,White men,12.0,12th voted out,True,False,False,Made merge
+22,S21-S30,US0332,Steve,51.0,Male,False,White men,13.0,13th voted out,True,False,False,Made merge
+22,S21-S30,US0334,Grant,29.0,Male,False,White men,15.0,15th voted out,True,False,False,Made merge
+22,S21-S30,US0333,Andrea,21.0,Female,False,White women,16.0,16th voted out,True,False,False,Made merge
+22,S21-S30,US0335,Ashley,25.0,Female,False,White women,17.0,17th voted out,True,False,False,Made merge
+22,S21-S30,US0336,Natalie,19.0,Female,False,White women,18.0,2nd runner-up,False,True,False,Finalist
+22,S21-S30,US0337,Phillip,52.0,Male,True,BIPOC men,19.0,Runner-up,False,True,False,Finalist
+22,S21-S30,US0055,Boston Rob,34.0,Male,False,White men,20.0,Sole Survivor,False,True,True,Sole Survivor
+21,S21-S30,US0302,Wendy,48.0,Female,False,White women,1.0,1st voted out,False,False,False,Voted out pre-merge
+21,S21-S30,US0303,Shannon,30.0,Male,False,White men,2.0,2nd voted out,False,False,False,Voted out pre-merge
+21,S21-S30,US0304,Jimmy J.,67.0,Male,False,White men,3.0,3rd voted out,False,False,False,Voted out pre-merge
+21,S21-S30,US0305,Jimmy T.,48.0,Male,False,White men,4.0,4th voted out,False,False,False,Voted out pre-merge
+21,S21-S30,US0306,Tyrone,42.0,Male,True,BIPOC men,5.0,5th voted out,False,False,False,Voted out pre-merge
+21,S21-S30,US0307,Kelly B.,26.0,Female,False,White women,6.0,6th voted out,False,False,False,Voted out pre-merge
+21,S21-S30,US0308,Yve,41.0,Female,True,BIPOC women,7.0,7th voted out,False,False,False,Voted out pre-merge
+21,S21-S30,US0309,Jill,43.0,Female,False,White women,8.0,8th voted out,False,False,False,Voted out pre-merge
+21,S21-S30,US0310,Alina,23.0,Female,False,White women,9.0,9th voted out,True,False,False,Made merge
+21,S21-S30,US0311,Marty,48.0,Male,False,White men,10.0,10th voted out,True,False,False,Made merge
+21,S21-S30,US0312,Brenda,27.0,Female,True,BIPOC women,11.0,11th voted out,True,False,False,Made merge
+21,S21-S30,US0313,NaOnka,27.0,Female,True,BIPOC women,12.0,Quit,True,False,False,Made merge
+21,S21-S30,US0314,Purple Kelly,20.0,Female,False,White women,13.0,Quit,True,False,False,Made merge
+21,S21-S30,US0315,Benry,24.0,Male,False,White men,14.0,12th voted out,True,False,False,Made merge
+21,S21-S30,US0316,Jane,56.0,Female,False,White women,15.0,13th voted out,True,False,False,Made merge
+21,S21-S30,US0317,Dan,63.0,Male,False,White men,16.0,14th voted out,True,False,False,Made merge
+21,S21-S30,US0318,Holly,44.0,Female,False,White women,17.0,15th voted out,True,False,False,Made merge
+21,S21-S30,US0319,Sash,30.0,Male,True,BIPOC men,18.0,2nd runner-up,False,True,False,Finalist
+21,S21-S30,US0320,Chase,24.0,Male,False,White men,19.0,Runner-up,False,True,False,Finalist
+21,S21-S30,US0321,Fabio,21.0,Male,False,White men,20.0,Sole Survivor,False,True,True,Sole Survivor
+20,S11-S20,US0263,Sugar,30.0,Female,False,White women,1.0,1st voted out,False,False,False,Voted out pre-merge
+20,S11-S20,US0144,Stephenie,29.0,Female,False,White women,2.0,2nd voted out,False,False,False,Voted out pre-merge
+20,S11-S20,US0258,Randy,50.0,Male,False,White men,3.0,3rd voted out,False,False,False,Voted out pre-merge
+20,S11-S20,US0179,Cirie,39.0,Female,True,BIPOC women,4.0,4th voted out,False,False,False,Voted out pre-merge
+20,S11-S20,US0150,Tom,45.0,Male,False,White men,5.0,5th voted out,False,False,False,Voted out pre-merge
+20,S11-S20,US0274,Tyson,30.0,Male,False,White men,6.0,6th voted out,False,False,False,Voted out pre-merge
+20,S11-S20,US0231,James,32.0,Male,True,BIPOC men,7.0,7th voted out,False,False,False,Voted out pre-merge
+20,S11-S20,US0055,Boston Rob,33.0,Male,False,White men,8.0,8th voted out,False,False,False,Voted out pre-merge
+20,S11-S20,US0277,Coach,38.0,Male,False,White men,9.0,9th voted out,True,False,False,Made merge
+20,S11-S20,US0236,Courtney,28.0,Female,False,White women,10.0,10th voted out,True,False,False,Made merge
+20,S11-S20,US0281,J.T.,25.0,Male,False,White men,11.0,11th voted out,True,False,False,Made merge
+20,S11-S20,US0235,Amanda,25.0,Female,False,White women,12.0,12th voted out,True,False,False,Made merge
+20,S11-S20,US0195,Candice,26.0,Female,False,White women,13.0,13th voted out,True,False,False,Made merge
+20,S11-S20,US0181,Danielle,28.0,Female,False,White women,14.0,14th voted out,True,False,False,Made merge
+20,S11-S20,US0107,Rupert,45.0,Male,False,White men,15.0,15th voted out,True,False,False,Made merge
+20,S11-S20,US0031,Colby,35.0,Male,False,White men,16.0,16th voted out,True,False,False,Made merge
+20,S11-S20,US0025,Jerri,38.0,Female,False,White women,17.0,17th voted out,True,False,False,Made merge
+20,S11-S20,US0300,Russell,36.0,Male,False,White men,18.0,2nd runner-up,False,True,False,Finalist
+20,S11-S20,US0197,Parvati,26.0,Female,False,White women,19.0,Runner-up,False,True,False,Finalist
+20,S11-S20,US0112,Sandra,35.0,Female,True,BIPOC women,20.0,Sole Survivor,False,True,True,Sole Survivor
+19,S11-S20,US0282,Marisa,26.0,Female,False,White women,1.0,1st voted out,False,False,False,Voted out pre-merge
+19,S11-S20,US0283,Mike,62.0,Male,False,White men,2.0,Medically evacuated,False,False,False,Voted out pre-merge
+19,S11-S20,US0284,Betsy,48.0,Female,False,White women,3.0,2nd voted out,False,False,False,Voted out pre-merge
+19,S11-S20,US0285,Ben,28.0,Male,False,White men,4.0,3rd voted out,False,False,False,Voted out pre-merge
+19,S11-S20,US0286,Yasmin,33.0,Female,True,BIPOC women,5.0,4th voted out,False,False,False,Voted out pre-merge
+19,S11-S20,US0287,Ashley,22.0,Female,False,White women,6.0,5th voted out,False,False,False,Voted out pre-merge
+19,S11-S20,US0288,Russell S.,42.0,Male,True,BIPOC men,7.0,Medically evacuated,False,False,False,Voted out pre-merge
+19,S11-S20,US0289,Liz,33.0,Female,True,BIPOC women,8.0,6th voted out,False,False,False,Voted out pre-merge
+19,S11-S20,US0290,Erik,28.0,Male,True,BIPOC men,9.0,7th voted out,True,False,False,Made merge
+19,S11-S20,US0291,Kelly,25.0,Female,False,White women,10.0,8th voted out,True,False,False,Made merge
+19,S11-S20,US0292,Laura,39.0,Female,False,White women,11.0,9th voted out,True,False,False,Made merge
+19,S11-S20,US0293,John,25.0,Male,True,BIPOC men,12.0,10th voted out,True,False,False,Made merge
+19,S11-S20,US0294,Dave,38.0,Male,False,White men,13.0,11th voted out,True,False,False,Made merge
+19,S11-S20,US0295,Monica,25.0,Female,True,BIPOC women,14.0,12th voted out,True,False,False,Made merge
+19,S11-S20,US0296,Shambo,45.0,Female,False,White women,15.0,13th voted out,True,False,False,Made merge
+19,S11-S20,US0297,Jaison,28.0,Male,True,BIPOC men,16.0,14th voted out,True,False,False,Made merge
+19,S11-S20,US0298,Brett,23.0,Male,False,White men,17.0,15th voted out,True,False,False,Made merge
+19,S11-S20,US0299,Mick,33.0,Male,False,White men,18.0,2nd runner-up,False,True,False,Finalist
+19,S11-S20,US0300,Russell H.,36.0,Male,False,White men,19.0,Runner-up,False,True,False,Finalist
+19,S11-S20,US0301,Natalie,26.0,Female,False,White women,20.0,Sole Survivor,False,True,True,Sole Survivor
+18,S11-S20,US0266,Carolina,26.0,Female,True,BIPOC women,1.0,1st voted out,False,False,False,Voted out pre-merge
+18,S11-S20,US0267,Candace,31.0,Female,True,BIPOC women,2.0,2nd voted out,False,False,False,Voted out pre-merge
+18,S11-S20,US0268,Jerry,49.0,Male,True,BIPOC men,3.0,3rd voted out,False,False,False,Voted out pre-merge
+18,S11-S20,US0269,Sandy,53.0,Female,False,White women,4.0,4th voted out,False,False,False,Voted out pre-merge
+18,S11-S20,US0270,Spencer,19.0,Male,False,White men,5.0,5th voted out,False,False,False,Voted out pre-merge
+18,S11-S20,US0271,Sydney,24.0,Female,False,White women,6.0,6th voted out,False,False,False,Voted out pre-merge
+18,S11-S20,US0272,Joe,26.0,Male,False,White men,7.0,Medically evacuated,False,False,False,Voted out pre-merge
+18,S11-S20,US0273,Brendan,30.0,Male,False,White men,8.0,7th voted out,True,False,False,Made merge
+18,S11-S20,US0274,Tyson,29.0,Male,False,White men,9.0,8th voted out,True,False,False,Made merge
+18,S11-S20,US0275,Sierra,23.0,Female,False,White women,10.0,9th voted out,True,False,False,Made merge
+18,S11-S20,US0276,Debbie,46.0,Female,False,White women,11.0,10th voted out,True,False,False,Made merge
+18,S11-S20,US0277,Coach,37.0,Male,False,White men,12.0,11th voted out,True,False,False,Made merge
+18,S11-S20,US0278,Taj,37.0,Female,True,BIPOC women,13.0,12th voted out,True,False,False,Made merge
+18,S11-S20,US0279,Erinn,26.0,Female,False,White women,14.0,13th voted out,True,False,False,Made merge
+18,S11-S20,US0280,Stephen,29.0,Male,False,White men,15.0,Runner-up,False,True,False,Finalist
+18,S11-S20,US0281,J.T.,24.0,Male,False,White men,16.0,Sole Survivor,False,True,True,Sole Survivor
+17,S11-S20,US0248,Michelle,24.0,Female,False,White women,1.0,1st voted out,False,False,False,Voted out pre-merge
+17,S11-S20,US0249,Gillian,61.0,Female,False,White women,2.0,2nd voted out,False,False,False,Voted out pre-merge
+17,S11-S20,US0250,Paloma,23.0,Female,True,BIPOC women,3.0,3rd voted out,False,False,False,Voted out pre-merge
+17,S11-S20,US0251,Jacquie,25.0,Female,False,White women,4.0,4th voted out,False,False,False,Voted out pre-merge
+17,S11-S20,US0252,GC,25.0,Male,True,BIPOC men,5.0,5th voted out,False,False,False,Voted out pre-merge
+17,S11-S20,US0253,Kelly,22.0,Female,False,White women,6.0,6th voted out,False,False,False,Voted out pre-merge
+17,S11-S20,US0254,Ace,27.0,Male,False,White men,7.0,7th voted out,False,False,False,Voted out pre-merge
+17,S11-S20,US0255,Dan,32.0,Male,False,White men,8.0,8th voted out,False,False,False,Voted out pre-merge
+17,S11-S20,US0256,Marcus,28.0,Male,True,BIPOC men,9.0,9th voted out,True,False,False,Made merge
+17,S11-S20,US0257,Charlie,29.0,Male,False,White men,10.0,10th voted out,True,False,False,Made merge
+17,S11-S20,US0258,Randy,49.0,Male,False,White men,11.0,11th voted out,True,False,False,Made merge
+17,S11-S20,US0259,Corinne,29.0,Female,False,White women,12.0,12th voted out,True,False,False,Made merge
+17,S11-S20,US0260,Crystal,29.0,Female,True,BIPOC women,13.0,13th voted out,True,False,False,Made merge
+17,S11-S20,US0261,Ken,22.0,Male,True,BIPOC men,14.0,14th voted out,True,False,False,Made merge
+17,S11-S20,US0262,Matty,29.0,Male,False,White men,15.0,Lost fire challenge,True,False,False,Made merge
+17,S11-S20,US0263,Sugar,29.0,Female,False,White women,16.0,2nd runner-up,False,True,False,Finalist
+17,S11-S20,US0264,Susie,47.0,Female,True,BIPOC women,17.0,Runner-up,False,True,False,Finalist
+17,S11-S20,US0265,Bob,57.0,Male,False,White men,18.0,Sole Survivor,False,True,True,Sole Survivor
+16,S11-S20,US0111,Jonny Fairplay,33.0,Male,False,White men,1.0,1st voted out (Quit),False,False,False,Voted out pre-merge
+16,S11-S20,US0238,Mary,29.0,Female,False,White women,2.0,2nd voted out,False,False,False,Voted out pre-merge
+16,S11-S20,US0218,Yau-Man,55.0,Male,True,BIPOC men,3.0,3rd voted out,False,False,False,Voted out pre-merge
+16,S11-S20,US0239,Mikey B,34.0,Male,False,White men,4.0,4th voted out,False,False,False,Voted out pre-merge
+16,S11-S20,US0240,Joel,32.0,Male,False,White men,5.0,5th voted out,False,False,False,Voted out pre-merge
+16,S11-S20,US0196,Jonathan,45.0,Male,False,White men,6.0,Medically evacuated,False,False,False,Voted out pre-merge
+16,S11-S20,US0241,Chet,48.0,Male,False,White men,7.0,6th voted out,False,False,False,Voted out pre-merge
+16,S11-S20,US0242,Kathy,45.0,Female,False,White women,8.0,Quit,False,False,False,Voted out pre-merge
+16,S11-S20,US0243,Tracy,43.0,Female,False,White women,9.0,7th voted out,False,False,False,Voted out pre-merge
+16,S11-S20,US0125,Ami,34.0,Female,False,White women,10.0,8th voted out,False,False,False,Voted out pre-merge
+16,S11-S20,US0127,Eliza,25.0,Female,False,White women,11.0,9th voted out,True,False,False,Made merge
+16,S11-S20,US0201,Ozzy,26.0,Male,True,BIPOC men,12.0,10th voted out,True,False,False,Made merge
+16,S11-S20,US0244,Jason,22.0,Male,False,White men,13.0,11th voted out,True,False,False,Made merge
+16,S11-S20,US0231,James,30.0,Male,True,BIPOC men,14.0,Medically evacuated,True,False,False,Made merge
+16,S11-S20,US0245,Alexis,24.0,Female,True,BIPOC women,15.0,12th voted out,True,False,False,Made merge
+16,S11-S20,US0246,Erik,22.0,Male,False,White men,16.0,13th voted out,True,False,False,Made merge
+16,S11-S20,US0247,Natalie,32.0,Female,True,BIPOC women,17.0,14th voted out,True,False,False,Made merge
+16,S11-S20,US0179,Cirie,37.0,Female,True,BIPOC women,18.0,15th voted out,True,False,False,Made merge
+16,S11-S20,US0235,Amanda,23.0,Female,False,White women,19.0,Runner-up,False,True,False,Finalist
+16,S11-S20,US0197,Parvati,25.0,Female,False,White women,20.0,Sole Survivor,False,True,True,Sole Survivor
+15,S11-S20,US0222,Chicken,47.0,Male,False,White men,1.0,1st voted out,False,False,False,Voted out pre-merge
+15,S11-S20,US0223,Ashley,28.0,Female,False,White women,2.0,2nd voted out,False,False,False,Voted out pre-merge
+15,S11-S20,US0224,Leslie,38.0,Female,False,White women,3.0,3rd voted out,False,False,False,Voted out pre-merge
+15,S11-S20,US0225,Dave,37.0,Male,False,White men,4.0,4th voted out,False,False,False,Voted out pre-merge
+15,S11-S20,US0226,Aaron,32.0,Male,False,White men,5.0,5th voted out,False,False,False,Voted out pre-merge
+15,S11-S20,US0227,Sherea,26.0,Female,True,BIPOC women,6.0,6th voted out,False,False,False,Voted out pre-merge
+15,S11-S20,US0228,Jaime,22.0,Female,False,White women,7.0,7th voted out,True,False,False,Made merge
+15,S11-S20,US0229,Jean-Robert,36.0,Male,True,BIPOC men,8.0,8th voted out,True,False,False,Made merge
+15,S11-S20,US0230,Frosti,20.0,Male,True,BIPOC men,9.0,9th voted out,True,False,False,Made merge
+15,S11-S20,US0231,James,30.0,Male,True,BIPOC men,10.0,10th voted out,True,False,False,Made merge
+15,S11-S20,US0232,Erik,26.0,Male,False,White men,11.0,11th voted out,True,False,False,Made merge
+15,S11-S20,US0233,Peih-Gee,29.0,Female,True,BIPOC women,12.0,12th voted out,True,False,False,Made merge
+15,S11-S20,US0234,Denise,40.0,Female,False,White women,13.0,13th voted out,True,False,False,Made merge
+15,S11-S20,US0235,Amanda,22.0,Female,False,White women,14.0,2nd runner-up,False,True,False,Finalist
+15,S11-S20,US0236,Courtney,26.0,Female,False,White women,15.0,Runner-up,False,True,False,Finalist
+15,S11-S20,US0237,Todd,22.0,Male,False,White men,16.0,Sole Survivor,False,True,True,Sole Survivor
+14,S11-S20,US0203,Jessica,27.0,Female,False,White women,1.0,1st voted out,False,False,False,Voted out pre-merge
+14,S11-S20,US0204,Erica,27.0,Female,True,BIPOC women,2.0,2nd voted out,False,False,False,Voted out pre-merge
+14,S11-S20,US0205,Sylvia,52.0,Female,True,BIPOC women,3.0,3rd voted out,False,False,False,Voted out pre-merge
+14,S11-S20,US0206,Gary,55.0,Male,False,White men,4.0,Quit,False,False,False,Voted out pre-merge
+14,S11-S20,US0207,Liliana,25.0,Female,True,BIPOC women,5.0,4th voted out,False,False,False,Voted out pre-merge
+14,S11-S20,US0208,Rita,38.0,Female,True,BIPOC women,6.0,5th voted out,False,False,False,Voted out pre-merge
+14,S11-S20,US0209,Anthony,32.0,Male,True,BIPOC men,7.0,6th voted out,False,False,False,Voted out pre-merge
+14,S11-S20,US0210,Rocky,28.0,Male,False,White men,8.0,7th voted out,True,False,False,Made merge
+14,S11-S20,US0211,Lisi,36.0,Female,True,BIPOC women,9.0,8th voted out,True,False,False,Made merge
+14,S11-S20,US0212,Michelle,23.0,Female,True,BIPOC women,10.0,9th voted out,True,False,False,Made merge
+14,S11-S20,US0213,Edgardo,28.0,Male,True,BIPOC men,11.0,10th voted out,True,False,False,Made merge
+14,S11-S20,US0214,Mookie,25.0,Male,True,BIPOC men,12.0,11th voted out,True,False,False,Made merge
+14,S11-S20,US0215,Alex,28.0,Male,True,BIPOC men,13.0,12th voted out,True,False,False,Made merge
+14,S11-S20,US0216,Stacy,27.0,Female,True,BIPOC women,14.0,13th voted out,True,False,False,Made merge
+14,S11-S20,US0217,Boo,34.0,Male,False,White men,15.0,14th voted out,True,False,False,Made merge
+14,S11-S20,US0218,Yau-Man,54.0,Male,True,BIPOC men,16.0,15th voted out,True,False,False,Made merge
+14,S11-S20,US0219,Dreamz,25.0,Male,True,BIPOC men,17.0,Runner-up,False,True,False,Finalist
+14,S11-S20,US0220,Cassandra,42.0,Female,True,BIPOC women,18.0,Runner-up,False,True,False,Finalist
+14,S11-S20,US0221,Earl,35.0,Male,True,BIPOC men,19.0,Sole Survivor,False,True,True,Sole Survivor
+13,S11-S20,US0183,Sekou,45.0,Male,True,BIPOC men,1.0,1st voted out,False,False,False,Voted out pre-merge
+13,S11-S20,US0184,Billy,36.0,Male,True,BIPOC men,2.0,2nd voted out,False,False,False,Voted out pre-merge
+13,S11-S20,US0185,Cecilia,29.0,Female,True,BIPOC women,3.0,3rd voted out,False,False,False,Voted out pre-merge
+13,S11-S20,US0186,J.P.,30.0,Male,True,BIPOC men,4.0,4th voted out,False,False,False,Voted out pre-merge
+13,S11-S20,US0187,Stephannie,35.0,Female,True,BIPOC women,5.0,5th voted out,False,False,False,Voted out pre-merge
+13,S11-S20,US0188,Cao Boi,42.0,Male,True,BIPOC men,6.0,6th voted out,False,False,False,Voted out pre-merge
+13,S11-S20,US0189,Cristina,35.0,Female,True,BIPOC women,7.0,7th voted out,False,False,False,Voted out pre-merge
+13,S11-S20,US0190,Jessica,27.0,Female,False,White women,8.0,8th voted out,False,False,False,Voted out pre-merge
+13,S11-S20,US0191,Brad,29.0,Male,True,BIPOC men,9.0,9th voted out,True,False,False,Made merge
+13,S11-S20,US0192,Rebecca,34.0,Female,True,BIPOC women,10.0,10th voted out,True,False,False,Made merge
+13,S11-S20,US0193,Jenny,36.0,Female,True,BIPOC women,11.0,11th voted out,True,False,False,Made merge
+13,S11-S20,US0194,Nate,26.0,Male,True,BIPOC men,12.0,12th voted out,True,False,False,Made merge
+13,S11-S20,US0195,Candice,23.0,Female,False,White women,13.0,13th voted out,True,False,False,Made merge
+13,S11-S20,US0196,Jonathan,44.0,Male,False,White men,14.0,14th voted out,True,False,False,Made merge
+13,S11-S20,US0197,Parvati,23.0,Female,False,White women,15.0,15th voted out,True,False,False,Made merge
+13,S11-S20,US0198,Adam,28.0,Male,False,White men,16.0,16th voted out,True,False,False,Made merge
+13,S11-S20,US0199,Sundra,31.0,Female,True,BIPOC women,17.0,Lost fire challenge,True,False,False,Made merge
+13,S11-S20,US0200,Becky,28.0,Female,True,BIPOC women,18.0,2nd runner-up,False,True,False,Finalist
+13,S11-S20,US0201,Ozzy,24.0,Male,True,BIPOC men,19.0,Runner-up,False,True,False,Finalist
+13,S11-S20,US0202,Yul,31.0,Male,True,BIPOC men,20.0,Sole Survivor,False,True,True,Sole Survivor
+12,S11-S20,US0167,Tina,44.0,Female,False,White women,1.0,1st voted out,False,False,False,Voted out pre-merge
+12,S11-S20,US0168,Melinda,32.0,Female,False,White women,2.0,2nd voted out,False,False,False,Voted out pre-merge
+12,S11-S20,US0169,Misty,24.0,Female,False,White women,3.0,3rd voted out,False,False,False,Voted out pre-merge
+12,S11-S20,US0170,Ruth Marie,48.0,Female,False,White women,4.0,4th voted out,False,False,False,Voted out pre-merge
+12,S11-S20,US0171,Bobby,32.0,Male,True,BIPOC men,5.0,5th voted out,False,False,False,Voted out pre-merge
+12,S11-S20,US0172,Dan,51.0,Male,False,White men,6.0,6th voted out,False,False,False,Voted out pre-merge
+12,S11-S20,US0173,Nick,25.0,Male,False,White men,7.0,7th voted out,False,False,False,Voted out pre-merge
+12,S11-S20,US0174,Austin,24.0,Male,False,White men,8.0,8th voted out,True,False,False,Made merge
+12,S11-S20,US0175,Sally,27.0,Female,False,White women,9.0,9th voted out,True,False,False,Made merge
+12,S11-S20,US0176,Bruce,57.0,Male,True,BIPOC men,10.0,Medically evacuated,True,False,False,Made merge
+12,S11-S20,US0177,Courtney,31.0,Female,False,White women,11.0,10th voted out,True,False,False,Made merge
+12,S11-S20,US0178,Shane,34.0,Male,False,White men,12.0,11th voted out,True,False,False,Made merge
+12,S11-S20,US0179,Cirie,35.0,Female,True,BIPOC women,13.0,12th voted out,True,False,False,Made merge
+12,S11-S20,US0180,Terry,46.0,Male,False,White men,14.0,13th voted out,True,False,False,Made merge
+12,S11-S20,US0181,Danielle,24.0,Female,False,White women,15.0,Runner-up,False,True,False,Finalist
+12,S11-S20,US0182,Aras,24.0,Male,False,White men,16.0,Sole Survivor,False,True,True,Sole Survivor
+11,S11-S20,US0151,Jim,63.0,Male,False,White men,1.0,1st voted out,False,False,False,Voted out pre-merge
+11,S11-S20,US0152,Morgan,21.0,Female,False,White women,2.0,2nd voted out,False,False,False,Voted out pre-merge
+11,S11-S20,US0153,Brianna,21.0,Female,True,BIPOC women,3.0,3rd voted out,False,False,False,Voted out pre-merge
+11,S11-S20,US0154,Brooke,25.0,Female,False,White women,4.0,4th voted out,False,False,False,Voted out pre-merge
+11,S11-S20,US0155,Blake,24.0,Male,False,White men,5.0,5th voted out,False,False,False,Voted out pre-merge
+11,S11-S20,US0156,Margaret,43.0,Female,False,White women,6.0,6th voted out,False,False,False,Voted out pre-merge
+11,S11-S20,US0157,Brian,22.0,Male,False,White men,7.0,7th voted out,False,False,False,Voted out pre-merge
+11,S11-S20,US0158,Amy,39.0,Female,False,White women,8.0,8th voted out,False,False,False,Voted out pre-merge
+11,S11-S20,US0159,Brandon,22.0,Male,False,White men,9.0,9th voted out,False,False,False,Voted out pre-merge
+11,S11-S20,US0141,Bobby Jon,28.0,Male,False,White men,10.0,10th voted out,True,False,False,Made merge
+11,S11-S20,US0160,Jamie,24.0,Male,False,White men,11.0,11th voted out,True,False,False,Made merge
+11,S11-S20,US0161,Gary,46.0,Male,False,White men,12.0,12th voted out,True,False,False,Made merge
+11,S11-S20,US0162,Judd,34.0,Male,False,White men,13.0,13th voted out,True,False,False,Made merge
+11,S11-S20,US0163,Cindy,31.0,Female,False,White women,14.0,14th voted out,True,False,False,Made merge
+11,S11-S20,US0164,Lydia,42.0,Female,True,BIPOC women,15.0,15th voted out,True,False,False,Made merge
+11,S11-S20,US0165,Rafe,22.0,Male,False,White men,16.0,16th voted out,True,False,False,Made merge
+11,S11-S20,US0144,Stephenie,25.0,Female,False,White women,17.0,Runner-up,False,True,False,Finalist
+11,S11-S20,US0166,Danni,29.0,Female,False,White women,18.0,Sole Survivor,False,True,True,Sole Survivor
+10,S1-S10,US0131,Jonathan,23.0,Male,False,White men,1.0,Eliminated,False,False,False,Voted out pre-merge
+10,S1-S10,US0132,Wanda,55.0,Female,False,White women,2.0,Eliminated,False,False,False,Voted out pre-merge
+10,S1-S10,US0133,Jolanda,38.0,Female,True,BIPOC women,3.0,1st voted out,False,False,False,Voted out pre-merge
+10,S1-S10,US0134,Ashlee,22.0,Female,False,White women,4.0,2nd voted out,False,False,False,Voted out pre-merge
+10,S1-S10,US0135,Jeff,21.0,Male,False,White men,5.0,3rd voted out,False,False,False,Voted out pre-merge
+10,S1-S10,US0136,Kim,25.0,Female,False,White women,6.0,4th voted out,False,False,False,Voted out pre-merge
+10,S1-S10,US0137,Willard,56.0,Male,False,White men,7.0,5th voted out,False,False,False,Voted out pre-merge
+10,S1-S10,US0138,Angie,24.0,Female,False,White women,8.0,6th voted out,False,False,False,Voted out pre-merge
+10,S1-S10,US0139,James,33.0,Male,False,White men,9.0,7th voted out,False,False,False,Voted out pre-merge
+10,S1-S10,US0140,Ibrehem,27.0,Male,True,BIPOC men,10.0,8th voted out,False,False,False,Voted out pre-merge
+10,S1-S10,US0141,Bobby Jon,27.0,Male,False,White men,11.0,Lost fire challenge,False,False,False,Voted out pre-merge
+10,S1-S10,US0142,Coby,32.0,Male,False,White men,12.0,9th voted out,True,False,False,Made merge
+10,S1-S10,US0143,Janu,39.0,Female,True,BIPOC women,13.0,Quit,True,False,False,Made merge
+10,S1-S10,US0144,Stephenie,24.0,Female,False,White women,14.0,10th voted out,True,False,False,Made merge
+10,S1-S10,US0145,Gregg,27.0,Male,False,White men,15.0,11th voted out,True,False,False,Made merge
+10,S1-S10,US0146,Caryn,46.0,Female,False,White women,16.0,12th voted out,True,False,False,Made merge
+10,S1-S10,US0147,Jenn,32.0,Female,False,White women,17.0,Lost fire challenge,True,False,False,Made merge
+10,S1-S10,US0148,Ian,23.0,Male,False,White men,18.0,14th voted out,True,False,False,Made merge
+10,S1-S10,US0149,Katie,29.0,Female,False,White women,19.0,Runner-up,False,True,False,Finalist
+10,S1-S10,US0150,Tom,40.0,Male,False,White men,20.0,Sole Survivor,False,True,True,Sole Survivor
+9,S1-S10,US0113,Brook,27.0,Male,False,White men,1.0,1st voted out,False,False,False,Voted out pre-merge
+9,S1-S10,US0114,Dolly,25.0,Female,False,White women,2.0,2nd voted out,False,False,False,Voted out pre-merge
+9,S1-S10,US0115,John P.,31.0,Male,False,White men,3.0,3rd voted out,False,False,False,Voted out pre-merge
+9,S1-S10,US0116,Mia,29.0,Female,False,White women,4.0,4th voted out,False,False,False,Voted out pre-merge
+9,S1-S10,US0117,Brady,33.0,Male,False,White men,5.0,5th voted out,False,False,False,Voted out pre-merge
+9,S1-S10,US0118,Travis,33.0,Male,False,White men,6.0,6th voted out,False,False,False,Voted out pre-merge
+9,S1-S10,US0119,Lisa,44.0,Female,False,White women,7.0,7th voted out,False,False,False,Voted out pre-merge
+9,S1-S10,US0120,John K.,22.0,Male,False,White men,8.0,8th voted out,False,False,False,Voted out pre-merge
+9,S1-S10,US0121,Rory,35.0,Male,True,BIPOC men,9.0,9th voted out,False,False,False,Voted out pre-merge
+9,S1-S10,US0122,Lea,40.0,Male,False,White men,10.0,10th voted out,True,False,False,Made merge
+9,S1-S10,US0123,Chad,34.0,Male,False,White men,11.0,11th voted out,True,False,False,Made merge
+9,S1-S10,US0124,Leann,35.0,Female,False,White women,12.0,12th voted out,True,False,False,Made merge
+9,S1-S10,US0125,Ami,31.0,Female,False,White women,13.0,13th voted out,True,False,False,Made merge
+9,S1-S10,US0126,Julie,23.0,Female,True,BIPOC women,14.0,14th voted out,True,False,False,Made merge
+9,S1-S10,US0127,Eliza,21.0,Female,False,White women,15.0,15th voted out,True,False,False,Made merge
+9,S1-S10,US0128,Scout,59.0,Female,False,White women,16.0,16th voted out,True,False,False,Made merge
+9,S1-S10,US0129,Twila,41.0,Female,False,White women,17.0,Runner-up,False,True,False,Finalist
+9,S1-S10,US0130,Chris,33.0,Male,False,White men,18.0,Sole Survivor,False,True,True,Sole Survivor
+8,S1-S10,US0032,Tina,42.0,Female,False,White women,1.0,1st voted out,False,False,False,Voted out pre-merge
+8,S1-S10,US0014,Rudy,75.0,Male,False,White men,2.0,2nd voted out,False,False,False,Voted out pre-merge
+8,S1-S10,US0096,Jenna M.,22.0,Female,False,White women,3.0,Quit,False,False,False,Voted out pre-merge
+8,S1-S10,US0094,Rob C.,25.0,Male,False,White men,4.0,3rd voted out,False,False,False,Voted out pre-merge
+8,S1-S10,US0016,Richard,42.0,Male,False,White men,5.0,4th voted out,False,False,False,Voted out pre-merge
+8,S1-S10,US0013,Sue,42.0,Female,False,White women,6.0,Quit,False,False,False,Voted out pre-merge
+8,S1-S10,US0031,Colby,29.0,Male,False,White men,7.0,5th voted out,False,False,False,Voted out pre-merge
+8,S1-S10,US0048,Ethan,30.0,Male,False,White men,8.0,6th voted out,False,False,False,Voted out pre-merge
+8,S1-S10,US0025,Jerri,33.0,Female,False,White women,9.0,7th voted out,False,False,False,Voted out pre-merge
+8,S1-S10,US0046,Lex,40.0,Male,False,White men,10.0,8th voted out,True,False,False,Made merge
+8,S1-S10,US0062,Kathy,48.0,Female,False,White women,11.0,9th voted out,True,False,False,Made merge
+8,S1-S10,US0024,Alicia,35.0,Female,True,BIPOC women,12.0,10th voted out,True,False,False,Made merge
+8,S1-S10,US0071,Shii Ann,29.0,Female,True,BIPOC women,13.0,11th voted out,True,False,False,Made merge
+8,S1-S10,US0045,Tom,48.0,Male,False,White men,14.0,12th voted out,True,False,False,Made merge
+8,S1-S10,US0107,Rupert,39.0,Male,False,White men,15.0,13th voted out,True,False,False,Made merge
+8,S1-S10,US0009,Jenna L.,26.0,Female,False,White women,16.0,14th voted out,True,False,False,Made merge
+8,S1-S10,US0055,Boston Rob,27.0,Male,False,White men,17.0,Runner-up,False,True,False,Finalist
+8,S1-S10,US0027,Amber,25.0,Female,False,White women,18.0,Sole Survivor,False,True,True,Sole Survivor
+7,S1-S10,US0097,Nicole,24.0,Female,False,White women,1.0,1st voted out,False,False,False,Voted out pre-merge
+7,S1-S10,US0098,Ryan S.,23.0,Male,False,White men,2.0,2nd voted out,False,False,False,Voted out pre-merge
+7,S1-S10,US0101,Michelle,22.0,Female,False,White women,5.0,5th voted out,False,False,False,Voted out pre-merge
+7,S1-S10,US0102,Trish,42.0,Female,False,White women,6.0,6th voted out,False,False,False,Voted out pre-merge
+7,S1-S10,US0103,Shawn,28.0,Male,False,White men,7.0,7th voted out,False,False,False,Voted out pre-merge
+7,S1-S10,US0104,Osten,27.0,Male,True,BIPOC men,8.0,Quit,False,False,False,Voted out pre-merge
+7,S1-S10,US0105,Andrew,39.0,Male,False,White men,9.0,8th voted out,False,False,False,Voted out pre-merge
+7,S1-S10,US0106,Ryan O.,30.0,Male,False,White men,10.0,9th voted out,True,False,False,Made merge
+7,S1-S10,US0107,Rupert,39.0,Male,False,White men,11.0,10th voted out,True,False,False,Made merge
+7,S1-S10,US0108,Tijuana,26.0,Female,True,BIPOC women,12.0,11th voted out,True,False,False,Made merge
+7,S1-S10,US0109,Christa,24.0,Female,False,White women,13.0,12th voted out,True,False,False,Made merge
+7,S1-S10,US0100,Burton,31.0,Male,False,White men,14.0,13th voted out,True,False,False,Made merge
+7,S1-S10,US0110,Darrah,22.0,Female,False,White women,15.0,14th voted out,True,False,False,Made merge
+7,S1-S10,US0111,Jonny Fairplay,29.0,Male,False,White men,16.0,15th voted out,True,False,False,Made merge
+7,S1-S10,US0099,Lillian,51.0,Female,False,White women,17.0,Runner-up,False,True,False,Finalist
+7,S1-S10,US0112,Sandra,29.0,Female,True,BIPOC women,18.0,Sole Survivor,False,True,True,Sole Survivor
+6,S1-S10,US0081,Ryan,23.0,Male,False,White men,1.0,1st voted out,False,False,False,Voted out pre-merge
+6,S1-S10,US0082,Janet,46.0,Female,False,White women,2.0,2nd voted out,False,False,False,Voted out pre-merge
+6,S1-S10,US0083,Daniel,26.0,Male,True,BIPOC men,3.0,3rd voted out,False,False,False,Voted out pre-merge
+6,S1-S10,US0084,JoAnna,31.0,Female,True,BIPOC women,4.0,4th voted out,False,False,False,Voted out pre-merge
+6,S1-S10,US0085,Jeanne,40.0,Female,False,White women,5.0,5th voted out,False,False,False,Voted out pre-merge
+6,S1-S10,US0086,Shawna,23.0,Female,False,White women,6.0,6th voted out,False,False,False,Voted out pre-merge
+6,S1-S10,US0087,Roger,56.0,Male,False,White men,7.0,7th voted out,False,False,False,Voted out pre-merge
+6,S1-S10,US0088,Dave,23.0,Male,False,White men,8.0,8th voted out,True,False,False,Made merge
+6,S1-S10,US0089,Deena,35.0,Female,True,BIPOC women,9.0,9th voted out,True,False,False,Made merge
+6,S1-S10,US0090,Alex,32.0,Male,False,White men,10.0,10th voted out,True,False,False,Made merge
+6,S1-S10,US0091,Christy,24.0,Female,False,White women,11.0,11th voted out,True,False,False,Made merge
+6,S1-S10,US0092,Heidi,24.0,Female,False,White women,12.0,12th voted out,True,False,False,Made merge
+6,S1-S10,US0093,Butch,50.0,Male,False,White men,13.0,13th voted out,True,False,False,Made merge
+6,S1-S10,US0094,Rob,24.0,Male,False,White men,14.0,14th voted out,True,False,False,Made merge
+6,S1-S10,US0095,Matthew,33.0,Male,False,White men,15.0,Runner-up,False,True,False,Finalist
+6,S1-S10,US0096,Jenna,21.0,Female,False,White women,16.0,Sole Survivor,False,True,True,Sole Survivor
+5,S1-S10,US0065,John,40.0,Male,False,White men,1.0,1st voted out,False,False,False,Voted out pre-merge
+5,S1-S10,US0066,Tanya,27.0,Female,False,White women,2.0,2nd voted out,False,False,False,Voted out pre-merge
+5,S1-S10,US0067,Jed,25.0,Male,False,White men,3.0,3rd voted out,False,False,False,Voted out pre-merge
+5,S1-S10,US0068,Ghandia,33.0,Female,True,BIPOC women,4.0,4th voted out,False,False,False,Voted out pre-merge
+5,S1-S10,US0069,Stephanie,29.0,Female,False,White women,5.0,5th voted out,False,False,False,Voted out pre-merge
+5,S1-S10,US0070,Robb,23.0,Male,False,White men,6.0,6th voted out,False,False,False,Voted out pre-merge
+5,S1-S10,US0071,Shii Ann,28.0,Female,True,BIPOC women,7.0,7th voted out,False,False,False,Voted out pre-merge
+5,S1-S10,US0072,Erin,26.0,Female,False,White women,8.0,8th voted out,True,False,False,Made merge
+5,S1-S10,US0073,Ken,30.0,Male,False,White men,9.0,9th voted out,True,False,False,Made merge
+5,S1-S10,US0074,Penny,27.0,Female,False,White women,10.0,10th voted out,True,False,False,Made merge
+5,S1-S10,US0075,Jake,60.0,Male,False,White men,11.0,11th voted out,True,False,False,Made merge
+5,S1-S10,US0076,Ted,37.0,Male,True,BIPOC men,12.0,12th voted out,True,False,False,Made merge
+5,S1-S10,US0077,Helen,47.0,Female,False,White women,13.0,13th voted out,True,False,False,Made merge
+5,S1-S10,US0078,Jan,53.0,Female,False,White women,14.0,14th voted out,True,False,False,Made merge
+5,S1-S10,US0079,Clay,46.0,Male,False,White men,15.0,Runner-up,False,True,False,Finalist
+5,S1-S10,US0080,Brian,34.0,Male,False,White men,16.0,Sole Survivor,False,True,True,Sole Survivor
+4,S1-S10,US0049,Peter,44.0,Male,False,White men,1.0,1st voted out,False,False,False,Voted out pre-merge
+4,S1-S10,US0050,Patricia,49.0,Female,False,White women,2.0,2nd voted out,False,False,False,Voted out pre-merge
+4,S1-S10,US0051,Hunter,33.0,Male,False,White men,3.0,3rd voted out,False,False,False,Voted out pre-merge
+4,S1-S10,US0052,Sarah,24.0,Female,False,White women,4.0,4th voted out,False,False,False,Voted out pre-merge
+4,S1-S10,US0053,Gabriel,23.0,Male,False,White men,5.0,5th voted out,False,False,False,Voted out pre-merge
+4,S1-S10,US0054,Gina,28.0,Female,False,White women,6.0,6th voted out,False,False,False,Voted out pre-merge
+4,S1-S10,US0055,Boston Rob,25.0,Male,False,White men,7.0,7th voted out,False,False,False,Voted out pre-merge
+4,S1-S10,US0056,John,36.0,Male,False,White men,8.0,8th voted out,True,False,False,Made merge
+4,S1-S10,US0057,Zoe,35.0,Female,False,White women,9.0,9th voted out,True,False,False,Made merge
+4,S1-S10,US0058,Tammy,29.0,Female,False,White women,10.0,10th voted out,True,False,False,Made merge
+4,S1-S10,US0059,Robert,38.0,Male,False,White men,11.0,11th voted out,True,False,False,Made merge
+4,S1-S10,US0060,Sean,30.0,Male,True,BIPOC men,12.0,12th voted out,True,False,False,Made merge
+4,S1-S10,US0061,Paschal,56.0,Male,False,White men,13.0,Eliminated,True,False,False,Made merge
+4,S1-S10,US0062,Kathy,46.0,Female,False,White women,14.0,13th voted out,True,False,False,Made merge
+4,S1-S10,US0063,Neleh,21.0,Female,False,White women,15.0,Runner-up,False,True,False,Finalist
+4,S1-S10,US0064,Vecepia,36.0,Female,True,BIPOC women,16.0,Sole Survivor,False,True,True,Sole Survivor
+3,S1-S10,US0033,Diane,42.0,Female,False,White women,1.0,1st voted out,False,False,False,Voted out pre-merge
+3,S1-S10,US0034,Jessie,26.0,Female,True,BIPOC women,2.0,2nd voted out,False,False,False,Voted out pre-merge
+3,S1-S10,US0035,Carl,46.0,Male,False,White men,3.0,3rd voted out,False,False,False,Voted out pre-merge
+3,S1-S10,US0036,Linda,44.0,Female,True,BIPOC women,4.0,4th voted out,False,False,False,Voted out pre-merge
+3,S1-S10,US0037,Silas,23.0,Male,False,White men,5.0,5th voted out,False,False,False,Voted out pre-merge
+3,S1-S10,US0038,Lindsey,26.0,Female,False,White women,6.0,6th voted out,False,False,False,Voted out pre-merge
+3,S1-S10,US0039,Clarence,24.0,Male,True,BIPOC men,7.0,7th voted out,False,False,False,Voted out pre-merge
+3,S1-S10,US0040,Kelly,22.0,Female,False,White women,8.0,8th voted out,True,False,False,Made merge
+3,S1-S10,US0041,Brandon,25.0,Male,False,White men,9.0,9th voted out,True,False,False,Made merge
+3,S1-S10,US0042,Frank,43.0,Male,False,White men,10.0,10th voted out,True,False,False,Made merge
+3,S1-S10,US0043,Kim P.,29.0,Female,False,White women,11.0,11th voted out,True,False,False,Made merge
+3,S1-S10,US0044,Teresa,42.0,Female,False,White women,12.0,12th voted out,True,False,False,Made merge
+3,S1-S10,US0045,Tom,45.0,Male,False,White men,13.0,13th voted out,True,False,False,Made merge
+3,S1-S10,US0046,Lex,38.0,Male,False,White men,14.0,14th voted out,True,False,False,Made merge
+3,S1-S10,US0047,Kim J.,56.0,Female,False,White women,15.0,Runner-up,False,True,False,Finalist
+3,S1-S10,US0048,Ethan,27.0,Male,False,White men,16.0,Sole Survivor,False,True,True,Sole Survivor
+2,S1-S10,US0017,Debb,45.0,Female,False,White women,1.0,1st voted out,False,False,False,Voted out pre-merge
+2,S1-S10,US0018,Kel,32.0,Male,True,BIPOC men,2.0,2nd voted out,False,False,False,Voted out pre-merge
+2,S1-S10,US0019,Maralyn,51.0,Female,False,White women,3.0,3rd voted out,False,False,False,Voted out pre-merge
+2,S1-S10,US0020,Mitchell,23.0,Male,False,White men,4.0,4th voted out,False,False,False,Voted out pre-merge
+2,S1-S10,US0021,Kimmi,27.0,Female,False,White women,5.0,5th voted out,False,False,False,Voted out pre-merge
+2,S1-S10,US0022,Michael,38.0,Male,False,White men,6.0,Medically evacuated,False,False,False,Voted out pre-merge
+2,S1-S10,US0023,Jeff,34.0,Male,False,White men,7.0,6th voted out,False,False,False,Voted out pre-merge
+2,S1-S10,US0024,Alicia,32.0,Female,True,BIPOC women,8.0,7th voted out,True,False,False,Made merge
+2,S1-S10,US0025,Jerri,30.0,Female,False,White women,9.0,8th voted out,True,False,False,Made merge
+2,S1-S10,US0026,Nick,23.0,Male,True,BIPOC men,10.0,9th voted out,True,False,False,Made merge
+2,S1-S10,US0027,Amber,22.0,Female,False,White women,11.0,10th voted out,True,False,False,Made merge
+2,S1-S10,US0028,Rodger,53.0,Male,False,White men,12.0,11th voted out,True,False,False,Made merge
+2,S1-S10,US0029,Elisabeth,23.0,Female,False,White women,13.0,12th voted out,True,False,False,Made merge
+2,S1-S10,US0030,Keith,40.0,Male,False,White men,14.0,13th voted out,True,False,False,Made merge
+2,S1-S10,US0031,Colby,26.0,Male,False,White men,15.0,Runner-up,False,True,False,Finalist
+2,S1-S10,US0032,Tina,40.0,Female,False,White women,16.0,Sole Survivor,False,True,True,Sole Survivor
+1,S1-S10,US0001,Sonja,63.0,Female,False,White women,1.0,1st voted out,False,False,False,Voted out pre-merge
+1,S1-S10,US0002,B.B.,64.0,Male,False,White men,2.0,2nd voted out,False,False,False,Voted out pre-merge
+1,S1-S10,US0003,Stacey,27.0,Female,False,White women,3.0,3rd voted out,False,False,False,Voted out pre-merge
+1,S1-S10,US0004,Ramona,29.0,Female,True,BIPOC women,4.0,4th voted out,False,False,False,Voted out pre-merge
+1,S1-S10,US0005,Dirk,23.0,Male,False,White men,5.0,5th voted out,False,False,False,Voted out pre-merge
+1,S1-S10,US0006,Joel,27.0,Male,False,White men,6.0,6th voted out,False,False,False,Voted out pre-merge
+1,S1-S10,US0007,Gretchen,38.0,Female,False,White women,7.0,7th voted out,False,False,False,Voted out pre-merge
+1,S1-S10,US0008,Greg,24.0,Male,False,White men,8.0,8th voted out,True,False,False,Made merge
+1,S1-S10,US0009,Jenna,22.0,Female,False,White women,9.0,9th voted out,True,False,False,Made merge
+1,S1-S10,US0010,Gervase,30.0,Male,True,BIPOC men,10.0,10th voted out,True,False,False,Made merge
+1,S1-S10,US0011,Colleen,23.0,Female,False,White women,11.0,11th voted out,True,False,False,Made merge
+1,S1-S10,US0012,Sean,30.0,Male,False,White men,12.0,12th voted out,True,False,False,Made merge
+1,S1-S10,US0013,Sue,38.0,Female,False,White women,13.0,13th voted out,True,False,False,Made merge
+1,S1-S10,US0014,Rudy,72.0,Male,False,White men,14.0,14th voted out,True,False,False,Made merge
+1,S1-S10,US0015,Kelly,22.0,Female,False,White women,15.0,Runner-up,False,True,False,Finalist
+1,S1-S10,US0016,Richard,39.0,Male,False,White men,16.0,Sole Survivor,False,True,True,Sole Survivor

@@ -36,10 +36,7 @@ function About() {
                 My name is Raj Shah.
                 <br></br>
                 <br></br>
-                I was a Software Engineer that worked at Amazon Web Services (AWS) on S3, using Java and Python to build out features for the
-                object processing team. I moved on to startups, where I worked on developing projects and leading teams. However, my passion is
-                Data Science, especially focused on applying analytics to Civic Tech. I am currently studying Public Policy Management with a
-                focus on Data at Carnegie Mellon University.
+                I am a Data Scientist and AI Engineer, with experience working on backend architecture (Amazon, BlackCloak), causal inference, and AI systems. My key passion is civic tech, and the intersection of classical statistical methods with software engineering.
                 <br></br>
             </h3>
             <iframe
