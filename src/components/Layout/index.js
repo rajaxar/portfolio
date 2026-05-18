@@ -8,9 +8,8 @@ function Layout(props) {
             id="gradient"
             style={{
                 "overflow": "auto",
-                "position": "absolute",
-                "top": "0",
-                "left": "0",
+                "position": "fixed",
+                "inset": "0",
             }}
         >
             {page !== 'nba_contract' && page !== 'survivor' && <Navbar setPage={setPage} page={page}/>}

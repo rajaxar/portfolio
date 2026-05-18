@@ -104,7 +104,7 @@ function tipPos(tip, wrapper, event) {
 // ─── Inline footnote ─────────────────────────────────────────────────────
 function FnText({ children, note }) {
   const [open, setOpen] = useState(false);
-  const isMob = window.innerWidth < 700;
+  const isMob = useIsMobile();
   return (
     <span
       style={{
@@ -131,7 +131,7 @@ function FnText({ children, note }) {
           padding: '8px 12px',
           borderRadius: 6,
           width: 240,
-          zIndex: 50,
+          zIndex: 200,
           lineHeight: 1.5,
           pointerEvents: 'none',
         }}>{note}</span>
@@ -174,21 +174,6 @@ function Legend() {
           {it.label}
         </span>
       ))}
-    </div>
-  );
-}
-
-
-function Fig({ num, title, sub, note, children }) {
-  return (
-    <div style={{ margin: '24px 0' }}>
-      <div style={{ fontFamily: '"Graphik", sans-serif', fontSize: 8, letterSpacing: '0.12em', textTransform: 'uppercase', color: T.ink4, marginBottom: 3 }}>Fig. {num}</div>
-      <div style={{ fontFamily: '"Futura Condensed", sans-serif', fontSize: 22, fontWeight: 800, color: T.ink, marginBottom: 2, textTransform: 'uppercase', lineHeight: 1.05 }}>{title}</div>
-      {sub && <div style={{ fontFamily: '"Graphik", sans-serif', fontSize: 10, color: T.ink4, marginBottom: 14 }}>{sub}</div>}
-      <div style={{ border: `0.5px solid ${T.rule}`, backgroundColor: T.bg2, padding: '16px 16px 12px' }}>
-        {children}
-      </div>
-      {note && <div style={{ fontFamily: '"Graphik", sans-serif', fontSize: 9, color: T.ink4, marginTop: 8, lineHeight: 1.6 }}>{note}</div>}
     </div>
   );
 }
@@ -337,180 +322,6 @@ const FunnelChart = React.memo(function FunnelChart({ contestants, glowPhase = n
   return (
     <div ref={wrapRef} style={{ position: 'relative'}}>
       <svg ref={svgRef} style={final_style} />
-    </div>
-  );
-});
-
-// ─── MorphChart: dot grid → stacked bar ───────────────────────────────────
-// chartState: 'grid' | 'bar'
-const MorphChart = React.memo(function MorphChart({ allDots, repData, chartState }) {
-  const wrapRef = useRef(null);
-  const svgRef  = useRef(null);
-  const width   = useChartWidth(wrapRef);
-  const prevRef = useRef({ width: 0, state: null });
-
-  const H      = 360;
-  const R      = 3;
-  const DSTEP  = R * 2 + 2.5;
-
-  useEffect(() => {
-    if (!allDots.length || !svgRef.current || width < 50) return;
-
-    const W    = width;
-    const prev = prevRef.current;
-    const isInit = prev.state === null;
-    const widthChanged = prev.width !== W && !isInit;
-    const stateChanged = prev.state !== chartState && !isInit;
-
-    prevRef.current = { width: W, state: chartState };
-
-    // ── Compute grid positions ─────────────────────────────────────────
-    const COLS = Math.max(1, Math.floor((W - 8) / DSTEP));
-    const gridPos = {};
-    allDots.forEach((d, i) => {
-      gridPos[d.id] = {
-        x: (i % COLS) * DSTEP + R + 4,
-        y: Math.floor(i / COLS) * DSTEP + R + 8,
-      };
-    });
-    const gridH = Math.ceil(allDots.length / COLS) * DSTEP + 24;
-
-    // ── Compute bar positions (Beginning column = dots, others = rects) ─
-    const m = { t: 36, r: 10, b: 28, l: 10 };
-    const chartW = W - m.l - m.r;
-    const chartH = H - m.t - m.b;
-    const colW   = (chartW - 40) / 3;
-    const colGap = 20;
-    const colX   = [m.l, m.l + colW + colGap, m.l + 2 * (colW + colGap)];
-    const stages = ['Beginning', 'Merge', 'Finalist'];
-
-    const dotPos = {};   // bar positions for Beginning column
-    const barRects = []; // aggregate rects for Merge + Finalist
-
-    stages.forEach((stage, si) => {
-      const x0 = colX[si];
-      let yAcc = 0;
-      GROUP_ORDER.forEach(group => {
-        const row  = repData.find(d => d.stage === stage && d.race_gender_group === group);
-        const frac = row ? +row.pct_of_stage / 100 : 0;
-        const gH   = frac * chartH;
-
-        if (stage === 'Beginning') {
-          const groupDots = allDots.filter(d => d.group === group);
-          const dpr = Math.max(1, Math.floor(colW / DSTEP));
-          groupDots.forEach((dot, i) => {
-            dotPos[dot.id] = {
-              x: x0 + (i % dpr) * DSTEP + R,
-              y: m.t + yAcc + Math.floor(i / dpr) * DSTEP + R,
-            };
-          });
-        } else if (gH > 0.5) {
-          barRects.push({ stage, si, group, color: GROUP_COLOR[group], x: x0, y: m.t + yAcc, w: colW, h: gH });
-        }
-        yAcc += gH;
-      });
-    });
-
-    const svg = d3.select(svgRef.current);
-
-    // ── First render ───────────────────────────────────────────────────
-    if (isInit) {
-      svg.attr('width', W).attr('height', chartState === 'grid' ? gridH : H);
-      svg.selectAll('*').remove();
-
-      svg.selectAll('circle.mdot')
-        .data(allDots, d => d.id)
-        .join(enter => enter.append('circle').attr('class', 'mdot')
-          .attr('r', R)
-          .attr('fill', d => d.color)
-          .attr('opacity', 0.78)
-          .attr('cx', d => chartState === 'grid' ? (gridPos[d.id]?.x ?? 0) : (dotPos[d.id]?.x ?? 0))
-          .attr('cy', d => chartState === 'grid' ? (gridPos[d.id]?.y ?? 0) : (dotPos[d.id]?.y ?? 0))
-        );
-
-      if (chartState === 'bar') {
-        // Draw bar rects + labels immediately
-        svg.selectAll('.mrect')
-          .data(barRects, d => `${d.stage}_${d.group}`)
-          .join(enter => enter.append('rect').attr('class', 'mrect'))
-          .attr('x', d => d.x).attr('y', d => d.y)
-          .attr('width', d => d.w).attr('height', d => d.h)
-          .attr('fill', d => d.color).attr('opacity', 0.88);
-
-        stages.forEach((s, i) => {
-          svg.append('text').attr('class', 'mstage-label')
-            .attr('x', colX[i] + colW / 2).attr('y', H - 8)
-            .attr('text-anchor', 'middle')
-            .style('font-family', '"Graphik", sans-serif').style('font-size', '9px')
-            .style('fill', T.ink4).style('text-transform', 'uppercase')
-            .text(s);
-        });
-      }
-      return;
-    }
-
-    // ── Resize snap ────────────────────────────────────────────────────
-    if (widthChanged && !stateChanged) {
-      svg.attr('width', W).attr('height', chartState === 'grid' ? gridH : H);
-      svg.selectAll('circle.mdot')
-        .attr('cx', d => chartState === 'grid' ? (gridPos[d.id]?.x ?? 0) : (dotPos[d.id]?.x ?? 0))
-        .attr('cy', d => chartState === 'grid' ? (gridPos[d.id]?.y ?? 0) : (dotPos[d.id]?.y ?? 0));
-
-      if (chartState === 'bar') {
-        svg.selectAll('.mrect').attr('x', d => d.x).attr('y', d => d.y).attr('width', d => d.w).attr('height', d => d.h);
-        svg.selectAll('.mstage-label').attr('x', (d, i) => colX[i] + colW / 2).attr('y', H - 8);
-      }
-      return;
-    }
-
-    // ── State transition ────────────────────────────────────────────────
-    if (chartState === 'grid') {
-      svg.attr('height', gridH);
-      svg.selectAll('circle.mdot')
-        .transition().duration(700).ease(d3.easeCubicInOut)
-        .attr('cx', d => gridPos[d.id]?.x ?? 0)
-        .attr('cy', d => gridPos[d.id]?.y ?? 0)
-        .attr('opacity', 0.78);
-      svg.selectAll('.mrect,.mstage-label').remove();
-
-    } else if (chartState === 'bar') {
-      svg.attr('height', H);
-
-      svg.selectAll('circle.mdot')
-        .transition().duration(900).ease(d3.easeCubicInOut)
-        .attr('cx', d => dotPos[d.id]?.x ?? gridPos[d.id]?.x ?? 0)
-        .attr('cy', d => dotPos[d.id]?.y ?? gridPos[d.id]?.y ?? 0)
-        .attr('opacity', 0.82)
-        .end()
-        .then(() => {
-        if (prevRef.current.state !== 'bar') return;
-        svg.selectAll('.mrect')
-          .data(barRects, d => `${d.stage}_${d.group}`)
-          .join(enter => enter.append('rect').attr('class', 'mrect')
-            .attr('x', d => d.x).attr('y', d => d.y + d.h)
-            .attr('width', d => d.w).attr('height', 0)
-            .attr('fill', d => d.color).attr('opacity', 0.88)
-          )
-          .transition().duration(600).ease(d3.easeCubicOut)
-          .attr('y', d => d.y).attr('height', d => d.h);
-
-        svg.selectAll('.mstage-label').remove();
-        stages.forEach((s, i) => {
-          svg.append('text').attr('class', 'mstage-label')
-            .attr('x', colX[i] + colW / 2).attr('y', H - 8)
-            .attr('text-anchor', 'middle')
-            .style('font-family', '"Graphik", sans-serif').style('font-size', '9px')
-            .style('fill', T.ink4).style('text-transform', 'uppercase')
-            .attr('opacity', 0).text(s)
-            .transition().duration(400).attr('opacity', 1);
-        });
-      }).catch(() => {});
-    }
-  }, [chartState, allDots, repData, width]); // eslint-disable-line
-
-  return (
-    <div ref={wrapRef} style={{ position: 'relative', width: '100%' }}>
-      <svg ref={svgRef} style={{ width: '100%', display: 'block', overflow: 'visible' }} />
     </div>
   );
 });
@@ -1060,15 +871,9 @@ const RidgePlot = React.memo(function RidgePlot({ data, showNewEra = false, winn
             .attr('opacity', 0).style('cursor', 'pointer');
 
           const setGlow = (on) => {
-            if (on) {
-              line.attr('stroke-width', 2.6).attr('opacity', 1)
-                .attr('opacity', 1)
-                .style('filter', `drop-shadow(0 0 5px ${T.bf})`);
-            } else {
-              line.attr('stroke-width', 1.5).attr('opacity', 0).style('filter', null);
-            }
+            const node = line.node();
+            if (node) node.classList.toggle('glow-active', on);
           };
-          line.node().__setGlow = setGlow;
 
           const hitRect = rowG.append('rect')
             .attr('x', xPos - 6).attr('y', yTop - 6)
@@ -1233,22 +1038,22 @@ const WageChart = React.memo(function WageChart({ data, step = 2 }) {
 //   stickyTopVhDesktop / stickyHeightVhDesktop — same for desktop (defaults 12 / 76)
 function ScrollyScene({
   chart, steps, isMobile, pageEl, onStepEnter, onStepProgress, trailingContent = null,
-  stepPadVh = 20,
+  stepPadVh = 4,
   stepPadBottomVh,
-  stepGapVh = 60,
+  stepGapVh = 6,
   stepPadVhDesktop = 5,
   stepGapVhDesktop = 6,
   leadPadVh = 8,
   leadPadVhDesktop = 30,
-  stickyTopVhMobile = 12,
+  stickyTopVhMobile = 20,
   stickyHeightVhMobile = 72,
   stickyTopVhDesktop = 12,
   stickyHeightVhDesktop = 76,
-  chartBottomPadVhMobile = 8,
-  tailPadVhMobile = 6,
+  chartBottomPadVhMobile = 0,
+  tailPadVhMobile = 0,
   offsetMobile = 0.85,
   offsetDesktop = 0.55,
-  chartAlignMobile = 'center',
+  chartAlignMobile = 'flex-start',
 }) {
   const padBottom = stepPadBottomVh ?? stepPadVh;
   return (
@@ -1261,14 +1066,11 @@ function ScrollyScene({
         display: 'flex', gap: 24, alignItems: 'flex-start',
       }}>
         <div style={isMobile ? {
-          position: 'sticky', top: `${stickyTopVhMobile}svh`, width: '100%', height: `${stickyHeightVhMobile}dvh`,
-          display: 'flex', flexDirection: 'column', justifyContent: chartAlignMobile,
-          paddingBottom: `${chartBottomPadVhMobile}vh`,
-          boxSizing: 'border-box',
+          position: 'sticky', top: `${stickyTopVhMobile}svh`, width: '100%',
           zIndex: 100,
         } : {
           flex: '0 0 50%', position: 'sticky', top: `${stickyTopVhDesktop}svh`,
-          height: `${stickyHeightVhDesktop}dvh`, alignSelf: 'flex-start',
+          height: `${stickyHeightVhDesktop}svh`, alignSelf: 'flex-start',
           display: 'flex', flexDirection: 'column', justifyContent: 'center',
           zIndex: 100
         }}>
@@ -1276,7 +1078,7 @@ function ScrollyScene({
         </div>
         <div style={isMobile ? { width: '100%', position: 'relative', zIndex: 101 } : { flex: '0 0 32%', paddingRight: 40, position: 'relative', zIndex: 101 }}>
           <div style={{ paddingTop: `${isMobile ? leadPadVh : leadPadVhDesktop}vh` }} />
-          <Scrollama onStepEnter={onStepEnter} onStepProgress={onStepProgress} progress={!!onStepProgress} offset={isMobile ? offsetMobile : offsetDesktop} root={pageEl}>
+          <Scrollama key={pageEl ? 'r' : 'w'} onStepEnter={onStepEnter} onStepProgress={onStepProgress} progress={!!onStepProgress} offset={isMobile ? offsetMobile : offsetDesktop} root={pageEl}>
             {steps.map((step, i) => {
               const isLast = i === steps.length - 1;
               const isFirst = i === 0;
@@ -1284,11 +1086,10 @@ function ScrollyScene({
               return (
                 <Step data={i} key={i}>
                   <div style={isMobile ? {
-                    // last step zeroes bottom padding/margin so the sticky chart unsticks with the text
                     padding: isLast ? `${stepPadVh}vh 0 0` : `${stepPadVh}vh 0 ${padBottom}vh`,
-                    minHeight: 200,
+                    minHeight: isLast ? 60 : 200,
                     marginBottom: isLast ? 0 : `${stepGapVh}vh`,
-                    marginTop: isLast && isMobile ? `${stickyHeightVhMobile}vh` : 0
+                    marginTop: 0
                   } : {
                     padding: isFirst
                       ? `0 0 ${stepPadVhDesktop}vh`
@@ -1299,9 +1100,11 @@ function ScrollyScene({
                     marginBottom: isLast ? 0 : `${stepGapVhDesktop}vh`,
                   }}>
                     {isMobile ? (
-                      <div style={{ background: 'rgba(28,17,10,0.88)', padding: '16px', borderRadius: 8 }}>
-                        {step}
-                      </div>
+                      isLast ? step : (
+                        <div style={{ background: 'rgba(28,17,10,0.88)', padding: '16px', borderRadius: 8 }}>
+                          {step}
+                        </div>
+                      )
                     ) : isFirst ? (
                       <div style={{ transform: 'translateY(-50%)' }}>{step}</div>
                     ) : step}
@@ -1313,11 +1116,11 @@ function ScrollyScene({
         </div>
       </div>
       {trailingContent && isMobile && (
-        <div style={{ maxWidth: 1080, margin: '0 auto', padding: '0 24px 28px' }}>
+        <div style={{ maxWidth: 1080, margin: '0 auto', padding: '0 24px 8px' }}>
           {trailingContent}
         </div>
       )}
-      {isMobile && <div style={{ height: `${tailPadVhMobile}dvh` }} />}
+      {isMobile && <div style={{ height: `${tailPadVhMobile}svh` }} />}
     </>
   );
 }
@@ -1413,11 +1216,6 @@ function SurvivorBlog() {
     parsedFunnel.filter(c => c.season === newEraActiveSeason).sort((a, b) => a.order - b.order),
   [parsedFunnel, newEraActiveSeason]);
 
-  // eslint-disable-next-line no-unused-vars
-  const allDotsS49 = useMemo(() =>
-    parsedFunnel.sort((a, b) => GROUP_ORDER.indexOf(a.group) - GROUP_ORDER.indexOf(b.group)),
-  [parsedFunnel]);
-
   const repS40 = useMemo(() => csvData ? csvData.representation.filter(d => d.window === 'S1-S40') : [], [csvData]);
   // S41-S49 derived: subtract S1-S40 counts from S1-S49 counts per stage×group, recompute pct_of_stage
   const repS4149 = useMemo(() => {
@@ -1463,6 +1261,13 @@ function SurvivorBlog() {
       height: '100%', overflowY: 'auto', overflowX: 'hidden', maxWidth: '100vw', position: 'relative',
       fontWeight: 550
     }}>
+      <style>{`
+        line.ridge-winner-yamyam.glow-active, line.ridge-winner-gabler.glow-active {
+          stroke-width: 2.6;
+          opacity: 1;
+          filter: drop-shadow(0 0 5px #6B3FA0);
+        }
+      `}</style>
       {/* Parkay floor — slightly blurred so hard SVG edges soften */}
       <div style={{
         position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 0,
@@ -1525,7 +1330,7 @@ function SurvivorBlog() {
         </section>
 
         <section style={wrap}>
-          <p style={{...pStyle, marginTop: isMobile ? '4rem' : '4rem', marginBottom: isMobile ? '-6rem': '-6rem'}}>
+          <p style={{...pStyle, marginTop: isMobile ? '1.5rem' : '4rem', marginBottom: 0}}>
             Take <strong style={S}>Season 18: Tocantins</strong> for example.
           </p>
         </section>
@@ -1534,12 +1339,13 @@ function SurvivorBlog() {
           isMobile={isMobile}
           pageEl={pageEl}
           stepPadVh={isMobile ? 0 : 20}
-          stickyTopVhMobile={8}
-          stickyHeightVhMobile={96}
+          stickyTopVhMobile={18}
+          leadPadVh={isMobile ? 0 : 8}
+          stepGapVh={50}
           chart={
-            <div>
+            <div style={{ backgroundColor: T.bg2, border: `0.5px solid ${T.rule}`, padding: '14px 16px' }}>
               <div style={{ fontFamily: '"Graphik", sans-serif', fontSize: 8, letterSpacing: '0.12em', textTransform: 'uppercase', color: T.ink4, marginBottom: 3 }}>Fig. 1</div>
-              <div style={{ fontFamily: '"Futura Condensed", sans-serif', fontSize: 20, fontWeight: 800, color: T.ink, marginBottom: 12, textTransform: 'uppercase', lineHeight: 1.05}}>Season 18: Tocantins · Cast Progression</div>
+              <div style={{ fontFamily: '"Futura Condensed", sans-serif', fontSize: 'clamp(14px, 4.2vw, 20px)', fontWeight: 800, color: T.ink, marginBottom: 12, textTransform: 'uppercase', lineHeight: 1.05}}>Season 18: Tocantins · Cast Progression</div>
               {s18Contestants.length > 0
                 ? <FunnelChart contestants={s18Contestants} glowPhase={tocantinsGlowPhase} isMobile={isMobile}/>
                 : <ChartLoading />}
@@ -1561,17 +1367,24 @@ function SurvivorBlog() {
               <p style={pStyle}>Our finale has <strong style={S}>2 players remaining</strong>. J.T. Thomas and Stephen Fishbach face the jury.</p>
             </div>,
             <div>
-              <p style={pStyle}>Leading to J.T. pulling off an impressive{' '}
-                <FnText note="A sweep means J.T. received every jury vote — a unanimous win. Only a handful of players have ever pulled this off.">sweep</FnText>.
-              </p>
+              {!isMobile && (
+                <p style={pStyle}>Leading to J.T. pulling off an impressive{' '}
+                  <FnText note="A sweep means J.T. received every jury vote — a unanimous win. Only a handful of players have ever pulled this off.">sweep</FnText>.
+                </p>
+              )}
             </div>,
           ]}
           trailingContent={
-            <video
-              src={process.env.PUBLIC_URL + '/jt_win.mp4'}
-              autoPlay muted loop playsInline
-              style={{ width: '100%', display: 'block', borderRadius: 16 }}
-            />
+            <>
+              <p style={pStyle}>Leading to J.T. pulling off an impressive{' '}
+                <FnText note="A sweep means J.T. received every jury vote — a unanimous win. Only a handful of players have ever pulled this off.">sweep</FnText>.
+              </p>
+              <video
+                src={process.env.PUBLIC_URL + '/jt_win.mp4'}
+                autoPlay muted loop playsInline
+                style={{ width: '100%', display: 'block', borderRadius: 16 }}
+              />
+            </>
           }
         />
 
@@ -1628,11 +1441,15 @@ function SurvivorBlog() {
           isMobile={isMobile}
           pageEl={pageEl}
           stepPadVh={isMobile ? 0 : 20}
-          stickyTopVhMobile={4}
-          stickyHeightVhMobile={96}
-          chart={devS49.length > 0
-            ? <DeviationChart data={devS49} highlight={devHighlight} showNewEra={false} />
-            : <ChartLoading />}
+          stickyTopVhMobile={24}
+          stepGapVh={40}
+          chart={
+            <div style={{ backgroundColor: T.bg2, border: `0.5px solid ${T.rule}`, padding: '14px 16px' }}>
+              {devS49.length > 0
+                ? <DeviationChart data={devS49} highlight={devHighlight} showNewEra={false} />
+                : <ChartLoading />}
+            </div>
+          }
           onStepEnter={({ data }) => {
             if (data === 0) setDevHighlight([]);
             if (data === 1) setDevHighlight(['S21-S30']);
@@ -1644,11 +1461,18 @@ function SurvivorBlog() {
               </p>
             </div>,
             <div>
-              <p style={pStyle}>
-                <FnText note="Seasons 31-40 also shows over-targeting (see Season 33: Millennials vs. Gen X), but with more variance.">For seasons 21–30, players of color were especially targeted</FnText> at rates above what we'd expect.
-              </p>
+              {!isMobile && (
+                <p style={pStyle}>
+                  <FnText note="Seasons 31-40 also shows over-targeting (see Season 33: Millennials vs. Gen X), but with more variance.">For seasons 21–30, players of color were especially targeted</FnText> at rates above what we'd expect.
+                </p>
+              )}
             </div>,
           ]}
+          trailingContent={
+            <p style={pStyle}>
+              <FnText note="Seasons 31-40 also shows over-targeting (see Season 33: Millennials vs. Gen X), but with more variance.">For seasons 21–30, players of color were especially targeted</FnText> at rates above what we'd expect.
+            </p>
+          }
         />
 
         {/* Part 3 opener — copy lead-in for combined scrolly */}
@@ -1664,14 +1488,15 @@ function SurvivorBlog() {
         <ScrollyScene
           stepPadVh={isMobile ? 0 : 20}
           stickyTopVhMobile={4}
-          stickyHeightVhMobile={96}
           offsetMobile={0.5}
           isMobile={isMobile}
           pageEl={pageEl}
+          stickyTopVhMobile={24}
+          stepGapVh={44}
           chart={
-            <div>
+            <div style={{ backgroundColor: T.bg2, border: `0.5px solid ${T.rule}`, padding: '14px 16px' }}>
               <div style={{ fontFamily: '"Graphik", sans-serif', fontSize: 8, letterSpacing: '0.1em', textTransform: 'uppercase', color: T.ink4, marginBottom: 3 }}>Fig. 3</div>
-              <div style={{ fontFamily: '"Futura Condensed", sans-serif', fontSize: 20, fontWeight: 800, color: T.ink, marginBottom: 14, textTransform: 'uppercase', lineHeight: 1.05 }}>
+              <div style={{ fontFamily: '"Futura Condensed", sans-serif', fontSize: 'clamp(14px, 4.2vw, 20px)', fontWeight: 800, color: T.ink, marginBottom: 14, textTransform: 'uppercase', lineHeight: 1.05 }}>
                 Cast composition: {showRepS49NewEra ? 'post-mandate' : 'pre-mandate'}
               </div>
               {repS4149.length > 0
@@ -1702,11 +1527,18 @@ function SurvivorBlog() {
               </div>
             </div>,
             <div>
-              <p style={pStyle}>
-                There are more people of color participating in the later seasons — at every stage of the game.
-              </p>
+              {!isMobile && (
+                <p style={pStyle}>
+                  There are more people of color participating in the later seasons — at every stage of the game.
+                </p>
+              )}
             </div>,
           ]}
+          trailingContent={
+            <p style={pStyle}>
+              There are more people of color participating in the later seasons — at every stage of the game.
+            </p>
+          }
         />
 
         {/* Demoted slider — secondary exploration affordance */}
@@ -1736,7 +1568,7 @@ function SurvivorBlog() {
                 <span style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: 6 }}>
                   <svg width={10} height={10}><polygon points="5,0.5 9.5,5 5,9.5 0.5,5" fill={T.nb} /></svg>
                 </span>
-                Teeny is a man but competed as the first openly non-binary contestant at time of filming, so we want to respect both their identity and also how it affects our analysis.
+                Teeny competed as the first openly non-binary contestant at time of filming, but identifies as a man now! We want to respect his identity and also how they were perceived during Survivor, so we mark him as non-binary in our analysis.
               </div>
             )}
           </div>
@@ -1747,10 +1579,11 @@ function SurvivorBlog() {
           isMobile={isMobile}
           pageEl={pageEl}
           chartBottomPadVhMobile={18}
+          stepGapVh={45}
           chart={
-            <div>
+            <div style={{ backgroundColor: T.bg2, border: `0.5px solid ${T.rule}`, padding: '14px 16px' }}>
               <div style={{ fontFamily: '"Graphik", sans-serif', fontSize: 8, letterSpacing: '0.1em', textTransform: 'uppercase', color: T.ink4, marginBottom: 3 }}>The new era — S41 onward</div>
-              <div style={{ fontFamily: '"Futura Condensed", sans-serif', fontSize: 20, fontWeight: 800, color: T.ink, marginBottom: 14, textTransform: 'uppercase', lineHeight: 1.05 }}>
+              <div style={{ fontFamily: '"Futura Condensed", sans-serif', fontSize: 'clamp(14px, 4.2vw, 20px)', fontWeight: 800, color: T.ink, marginBottom: 14, textTransform: 'uppercase', lineHeight: 1.05 }}>
                 Pre-merge targeting: the new era
               </div>
               {devS49.length > 0
@@ -1770,12 +1603,20 @@ function SurvivorBlog() {
               </p>
             </div>,
             <div>
-              <p style={pStyle}>
-                In the newest seasons, <em style={{ fontStyle: 'normal', color: T.ink }}>the pattern was undone</em> — players of color were no longer over-targeted in pre-merge votes. But with only 9 seasons of post-mandate data, the picture is{' '}
-                <FnText note="The S41–S49 era shows a mean deviation of −8.1 percentage points (BIPOC players were under-targeted relative to their pool share), but with low certainty. A conditional logistic regression controlling for tribal-council composition finds a statistically significant reduction in the BIPOC targeting penalty — though this result is sensitive to two seasons: S33 (Millennials vs. Gen X) and S48.">still uncertain</FnText>.
-              </p>
+              {!isMobile && (
+                <p style={pStyle}>
+                  In the newest seasons, <em style={{ fontStyle: 'normal', color: T.ink }}>the pattern was undone</em> — players of color were no longer over-targeted in pre-merge votes. But with only 9 seasons of post-mandate data, the picture is{' '}
+                  <FnText note="The S41–S49 era shows a mean deviation of −8.1 percentage points (BIPOC players were under-targeted relative to their pool share), but with low certainty. A conditional logistic regression controlling for tribal-council composition finds a statistically significant reduction in the BIPOC targeting penalty — though this result is sensitive to two seasons: S33 (Millennials vs. Gen X) and S48.">still uncertain</FnText>.
+                </p>
+              )}
             </div>,
           ]}
+          trailingContent={
+            <p style={pStyle}>
+              In the newest seasons, <em style={{ fontStyle: 'normal', color: T.ink }}>the pattern was undone</em> — players of color were no longer over-targeted in pre-merge votes. But with only 9 seasons of post-mandate data, the picture is{' '}
+              <FnText note="The S41–S49 era shows a mean deviation of −8.1 percentage points (BIPOC players were under-targeted relative to their pool share), but with low certainty. A conditional logistic regression controlling for tribal-council composition finds a statistically significant reduction in the BIPOC targeting penalty — though this result is sensitive to two seasons: S33 (Millennials vs. Gen X) and S48.">still uncertain</FnText>.
+            </p>
+          }
         />
 
         {/* ══ PART FOUR — The New Cast ══ */}
@@ -1783,10 +1624,16 @@ function SurvivorBlog() {
         <ScrollyScene
           isMobile={isMobile}
           pageEl={pageEl}
+          stickyTopVhMobile={32}
+          stepGapVh={40}
           chartBottomPadVhMobile={18}
-          chart={ageData.length > 0
-            ? <RidgePlot data={ageData} showNewEra={showRidgeNewEra} winners={s4149Winners} />
-            : <ChartLoading />}
+          chart={
+            <div style={{ backgroundColor: T.bg2, border: `0.5px solid ${T.rule}`, padding: '14px 16px' }}>
+              {ageData.length > 0
+                ? <RidgePlot data={ageData} showNewEra={showRidgeNewEra} winners={s4149Winners} />
+                : <ChartLoading />}
+            </div>
+          }
           onStepEnter={({ data }) => {
             if (data === 0) setShowRidgeNewEra(false);
             if (data === 1) setShowRidgeNewEra(true);
@@ -1798,22 +1645,40 @@ function SurvivorBlog() {
               </p>
             </div>,
             <div>
-              <p style={pStyle}>
-                Players in recent seasons fall into a <em style={{ fontStyle: 'normal', color: T.ink }}>narrower age band</em> than in earlier eras — winners cluster tightly between{' '}
-                <strong style={S}>20–35</strong>, with{' '}
-                <strong
-                  style={{ ...S, cursor: 'pointer' }}
-                  onMouseEnter={() => { const n = document.querySelector('.ridge-winner-yamyam'); if (n && n.__setGlow) n.__setGlow(true); }}
-                  onMouseLeave={() => { const n = document.querySelector('.ridge-winner-yamyam'); if (n && n.__setGlow) n.__setGlow(false); }}
-                >Yam Yam (36)</strong> and{' '}
-                <strong
-                  style={{ ...S, cursor: 'pointer' }}
-                  onMouseEnter={() => { const n = document.querySelector('.ridge-winner-gabler'); if (n && n.__setGlow) n.__setGlow(true); }}
-                  onMouseLeave={() => { const n = document.querySelector('.ridge-winner-gabler'); if (n && n.__setGlow) n.__setGlow(false); }}
-                >Gabler (52)</strong> as the outlying exceptions.
-              </p>
+              {!isMobile && (
+                <p style={pStyle}>
+                  Players in recent seasons fall into a <em style={{ fontStyle: 'normal', color: T.ink }}>narrower age band</em> than in earlier eras — winners cluster tightly between{' '}
+                  <strong style={S}>20–35</strong>, with{' '}
+                  <strong
+                    style={{ ...S, cursor: 'pointer' }}
+                    onMouseEnter={() => { document.querySelector('.ridge-winner-yamyam')?.classList.add('glow-active'); }}
+                    onMouseLeave={() => { document.querySelector('.ridge-winner-yamyam')?.classList.remove('glow-active'); }}
+                  >Yam Yam (36)</strong> and{' '}
+                  <strong
+                    style={{ ...S, cursor: 'pointer' }}
+                    onMouseEnter={() => { document.querySelector('.ridge-winner-gabler')?.classList.add('glow-active'); }}
+                    onMouseLeave={() => { document.querySelector('.ridge-winner-gabler')?.classList.remove('glow-active'); }}
+                  >Gabler (52)</strong> as the outlying exceptions.
+                </p>
+              )}
             </div>,
           ]}
+          trailingContent={
+            <p style={pStyle}>
+              Players in recent seasons fall into a <em style={{ fontStyle: 'normal', color: T.ink }}>narrower age band</em> than in earlier eras — winners cluster tightly between{' '}
+              <strong style={S}>20–35</strong>, with{' '}
+              <strong
+                style={{ ...S, cursor: 'pointer' }}
+                onMouseEnter={() => { document.querySelector('.ridge-winner-yamyam')?.classList.add('glow-active'); }}
+                onMouseLeave={() => { document.querySelector('.ridge-winner-yamyam')?.classList.remove('glow-active'); }}
+              >Yam Yam (36)</strong> and{' '}
+              <strong
+                style={{ ...S, cursor: 'pointer' }}
+                onMouseEnter={() => { document.querySelector('.ridge-winner-gabler')?.classList.add('glow-active'); }}
+                onMouseLeave={() => { document.querySelector('.ridge-winner-gabler')?.classList.remove('glow-active'); }}
+              >Gabler (52)</strong> as the outlying exceptions.
+            </p>
+          }
         />
 
         {/* Scene 6 intro — centered lead-in for wage section */}
@@ -1835,9 +1700,15 @@ function SurvivorBlog() {
           isMobile={isMobile}
           pageEl={pageEl}
           chartBottomPadVhMobile={18}
-          chart={wageData.length > 0
-            ? <WageChart data={wageData} step={wageStep} />
-            : <ChartLoading />}
+          stickyTopVhMobile={24}
+          stepGapVh={30}
+          chart={
+            <div style={{ backgroundColor: T.bg2, border: `0.5px solid ${T.rule}`, padding: '14px 16px' }}>
+              {wageData.length > 0
+                ? <WageChart data={wageData} step={wageStep} />
+                : <ChartLoading />}
+            </div>
+          }
           onStepEnter={({ data }) => {
             setWageStep(data === 0 ? 0 : 2);
           }}
@@ -1851,15 +1722,22 @@ function SurvivorBlog() {
             </div>,
             <div>
               <p style={pStyle}>
-                Even when we account for inflation, the rise in income is still noticeable.
+                Inflation accounts for some of this, but the gap is too wide to explain entirely.
               </p>
             </div>,
             <div>
-              <p style={pStyle}>
-                The new Survivor cast may be more racially diverse, but the players also have occupations that tend to have higher incomes compared to older seasons.
-              </p>
+              {!isMobile && (
+                <p style={pStyle}>
+                  The new Survivor cast may be more racially diverse, but the players also have occupations that tend to have higher incomes compared to older seasons.
+                </p>
+              )}
             </div>,
           ]}
+          trailingContent={
+            <p style={pStyle}>
+              The new Survivor cast may be more racially diverse, but the players also have occupations that tend to have higher incomes compared to older seasons.
+            </p>
+          }
         />
 
         {/* ══ CLOSING THESIS — standalone section ══ */}

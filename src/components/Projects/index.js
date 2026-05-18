@@ -14,11 +14,19 @@ import { clamp } from '@mantine/hooks';
 const projectList = [
     {
         id: 'survivor',
-        label: 'Who Survives? Diversity Analysis of 49 Seasons',
+        label: 'Diversity Analysis of 49 Seasons of Survivor',
         description: 'An interactive data journalism piece examining race, gender, and age representation across all 49 seasons of Survivor. ' +
             'Built with D3.js, featuring KDE ridge plots, funnel charts, stacked bars, and wage trend lines showing how the New Era changed casting.',
         image: process.env.PUBLIC_URL + "/survivor_title_red.png",
         link: process.env.PUBLIC_URL + "?ref=survivor"
+    },
+    {
+        id : 'mlb',
+        label: 'What’s Driving the Decline in Batting Averages?',
+        description: 'An investigation using Bayesian fixed-effects models on 240,000+ pitches to predict hit probability. ' + 
+            'Built using brms in R to implement Stan models and visualize pitch-level MLB data.',
+        image: process.env.PUBLIC_URL + "/baseball.png",
+        link: "https://docs.google.com/document/d/17c2o7EFKines5UShSIxJJPq4FQIeX7wbIDnGrmPT4Ss"
     },
     {
         id: 'nba',
