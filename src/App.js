@@ -8,6 +8,7 @@ import About from "./components/About";
 import Learnings from "./components/Learnings";
 import Projects from "./components/Projects";
 import NBAWireframe from "./components/Projects/nba_contract";
+import SurvivorBlog from "./components/Projects/survivor_blog";
 
 function App() {
   let windowDict = {};
@@ -35,6 +36,9 @@ function App() {
       break;
     case 'nba_contract':
       Component = NBAWireframe;
+      break;
+    case 'survivor':
+      Component = SurvivorBlog;
       break;
     default:
       Component = Home;

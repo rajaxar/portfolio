@@ -238,7 +238,7 @@ iframe#webpack-dev-server-client-overlay{display:none!important}
 
 @font-face {
     font-family: 'Futura Condensed';
-    src: url('./assets/Futura-CondensedExtraBold-05.ttf') format('truetype');
+    src: url('./assets/Futura-CondensedMedium-04.ttf') format('truetype');
     font-weight: 600;
     font-style: normal;
 }
@@ -248,4 +248,17 @@ iframe#webpack-dev-server-client-overlay{display:none!important}
     src: url('./assets/Futura-Medium-01.ttf') format('truetype');
     font-weight: 500;
     font-style: normal;
+}
+
+@font-face {
+    font-family: 'Century Old Style Std';
+    src: url('./assets/Century Old Style Std Regular.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+[style*="Futura Condensed"] {
+    transform: scale(1.2, 0.8);
+    transform-origin: left center;
+    display: inline-block;
 }

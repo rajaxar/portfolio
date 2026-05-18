@@ -13,6 +13,14 @@ import { clamp } from '@mantine/hooks';
 
 const projectList = [
     {
+        id: 'survivor',
+        label: 'Who Survives? Diversity Analysis of 49 Seasons',
+        description: 'An interactive data journalism piece examining race, gender, and age representation across all 49 seasons of Survivor. ' +
+            'Built with D3.js, featuring KDE ridge plots, funnel charts, stacked bars, and wage trend lines showing how the New Era changed casting.',
+        image: process.env.PUBLIC_URL + "/survivor_title_red.png",
+        link: process.env.PUBLIC_URL + "?ref=survivor"
+    },
+    {
         id: 'nba',
         label: 'Contract Year vs. Performance in the NBA',
         description: 'This project is an experiment in data-storytelling. I use D3.JS to visualize the relationship between contract' +
