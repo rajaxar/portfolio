@@ -53,6 +53,11 @@ const styles = {
 };
 
 class NBAScroll extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.chartRef = React.createRef();
+  }
+
   state = {
     data: 0,
     steps: [0, 1, 2, 3, 4],
@@ -499,11 +504,17 @@ class NBAScroll extends PureComponent {
   };
 
   componentDidMount() {
+    const width = this.chartRef.current.getBoundingClientRect().width;
     this.initLineChart({
-      width: window.innerWidth * 0.55,
+      width,
       height: 400
     });
     this.onStepEnter({ data: this.state.steps[0] });
+    window.addEventListener('resize', this.handleResize);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleResize);
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -511,6 +522,15 @@ class NBAScroll extends PureComponent {
       this.updateLineChart();
     }
   }
+
+  handleResize = () => {
+    const width = this.chartRef.current.getBoundingClientRect().width;
+    d3.select(this.chartRef.current).select('svg').remove();
+    this.initLineChart({ width, height: 400 });
+    if (this.state.data !== 0) {
+      this.updateLineChart();
+    }
+  };
 
   initLineChart = (config) => {
     config = {
@@ -532,7 +552,7 @@ class NBAScroll extends PureComponent {
     this.yScale = config.yScale.range([h, 0]);
 
     const svg = d3
-      .select(this.refs.chart)
+      .select(this.chartRef.current)
       .append("svg")
       .attr("width", width + margin.left + margin.right + margin.right)  // Increase the width of the SVG
       .attr("height", height + margin.top + margin.bottom)  // Increase the height of the SVG
@@ -595,7 +615,7 @@ class NBAScroll extends PureComponent {
   };
 
   updateLineChart = () => {
-    const svg = d3.select(this.refs.chart).select('svg');
+    const svg = d3.select(this.chartRef.current).select('svg');
     const step = this.state.data;
     if (step === 0) return;
 
@@ -689,7 +709,7 @@ class NBAScroll extends PureComponent {
 
   onStepExit = ({ direction, data }) => {
     if (direction === 'up') {
-      const svg = d3.select(this.refs.chart).select('svg');
+      const svg = d3.select(this.chartRef.current).select('svg');
       svg.selectAll(`.step-${data}`).remove();
       if (data === 4) {
         svg.selectAll('path.line')
@@ -746,7 +766,7 @@ class NBAScroll extends PureComponent {
               })}
             </Scrollama>
           </div>
-          <div className={classes.graphic} ref="chart" style={{ display: this.state.data === 0 ? 'none' : 'block' }}>
+          <div className={classes.graphic} ref={this.chartRef} style={{ display: this.state.data === 0 ? 'none' : 'block' }}>
             <p
               style={{
                 visibility: this.state.data === 0 ? 'hidden' : 'visible',

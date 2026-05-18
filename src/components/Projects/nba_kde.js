@@ -57,6 +57,11 @@ const styles = {
 };
 
 class NBAKDE extends Component {
+    constructor(props) {
+        super(props);
+        this.chartRef = React.createRef();
+    }
+
     state = {
         data: 0,
         kde_data: [],
@@ -78,17 +83,22 @@ class NBAKDE extends Component {
         this.loadData().then(() => {
             this.setupVisualization([this.state.kde_data]);
         });
+        window.addEventListener('resize', this.handleResize);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.handleResize);
     }
 
     setupVisualization = (kde_data_set) => {
-        const totalWidth = window.innerWidth * 0.45;
+        const totalWidth = this.chartRef.current.getBoundingClientRect().width;
         const totalHeight = 400;
         const margin = { top: 20, right: 10, bottom: 80, left: 80 };
         const width = totalWidth - margin.left - margin.right;
         const height = totalHeight - margin.top - margin.bottom;
     
         // Create the SVG container
-        const svg = d3.select(this.refs.chart)
+        const svg = d3.select(this.chartRef.current)
             .append("svg")
             .attr("width", totalWidth)
             .attr("height", totalHeight)
@@ -162,6 +172,15 @@ class NBAKDE extends Component {
 
         });
         this.setState({ svg, x, y });
+    };
+
+    handleResize = () => {
+        if (this.state.kde_data.length === 0) return;
+        d3.select(this.chartRef.current).select('svg').remove();
+        this.setupVisualization([this.state.kde_data]);
+        if (this.state.data === 1) this.handleStepOne();
+        if (this.state.data === 2) this.handleStepTwo();
+        if (this.state.data === 3) this.handleStepThree();
     };
 
 
@@ -343,7 +362,7 @@ class NBAKDE extends Component {
                         </Scrollama>
                     </div>
 
-                    <div className={classes.graphic} ref="chart" style={{ display: 'block' }}>
+                    <div className={classes.graphic} ref={this.chartRef} style={{ display: 'block' }}>
                         <p
                             style={{
                                 fontFamily: "Graphik",

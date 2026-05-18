@@ -1,6 +1,7 @@
 import NBAScroll from "./nbaScroll";
 import NBAKDE from "./nba_kde";
 import NBADIY from "./nba_diy";
+import "./nba_contract.css";
 
 function NBAWireframe() {
     return (
@@ -14,24 +15,7 @@ function NBAWireframe() {
             }}
         >
             {/* Button that returns back to main page, stickied on top left. */}
-            <a
-                href="?ref=projects"
-                style={{
-                    position: 'fixed',
-                    top: '1rem',
-                    left: '1rem',
-                    zIndex: 100,
-                    backgroundColor: '#213052',
-                    opacity: 0.8,
-                    color: '#FCF3D9',
-                    padding: '0.5rem .75rem',
-                    textDecoration: 'none',
-                    borderRadius: '0.5rem',
-                    fontWeight: 500,
-                    fontSize: `.8rem`,
-                    fontFamily: "Graphik",
-                }}
-            >
+            <a href="?ref=projects" className="nba-back-button">
                 Back
             </a>
             <div
@@ -45,52 +29,19 @@ function NBAWireframe() {
                 <img
                     src={process.env.PUBLIC_URL + "/title_nba.png"}
                     alt="The Contract Year Phenomenon"
-                    style={{
-                        maxHeight: '55rem',
-                        maxWidth: '45rem',
-                        alignSelf: 'center',
-                        marginTop: '10rem',
-                        marginBottom: '0rem'
-                    }}
+                    className="nba-title-image"
                 />
-                <h3
-                    style={{
-                        marginTop: '0rem',
-                        marginBottom: '12rem',
-                        fontFamily: "Grouch",
-                        fontWeight: 400,
-                        fontSize: `1.5rem`,
-                        lineHeight: 1.4,
-                        width: '100%',
-                        textAlign: 'center',
-                        color: '#86020e'
-                    }}
-                >
+                <h3 className="nba-heading">
                     Story by Raj Shah
                 </h3>
-                <p
-                    style={{
-                        fontFamily: "Graphik",
-                        fontWeight: 400,
-                        fontSize: `1.7rem`,
-                        lineHeight: 1.4,
-                        width: '100%',
-                        paddingInline: '5rem',
-                        color: '#213052',
-                        marginBottom: '8rem'
-                    }}
-                >
+                <p className="nba-text">
 
                     In 2020, the world was grappling with a global pandemic, and the NBA was also struggling.
                     The league somehow pulled off playoffs after a total hiatus in both games and training, leading to a spectacular Bubble Season.<br /><br />
-                    <span
-                        style={{
-                            fontSize: `1.3rem`,
-                            marginBlock: '0rem',
-                        }}
-                    >
+                    <span className="nba-note">
                         I'm still wondering where that <span style={{ color: '#86020e', fontWeight: 500 }}>
-                            2020 Heat Team </span> went. </span><br /><br />
+                            2020 Heat Team </span> went.
+                    </span><br /><br />
 
                     Players went on the record to discuss how they felt uncertain about playing that year - Jayson Tatum famously said that free agent players were{' '}
                     <a href="https://www.espn.com/nba/story/_/id/29423982/celtics-jayson-tatum-says-nba-players-contract-years-putting-lot-line" target="_blank" rel="noreferrer">
@@ -113,19 +64,7 @@ function NBAWireframe() {
                 >
                     <NBAKDE />
                 </div>
-                <p
-                    style={{
-                        fontFamily: "Graphik",
-                        fontWeight: 400,
-                        fontSize: `1.4rem`,
-                        lineHeight: 1.4,
-                        width: '100%',
-                        paddingInline: '10rem',
-                        marginTop: '-5rem',
-                        marginBottom: '2rem',
-                        textAlign: 'justify'
-                    }}
-                >
+                <p className="nba-text small pad-10" style={{ marginTop: '-5rem', marginBottom: '2rem', textAlign: 'justify' }}>
                     Not exactly - there has been a lot of prior research on this topic, showing different methodologies, and coming to some different conclusions.
                     <ul>
                         <li>
@@ -158,68 +97,25 @@ function NBAWireframe() {
                     </ul>
                     So what does this all mean? <br /> There are a lot of factors that go into seeing the relationship between player performance and contract year.<br /><br />What might make it easier to understand is to see the data for ourselves.
                 </p>
-                <p
-                    style={{
-                        fontFamily: "Graphik",
-                        fontWeight: 400,
-                        fontSize: `1.4rem`,
-                        lineHeight: 1.4,
-                        width: '100%',
-                        paddingInline: '10rem',
-                        marginBottom: '10rem',
-                        textAlign: 'justify'
-                    }}
-                >
+                <p className="nba-text small pad-10" style={{ marginBottom: '10rem', textAlign: 'justify' }}>
                     One of the graphs below covers what we’ve already seen - the estimated percentage distributions for player performance, delineated by year related to contract. The other is a new one - this one shows how much a player's salary increases based on their change in performance during the contract year.
                     <br /><br />
-                    <span style={{ fontSize: `1.2rem`, marginBlock: '0rem' }}>
+                    <span className="nba-subnote">
                         Both of these graphs are made up of 300+ players spanning 2 decades of NBA history.
                         <br /><br />
                         Try seeing how Young Centers do in their contract year, or how younger Point Guards tend to get rewarded versus older Point Guards.
                     </span>
                 </p>
 
-                <div
-                    style={{
-                        marginTop: '-8rem',
-                        marginBottom: '5rem',
-                        paddingInline: '5rem',
-                    }}
-                >
+                <div className="nba-diy-container">
                     <NBADIY />
                 </div>
-                <p
-                    style={{
-                        fontFamily: "Graphik",
-                        fontWeight: 400,
-                        fontSize: `1.4rem`,
-                        lineHeight: 1.4,
-                        width: '100%',
-                        paddingInline: '15rem',
-                        marginBottom: '5rem',
-                        textAlign: 'justify'
-                    }}
-                >
+                <p className="nba-text small pad-15" style={{ marginBottom: '5rem', textAlign: 'justify' }}>
                     {/* Make a Span of Centered Text */}
-                    <span
-                        style={{
-                            display: 'block',
-                            textAlign: 'center',
-                            fontSize: `2rem`,
-                            marginBlock: '2rem',
-                            color: '#86020e',
-                            fontFamily: 'Grouch',
-
-                        }}
-                    >
+                    <span className="nba-section-title">
                         So What's the Takeaway?
                     </span>
-                    <span
-                        style={{
-                            fontSize: `1.5rem`,
-                            fontWeight: 500,
-                        }}
-                    >
+                    <span className="nba-highlight">
                         Does the{' '}
                         <span
                             style={{
@@ -235,12 +131,7 @@ function NBAWireframe() {
                     <br /><br />
                     Kind of. Different players in different situations are going to act...<span style={{ fontWeight: 500 }}>different</span>. And regardless of how they change their game, it's not a given that they'll get paid more.
                     <br /><br /><br />
-                    <span
-                        style={{
-                            fontSize: `1.5rem`,
-                            fontWeight: 500,
-                        }}
-                    >
+                    <span className="nba-highlight">
                         So Why Does This Matter?
                     </span>
                     <ul>
@@ -253,12 +144,7 @@ function NBAWireframe() {
                         </li>
                     </ul>
                     <br /><br />
-                    <span
-                        style={{
-                            fontSize: `1.5rem`,
-                            fontWeight: 500,
-                        }}
-                    >
+                    <span className="nba-highlight">
                         How Can I Learn More?
                     </span>
                     <ul>
@@ -278,20 +164,8 @@ function NBAWireframe() {
                     </ul>
                 </p>
                 {/* Data Sources */}
-                <div
-                    style={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        marginBottom: '5rem',
-                        paddingInline: '10rem',
-                    }}
-                > 
-                <span
-                    style={{
-                        fontSize: `1.5rem`,
-                        fontWeight: 500,
-                    }}
-                >
+                <div className="nba-sources-container">
+                <span className="nba-highlight">
                     Sources
                 </span>
                 <ul>
@@ -316,23 +190,11 @@ function NBAWireframe() {
                         </a> - This website contains free agent data for different years.
                     </li>
                 </ul>
-                <p
-                    style={{
-                        fontFamily: "Graphik",
-                        fontWeight: 400,
-                        fontSize: `.8rem`,
-                        lineHeight: 1.4,
-                        width: '100%',
-                        marginBottom: '10rem',
-                        marginTop: '5rem',
-                        display: 'block',
-                        textAlign: 'center',
-                }}
-                    >
+                <p className="nba-sources-text">
                         Made by Raj Shah <br/>
                         94470 Telling Stories With Data <br/>
                         Christopher Goranson
-                    </p> 
+                </p>
 
                 </div>
             </div>

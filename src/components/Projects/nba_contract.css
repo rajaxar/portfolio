@@ -1,0 +1,167 @@
+.nba-back-button {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 100;
+  background-color: #213052;
+  opacity: 0.8;
+  color: #FCF3D9;
+  padding: 0.5rem 0.75rem;
+  text-decoration: none;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  font-family: "Graphik";
+  font-size: 1.2vw;
+}
+
+.nba-title-image {
+  max-width: 60vw;
+  max-height: 80vh;
+  align-self: center;
+  margin-top: 10vh;
+  margin-bottom: 0;
+}
+
+.nba-heading {
+  margin-top: 0;
+  margin-bottom: 12vh;
+  font-family: "Grouch";
+  font-weight: 400;
+  font-size: 2.5vw;
+  line-height: 1.4;
+  width: 100%;
+  text-align: center;
+  color: #86020e;
+}
+
+.nba-text {
+  font-family: "Graphik";
+  font-weight: 400;
+  line-height: 1.4;
+  width: 100%;
+  padding-inline: 5vw;
+  color: #213052;
+  margin-bottom: 8vh;
+  font-size: 1.7vw;
+}
+
+.nba-text.small {
+  font-size: 1.4vw;
+}
+
+.nba-text.pad-10 {
+  padding-inline: 10vw;
+}
+
+.nba-text.pad-15 {
+  padding-inline: 15vw;
+}
+
+.nba-note {
+  font-size: 1.3vw;
+  margin-block: 0;
+}
+
+.nba-subnote {
+  font-size: 1.2vw;
+  margin-block: 0;
+}
+
+.nba-section-title {
+  display: block;
+  text-align: center;
+  font-size: 2vw;
+  margin-block: 2rem;
+  color: #86020e;
+  font-family: 'Grouch';
+}
+
+.nba-highlight {
+  font-size: 1.5vw;
+  font-weight: 500;
+}
+
+.nba-diy-container {
+  margin-top: -8rem;
+  margin-bottom: 5rem;
+  padding-inline: 5vw;
+}
+
+.nba-sources-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5rem;
+  padding-inline: 10vw;
+}
+
+.nba-sources-text {
+  font-family: "Graphik";
+  font-weight: 400;
+  line-height: 1.4;
+  width: 100%;
+  display: block;
+  text-align: center;
+  margin-top: 5rem;
+  margin-bottom: 10rem;
+  font-size: 0.8vw;
+}
+
+@media (max-width: 768px) {
+  .nba-back-button {
+    font-size: 3vw;
+  }
+
+  .nba-title-image {
+    max-width: 90vw;
+  }
+
+  .nba-heading {
+    font-size: 6vw;
+    margin-bottom: 8vh;
+  }
+
+  .nba-text {
+    font-size: 4vw;
+    padding-inline: 5vw;
+  }
+
+  .nba-text.small {
+    font-size: 3.5vw;
+  }
+
+  .nba-text.pad-10 {
+    padding-inline: 7vw;
+  }
+
+  .nba-text.pad-15 {
+    padding-inline: 10vw;
+  }
+
+  .nba-note {
+    font-size: 3vw;
+  }
+
+  .nba-subnote {
+    font-size: 2.5vw;
+  }
+
+  .nba-section-title {
+    font-size: 4vw;
+  }
+
+  .nba-highlight {
+    font-size: 3vw;
+  }
+
+  .nba-diy-container {
+    padding-inline: 5vw;
+  }
+
+  .nba-sources-container {
+    padding-inline: 7vw;
+  }
+
+  .nba-sources-text {
+    font-size: 2vw;
+  }
+}
