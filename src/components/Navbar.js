@@ -1,61 +1,61 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
 
-const Nav = styled.nav`
-    background: rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(10px);
-    height: 3rem;
-    display: flex;
-    justify-content: left;
-    padding: 0.2rem calc((100vw - 1000px) / 2);
-    z-index: 12;
-    margin-bottom: 1rem;
-    padding-left: 1rem;
-`;
+/**
+ * The sheet's runtime: who this is on the left, where you can go on the right.
+ *
+ * The resume link is wired to the real PDF in public/, because that artifact is
+ * a confirmed keeper and a hiring reader should be able to reach it from the
+ * first screen without hunting. Nothing here is a dead link.
+ *
+ * The old navbar's "Portfolio Projects" entry is gone on purpose: the work now
+ * lives on the front sheet, so a second surface for it would be a second answer
+ * to the same question. That route still resolves for anyone with the URL.
+ */
 
-const NavLink = styled.div`
-    color: #FCF3D9;
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    padding: clamp(0rem, 1vw, 2rem);
-    height: 100%;
-    cursor: pointer;
-    font-weight: 300;
-    ${props => props.isActive ? `
-        color: #213052;
-        font-weight: 500;
-    ` : ''}
-    font-family: "Publico";
-    font-size: clamp(1rem, 1.6dvw, 2rem);
-`;
+const NAV = [
+  { id: 'home', label: 'Work' },
+];
 
-const NavMenu = styled.div`
-    display: flex;
-    align-items: center;
-`;
+function Topbar({ page, setPage }) {
+  return (
+    <>
+      <hr className="rule" style={{ gridColumn: '1 / span 12' }} />
+      <div className="topbar" style={{ gridColumn: '1 / span 12' }}>
+        <span className="stamp">Raj Shah &mdash; portfolio</span>
+        <nav className="topbar__nav">
+          {NAV.map((item) =>
+            page === item.id ? (
+              /* The page you are already standing on is a marker, not a control.
+                 As a <button> it announced itself as the current page and then
+                 did nothing when clicked — so the first click a cautious reader
+                 made taught them the page was broken. A <span> cannot be
+                 clicked into doing nothing. */
+              <span key={item.id} className="stamp topbar__link" aria-current="page">
+                {item.label}
+              </span>
+            ) : (
+              <button
+                key={item.id}
+                type="button"
+                className="stamp topbar__link"
+                onClick={() => setPage(item.id)}
+              >
+                {item.label}
+              </button>
+            )
+          )}
+          <a
+            className="stamp topbar__link"
+            href={process.env.PUBLIC_URL + '/Raj_Shah_Resume.pdf'}
+            target="_blank"
+            rel="noreferrer"
+          >
+            Resume
+          </a>
+        </nav>
+      </div>
+    </>
+  );
+}
 
-const Navbar = ({ page, setPage }) => {
-    return (
-        <>
-            <Nav>
-                <NavMenu>
-                    <NavLink isActive={page === "home"} onClick={() => setPage("home")}>
-                        Home
-                    </NavLink>
-                    <NavLink isActive={page === "about"} onClick={() => setPage("about")}>
-                        About Me
-                    </NavLink>
-                    {/* <NavLink isActive={page === "learnings"} onClick={() => setPage("learnings")}>
-                        What I Hope to Learn
-                    </NavLink> */}
-                    <NavLink isActive={page === "projects"} onClick={() => setPage("projects")}>
-                        Portfolio Projects
-                    </NavLink>
-                </NavMenu>
-            </Nav>
-        </>
-    );
-};
-
-export default Navbar;
+export default Topbar;

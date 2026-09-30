@@ -3,79 +3,21 @@ import React, { useState } from 'react';
 import {
     Card,
     Image,
-    Text,
-    Title,
     Button,
     Grid,
     Container
 } from '@mantine/core';
-import { clamp } from '@mantine/hooks';
+import { projects as projectData } from '../../data/projects';
 
-const projectList = [
-    {
-        id: 'survivor',
-        label: 'Diversity Analysis of 49 Seasons of Survivor',
-        description: 'An interactive data journalism piece examining race, gender, and age representation across all 49 seasons of Survivor. ' +
-            'Built with D3.js, featuring KDE ridge plots, funnel charts, stacked bars, and wage trend lines showing how the New Era changed casting.',
-        image: process.env.PUBLIC_URL + "/survivor_title_red.png",
-        link: process.env.PUBLIC_URL + "?ref=survivor"
-    },
-    {
-        id : 'mlb',
-        label: 'What’s Driving the Decline in Batting Averages?',
-        description: 'An investigation using Bayesian fixed-effects models on 240,000+ pitches to predict hit probability. ' + 
-            'Built using brms in R to implement Stan models and visualize pitch-level MLB data.',
-        image: process.env.PUBLIC_URL + "/baseball.png",
-        link: "https://docs.google.com/document/d/17c2o7EFKines5UShSIxJJPq4FQIeX7wbIDnGrmPT4Ss"
-    },
-    {
-        id: 'nba',
-        label: 'Contract Year vs. Performance in the NBA',
-        description: 'This project is an experiment in data-storytelling. I use D3.JS to visualize the relationship between contract' +
-            ' years and player performance in the NBA. The project includes animated components and interactive components that allow' +
-            ' the user to explore the data in a more engaging way.',
-        image: process.env.PUBLIC_URL + "/title_nba.png",
-        link: process.env.PUBLIC_URL + "?ref=nba_contract"
-    },
-    {
-        id: 'idl',
-        label: 'Achieving Fairness in Federated Learning',
-        description: 'This group project implemented a novel approach to improve individual fairness in Federated Instances using the ' +
-            'Flower framework. We trained a Neural Network model on recidivism cases from the COMPAS dataset, and were able to achieve ' +
-            'increases in group and individual fairness metrics without sacrificing accuracy.',
-        image: process.env.PUBLIC_URL + "/IDL.png",
-        link: "https://drive.google.com/file/d/18o0HTSjobRYRX5yXMQSVGRwoyJZB7Lbb/view?usp=sharing"
-    },
-    {
-        id: 'fund_vote',
-        label: 'Reducing Voter Wait Times using Optimization',
-        description: 'This project used optimization techniques to reduce voter wait times in Allegheny County. We used census data and ' +
-            'historical voting data to create a model that predicts wait times at polling places. We then used this model to optimize the ' +
-            'allocation of voting machines and poll workers to reduce wait times.',
-        image: process.env.PUBLIC_URL + "/fund_vote.png",
-        link: "https://drive.google.com/file/d/1zSonvwBOezt0recD4NiNXHyRVB9xGxiE/view?usp=sharing"
-
-    },
-    {
-        id: 'gis',
-        label: 'Changes in Industry in Pittsburgh using GIS',
-        description: 'This ArcGIS Dashboard visualizes changes in occupational makeup across the greater Pittsburgh area. It uses ' +
-            'historical census data with Multivariate Cluster Analysis to identify trends across different precincts. The dashboard allows ' +
-            'users to stratify data by industry and by year.',
-        image: process.env.PUBLIC_URL + "/pitt.png",
-        link: "https://carnegiemellon.maps.arcgis.com/apps/dashboards/5e8c1eabf493431db79e6a2bbf66a554"
-    },
-    {
-        id: 'fakebook',
-        label: 'Full-Stack CNN for Identifying GAN Media',
-        description: 'This project uses a Convolutional Neural Network to identify GAN-generated media. The project was deployed on Amazon ' +
-            'Web Services and was served via a Chrome Extension with React. The project achieved an accuracy of 97.2% on our test set ' +
-            'and the project was a Top Ten Finalist in Booz Allen Hamilton\'s 2019 Summer Games.',
-        image: process.env.PUBLIC_URL + "/fakebook.png",
-        link: "https://drive.google.com/file/d/1A7DYSkxohtBkIaL4D1_LJD2QY5pbcOx7/view?usp=sharing"
-    }
-
-]
+// One source of truth. The copy lives in src/data/projects.js so a description
+// edit cannot drift between this surface and the front sheet.
+const projectList = projectData.map((p) => ({
+    id: p.id,
+    label: p.title,
+    description: p.description,
+    image: process.env.PUBLIC_URL + p.image,
+    link: p.external ? p.link : process.env.PUBLIC_URL + p.link,
+}))
 
 function ProjectCard({ item }) {
     const [hovered, setHovered] = useState(false);

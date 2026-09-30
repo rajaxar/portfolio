@@ -1,0 +1,867 @@
+/*  Riso Drum — the shell's world.
+ *
+ *  Print discipline: the baseline unit is 24px — body is set 16/24 and the
+ *  lattice governs SPACE: margins, padding, gaps and the rhythm utilities are
+ *  whole steps of it. Twelve columns on a 24px gutter. Text capped at a
+ *  66-character measure. Display sizes are set so the masthead sits on exact
+ *  grid rows.
+ *
+ *  The lattice does NOT govern the type ladder's leading, and an earlier
+ *  version of this header claimed it did. Each size carries the leading that
+ *  size needs — .lead 20/32, .proj__title 28/30, .proj__body 14/20, .contact
+ *  30/32 — and rounding those onto 24 would break the faces rather than align
+ *  them. Space is on the lattice; leading is optical. Stated plainly here
+ *  because the invariant is audited against this file.
+ *
+ *  Ink discipline, enforced rather than stated:
+ *    - COLOUR OWNS FIELDS. An ink fills a plate, a chip, a rule, an image
+ *      field or a band.
+ *    - SMALL TYPE IS ALWAYS RICH BLACK. Black is 17.75:1 on paper. Against
+ *      every field ink — measured after the grain plate has multiplied both
+ *      the type and its background — the worst case is teal at 4.59:1, so all
+ *      five inks clear 4.5:1 and black may sit on any of them.
+ *    - ONE INK MAY CARRY TYPE: --blue-deep, the blue at print density
+ *      (4.78:1 on paper, 4.10:1 with grain over it). The cornflower itself is
+ *      2.95:1 and fails even the 3:1 large-text floor, which is why the hover
+ *      and focus states take the dense step instead of the ink.
+ *    - Tone lives on the display line and in image fields, never behind type.
+ *    - No gradients, no drop shadows, no blur-as-elevation. Depth comes from
+ *      layer offset and tone density.
+ *
+ *  The story surfaces (?ref=survivor, ?ref=nba_contract) keep their own
+ *  background and are untouched by this file.
+ */
+
+/* The apparatus face. Redaction is a typeface about photocopy decay: Jeremy
+ * Mickel and Forest Young made it for Titus Kaphar and Reginald Dwayne Betts'
+ * Redaction project at MoMA PS1, building bitmap flecks and inktrap logic into
+ * the letterforms across seven grades, from clean to nearly illegible. Grade 20
+ * is the one that fits here — the apparatus is set at 11-13px and has to stay
+ * legible, so it takes the decay as texture rather than as damage. Vendored from
+ * @fontsource/redaction-20 under the SIL OFL (see assets/fonts/), self-hosted so
+ * the deploy carries no runtime dependency and the face cannot be withdrawn.
+ *
+ * It is used for the entry numbers ONLY. It is not a second display
+ * face — it is the press's apparatus — so the one-display-face rule still holds.
+ * If it fails to load, the apparatus falls back to the body face, which is a
+ * plainer sheet but still this world.
+ */
+@font-face {
+  font-family: "Redaction 20";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url("../assets/fonts/redaction-20-latin-400-normal.woff2") format("woff2");
+}
+
+:root {
+  /* Paper is never white; black is never pure. The inks are read off Raj's
+     reference sheets rather than a swatch book — mustard, cornflower, a dusty
+     pink, sage, a soft teal — because the riso primaries they replaced
+     (fluorescent pink, electric yellow) read as packaging. The PAPER is not
+     read off those sheets: the references are photographs, and their stock
+     sits lighter than it photographs. It has to, because the grain plate
+     multiplies the whole page: this token renders as roughly #e6e2d8. */
+  --paper: #f7f3e8;
+  --ink: #0b0b0b;
+  --pink: #de56a9;
+  --blue: #718fc4;
+  --green: #93ae9b;
+  --teal: #2f8fa1;
+  --yellow: #deb250;
+  /* the same blue at higher ink density — the one ink that may carry type */
+  --blue-deep: #4a6ba8;
+
+  --base: 24px;
+  --gut: 24px;
+  --margin-top: 72px;
+  --margin-side: 96px;
+  --margin-bottom: 96px;
+  --measure: 66ch;
+
+  --font-display: "Big Shoulders Display", "Big Shoulders", Archivo, system-ui, sans-serif;
+  --font-text: Archivo, system-ui, -apple-system, sans-serif;
+  --font-mono: "Martian Mono", "JetBrains Mono", ui-monospace, monospace;
+  /* the press's apparatus — the entry numbers, nothing else */
+  --font-apparatus: "Redaction 20", Archivo, system-ui, sans-serif;
+
+  /* the registration slip: a per-layer transform, and a real control */
+  --slip: 9px;
+  /* --slip is the control state (rest 9, hover 16, Alt-latch 30). --drift is the
+     scroll's and the knock's contribution, written inline on the masthead wrap
+     by the surface. The plates read their SUM, so every interaction on this page
+     is the same one device rather than a second vocabulary. */
+  --drift: 0px;
+
+  --rule: rgba(11, 11, 11, 0.24);
+  --rule-strong: rgba(11, 11, 11, 0.55);
+}
+
+.sheet {
+  position: relative;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-text);
+  font-size: 16px;
+  line-height: 24px;
+  min-height: 100dvh;
+  padding: var(--margin-top) var(--margin-side) var(--margin-bottom);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Paper grain: one generated plate multiplied over the sheet, biting into the
+ * ink solids so nothing reads as a flat vector fill. Provenance lives beside
+ * the asset in src/assets/PROVENANCE.txt. */
+.sheet__grain {
+  position: fixed;
+  inset: 0;
+  z-index: 99;
+  pointer-events: none;
+  opacity: 0.68;
+  mix-blend-mode: multiply;
+  background-repeat: repeat;
+  background-image: url("../assets/grain.png");
+}
+
+.sheet__grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--gut);
+  align-items: start;
+}
+
+/* the surfaces that predate this world lay themselves out full width; they get
+   the paper and the runtime, not the grid */
+.sheet__flow {
+  display: block;
+}
+.sheet__flow > .topbar {
+  margin-bottom: calc(3 * var(--base));
+}
+
+/* ---- registration marks: in the paper border, corners only -----------------
+ * Promised by the direction contract's FIRST VIEWPORT clause and missing from
+ * the build. Crosses, not the conventional circle: the system has exactly one
+ * radius and it is 0px, so the circle is left out rather than broken to fit it. */
+.regs {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+.reg {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  opacity: 0.8;
+}
+.reg::before,
+.reg::after {
+  content: "";
+  position: absolute;
+  background: var(--ink);
+}
+.reg::before {
+  left: 50%;
+  top: 0;
+  width: 1.5px;
+  height: 100%;
+  transform: translateX(-0.75px);
+}
+.reg::after {
+  top: 50%;
+  left: 0;
+  height: 1.5px;
+  width: 100%;
+  transform: translateY(-0.75px);
+}
+/* the centre square is what separates a registration mark from a decorative
+   plus sign; a circle is the conventional form and is the one thing this system
+   cannot draw, because it has exactly one radius and it is 0px. */
+.reg__dot {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 5px;
+  height: 5px;
+  background: var(--ink);
+  transform: translate(-50%, -50%);
+}
+.reg--tl { top: 30px; left: 30px; }
+.reg--tr { top: 30px; right: 30px; }
+.reg--bl { bottom: 30px; left: 30px; }
+.reg--br { bottom: 30px; right: 30px; }
+
+/* ---- rules and stamps ---- */
+.rule {
+  border: 0;
+  border-top: 1px solid var(--ink);
+  margin: 0;
+}
+.stamp {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  /* One label rank, not two. .stamp carried 0.2em and .tag 0.12em — same face,
+     same size, same weight, same leading, separated by 0.88px of tracking, so
+     "where I can go" and "what this project is about" read as one rank. 0.16em
+     is the single value for both, and it is the value the narrow breakpoint
+     already used, so the same label no longer changes across breakpoints. */
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--base);
+  margin-top: 11px;
+}
+.topbar__nav {
+  display: flex;
+  align-items: baseline;
+  gap: var(--base);
+}
+/* the runtime is type, not a control bar: buttons dressed as stamps.
+   NOT `font: inherit` — that shorthand silently overrode the stamp's face and
+   size, so the nav rendered 16px Archivo while the wordmark beside it was 11px
+   Martian Mono. The direction contract says the runtime is mono, so .stamp
+   supplies the type and this rule only strips the control chrome. */
+.topbar__link {
+  background: none;
+  border: 0;
+  padding: 0;
+  color: inherit;
+  cursor: pointer;
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+}
+.topbar__link:hover {
+  border-bottom-color: var(--ink);
+}
+.topbar__link[aria-current="page"] {
+  border-bottom-color: var(--ink);
+  /* The current item is a marker, not a control: no pointer affordance and no
+     hover response, because there is nowhere to go from here. */
+  cursor: default;
+}
+.topbar__link[aria-current="page"]:hover {
+  border-bottom-color: var(--ink);
+}
+
+/* ---- the masthead: three screened plates, one line ---- */
+.masthead {
+  grid-column: 1 / span 7;
+}
+.masthead__wrap {
+  position: relative;
+  display: block;
+}
+.masthead__plate {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+/* The four display rules on this sheet all carry `font-stretch: 82%`, and
+   measured on the built page it does nothing: Big Shoulders Display is requested
+   from Google with a weight axis only (`wght@100..900`), so there is no width
+   axis to address — a test string measures 1144.7px at 50%, 82%, 100% and 150%
+   alike, while the wght axis does move it. The face is a condensed American
+   Gothic by design, so the intent is satisfied by the typeface itself and
+   nothing looks wrong; that is why this survived four rounds.
+   The declarations are kept rather than deleted because they become live the
+   moment the display face has a width axis — Bricolage Grotesque (wdth 75–100)
+   is the candidate. DESIGN.md is written to match what renders, not this. */
+.masthead__plate text {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-stretch: 82%;
+  text-transform: uppercase;
+}
+/* Each plate drifts on its own: its own magnitude, its own direction, a hair of
+ * scale. Registration error is a mechanical event, never symmetric. */
+.ink {
+  mix-blend-mode: multiply;
+  transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.ink--pink {
+  transform: translate(calc(-0.72 * (var(--slip) + var(--drift, 0px))), calc(0.46 * (var(--slip) + var(--drift, 0px)))) scale(1.0016);
+}
+.ink--blue {
+  /* Deliberately not the mirror of pink. Pink runs -0.72/+0.46; a blue of
+     +0.5/-0.3 is the same vector scaled, which is a lens error, not a press
+     error — the two plates resolve to chromatic aberration and the masthead
+     reads as an anaglyph. Unrelated magnitudes plus a hair of rotation read as
+     two impressions that landed separately, which is what actually happened. */
+  transform: translate(calc(0.36 * (var(--slip) + var(--drift, 0px))), calc(-0.62 * (var(--slip) + var(--drift, 0px)))) rotate(0.15deg) scale(1.0024);
+}
+.ink--key {
+  transform: translate(calc(0.08 * (var(--slip) + var(--drift, 0px))), calc(0.05 * (var(--slip) + var(--drift, 0px))));
+  opacity: 0.86;
+}
+/* Hovering starts the plates drifting apart; Alt latches them fully separated.
+ * Transient, self-clearing, no extra markup, no new assets. */
+.masthead__wrap:hover {
+  --slip: 16px;
+}
+.sheet--apart {
+  --slip: 30px;
+}
+
+/* ---- the press ------------------------------------------------------------
+ * Four interactions, one device: every one of these moves the same per-layer
+ * offset the print itself is built from. Nothing here adds a second vocabulary
+ * to be playful in, and all of it is transform/opacity only — no layout
+ * property animates, so nothing thrashes. */
+.has-motion .proj {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.7s ease-out, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.has-motion .proj.is-printed {
+  opacity: 1;
+  transform: none;
+}
+/* the artwork takes its ink first, then the screen resolves over the field */
+.has-motion .proj__field img {
+  opacity: 0.15;
+  transition: opacity 0.9s ease-out;
+}
+.has-motion .proj.is-printed .proj__field img {
+  opacity: 1;
+}
+.has-motion .proj__field::after {
+  opacity: 0;
+  transition: opacity 0.9s 0.05s ease-out;
+}
+.has-motion .proj.is-printed .proj__field::after {
+  opacity: 0.16;
+}
+
+/* hovering a printed entry pulls its plates a little further apart — a nudge, not
+   a colour burst */
+.proj__title::before,
+.proj__title::after {
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.proj:hover .proj__title::before {
+  transform: translate(-1.4px, 1.1px);
+}
+.proj:hover .proj__title::after {
+  transform: translate(1.1px, -0.9px);
+}
+.has-motion .proj:hover .proj__field::after {
+  opacity: 0.22;
+}
+
+/* the secret: touch the printed name and the press knocks out of register for a
+   beat, then settles. Transient and self-clearing, like the Alt latch. */
+.sheet--knock .proj__title::before {
+  transform: translate(-1.8px, 1.4px);
+}
+.sheet--knock .proj__title::after {
+  transform: translate(1.4px, -1.1px);
+}
+
+/* the name is a target, quietly: a crosshair, not a pointer */
+.masthead__wrap {
+  cursor: crosshair;
+}
+
+/* ---- hero copy ---- */
+/* The bridge was committed to a real second mass at 72px and the measurement
+   said no: at 34% of the masthead, on solid black while the masthead is screened
+   and misregistered, it won the first read and broke the hierarchy. It is now a
+   deliberate step that yields — 25% of the masthead, so the One Display Mass Rule
+   holds and the name is still the page's peak. */
+.bridge {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-stretch: 82%;
+  text-transform: uppercase;
+  font-size: 52px;
+  line-height: 58px;
+  margin: 0;
+}
+/* The running text owns an ink, like every other field on the sheet. The plate
+   bleeds one 24px step into the left margin so the copy stays optically aligned
+   with the masthead above it. Rich black on electric yellow measures 15.74:1.
+   Padding is deliberately tight: a review read the first, roomier plate as a
+   third focal point competing with the masthead, so the mass comes down while the
+   field stays. */
+/* The bio's plate. It is printed the same way every other ink on this sheet is —
+   through the tone plate — rather than poured on as a flat hex. That is what
+   makes it lighter and softer at once: paper reads through roughly 43% of it,
+   and it carries the same grain as the image fields. A flat solid here would
+   have been the last big block on the page, which is the thing this world was
+   corrected for twice. */
+.lead {
+  position: relative;
+  isolation: isolate;
+  font-size: 20px;
+  line-height: 32px;
+  max-width: calc(var(--measure) + 2 * 20px);
+  margin: 0 0 0 -20px;
+  padding: 8px 20px;
+  letter-spacing: -0.004em;
+}
+.lead::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--yellow);
+  -webkit-mask-image: url("../assets/tone.png");
+  mask-image: url("../assets/tone.png");
+  -webkit-mask-size: 400px 400px;
+  mask-size: 400px 400px;
+  -webkit-mask-repeat: repeat;
+  mask-repeat: repeat;
+  opacity: 0.82;
+}
+
+/* ---- the project run: pick one ---- */
+.projects {
+  grid-column: 1 / span 12;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: calc(3 * var(--base)) var(--gut);
+  align-items: start;
+}
+.proj {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  border-top: 2px solid var(--ink);
+}
+.proj__field {
+  position: relative;
+  aspect-ratio: 2.6 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-bottom: 2px solid var(--ink);
+}
+.proj__field img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  /* duotone: the artwork takes the ink of its field. It multiplies into the ink
+     layer beneath, so the plate's paper flecks carry through the artwork instead
+     of stopping at its edge. */
+  filter: grayscale(1) contrast(1.3) brightness(1.06);
+  mix-blend-mode: multiply;
+}
+/* THE INK IS THE TONE. A riso fill is ink deposited at a density, not a flat
+   block with grain sprinkled over it — which is what an earlier version was,
+   and why it read as a coloured rectangle covered in dots. So the field prints
+   through a mask: src/assets/tone.png, a soft gaussian plate whose alpha
+   averages 0.70. The ink therefore covers ~70% of the field and the paper reads
+   through the remaining 30%. That is what makes the fill read as light and
+   printed rather than opaque, and it is why the three inks can stay at their
+   reference values instead of being tinted down. The ink colour comes from the
+   field class as a custom property. Failure mode: if the plate ever fails to
+   load the mask drops and the field prints solid — texture lost, colour kept. */
+.proj__field::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: var(--field-ink);
+  -webkit-mask-image: url("../assets/tone.png");
+  mask-image: url("../assets/tone.png");
+  -webkit-mask-size: 400px 400px;
+  mask-size: 400px 400px;
+  -webkit-mask-repeat: repeat;
+  mask-repeat: repeat;
+}
+/* The density relationship survives the change of device: three ink deposits
+   cycled through the run by position, exactly as the three screen angles used
+   to be. */
+.proj:nth-child(3n + 2) .proj__field::before {
+  opacity: 0.86;
+}
+.proj:nth-child(3n + 3) .proj__field::before {
+  opacity: 0.94;
+}
+.field--yellow {
+  --field-ink: var(--yellow);
+}
+.field--pink {
+  --field-ink: var(--pink);
+}
+.field--teal {
+  --field-ink: var(--teal);
+}
+.field--green {
+  --field-ink: var(--green);
+}
+/* Ink never takes up evenly. The same plate read large — 1200px against the
+   400px grain — gives slow density drift: patches where the field is heavier
+   and patches where it is thinner, over the fine grain instead of replacing it.
+   It sits above the artwork rather than below it, because the ink is laid over
+   everything on that pass. */
+.proj__field::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: var(--field-ink);
+  -webkit-mask-image: url("../assets/tone.png");
+  mask-image: url("../assets/tone.png");
+  -webkit-mask-size: 1200px 1200px;
+  mask-size: 1200px 1200px;
+  -webkit-mask-repeat: repeat;
+  mask-repeat: repeat;
+  mix-blend-mode: multiply;
+  opacity: 0.16;
+}
+/* The run carries the signature rather than using it once. Each title prints as
+   three offset plates in the masthead's own vocabulary — pink pulled one way,
+   blue the other, the black key on top, all multiplied so the overlaps darken
+   like ink. The offsets are scale-relative, not the masthead's numbers: 3.1% of
+   a 210px cap height is 0.87px at 28px, i.e. invisible, so the run needs a
+   larger ratio to read at all. */
+.proj__title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-stretch: 82%;
+  font-size: 28px;
+  /* 32, not 30. At 30 the leading is 1.07, so a wrapped two-line uppercase title
+     crosses itself — and the longest title on the sheet already fills 90.5% of
+     its 612px column, so a title about 10% longer lands in exactly that state. */
+  line-height: 32px;
+  margin: var(--base) 0 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  position: relative;
+  isolation: isolate;
+}
+/* The run keeps a whisper of the masthead's device, not the device at full
+   volume. Read back as garish and hard to read at ±1.6px of pink/blue split on
+   28px type — that is anaglyph, not a press — so the offset drops to ~2.5% of the
+   cap height and the two colour impressions take opacity, leaving a faint press
+   halo rather than a rainbow. The masthead remains the only place the three
+   plates appear at full strength, which also restores it as the peak. */
+.proj__title::before,
+.proj__title::after {
+  content: attr(data-title);
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+  opacity: 0.5;
+}
+.proj__title::before {
+  color: var(--pink);
+  transform: translate(-0.7px, 0.55px);
+}
+.proj__title::after {
+  color: var(--blue);
+  transform: translate(0.55px, -0.45px);
+}
+.proj__body {
+  /* The measure, finally applied to the block that does the reading. DESIGN.md
+     claimed running text was capped at 66ch and only .lead was; these bodies ran
+     75.5 of their own characters, and because the run widens with the window they
+     reached 102 at 1920 and 144 at 2560 — the longest measure on the sheet
+     carrying the tightest leading. Capping them is what makes the record's own
+     claim true rather than aspirational. */
+  max-width: var(--measure);
+  margin: 0 0 var(--base);
+  font-size: 14px;
+  line-height: 20px;
+  opacity: 0.88;
+}
+.proj__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+.tag {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--rule-strong);
+  padding: 4px 9px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.proj:hover .proj__title {
+  color: var(--blue-deep);
+}
+
+/* ---- contacts ---- */
+.contacts {
+  grid-column: 1 / span 12;
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(2 * var(--base));
+}
+.contact {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-stretch: 82%;
+  font-size: 36px;
+  line-height: 38px;
+  text-transform: uppercase;
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 4px;
+}
+.contact:hover {
+  color: var(--blue-deep);
+  border-color: var(--blue-deep);
+}
+
+/* ---- the imprint ---------------------------------------------------------
+ * Hover or focus a contact link and its address sets itself beneath, in the
+ * apparatus face, the way a press sheet carries the imprint at its foot. This
+ * is the delight pass's whole thesis: the page offered "Email" and "LinkedIn"
+ * as words, and a reader who wanted to paste the address into a tracking sheet
+ * had to open a mail client to get it. Character revealed through a considered
+ * detail rather than an ornament.
+ *
+ * Absolutely positioned, so the reveal cannot move the layout under the reader's
+ * cursor — a hover that shifts the thing being hovered is worse than no reveal.
+ * `text-transform: none` is load-bearing: .contact is uppercase, and an
+ * uppercased email is a wrong address. `font-weight: 400` likewise, because
+ * Redaction 20 ships one weight and the inherited 900 would be synthesised. */
+.contact {
+  position: relative;
+}
+.contact::after {
+  content: attr(data-imprint);
+  position: absolute;
+  left: 0;
+  top: calc(100% + 8px);
+  font-family: var(--font-apparatus);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.35;
+  letter-spacing: normal;
+  text-transform: none;
+  color: var(--ink);
+  opacity: 0;
+  transition: opacity 0.18s ease-out;
+  pointer-events: none;
+  white-space: nowrap;
+}
+.contact:hover::after,
+.contact:focus-visible::after {
+  opacity: 0.75;
+}
+
+/* ---- the apparatus: spine and entry numbers --------------------------------
+ * Two printed conventions, each doing a job rather than decorating. The spine
+ * puts the positioning in the paper border where a printed edge would carry it;
+ * the running head numbers the entries and declares the ink each field runs.
+ * A third — a slug stating the sheet's own contents at the foot — existed for a
+ * round and was removed on Raj's call. */
+
+/* Down the paper border, reading bottom-to-top. Withdraws below 1080px — the
+   border drops to 32px there and the spine would sit on the copy.
+   Sentence case and normal tracking, both arrived at the same way: the detector
+   flagged 53 characters of caps as harder to read, and then flagged the wide
+   letterspacing once the caps were gone. It was right twice. Tracking that wide
+   is a caps device; with the caps gone it is just loose type. What makes this a
+   spine is the face, the size and the rotation. */
+.spine {
+  position: absolute;
+  left: 26px;
+  top: var(--margin-top);
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-family: var(--font-mono);
+  /* 12, not 11. The file's own law: 12px is the floor once a line is set in roman
+     case rather than uppercase, and the spine is Title Case. It is also the
+     lowest-contrast text on the sheet (6.04:1 composited at 0.68 opacity), so it
+     is the last string that can afford to be the smallest. */
+  font-size: 12px;
+  line-height: 1.35;
+  white-space: nowrap;
+  color: var(--ink);
+  opacity: 0.68;
+}
+
+/* The running head: catalogue number at the left, the ink chip at the right. */
+.proj__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0;
+}
+.proj__no {
+  font-family: var(--font-apparatus);
+  font-size: 13px;
+  /* 1.35 rather than 1: a numeral cannot clip, but a fallback face with taller
+     metrics could, and there is no upside to the tighter value here. */
+  line-height: 1.35;
+  letter-spacing: 0.1em;
+  color: var(--ink);
+}
+/* A chip of the ink this entry's field runs, at the scale a press specifies one.
+   It is a mark, not a field, so it carries no text and answers to no ratio. */
+.proj__chip {
+  width: 12px;
+  height: 12px;
+  background: var(--field-ink);
+}
+
+/* spacing rhythm: one step, applied consistently, in whole baseline units */
+.mt2 { margin-top: calc(2 * var(--base)); }
+.mt3 { margin-top: calc(3 * var(--base)); }
+
+.sr-only {
+  /* 400, because the request no longer carries a 700 and these headings are
+     invisible anyway: the browser was synthesising a bold the font set could not
+     supply, which showed up as an unexamined weight in the ladder. */
+  font-weight: 400;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+::selection {
+  background: var(--pink);
+  /* Black, not paper. Paper-on-pink measures 3.15:1 — enough for large text,
+     nowhere near enough for the 14px body copy this actually highlights, and
+     the one place the sheet broke its own ink rule. Black on pink is 5.63:1. */
+  color: var(--ink);
+}
+
+/* Browser surfaces are part of the build, not the environment: an unthemed
+   focus ring and scrollbar are the cheapest tell of an assembled page.
+   Scoped with :has(.sheet) so the story surfaces keep their own chrome —
+   they are separate artifacts and this file does not reach them. */
+html:has(.sheet) {
+  scrollbar-color: var(--ink) var(--paper);
+  scrollbar-width: thin;
+}
+html:has(.sheet) ::-webkit-scrollbar {
+  width: 12px;
+}
+html:has(.sheet) ::-webkit-scrollbar-track {
+  background: var(--paper);
+}
+html:has(.sheet) ::-webkit-scrollbar-thumb {
+  background: var(--ink);
+  border: 3px solid var(--paper);
+}
+.sheet :focus-visible {
+  outline: 2px solid var(--blue-deep);
+  outline-offset: 2px;
+}
+
+@media (max-width: 1080px) {
+  :root {
+    --margin-side: 32px;
+  }
+  /* the paper border is 32px here — a mark inside it would sit on the copy */
+  .regs {
+    display: none;
+  }
+  /* same reasoning: the spine needs the 96px border to stand in */
+  .spine {
+    display: none;
+  }
+  .masthead,
+  .projects,
+  .contacts {
+    grid-column: 1 / span 12;
+  }
+  .projects {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Narrow screens. Two print-faithful corrections rather than shrinking things
+   until they fit:
+     - The runtime wraps to its own line instead of clipping "Resume".
+     - The masthead prints SOLID. A coarse screen reads as ink at 210px of
+       display type and as grey mush at 50px, so at this size the plates go
+       solid and the misregistration — the thing that actually carries the
+       world — is what remains. */
+@media (max-width: 620px) {
+  .topbar {
+    flex-wrap: wrap;
+    row-gap: 12px;
+  }
+  .topbar__nav {
+    gap: 16px;
+  }
+  .masthead__plate text {
+    mask: none;
+  }
+  .lead {
+    font-size: 18px;
+    line-height: 28px;
+  }
+  /* The contacts keep their old mobile size. The larger step is a desktop
+     statement about rank — the address outranking the row titles — and at 36px
+     two of them no longer fit a 326px column. Mobile was signed off as-is. */
+  .contact {
+    font-size: 30px;
+    line-height: 32px;
+  }
+  .bridge {
+    font-size: 34px;
+    line-height: 38px;
+  }
+  /* Same reasoning as the masthead above: on artwork that is already small, the
+     take-up layer reads as dirt rather than as ink, so it thins. The print-in
+     rules below have to reinstate the thinner value, since they carry more
+     specificity than this rule. */
+  .proj__field::after {
+    opacity: 0.08;
+  }
+  .has-motion .proj.is-printed .proj__field::after {
+    opacity: 0.08;
+  }
+  .has-motion .proj:hover .proj__field::after {
+    opacity: 0.12;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ink {
+    transition: none;
+  }
+  /* the script already declines to arm any of this under the preference; these
+     are the belt-and-braces for a preference toggled after load */
+  .has-motion .proj,
+  .has-motion .proj__field img,
+  .has-motion .proj__field::after,
+  .proj__title::before,
+  .proj__title::after {
+    transition: none;
+  }
+  .has-motion .proj {
+    opacity: 1;
+    transform: none;
+  }
+  .has-motion .proj__field img {
+    opacity: 1;
+  }
+  .masthead__wrap {
+    cursor: default;
+  }
+}

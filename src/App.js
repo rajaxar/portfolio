@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import './styles/styles.css';
+import './styles/riso.css';
 import '@mantine/core/styles.css';
 import Layout from "./components/Layout";
 import Home from "./components/Home";
-import About from "./components/About";
 import Learnings from "./components/Learnings";
 import Projects from "./components/Projects";
 import NBAWireframe from "./components/Projects/nba_contract";
@@ -19,14 +19,11 @@ function App() {
       return acc;
     }, {});
   } catch (e) {}
-  const [page, setPage] = useState(windowDict.ref? windowDict.ref : '');
+  const [page, setPage] = useState(windowDict.ref || 'home');
   let Component;
   switch (page) {
     case 'home':
       Component = Home;
-      break;
-    case 'about':
-      Component = About;
       break;
     case 'learnings':
       Component = Learnings;

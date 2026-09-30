@@ -1,0 +1,352 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-30T15:10:26+00:00",
+  "title": "Design System: Raj Shah \u2014 Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "press-paper": {
+        "role": "neutral",
+        "displayName": "Press Paper",
+        "canonical": "#f7f3e8",
+        "tonalRamp": [
+          "oklch(0.15 0.0152 90.2)",
+          "oklch(0.26 0.0152 90.2)",
+          "oklch(0.37 0.0152 90.2)",
+          "oklch(0.48 0.0152 90.2)",
+          "oklch(0.60 0.0152 90.2)",
+          "oklch(0.71 0.0152 90.2)",
+          "oklch(0.82 0.0152 90.2)",
+          "oklch(0.93 0.0152 90.2)"
+        ]
+      },
+      "rich-black": {
+        "role": "neutral",
+        "displayName": "Rich Black",
+        "canonical": "#0b0b0b",
+        "tonalRamp": [
+          "oklch(0.15 0.0000 89.9)",
+          "oklch(0.26 0.0000 89.9)",
+          "oklch(0.37 0.0000 89.9)",
+          "oklch(0.48 0.0000 89.9)",
+          "oklch(0.60 0.0000 89.9)",
+          "oklch(0.71 0.0000 89.9)",
+          "oklch(0.82 0.0000 89.9)",
+          "oklch(0.93 0.0000 89.9)"
+        ]
+      },
+      "cornflower-blue": {
+        "role": "primary",
+        "displayName": "Cornflower Blue",
+        "canonical": "#718fc4",
+        "tonalRamp": [
+          "oklch(0.15 0.0869 261.5)",
+          "oklch(0.26 0.0869 261.5)",
+          "oklch(0.37 0.0869 261.5)",
+          "oklch(0.48 0.0869 261.5)",
+          "oklch(0.60 0.0869 261.5)",
+          "oklch(0.71 0.0869 261.5)",
+          "oklch(0.82 0.0869 261.5)",
+          "oklch(0.93 0.0869 261.5)"
+        ]
+      },
+      "dusty-pink": {
+        "role": "primary",
+        "displayName": "Dusty Pink",
+        "canonical": "#de56a9",
+        "tonalRamp": [
+          "oklch(0.15 0.1907 346.0)",
+          "oklch(0.26 0.1907 346.0)",
+          "oklch(0.37 0.1907 346.0)",
+          "oklch(0.48 0.1907 346.0)",
+          "oklch(0.60 0.1907 346.0)",
+          "oklch(0.71 0.1907 346.0)",
+          "oklch(0.82 0.1907 346.0)",
+          "oklch(0.93 0.1907 346.0)"
+        ]
+      },
+      "sage-green": {
+        "role": "secondary",
+        "displayName": "Sage Green",
+        "canonical": "#6f907a",
+        "tonalRamp": [
+          "oklch(0.15 0.0496 155.5)",
+          "oklch(0.26 0.0496 155.5)",
+          "oklch(0.37 0.0496 155.5)",
+          "oklch(0.48 0.0496 155.5)",
+          "oklch(0.60 0.0496 155.5)",
+          "oklch(0.71 0.0496 155.5)",
+          "oklch(0.82 0.0496 155.5)",
+          "oklch(0.93 0.0496 155.5)"
+        ]
+      },
+      "soft-teal": {
+        "role": "secondary",
+        "displayName": "Soft Teal",
+        "canonical": "#2f8fa1",
+        "tonalRamp": [
+          "oklch(0.15 0.0906 212.7)",
+          "oklch(0.26 0.0906 212.7)",
+          "oklch(0.37 0.0906 212.7)",
+          "oklch(0.48 0.0906 212.7)",
+          "oklch(0.60 0.0906 212.7)",
+          "oklch(0.71 0.0906 212.7)",
+          "oklch(0.82 0.0906 212.7)",
+          "oklch(0.93 0.0906 212.7)"
+        ]
+      },
+      "mustard-yellow": {
+        "role": "tertiary",
+        "displayName": "Mustard Yellow",
+        "canonical": "#deb250",
+        "tonalRamp": [
+          "oklch(0.15 0.1259 84.8)",
+          "oklch(0.26 0.1259 84.8)",
+          "oklch(0.37 0.1259 84.8)",
+          "oklch(0.48 0.1259 84.8)",
+          "oklch(0.60 0.1259 84.8)",
+          "oklch(0.71 0.1259 84.8)",
+          "oklch(0.82 0.1259 84.8)",
+          "oklch(0.93 0.1259 84.8)"
+        ]
+      },
+      "blue-deep": {
+        "role": "primary",
+        "displayName": "Cornflower Blue (print density)",
+        "canonical": "#4a6ba8",
+        "tonalRamp": [
+          "oklch(0.15 0.1039 261.9)",
+          "oklch(0.26 0.1039 261.9)",
+          "oklch(0.37 0.1039 261.9)",
+          "oklch(0.48 0.1039 261.9)",
+          "oklch(0.60 0.1039 261.9)",
+          "oklch(0.71 0.1039 261.9)",
+          "oklch(0.82 0.1039 261.9)",
+          "oklch(0.93 0.1039 261.9)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The masthead only. One line at 210px \u2014 the page's single display mass."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "The bridge line under the masthead \u2014 the line a screening reader actually reads."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Project titles only. The contact links used to share this step; they now sit a full step above it."
+      },
+      "lead": {
+        "displayName": "Lead",
+        "purpose": "The bio paragraph on its electric-yellow plate, capped to a 66-character measure."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "The project descriptions \u2014 the page's real reading surface. Capped to the same 66-character measure as the lead. The sheet's inherited base is 16/24; no role on this surface renders at 16."
+      },
+      "body-small": {
+        "displayName": "Body small",
+        "purpose": "Retained as a token; identical to Body."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "The runtime and the facet tags \u2014 always mono, always uppercase, and one rank: stamp and tag share 0.16em tracking. (A destination line sat here until Raj cut it.)"
+      },
+      "contact": {
+        "displayName": "Contact",
+        "purpose": "The contact links \u2014 one full step above Title (36/38), so the sheet's last line reads as an address rather than a heading. Held at 30/32 below 620px, where two no longer fit a 326px column."
+      },
+      "lead-compact": {
+        "displayName": "Lead, compact",
+        "purpose": "The bio below 620px."
+      },
+      "headline-compact": {
+        "displayName": "Headline, compact",
+        "purpose": "The bridge line below 620px."
+      },
+      "apparatus": {
+        "displayName": "Apparatus",
+        "purpose": "The press's specification voice: the entry numbers in the running heads. Redaction 20 at 13px, sentence case, normal tracking. Not a display face and not a text face \u2014 apparatus. Vendored under the SIL OFL and self-hosted. A slug at the foot of the sheet was the second use for one round; it was removed on Raj's call, so the numbers are the only place this face appears."
+      },
+      "spine": {
+        "displayName": "Spine",
+        "purpose": "The four competencies rotated up the paper border, reading bottom-to-top in Title Case. Martian Mono at 12px \u2014 the 11px Floor Rule puts roman case on the higher step \u2014 normal tracking, aria-hidden because the entry tags already carry the same facets. Withdrawn below 1080px."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "plate-slip",
+        "value": "transform 0.55s cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "The plates' one transition. Hover widens --slip 9px to 16px; Alt latches it to 30px; the scroll and the knock add --drift on top."
+      },
+      {
+        "name": "ease-press",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Exponential ease-out. The system's only easing curve, for everything that moves."
+      },
+      {
+        "name": "scroll-drift",
+        "value": "up to 14px, settling after 110ms idle",
+        "purpose": "Scrolling drifts the plates apart in proportion to velocity; the transform's own 0.55s transition settles them back into register when the scroll stops. No frame loop."
+      },
+      {
+        "name": "knock",
+        "value": "26px held 240ms, then released",
+        "purpose": "The secret. A pointer-down on the name, or the `r` key, knocks the press out of register for a beat and lets it settle."
+      },
+      {
+        "name": "row-print-in",
+        "value": "opacity 0.7s ease-out, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "A project row prints as it arrives: the row fades up 10px while the artwork takes its ink (opacity 0.9s) and the screen resolves over the field (opacity 0.9s, 50ms delayed)."
+      },
+      {
+        "name": "plate-separation-hover",
+        "value": "transform 0.45s cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Hovering a printed entry pulls its title plates further apart (to \u00b13.4px / \u00b12.6px) and densifies the field screen to 0.22."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "compact",
+        "value": "620px",
+        "purpose": "The runtime wraps instead of clipping, the masthead prints SOLID, and the image-field screens thin to 0.08."
+      },
+      {
+        "name": "single-column",
+        "value": "1080px",
+        "purpose": "Side margin drops to 32px, the registration marks withdraw, and the project run collapses to one column."
+      }
+    ],
+    "depthNote": "No shadows anywhere, by doctrine: a press casts none. Depth is layer offset (misregistered plates, at the masthead and again at title scale) and dot density (15/45/75 degree screens, in the masthead and in the image fields)."
+  },
+  "components": [
+    {
+      "name": "Runtime link",
+      "kind": "nav",
+      "refersTo": "runtime-link",
+      "description": "The nav, typeset as a stamp rather than built as a control. Underline is the only affordance.",
+      "html": "<a class=\"ds-runtime-link\" href=\"#\" aria-current=\"page\">WORK</a>",
+      "css": ".ds-runtime-link { font-family: var(--font-mono, \"Martian Mono\", ui-monospace, monospace); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink, #0b0b0b); text-decoration: none; padding-bottom: 1px; border-bottom: 1px solid var(--rule, rgba(11,11,11,0.24)); } .ds-runtime-link:hover { border-bottom-color: var(--ink, #0b0b0b); } .ds-runtime-link:focus-visible { outline: 2px solid var(--blue, #0078bf); outline-offset: 2px; border-bottom-color: var(--ink, #0b0b0b); } .ds-runtime-link[aria-current=\"page\"] { border-bottom-color: var(--ink, #0b0b0b); }"
+    },
+    {
+      "name": "Contact link",
+      "kind": "custom",
+      "refersTo": "contact-link",
+      "description": "The only outbound action on the shell. Display type with a 2px rule under it; the rule takes the blue on hover.",
+      "html": "<a class=\"ds-contact\" href=\"mailto:someone@example.com\">EMAIL</a>",
+      "css": ".ds-contact { font-family: var(--font-display, \"Big Shoulders Display\", system-ui, sans-serif); font-weight: 900; font-stretch: 82%; font-size: 30px; line-height: 32px; text-transform: uppercase; color: var(--ink, #0b0b0b); text-decoration: none; border-bottom: 2px solid var(--ink, #0b0b0b); padding-bottom: 4px; } .ds-contact:hover { color: var(--blue, #0078bf); border-color: var(--blue, #0078bf); } .ds-contact:focus-visible { outline: 2px solid var(--blue, #0078bf); outline-offset: 2px; }"
+    },
+    {
+      "name": "Facet tag",
+      "kind": "chip",
+      "refersTo": "facet-tag",
+      "description": "A competency label on a project row. Deliberately unfilled \u2014 colour here would decode to nothing.",
+      "html": "<span class=\"ds-tag\">DATA VIZ</span>",
+      "css": ".ds-tag { display: inline-flex; align-items: center; font-family: var(--font-mono, \"Martian Mono\", ui-monospace, monospace); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink, #0b0b0b); background: none; border: 1px solid var(--rule-strong, rgba(11,11,11,0.55)); border-radius: 0; padding: 4px 9px; }"
+    },
+    {
+      "name": "Project entry",
+      "kind": "card",
+      "refersTo": "project-card",
+      "description": "One printed project on a light ink field. The title carries the misregistered plate treatment at its own scale (pink and blue impressions under a rich-black key, all multiplied); the field carries one of the world's three real halftone screens. All seven entries are identical in width \u2014 the seventh is not promoted to a feature.",
+      "html": "<a class=\"ds-proj\" href=\"#\"><span class=\"ds-proj__field ds-proj__field--yellow\"><img alt=\"\" src=\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\"></span><span class=\"ds-proj__title\" data-title=\"Diversity Analysis of 49 Seasons of Survivor\">Diversity Analysis of 49 Seasons of Survivor</span><span class=\"ds-proj__body\">What the show's casting and challenge data say about who wins.</span><span class=\"ds-proj__tags\"><span class=\"ds-tag\">DATA VIZ</span></span></a>",
+      "css": ".ds-proj { display: flex; flex-direction: column; text-decoration: none; color: var(--ink, #0b0b0b); border-top: 2px solid var(--ink, #0b0b0b); background: var(--paper, #f1efe9); } .ds-proj__field { position: relative; display: flex; align-items: center; justify-content: center; aspect-ratio: 2.6 / 1; overflow: hidden; border-bottom: 2px solid var(--ink, #0b0b0b); } .ds-proj__field--yellow { background: var(--yellow, #ffe800); } .ds-proj__field img { width: 100%; height: 100%; object-fit: contain; filter: grayscale(1) contrast(1.3) brightness(1.06); mix-blend-mode: multiply; } .ds-proj__field::after { content: \"\"; position: absolute; inset: -100%; pointer-events: none; mix-blend-mode: multiply; opacity: 0.16; background-image: radial-gradient(#000 2.23px, transparent 2.24px); background-size: 8px 8px; transform: rotate(15deg); } .ds-proj__title { position: relative; isolation: isolate; font-family: var(--font-display, \"Big Shoulders Display\", system-ui, sans-serif); font-weight: 900; font-stretch: 82%; font-size: 28px; line-height: 30px; text-transform: uppercase; letter-spacing: 0.01em; margin: 24px 0 8px; } .ds-proj__title::before, .ds-proj__title::after { content: attr(data-title); position: absolute; inset: 0; z-index: -1; pointer-events: none; mix-blend-mode: multiply; } .ds-proj__title::before { color: var(--pink, #ff48b0); transform: translate(-1.6px, 1.2px); } .ds-proj__title::after { color: var(--blue, #0078bf); transform: translate(1.2px, -1px); } .ds-proj__body { margin: 0 0 24px; font-family: var(--font-text, Archivo, system-ui, sans-serif); font-size: 14px; line-height: 20px; opacity: 0.88; } .ds-proj__tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; } .ds-proj .ds-tag { font-family: var(--font-mono, \"Martian Mono\", ui-monospace, monospace); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; border: 1px solid var(--rule-strong, rgba(11,11,11,0.55)); border-radius: 0; padding: 4px 9px; }"
+    },
+    {
+      "name": "Registration mark",
+      "kind": "custom",
+      "description": "The sheet's proof-mark, one per corner in the paper border. Crosses meeting at a centre square \u2014 the conventional form is a cross inside a circle, and a circle is the one shape this system cannot draw, because it has exactly one radius and it is 0px.",
+      "html": "<span class=\"ds-reg\"><span class=\"ds-reg__dot\"></span></span>",
+      "css": ".ds-reg { position: relative; display: block; width: 26px; height: 26px; opacity: 0.8; } .ds-reg::before, .ds-reg::after { content: \"\"; position: absolute; background: var(--ink, #0b0b0b); } .ds-reg::before { left: 50%; top: 0; width: 1.5px; height: 100%; transform: translateX(-0.75px); } .ds-reg::after { top: 50%; left: 0; height: 1.5px; width: 100%; transform: translateY(-0.75px); } .ds-reg__dot { position: absolute; left: 50%; top: 50%; width: 5px; height: 5px; background: var(--ink, #0b0b0b); transform: translate(-50%, -50%); }"
+    },
+    {
+      "name": "Masthead plate",
+      "kind": "custom",
+      "refersTo": "masthead-plate",
+      "description": "The signature: one name, three screened plates at 15/45/75 degrees, the black key at .86 so the pink and blue read through. Halftone is a mask on live text, never a texture behind it. The project titles carry the same device at their own scale.",
+      "html": "<svg class=\"ds-masthead\" viewBox=\"-12 -5 724 283\" role=\"img\" aria-label=\"Raj Shah\"><defs><pattern id=\"ds-screen-a\" patternTransform=\"rotate(15)\" width=\"8\" height=\"8\" patternUnits=\"userSpaceOnUse\"><circle cx=\"2\" cy=\"2\" r=\"2.23\" fill=\"#fff\"/></pattern><pattern id=\"ds-screen-b\" patternTransform=\"rotate(75)\" width=\"14\" height=\"14\" patternUnits=\"userSpaceOnUse\"><circle cx=\"3.5\" cy=\"3.5\" r=\"3.99\" fill=\"#fff\"/></pattern><pattern id=\"ds-screen-c\" patternTransform=\"rotate(45)\" width=\"10\" height=\"10\" patternUnits=\"userSpaceOnUse\"><circle cx=\"2.5\" cy=\"2.5\" r=\"3.52\" fill=\"#fff\"/></pattern><mask id=\"ds-mask-a\"><rect x=\"-12\" y=\"-5\" width=\"724\" height=\"283\" fill=\"#000\"/><rect x=\"-12\" y=\"-5\" width=\"724\" height=\"283\" fill=\"url(#ds-screen-a)\"/></mask><mask id=\"ds-mask-b\"><rect x=\"-12\" y=\"-5\" width=\"724\" height=\"283\" fill=\"#000\"/><rect x=\"-12\" y=\"-5\" width=\"724\" height=\"283\" fill=\"url(#ds-screen-b)\"/></mask><mask id=\"ds-mask-c\"><rect x=\"-12\" y=\"-5\" width=\"724\" height=\"283\" fill=\"#000\"/><rect x=\"-12\" y=\"-5\" width=\"724\" height=\"283\" fill=\"url(#ds-screen-c)\"/></mask></defs><g class=\"ds-masthead__plate\"><text x=\"0\" y=\"210\" font-size=\"210\" letter-spacing=\"-7\" mask=\"url(#ds-mask-b)\" fill=\"var(--pink, #ff48b0)\" transform=\"translate(-4.5, 2.9) scale(1.0016)\">RAJ SHAH</text><text x=\"0\" y=\"210\" font-size=\"210\" letter-spacing=\"-7\" mask=\"url(#ds-mask-a)\" fill=\"var(--blue, #0078bf)\" transform=\"translate(3.1, -1.9) scale(1.0024)\">RAJ SHAH</text><text x=\"0\" y=\"210\" font-size=\"210\" letter-spacing=\"-7\" mask=\"url(#ds-mask-c)\" fill=\"var(--ink, #0b0b0b)\" opacity=\"0.86\" transform=\"translate(0.5, 0.3)\">RAJ SHAH</text></g></svg>",
+      "css": ".ds-masthead { display: block; width: 100%; height: auto; overflow: visible; background: var(--paper, #f1efe9); } .ds-masthead text { font-family: var(--font-display, \"Big Shoulders Display\", system-ui, sans-serif); font-weight: 900; font-stretch: 82%; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Riso Drum",
+    "overview": "The whole shell is one press sheet. Not a page that contains printed things \u2014 a single sheet that was printed: paper with a real stock, ink that owns fields, registration marks in the border, and a masthead built from three plates that were misaligned by a millimetre on purpose. The interface never apologises for being a website, but it never stops behaving like an object either.\n\nThe world arrives out of a refusal. It refuses the arrangement this category always ships \u2014 cream ground, one accent, high-contrast serif, a \"Hi, I'm Raj\" hero, a uniform card grid, gradient mesh, smooth scroll \u2014 and it refuses that arrangement's twin just as hard: the fake terminal, the mono-everything developer page. What is left is print discipline. Space is measured, type is set, and the only visual special effects are the ones a press actually makes.\n\nDensity is high but the page is quiet: seven projects run as one ruled column of entries, each an image field, a title, and the project's own words. Nothing is decorated to look important. Colour does a job \u2014 it fills a plate, a chip, an image field, a band \u2014 and black does all the talking, because on this paper black is the only ink that can be read.",
+    "keyCharacteristics": [
+      "One press sheet: a single 12-column sheet, top rule down to the last project entry.",
+      "Three screened plates in the masthead, deliberately misregistered, and the same device again at title scale down the run.",
+      "Four crosshair registration marks in the paper border.",
+      "Paper #F1EFE9, never white. Black #0B0B0B, never pure.",
+      "Colour is field-only. Black carries every word below display size.",
+      "No shadows, no gradients, no blur. Depth is layer offset and dot density.",
+      "Hard edges everywhere: zero corner radius anywhere in the system.",
+      "Nearly all type is uppercase; display is condensed and very heavy.",
+      "Four interactions, one device: the plates answer the scroll, rows print as they arrive, a hover separates a title's plates, and a pointer-down on the name knocks the press out of register."
+    ],
+    "rules": [
+      {
+        "name": "The Colour Owns Fields Rule",
+        "section": "colors",
+        "body": "An ink fills a plate, a chip, a rule, an image field or a band. It never colours a word smaller than display size. Of the six inks measured against paper, exactly one \u2014 #0B0B0B \u2014 clears 4.5:1."
+      },
+      {
+        "name": "The Never-White Rule",
+        "section": "colors",
+        "body": "Paper is #F1EFE9, never #FFF. Black is #0B0B0B, never #000. Pure white and pure black are the two things a press never gives you."
+      },
+      {
+        "name": "The One Display Mass Rule",
+        "section": "typography",
+        "body": "210px display type appears exactly once per page, in the masthead. Nothing else is allowed to compete with it."
+      },
+      {
+        "name": "The 11px Floor Rule",
+        "section": "typography",
+        "body": "Functional text never sets below 11px, and 12px is the floor once a line is set in roman case rather than uppercase."
+      },
+      {
+        "name": "The Optical Leading Rule",
+        "section": "typography",
+        "body": "The 24px lattice governs space \u2014 margins, padding, gaps, the rhythm units. It does not govern the type ladder's leading: each size carries the leading that size needs (.lead 20/32, .proj__title 28/30, .proj__body 14/20, .contact 30/32). Rounding those onto 24px would break the faces rather than align them."
+      },
+      {
+        "name": "The Flat-By-Doctrine Rule",
+        "section": "elevation",
+        "body": "No box-shadow, no filter: blur(), no gradient-as-elevation. If a surface needs to feel closer, it gets more ink or a heavier dot screen \u2014 never a shadow."
+      },
+      {
+        "name": "The Scale-Relative Offset Rule",
+        "section": "elevation",
+        "body": "Misregistration is a ratio, not a measurement. The masthead's 6.5px offset is 3.1% of a 210px cap height; the same 3.1% at a 28px title is 0.87px, i.e. invisible. Each size carries the offset it needs to read, which means the ratio grows as the type shrinks \u2014 the titles use \u00b11.2 to 1.6px, roughly 5% of their cap height."
+      },
+      {
+        "name": "The One Device Rule",
+        "section": "elevation",
+        "body": "Every interaction on this surface moves the same per-layer offset the print is built from. --slip is the state (9px at rest, 16px on hover, 30px while Alt is held); --drift is what the scroll and the knock add. The plates read their sum, so the page never grows a second vocabulary in order to be playful. Nothing animates a layout property \u2014 only transform and opacity \u2014 and every one of them is disarmed under prefers-reduced-motion."
+      }
+    ],
+    "dos": [
+      "Do keep every word below display size in {colors.rich-black}. It is the only ink that clears small-text contrast on this paper (17.12:1).",
+      "Do give an ink a field: a plate, chip, rule, band or image field.",
+      "Do size misregistration as a ratio. The offset that reads at 210px is invisible at 28px; each size carries the offset it needs (see the Scale-Relative Offset Rule).",
+      "Do set functional text at 11px or above, and 12px or above once it is roman rather than uppercase.",
+      "Do keep spacing on the 24px lattice, and let leading follow the size.",
+      "Do reach for layer offset or dot density when something needs weight.",
+      "Do keep the 2.6:1 image field ratio so a run of projects reads as a set."
+    ],
+    "donts": [
+      "Don't use white or pure black. #FFF and #000 are both wrong here.",
+      "Don't put colour on small text \u2014 pink (2.68:1), yellow (1.09:1), green (2.67:1) and teal (3.96:1) all fail, and pink, green and yellow fail even the 3:1 large-text threshold.",
+      "Don't add a shadow, a blur, or a gradient standing in for elevation.",
+      "Don't round a corner. The system has exactly one radius, and it is 0px.",
+      "Don't add a second display face or introduce an italic.",
+      "Don't add a second 210px display mass; the masthead is the page's only one.",
+      "Don't texture the area behind small text with a halftone, and don't let a decorative screen sit behind type anywhere.",
+      "Don't let a registration mark land on the copy. Below 1080px the paper border is 32px and the marks withdraw rather than crowd the text.",
+      "Don't apply the masthead's offset numbers to smaller type. The device is the ratio, not the measurement.",
+      "Don't animate a layout property. Height, width, padding and margin stay out of every transition; the motion is transform and opacity only."
+    ]
+  }
+}

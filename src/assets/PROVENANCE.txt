@@ -1,0 +1,21 @@
+assets/grain.png — generated, not sourced.
+magick -size 256x256 xc:gray +noise Gaussian -colorspace Gray -auto-level -evaluate multiply 0.20 -evaluate add 80%
+The paper grain. Multiplied over the whole sheet at 0.68, so it has to stay very
+light in mean and very low in variance; anything heavier turns the page grey.
+
+assets/tone.png — generated, not sourced.
+magick -size 300x300 xc:gray50 -attenuate 2.8 +noise Gaussian -colorspace Gray -blur 0x0.4 -function polynomial "0,0.87,0.265" -alpha copy -channel RGB -fill white -colorize 100 +channel
+The ink tone plate. Used as a CSS mask on the field's ink layer, so the ink is
+laid down at a density (~0.70 alpha mean) and paper reads through the rest. Read
+again at 1200px it doubles as the uneven-take-up layer.
+
+Notes for whoever regenerates these, learned the hard way:
+- `-evaluate add <decimal>` is interpreted in quantum units and does nothing
+  visible; use percentages, or `-function polynomial`, which is unambiguous
+  (out = a*in^2 + b*in + c, so "0,0.87,0.265" does exactly what it says).
+- Order matters. Blurring before thresholding collapses Gaussian noise toward a
+  flat grey. `-attenuate 2.8` took the raw sd from 0.078 to 0.218, which the blur
+  then brought back to 0.145 — close to the 0.127 the mask wants.
+- The plate carries its tone in ALPHA and is white in RGB. CSS masks an image by
+  its alpha by default, so this works everywhere without depending on
+  `mask-mode: luminance` support.
