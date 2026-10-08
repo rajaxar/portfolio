@@ -26,7 +26,7 @@ function ProjectCard({ project, index }) {
 
   return (
     <a
-      className={`proj field--${project.field}`}
+      className={`proj field--${project.field} art--${project.art}`}
       href={project.link}
       /* The card is one link, so without this its accessible name is the whole
          subtree: the number, the title, the full description and the tags. The

@@ -23,7 +23,7 @@ function Masthead() {
   const label = 'RAJ SHAH';
 
   return (
-    <svg className="masthead__plate" viewBox="-12 -5 724 283" aria-hidden="true" focusable="false">
+    <svg className="masthead__plate" viewBox="-14 -6 1010 292" aria-hidden="true" focusable="false">
       <defs>
         {/* Scatter screens, not lattices. Coverage is unchanged from the dot
             grids they replace (a 39%, b 66%, c 68% of the plate shows ink) and
@@ -64,20 +64,20 @@ function Masthead() {
           </g>
         </pattern>
         <mask id="riso-mask-a">
-          <rect x="-60" y="-60" width="860" height="420" fill="url(#riso-screen-a)" filter="url(#riso-soften)" />
+          <rect x="-60" y="-60" width="1140" height="420" fill="url(#riso-screen-a)" filter="url(#riso-soften)" />
         </mask>
         <mask id="riso-mask-b">
-          <rect x="-60" y="-60" width="860" height="420" fill="url(#riso-screen-b)" filter="url(#riso-soften)" />
+          <rect x="-60" y="-60" width="1140" height="420" fill="url(#riso-screen-b)" filter="url(#riso-soften)" />
         </mask>
         <mask id="riso-mask-c">
-          <rect x="-60" y="-60" width="860" height="420" fill="url(#riso-screen-c)" filter="url(#riso-soften)" />
+          <rect x="-60" y="-60" width="1140" height="420" fill="url(#riso-screen-c)" filter="url(#riso-soften)" />
         </mask>
         {/* The screens are scatter, so the specks need an edge that isn't a cut
             circle: a sub-pixel blur turns each one into a soft blob and lets
             overlapping specks merge, which is what makes the plate read as
             grain rather than as dots. */}
         <filter id="riso-soften" x="-20%" y="-20%" width="140%" height="140%">
-          <feGaussianBlur stdDeviation="0.7" />
+          <feGaussianBlur stdDeviation="1.0" />
         </filter>
         <filter id="riso-bleed" x="-14%" y="-14%" width="128%" height="128%">
           <feTurbulence type="fractalNoise" baseFrequency="0.72" numOctaves="3" seed="17" result="noise" />
@@ -94,17 +94,17 @@ function Masthead() {
       </defs>
 
       <g className="ink ink--pink" filter="url(#riso-bleed)">
-        <text mask="url(#riso-mask-b)" x="0" y="210" fontSize="210" letterSpacing="-7" fill="var(--pink)">
+        <text x="0" y="210" fontSize="210" letterSpacing="-7" fill="var(--pink)">
           {label}
         </text>
       </g>
       <g className="ink ink--blue" filter="url(#riso-bleed)">
-        <text mask="url(#riso-mask-a)" x="0" y="210" fontSize="210" letterSpacing="-7" fill="var(--blue)">
+        <text x="0" y="210" fontSize="210" letterSpacing="-7" fill="var(--blue)">
           {label}
         </text>
       </g>
       <g className="ink ink--key" filter="url(#riso-bleed)">
-        <text mask="url(#riso-mask-c)" x="0" y="210" fontSize="210" letterSpacing="-7" fill="var(--ink)">
+        <text x="0" y="210" fontSize="210" letterSpacing="-7" fill="var(--ink)">
           {label}
         </text>
       </g>

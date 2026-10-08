@@ -55,22 +55,35 @@
 }
 
 :root {
-  /* Paper is never white; black is never pure. The inks are read off Raj's
-     reference sheets rather than a swatch book — mustard, cornflower, a dusty
-     pink, sage, a soft teal — because the riso primaries they replaced
-     (fluorescent pink, electric yellow) read as packaging. The PAPER is not
-     read off those sheets: the references are photographs, and their stock
-     sits lighter than it photographs. It has to, because the grain plate
-     multiplies the whole page: this token renders as roughly #e6e2d8. */
-  --paper: #f7f3e8;
+  /* Paper is never white; black is never pure. The inks are the REAL riso
+     primaries now — fluorescent pink, a rich riso blue, riso green, a riso
+     yellow — not the muted swatch book (mustard, cornflower, sage) that read
+     as a vintage newspaper rather than a riso print. The earlier worry was
+     that the true inks read as "packaging"; the fix for that is not to dull
+     the ink, it is DISCIPLINE: two inks carry the page (pink + blue), yellow
+     and green are rare spot accents, and every field prints through the tone
+     mask + grain + multiply so the ink lands soft and overprints into a third
+     colour where plates cross. Loud ink, quiet composition — that is a
+     press, not a toy. The PAPER sits lighter than the reference stock because
+     the grain plate multiplies the whole page: this token renders near
+     #e9e3d2. */
+  --paper: #f6f0e2;
   --ink: #0b0b0b;
-  --pink: #de56a9;
-  --blue: #718fc4;
-  --green: #93ae9b;
-  --teal: #2f8fa1;
-  --yellow: #deb250;
-  /* the same blue at higher ink density — the one ink that may carry type */
-  --blue-deep: #4a6ba8;
+  /* A step toward pastel: the inks were softened off their full-fluorescent
+     values so the sheet reads soft and printed rather than pop-punk. Still
+     clearly riso spot inks, just desaturated and lifted a touch toward the
+     paper. The duotone flood colours in index.js are kept in sync by hand. */
+  --pink: #fb79b1;
+  /* a vivid riso blue, kept bright on purpose: a dark navy read through the
+     field's soft 70% tone mask over cream paper collapses to a muddy lavender,
+     so the field ink has to be luminous to survive the mask and still overprint
+     with the pink into a true violet where they cross. */
+  --blue: #5285e3;
+  --green: #4caf85;
+  --teal: #3f97a0;
+  --yellow: #f6ce5c;
+  /* a deeper riso blue — the one ink that may carry type (≈8:1 on paper) */
+  --blue-deep: #1b3a8f;
 
   --base: 24px;
   --gut: 24px;
@@ -79,9 +92,8 @@
   --margin-bottom: 96px;
   --measure: 66ch;
 
-  --font-display: "Big Shoulders Display", "Big Shoulders", Archivo, system-ui, sans-serif;
+  --font-display: "Bricolage Grotesque", "Big Shoulders Display", Archivo, system-ui, sans-serif;
   --font-text: Archivo, system-ui, -apple-system, sans-serif;
-  --font-mono: "Martian Mono", "JetBrains Mono", ui-monospace, monospace;
   /* the press's apparatus — the entry numbers, nothing else */
   --font-apparatus: "Redaction 20", Archivo, system-ui, sans-serif;
 
@@ -124,6 +136,25 @@
   background-image: url("../assets/grain.png");
 }
 
+/* The ink wash: large soft pools of spot ink bled into the corners, behind the
+   content, multiplied into the paper. Kept to the margins (top-right, the two
+   bottom corners) so it never sits under a text block — it is colour and
+   softness for the whole sheet, not a screen behind the copy. */
+.washes {
+  position: absolute;
+  inset: 0;
+  /* behind the in-flow content, above the paper: a negative-z child paints after
+     the parent's background and before its non-positioned descendants, so the
+     copy and cards stay clean on top without needing their own z-index. */
+  z-index: -1;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+  background:
+    radial-gradient(46vw 46vw at 105% -5%, color-mix(in srgb, var(--pink) 46%, transparent), transparent 62%),
+    radial-gradient(44vw 44vw at -7% 107%, color-mix(in srgb, var(--blue) 42%, transparent), transparent 64%),
+    radial-gradient(38vw 38vw at 110% 106%, color-mix(in srgb, var(--yellow) 40%, transparent), transparent 62%);
+}
+
 .sheet__grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
@@ -140,67 +171,25 @@
   margin-bottom: calc(3 * var(--base));
 }
 
-/* ---- registration marks: in the paper border, corners only -----------------
- * Promised by the direction contract's FIRST VIEWPORT clause and missing from
- * the build. Crosses, not the conventional circle: the system has exactly one
- * radius and it is 0px, so the circle is left out rather than broken to fit it. */
-.regs {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 1;
-}
-.reg {
-  position: absolute;
-  width: 26px;
-  height: 26px;
-  opacity: 0.8;
-}
-.reg::before,
-.reg::after {
-  content: "";
-  position: absolute;
-  background: var(--ink);
-}
-.reg::before {
-  left: 50%;
-  top: 0;
-  width: 1.5px;
-  height: 100%;
-  transform: translateX(-0.75px);
-}
-.reg::after {
-  top: 50%;
-  left: 0;
-  height: 1.5px;
-  width: 100%;
-  transform: translateY(-0.75px);
-}
-/* the centre square is what separates a registration mark from a decorative
-   plus sign; a circle is the conventional form and is the one thing this system
-   cannot draw, because it has exactly one radius and it is 0px. */
-.reg__dot {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 5px;
-  height: 5px;
-  background: var(--ink);
-  transform: translate(-50%, -50%);
-}
-.reg--tl { top: 30px; left: 30px; }
-.reg--tr { top: 30px; right: 30px; }
-.reg--bl { bottom: 30px; left: 30px; }
-.reg--br { bottom: 30px; right: 30px; }
+/* The corner crop-crosses were removed: they read as print cosplay rather than
+   as this sheet's own world. The colour bar at the left margin is the one
+   printed-apparatus device the sheet keeps. */
 
 /* ---- rules and stamps ---- */
 .rule {
   border: 0;
-  border-top: 1px solid var(--ink);
+  height: 2px;
+  background: var(--ink);
   margin: 0;
+  /* the same hand-printed waver the card frames carry */
+  filter: url(#line-rough);
 }
 .stamp {
-  font-family: var(--font-mono);
+  /* the display face, small and tracked: Bricolage's warmth reads as an
+     editorial caption rather than the cynical techno-label a neutral grotesque
+     gave. One family now carries the display and the labels. */
+  font-family: var(--font-display);
+  font-weight: 600;
   font-size: 11px;
   /* One label rank, not two. .stamp carried 0.2em and .tag 0.12em — same face,
      same size, same weight, same leading, separated by 0.88px of tracking, so
@@ -253,11 +242,48 @@
 
 /* ---- the masthead: three screened plates, one line ---- */
 .masthead {
-  grid-column: 1 / span 7;
+  grid-column: 1 / span 12;
+}
+/* The name and the ink block share the top row: the wordmark takes the space it
+   needs and the printed discs close the right edge where the sheet used to run
+   empty. The art holds a fixed measure so it reads as a plate, not a stretch. */
+.masthead__row {
+  display: flex;
+  align-items: center;
+  gap: calc(2 * var(--base));
 }
 .masthead__wrap {
   position: relative;
   display: block;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.masthead__art {
+  flex: 0 0 auto;
+  width: clamp(190px, 21vw, 300px);
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+}
+.masthead__art-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+/* A moment of interaction: hover the ink block and the two drums pull apart the
+   way a press knocks out of register, then settle back on leave. Same language
+   as the wordmark's slip — the discs already carry the ink classes, so this only
+   overrides their rest offset with a larger one and the .ink transition eases it.
+   The key ring holds still, so the spread reads against a fixed register. */
+.masthead__art {
+  cursor: crosshair;
+}
+.masthead__art:hover .ink--pink {
+  transform: translate(12px, 8px) scale(1.012);
+}
+.masthead__art:hover .ink--blue {
+  transform: translate(-11px, -7px) rotate(-0.6deg) scale(1.012);
 }
 .masthead__plate {
   display: block;
@@ -277,8 +303,8 @@
    is the candidate. DESIGN.md is written to match what renders, not this. */
 .masthead__plate text {
   font-family: var(--font-display);
-  font-weight: 900;
-  font-stretch: 82%;
+  font-weight: 800;
+  font-stretch: normal;
   text-transform: uppercase;
 }
 /* Each plate drifts on its own: its own magnitude, its own direction, a hair of
@@ -328,10 +354,14 @@
 /* the artwork takes its ink first, then the screen resolves over the field */
 .has-motion .proj__field img {
   opacity: 0.15;
-  transition: opacity 0.9s ease-out;
+  transition: opacity 0.9s ease-out, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .has-motion .proj.is-printed .proj__field img {
   opacity: 1;
+}
+/* the printed artwork settles a hair closer when its entry is hovered */
+.proj:hover .proj__field img {
+  transform: scale(1.03);
 }
 .has-motion .proj__field::after {
   opacity: 0;
@@ -379,11 +409,11 @@
    holds and the name is still the page's peak. */
 .bridge {
   font-family: var(--font-display);
-  font-weight: 900;
-  font-stretch: 82%;
-  text-transform: uppercase;
+  font-weight: 800;
+  font-stretch: normal;
   font-size: 52px;
   line-height: 58px;
+  letter-spacing: -0.02em;
   margin: 0;
 }
 /* The running text owns an ink, like every other field on the sheet. The plate
@@ -413,14 +443,13 @@
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: var(--yellow);
-  -webkit-mask-image: url("../assets/tone.png");
-  mask-image: url("../assets/tone.png");
-  -webkit-mask-size: 400px 400px;
-  mask-size: 400px 400px;
-  -webkit-mask-repeat: repeat;
-  mask-repeat: repeat;
-  opacity: 0.82;
+  /* The headline plate now matches the project fields: a soft ink that lets the
+     paper read through (so it is light, not a flat block) and the same
+     hand-printed wavering edge rather than a strict rectangle. The sheet's grain
+     plate rides over it for texture. The tone-mask was dropped here because a
+     mask re-clips the filtered edge back to a straight line. */
+  background: color-mix(in srgb, var(--yellow) 80%, var(--paper));
+  filter: url(#print-rough);
 }
 
 /* ---- the project run: pick one ---- */
@@ -436,7 +465,18 @@
   flex-direction: column;
   text-decoration: none;
   color: inherit;
-  border-top: 2px solid var(--ink);
+  position: relative;
+}
+/* the line above each entry, hand-printed like everything else on the sheet */
+.proj::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--ink);
+  filter: url(#line-rough);
 }
 .proj__field {
   position: relative;
@@ -446,6 +486,13 @@
   justify-content: center;
   overflow: hidden;
   border-bottom: 2px solid var(--ink);
+  /* the frame and ink waver a few px like a hand-printed edge, not a ruled box */
+  filter: url(#print-rough);
+  /* A chroma floor under the masked ink: the soft tone mask alone leaves the
+     field a pale tint, so the paper carries a quarter-strength wash of the same
+     ink beneath it. The masked deposit and grain still ride on top, so the field
+     reads as saturated printed ink rather than a flat block or a pastel. */
+  background-color: color-mix(in srgb, var(--field-ink) 26%, var(--paper));
 }
 .proj__field img {
   position: relative;
@@ -453,11 +500,25 @@
   width: 100%;
   height: 100%;
   object-fit: contain;
-  /* duotone: the artwork takes the ink of its field. It multiplies into the ink
-     layer beneath, so the plate's paper flecks carry through the artwork instead
-     of stopping at its edge. */
-  filter: grayscale(1) contrast(1.3) brightness(1.06);
-  mix-blend-mode: multiply;
+  /* Two-ink duotone: the artwork is printed in the OTHER drum's ink, not black.
+     An SVG filter maps the image's dark areas to a second spot ink and its light
+     areas to nothing, so the field ink reads through them — a blue field carries
+     a pink impression and vice versa, the way a two-colour riso actually prints.
+     The art ink is chosen per project (the `art--*` class), independent of the
+     field, so the pairings can vary. The blend is normal, not multiply: a
+     multiply made the art ink mix with the field ink beneath it into a muddy
+     third colour (a pink impression on a blue field went violet), so each ink
+     now prints clean, with the field reading through the image's light areas. */
+  mix-blend-mode: normal;
+}
+.art--pink .proj__field img {
+  filter: url(#duo-artpink);
+}
+.art--blue .proj__field img {
+  filter: url(#duo-artblue);
+}
+.art--yellow .proj__field img {
+  filter: url(#duo-artyellow);
 }
 /* THE INK IS THE TONE. A riso fill is ink deposited at a density, not a flat
    block with grain sprinkled over it — which is what an earlier version was,
@@ -503,6 +564,9 @@
 .field--green {
   --field-ink: var(--green);
 }
+.field--blue {
+  --field-ink: var(--blue);
+}
 /* Ink never takes up evenly. The same plate read large — 1200px against the
    400px grain — gives slow density drift: patches where the field is heavier
    and patches where it is thinner, over the fine grain instead of replacing it.
@@ -532,16 +596,19 @@
    larger ratio to read at all. */
 .proj__title {
   font-family: var(--font-display);
-  font-weight: 900;
-  font-stretch: 82%;
+  font-weight: 800;
+  font-stretch: normal;
   font-size: 28px;
   /* 32, not 30. At 30 the leading is 1.07, so a wrapped two-line uppercase title
      crosses itself — and the longest title on the sheet already fills 90.5% of
      its 612px column, so a title about 10% longer lands in exactly that state. */
   line-height: 32px;
   margin: var(--base) 0 8px;
-  text-transform: uppercase;
-  letter-spacing: 0.01em;
+  /* Title Case, not caps. The titles carry the real copy's own case now — an
+     editorial, zine-press voice rather than the sports-poster shout the all-caps
+     set gave them. The data strings are already Title Case, so the pink/blue
+     fringe drawn from data-title matches exactly. */
+  letter-spacing: -0.012em;
   position: relative;
   isolation: isolate;
 }
@@ -593,12 +660,47 @@
   align-items: center;
   border: 1px solid var(--rule-strong);
   padding: 4px 9px;
-  font-family: var(--font-mono);
+  font-family: var(--font-display);
+  font-weight: 600;
   font-size: 11px;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 .proj:hover .proj__title {
+  color: var(--blue-deep);
+}
+
+/* ---- moments of interaction: one idea, wet ink responds to attention --------
+ * Every hover on an entry reads as the press reacting: the tag inks in like a
+ * stamp, the running head's number and ink-chip wake, and the printed image
+ * settles a hair closer. One vocabulary, applied across the run, not scattered
+ * unrelated effects. */
+
+/* the facet tag inks in solid on hover — an uninked stamp pressed down */
+.tag {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.proj:hover .tag {
+  border-color: var(--ink);
+}
+.tag:hover {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+
+/* the running head wakes with its entry: the ink chip grows to a swatch, the
+   catalogue number takes the dense blue */
+.proj__chip {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.proj:hover .proj__chip {
+  transform: scale(1.4);
+}
+.proj__no {
+  transition: color 0.2s ease;
+}
+.proj:hover .proj__no {
   color: var(--blue-deep);
 }
 
@@ -611,19 +713,29 @@
 }
 .contact {
   font-family: var(--font-display);
-  font-weight: 900;
-  font-stretch: 82%;
+  font-weight: 800;
+  font-stretch: normal;
   font-size: 36px;
   line-height: 38px;
-  text-transform: uppercase;
+  letter-spacing: -0.01em;
   color: inherit;
   text-decoration: none;
-  border-bottom: 2px solid var(--ink);
   padding-bottom: 4px;
+}
+/* the underline is a hand-printed rule, and it inherits the link's colour so the
+   hover state carries it from ink to the dense blue with the word */
+.contact::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: currentColor;
+  filter: url(#line-rough);
 }
 .contact:hover {
   color: var(--blue-deep);
-  border-color: var(--blue-deep);
 }
 
 /* ---- the imprint ---------------------------------------------------------
@@ -680,21 +792,44 @@
    spine is the face, the size and the rotation. */
 .spine {
   position: absolute;
-  left: 26px;
-  top: var(--margin-top);
+  left: 24px;
+  /* sits below the colour bar so the two never touch */
+  top: calc(var(--margin-top) + 78px);
   writing-mode: vertical-rl;
   transform: rotate(180deg);
-  font-family: var(--font-mono);
-  /* 12, not 11. The file's own law: 12px is the floor once a line is set in roman
-     case rather than uppercase, and the spine is Title Case. It is also the
-     lowest-contrast text on the sheet (6.04:1 composited at 0.68 opacity), so it
-     is the last string that can afford to be the smallest. */
-  font-size: 12px;
+  /* Same rank as every other label on the sheet (the runtime, the nav, the
+     tags): Archivo 500, 11px, uppercase, 0.14em tracking. The spine used to be
+     sentence case, which read as a different rule sitting right beside the
+     uppercase runtime — so it is folded into the one label system now. */
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   line-height: 1.35;
   white-space: nowrap;
   color: var(--ink);
-  opacity: 0.68;
+  opacity: 0.6;
 }
+/* The colour bar: the ink-calibration strip a printer prints down a sheet's
+   edge — three spot inks stacked at the top of the paper border. Its own
+   element now, clear of the spine, so nothing collides. */
+.colourbar {
+  position: absolute;
+  left: 24px;
+  top: var(--margin-top);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  z-index: 1;
+}
+.colourbar__chip {
+  width: 11px;
+  height: 11px;
+}
+.colourbar__chip--pink { background: var(--pink); }
+.colourbar__chip--blue { background: var(--blue); }
+.colourbar__chip--yellow { background: var(--yellow); }
 
 /* The running head: catalogue number at the left, the ink chip at the right. */
 .proj__head {
@@ -775,12 +910,18 @@ html:has(.sheet) ::-webkit-scrollbar-thumb {
   :root {
     --margin-side: 32px;
   }
-  /* the paper border is 32px here — a mark inside it would sit on the copy */
-  .regs {
+  /* the paper border is 32px here — the margin apparatus would sit on the copy */
+  .colourbar {
     display: none;
   }
   /* same reasoning: the spine needs the 96px border to stand in */
   .spine {
+    display: none;
+  }
+  /* The ink block only existed to close the desktop right-void. In one column
+     the name already fills the width, so the art would only crush it — it
+     withdraws and the wordmark takes the whole measure. */
+  .masthead__art {
     display: none;
   }
   .masthead,

@@ -31,3 +31,5 @@ yarn-error.log*
 !/.impeccable/design.json
 !/.impeccable/config.json
 /.impeccable/config.local.json
+
+/.omc/*

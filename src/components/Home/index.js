@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Masthead from './Masthead';
+import MastheadArt from './MastheadArt';
 import ProjectCard from './ProjectCard';
 import { projects } from '../../data/projects';
 import contacts from '../../data/contacts';
@@ -136,33 +137,86 @@ function Home() {
 
   return (
     <>
-      {/* The spine. A printed sheet has something running down its edge, and the
-          four competencies are the right thing to put there: they are the
-          positioning, they belong at the margin rather than in the middle, and
-          they are already available to assistive tech through the tags, so this
-          copy is hidden from it rather than read twice. It withdraws below
-          1080px, where the border is too narrow to hold it. */}
+      {/* Two-ink duotone filters. Each maps an image's dark areas to a single
+          spot ink (luminance→alpha) and its light areas to nothing, so a
+          project's artwork prints in the OTHER drum's colour and the field ink
+          reads through it. Hidden, but must stay in the DOM for the CSS
+          `filter: url(#…)` references on the project images to resolve. */}
+      <svg className="duo-defs" aria-hidden="true" focusable="false" width="0" height="0" style={{ position: 'absolute' }}>
+        <defs>
+          <filter id="duo-artpink" colorInterpolationFilters="sRGB">
+            <feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.2126 0.7152 0.0722 0 0" result="lum" />
+            <feComponentTransfer in="lum" result="amap">
+              <feFuncA type="table" tableValues="1 0.85 0" />
+            </feComponentTransfer>
+            <feComposite in="amap" in2="SourceAlpha" operator="in" result="mask" />
+            <feFlood floodColor="#fb79b1" result="ink" />
+            <feComposite in="ink" in2="mask" operator="in" />
+          </filter>
+          <filter id="duo-artblue" colorInterpolationFilters="sRGB">
+            <feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.2126 0.7152 0.0722 0 0" result="lum" />
+            <feComponentTransfer in="lum" result="amap">
+              <feFuncA type="table" tableValues="1 0.85 0" />
+            </feComponentTransfer>
+            <feComposite in="amap" in2="SourceAlpha" operator="in" result="mask" />
+            <feFlood floodColor="#5285e3" result="ink" />
+            <feComposite in="ink" in2="mask" operator="in" />
+          </filter>
+          <filter id="duo-artyellow" colorInterpolationFilters="sRGB">
+            <feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.2126 0.7152 0.0722 0 0" result="lum" />
+            <feComponentTransfer in="lum" result="amap">
+              <feFuncA type="table" tableValues="1 0.85 0" />
+            </feComponentTransfer>
+            <feComposite in="amap" in2="SourceAlpha" operator="in" result="mask" />
+            <feFlood floodColor="#f6ce5c" result="ink" />
+            <feComposite in="ink" in2="mask" operator="in" />
+          </filter>
+          {/* A long-wavelength displacement that gives the project fields a
+              hand-printed edge: the frame and ink waver a few px instead of
+              sitting on a ruler-straight rectangle, the way ink lands on paper. */}
+          <filter id="print-rough" x="-6%" y="-10%" width="112%" height="120%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.014 0.02" numOctaves="2" seed="4" result="fn" />
+            <feDisplacementMap in="SourceGraphic" in2="fn" scale="4" xChannelSelector="R" yChannelSelector="G" />
+          </filter>
+          {/* The same hand-printed waver, tuned for thin rules: a long wavelength
+              and a small amplitude so a 2px line reads as pulled ink, not a
+              ruler. The tall filter region gives the wave vertical room. */}
+          <filter id="line-rough" x="-2%" y="-700%" width="104%" height="1500%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.011 0.09" numOctaves="2" seed="6" result="ln" />
+            <feDisplacementMap in="SourceGraphic" in2="ln" scale="2.6" xChannelSelector="R" yChannelSelector="G" />
+          </filter>
+        </defs>
+      </svg>
+
+      {/* The ink-calibration strip a printer prints down a sheet's edge: three
+          spot inks stacked at the top of the paper border. A real press device,
+          and the one place the inks appear as themselves at the margin. */}
+      <div className="colourbar" aria-hidden="true">
+        <span className="colourbar__chip colourbar__chip--pink" />
+        <span className="colourbar__chip colourbar__chip--blue" />
+        <span className="colourbar__chip colourbar__chip--yellow" />
+      </div>
+
+      {/* The spine: the four competencies run down the paper border, below the
+          colour bar so the two never collide. Already named to assistive tech by
+          the project tags, so it is hidden from it rather than read twice. */}
       <p className="spine" aria-hidden="true">
         Data Science &middot; ML Engineering &middot; Data Viz &middot; Civic Tech
       </p>
 
-      {/* Registration marks in the paper border — the printed tell that this is a
-          proof sheet rather than a page with a printed header. Crosses with a
-          centre square: the conventional form is a circle, and a circle is the one
-          thing this system cannot draw, because it has exactly one radius. */}
-      <div className="regs" aria-hidden="true">
-        <span className="reg reg--tl"><span className="reg__dot" /></span>
-        <span className="reg reg--tr"><span className="reg__dot" /></span>
-        <span className="reg reg--bl"><span className="reg__dot" /></span>
-        <span className="reg reg--br"><span className="reg__dot" /></span>
-      </div>
-
       <div className="masthead">
         <h1 className="sr-only">Raj Shah &mdash; data scientist and AI engineer</h1>
-        <div className="masthead__wrap" ref={wrapRef}>
-          <Masthead />
+        <div className="masthead__row">
+          <div className="masthead__wrap" ref={wrapRef}>
+            <Masthead />
+          </div>
+          {/* The ink block that closes the sheet's right edge — the same press as
+              the wordmark, not an ornament dropped into the empty columns. */}
+          <div className="masthead__art" aria-hidden="true">
+            <MastheadArt />
+          </div>
         </div>
-        <p className="bridge mt3">Data scientist and AI engineer</p>
+        <p className="bridge mt3">Data Scientist and AI Engineer</p>
         <p className="lead mt3">
           My name is Raj Shah. I work on backend architecture, quasi-experimental work, and AI
           systems, and I have a passion in civic tech. I thrive in the intersection of classical
