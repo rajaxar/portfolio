@@ -2,31 +2,31 @@
 name: Raj Shah — Portfolio
 description: One press sheet — a portfolio printed in spot inks on paper that is never white.
 colors:
-  press-paper: "#f7f3e8"
+  press-paper: "#f6f0e2"
   rich-black: "#0b0b0b"
-  cornflower-blue: "#718fc4"
-  dusty-pink: "#de56a9"
-  sage-green: "#6f907a"
-  soft-teal: "#2f8fa1"
-  mustard-yellow: "#deb250"
-  blue-deep: "#4a6ba8"
+  riso-pink: "#fb79b1"
+  riso-blue: "#5285e3"
+  riso-green: "#4caf85"
+  riso-teal: "#3f97a0"
+  riso-yellow: "#f6ce5c"
+  blue-deep: "#1b3a8f"
 typography:
   display:
-    fontFamily: "Big Shoulders Display, Archivo, system-ui, sans-serif"
+    fontFamily: "Bricolage Grotesque, Archivo, system-ui, sans-serif"
     fontSize: "210px"
-    fontWeight: 900
+    fontWeight: 800
     lineHeight: 1
     letterSpacing: "-0.033em"
   headline:
-    fontFamily: "Big Shoulders Display, Archivo, system-ui, sans-serif"
+    fontFamily: "Bricolage Grotesque, Archivo, system-ui, sans-serif"
     fontSize: "52px"
-    fontWeight: 900
+    fontWeight: 800
     lineHeight: "58px"
     letterSpacing: "normal"
   title:
-    fontFamily: "Big Shoulders Display, Archivo, system-ui, sans-serif"
+    fontFamily: "Bricolage Grotesque, Archivo, system-ui, sans-serif"
     fontSize: "28px"
-    fontWeight: 900
+    fontWeight: 800
     lineHeight: "32px"
     letterSpacing: "0.01em"
   lead:
@@ -46,20 +46,20 @@ typography:
     fontWeight: 400
     lineHeight: "20px"
   label:
-    fontFamily: "Martian Mono, JetBrains Mono, ui-monospace, monospace"
+    fontFamily: "Bricolage Grotesque, Archivo, system-ui, sans-serif"
     fontSize: "11px"
     fontWeight: 400
     lineHeight: "24px"
     letterSpacing: "0.16em"
   contact:
-    fontFamily: "Big Shoulders Display, Archivo, system-ui, sans-serif"
+    fontFamily: "Bricolage Grotesque, Archivo, system-ui, sans-serif"
     fontSize: "36px"
-    fontWeight: 900
+    fontWeight: 800
     lineHeight: "38px"
   contact-compact:
-    fontFamily: "Big Shoulders Display, Archivo, system-ui, sans-serif"
+    fontFamily: "Bricolage Grotesque, Archivo, system-ui, sans-serif"
     fontSize: "30px"
-    fontWeight: 900
+    fontWeight: 800
     lineHeight: "32px"
   apparatus:
     fontFamily: "Redaction 20, Archivo, system-ui, sans-serif"
@@ -67,7 +67,7 @@ typography:
     fontWeight: 400
     lineHeight: "17.55px"
   spine:
-    fontFamily: "Martian Mono, JetBrains Mono, ui-monospace, monospace"
+    fontFamily: "Bricolage Grotesque, Archivo, system-ui, sans-serif"
     fontSize: "12px"
     fontWeight: 400
     lineHeight: "1.35"
@@ -78,9 +78,9 @@ typography:
     fontWeight: 400
     lineHeight: "28px"
   headline-compact:
-    fontFamily: "Big Shoulders Display, Archivo, system-ui, sans-serif"
+    fontFamily: "Bricolage Grotesque, Archivo, system-ui, sans-serif"
     fontSize: "34px"
-    fontWeight: 900
+    fontWeight: 800
     lineHeight: "38px"
 rounded:
   none: "0px"

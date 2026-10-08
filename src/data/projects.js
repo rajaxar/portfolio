@@ -41,7 +41,8 @@ export const projects = [
     external: false,
     where: 'Read it on this site',
     facets: ['viz'],
-    field: 'yellow',
+    field: 'pink',
+    art: 'blue',
   },
   {
     id: 'nba',
@@ -55,7 +56,8 @@ export const projects = [
     external: false,
     where: 'Read it on this site',
     facets: ['viz'],
-    field: 'pink',
+    field: 'yellow',
+    art: 'pink',
   },
   {
     id: 'mlb',
@@ -68,7 +70,8 @@ export const projects = [
     external: true,
     where: 'Opens a Google Doc',
     facets: ['science'],
-    field: 'teal',
+    field: 'blue',
+    art: 'yellow',
   },
   {
     id: 'idl',
@@ -82,7 +85,8 @@ export const projects = [
     external: true,
     where: 'Opens Google Drive',
     facets: ['ml'],
-    field: 'green',
+    field: 'yellow',
+    art: 'blue',
   },
   {
     id: 'fund_vote',
@@ -96,7 +100,8 @@ export const projects = [
     external: true,
     where: 'Opens Google Drive',
     facets: ['civic', 'science'],
-    field: 'yellow',
+    field: 'pink',
+    art: 'blue',
   },
   {
     id: 'gis',
@@ -110,7 +115,8 @@ export const projects = [
     external: true,
     where: 'Opens an ArcGIS dashboard',
     facets: ['civic', 'viz'],
-    field: 'pink',
+    field: 'blue',
+    art: 'yellow',
   },
   {
     id: 'fakebook',
@@ -124,7 +130,8 @@ export const projects = [
     external: true,
     where: 'Opens Google Drive',
     facets: ['ml'],
-    field: 'teal',
+    field: 'pink',
+    art: 'yellow',
   },
 ];
 

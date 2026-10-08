@@ -21,7 +21,7 @@ function Topbar({ page, setPage }) {
     <>
       <hr className="rule" style={{ gridColumn: '1 / span 12' }} />
       <div className="topbar" style={{ gridColumn: '1 / span 12' }}>
-        <span className="stamp">Raj Shah &mdash; portfolio</span>
+        <span className="stamp">Portfolio</span>
         <nav className="topbar__nav">
           {NAV.map((item) =>
             page === item.id ? (

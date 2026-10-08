@@ -41,6 +41,11 @@ function Layout({ children, setPage, page }) {
   return (
     <div className="sheet">
       <div className="sheet__grain" aria-hidden="true" />
+      {/* A soft wash of ink pooled in the empty margins — the overprint haze a
+          press leaves where a plate runs heavy. It sits behind the content and
+          only in the corners, so it adds colour and softness to the whole sheet
+          without ever sitting under a block of text. */}
+      <div className="washes" aria-hidden="true" />
       {/* Home composes itself on the twelve-column grid. The other surfaces
           predate this world and lay themselves out full width, so they get the
           paper and the runtime without the grid — squeezing them into one
