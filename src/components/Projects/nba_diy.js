@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import NBASalaryScatterplot from "./nba_scatterplot";
 import NBAKDEPlot from './nba_kde_standalone';
 import * as d3 from 'd3';
-import { MultiSelect, NumberInput, Checkbox, Group } from '@mantine/core';
+import { MultiSelect } from '@mantine/core';
 
 function NBADIY() {
     const [total_data, setTotalData] = useState([]);
@@ -95,9 +95,19 @@ function NBADIY() {
                     h={100}
                 />
             </div>
-            <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly' }}>
-                <NBAKDEPlot data={filtered_data} />
-                <NBASalaryScatterplot data={filtered_data} />
+            {/* Each chart measures its own parent element to size itself, and
+                that parent used to be a bare flex item with no width of its
+                own — so it collapsed to the svg's 300px default and both plots
+                rendered as thumbnails adrift in a wide row, with their axis
+                labels spilling out. A real flex basis gives each one a width to
+                measure. */}
+            <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'flex-start', gap: '1rem', paddingInline: '1rem' }}>
+                <div style={{ flex: '1 1 0', minWidth: 0, maxWidth: '47%' }}>
+                    <NBAKDEPlot data={filtered_data} />
+                </div>
+                <div style={{ flex: '1 1 0', minWidth: 0, maxWidth: '47%' }}>
+                    <NBASalaryScatterplot data={filtered_data} />
+                </div>
             </div>
         </div>
     );
