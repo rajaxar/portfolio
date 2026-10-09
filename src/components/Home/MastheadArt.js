@@ -13,7 +13,9 @@ import { useOrbit } from './Marks';
  * The motif is the colour test a printer pulls to check registration before a
  * run — the most honest image a two-drum press can make of itself. It carries
  * the page's discipline too: two inks and the key, no third hue, so it amplifies
- * the world instead of turning it into a rainbow.
+ * the world instead of turning it into a rainbow. A yellow third drum was tried
+ * on the ink block and taken out again on Raj's call — the pair plus the key is
+ * what makes this read as a registration test rather than as a colour wheel.
  *
  * Hovering runs the test: the two drums orbit the ring, slowly, and separate a
  * little as they go. Let go and they collapse back in, keeping the angle they

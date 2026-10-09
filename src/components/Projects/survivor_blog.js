@@ -1267,6 +1267,42 @@ function SurvivorBlog() {
           opacity: 1;
           filter: drop-shadow(0 0 5px #6B3FA0);
         }
+        /* The route out of the story. This surface renders outside the
+           portfolio's chrome, so it carries its own — set as the same object as
+           this page's tooltips: the panel's ink and a hairline rule, with the
+           amethyst held back for the moment it is used. A colour that appears at
+           rest in a corner where nothing else carries it reads as a foreign
+           accent, however much it belongs to the rest of the page. */
+        .sv-back {
+          position: fixed;
+          top: 16px;
+          left: 16px;
+          z-index: 100;
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          padding: 8px 13px;
+          background: rgba(28, 17, 10, 0.88);
+          border: 1px solid ${T.rule};
+          color: ${T.ink2};
+          font-family: "Graphik", sans-serif;
+          font-size: 11px;
+          font-weight: 500;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          text-decoration: none;
+          transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+        }
+        .sv-back:hover,
+        .sv-back:focus-visible {
+          background: rgba(28, 17, 10, 0.96);
+          border-color: ${T.bf};
+          color: ${T.ink};
+        }
+        .sv-back:focus-visible {
+          outline: 2px solid ${T.bf};
+          outline-offset: 2px;
+        }
       `}</style>
       {/* Parkay floor — slightly blurred so hard SVG edges soften */}
       <div style={{
@@ -1284,6 +1320,13 @@ function SurvivorBlog() {
           'radial-gradient(ellipse 110% 100% at 50% 50%, transparent 22%, rgba(4,1,0,0.68) 100%)',
         ].join(', '),
       }} />
+
+      {/* Back to the portfolio. The story renders as a standalone artifact with
+          no shell around it, so the way out is part of the story's own furniture
+          rather than borrowed from the sheet. */}
+      <a className="sv-back" href="?ref=home">
+        <span aria-hidden="true">&larr;</span> Portfolio
+      </a>
 
       <div style={{ position: 'relative', zIndex: 1 }}>
 

@@ -26,13 +26,15 @@ import { chips } from '../../data/picker';
  * no ancestor's transform or filter can re-anchor them.
  */
 
-const DRAG_THRESHOLD = 6; // px of movement before a press counts as a drag
+const DRAG_THRESHOLD = 6; // px of movement before a mouse press counts as a drag
+const HOLD_MS = 260; // touch: how long to hold before the stamp lifts
+const TOUCH_SLOP = 10; // touch: movement before the hold lands means "scroll"
 const SPRING_BACK_MS = 420;
 const IMPACT_MS = 280;
 const PRESS_INK_MS = 320;
 const JIGGLE_MS = 460;
 const MAX_IMPRESSIONS = 8;
-const INKS = ['blue', 'pink', 'key'];
+const INKS = ['blue', 'pink', 'key', 'yellow', 'green'];
 
 export default function Picker() {
   const [activeId, setActiveId] = useState(null);
@@ -59,6 +61,21 @@ export default function Picker() {
   const rotRef = useRef(0); // the angle actually on screen — the impression lands at it
   const globalRef = useRef(null); // page-level safety-net listeners, live only mid-drag
   const carriedRef = useRef(false); // button came up but we never saw the release
+  const holdTimerRef = useRef(0);
+  const touchRef = useRef(false);
+
+  // Once a stamp is lifted on touch, the page must not scroll under the
+  // finger. React's touch listeners are passive, so this is a native one.
+  useEffect(() => {
+    const block = (e) => {
+      if (dragStartedRef.current) e.preventDefault();
+    };
+    document.addEventListener('touchmove', block, { passive: false });
+    return () => {
+      document.removeEventListener('touchmove', block);
+      window.clearTimeout(holdTimerRef.current);
+    };
+  }, []);
 
   useEffect(() => {
     setMounted(true);
@@ -270,10 +287,23 @@ export default function Picker() {
   const onChipPointerDown = (chip) => (e) => {
     if (reduced || dragStartedRef.current) return;
     if (e.pointerType === 'mouse' && e.button !== 0) return;
+    didDragRef.current = false;
     // a stamp still springing back to the tray doesn't block the next pickup
     window.clearTimeout(springTimerRef.current);
+    window.clearTimeout(holdTimerRef.current);
     setDragId(null);
     const chipEl = e.currentTarget;
+    touchRef.current = e.pointerType === 'touch';
+    if (touchRef.current) {
+      // Touch: press and hold to pick up, so a swipe across the tray still
+      // scrolls the page. Moving before the hold lands cancels it.
+      holdTimerRef.current = window.setTimeout(() => {
+        if (startRef.current.chipId === chip.id && !dragStartedRef.current) {
+          if (navigator.vibrate) navigator.vibrate(8);
+          beginDrag(chip, chipEl);
+        }
+      }, HOLD_MS);
+    }
     pulse(chipEl.querySelector('.picker-chip__ink'), 'is-pressed', PRESS_INK_MS);
     // Throws if the pointer is already gone by the time this runs (a lagging
     // page); the page-level safety net covers the rest of the drag without it.
@@ -293,11 +323,21 @@ export default function Picker() {
     if (!dragStartedRef.current) {
       const dx = e.clientX - startRef.current.downX;
       const dy = e.clientY - startRef.current.downY;
-      if (Math.hypot(dx, dy) > DRAG_THRESHOLD) beginDrag(chip, e.currentTarget);
+      const d = Math.hypot(dx, dy);
+      if (touchRef.current) {
+        // moved before the hold landed: it's a scroll, not a pickup
+        if (d > TOUCH_SLOP) {
+          window.clearTimeout(holdTimerRef.current);
+          startRef.current.chipId = null;
+        }
+      } else if (d > DRAG_THRESHOLD) {
+        beginDrag(chip, e.currentTarget);
+      }
     }
   };
 
   const onChipPointerUp = (chip) => (e) => {
+    window.clearTimeout(holdTimerRef.current);
     if (reduced || startRef.current.chipId !== chip.id) return;
     const chipEl = e.currentTarget;
     if (chipEl.hasPointerCapture(e.pointerId)) chipEl.releasePointerCapture(e.pointerId);
@@ -309,6 +349,7 @@ export default function Picker() {
   };
 
   const onChipPointerCancel = (chip) => () => {
+    window.clearTimeout(holdTimerRef.current);
     if (startRef.current.chipId !== chip.id) return;
     if (dragStartedRef.current) cancelDrag();
     startRef.current.chipId = null;
@@ -370,14 +411,18 @@ export default function Picker() {
 
       <p className="picker-sentence" ref={sentenceRef} aria-live="polite">
         <span className="picker-sentence__stem">Raj can </span>
+        {/* the full stop lives inside the clause, so it can never wrap onto a
+            line of its own */}
         {activeChip ? (
           <span className="picker-sentence__clause" key={stampCount}>
             {activeChip.label}
+            <span className="picker-sentence__stop">.</span>
           </span>
         ) : (
-          <span className="picker-sentence__placeholder">___</span>
+          <span className="picker-sentence__placeholder">
+            ___<span className="picker-sentence__stop">.</span>
+          </span>
         )}
-        <span className="picker-sentence__stop">.</span>
       </p>
 
       {/* Always rendered, with room reserved for three lines, so the tray

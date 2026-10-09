@@ -9,7 +9,9 @@ import React from 'react';
  *
  * The old navbar's "Portfolio Projects" entry is gone on purpose: the work now
  * lives on the front sheet, so a second surface for it would be a second answer
- * to the same question. That route still resolves for anyone with the URL.
+ * to the same question. `?ref=projects` has since been retired outright — the
+ * route and the surface are both gone, so an old bookmark or a stale link now
+ * falls through to the default surface rather than to the older answer.
  */
 
 const NAV = [

@@ -5,8 +5,6 @@ import './styles/riso.css';
 import '@mantine/core/styles.css';
 import Layout from "./components/Layout";
 import Home from "./components/Home";
-import Learnings from "./components/Learnings";
-import Projects from "./components/Projects";
 import NBAWireframe from "./components/Projects/nba_contract";
 import SurvivorBlog from "./components/Projects/survivor_blog";
 
@@ -24,12 +22,6 @@ function App() {
   switch (page) {
     case 'home':
       Component = Home;
-      break;
-    case 'learnings':
-      Component = Learnings;
-      break;
-    case 'projects':
-      Component = Projects;
       break;
     case 'nba_contract':
       Component = NBAWireframe;

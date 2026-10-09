@@ -109,6 +109,26 @@
   --rule-strong: rgba(11, 11, 11, 0.55);
 }
 
+/* ---- the width is locked ---------------------------------------------------
+ * The sheet is a fixed width: nothing on it may be panned sideways, and a
+ * horizontal swipe that begins on a stamp must not drag the page out from under
+ * it. `clip` rather than `hidden`, because a hidden-overflow box is still
+ * scrollable by trackpad and, in some engines, by touch — which is exactly the
+ * wiggle this removes. The `hidden` declaration goes first as the fallback for
+ * engines without `clip`; the later value wins where it is understood.
+ */
+html,
+body {
+  overflow-x: hidden;
+  overscroll-behavior-x: none;
+}
+@supports (overflow: clip) {
+  html,
+  body {
+    overflow-x: clip;
+  }
+}
+
 .sheet {
   position: relative;
   background: var(--paper);
@@ -118,7 +138,11 @@
   line-height: 24px;
   min-height: 100dvh;
   padding: var(--margin-top) var(--margin-side) var(--margin-bottom);
+  /* clip, not hidden: as a scroll container the sheet could still be panned
+     sideways, and the field in its last cell used to drift far enough past the
+     margin to give it something to pan to. */
   overflow-x: hidden;
+  overflow-x: clip;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -327,6 +351,10 @@
   transform: translate(calc(0.08 * (var(--slip) + var(--drift, 0px))), calc(0.05 * (var(--slip) + var(--drift, 0px))));
   opacity: 0.86;
 }
+/* The third drum was tried here and removed on Raj's call, so no element on the
+   sheet prints in yellow through an .ink plate — yellow carries the bio's plate
+   and the colour bar only. Left as a note so it is not reinstated as decoration. */
+
 /* Hovering starts the plates drifting apart; Alt latches them fully separated.
  * Transient, self-clearing, no extra markup, no new assets. */
 .masthead__wrap:hover {
@@ -917,23 +945,37 @@ html:has(.sheet) ::-webkit-scrollbar-thumb {
   .spine {
     display: none;
   }
-  /* The ink block only ever closed the desktop right-void, so it used to
-     withdraw entirely here, where one column would crush the name. That left
-     the narrow sheet with no printed mark of its own — the colour bar and the
-     spine are gone too — so it now stays as a small plate instead of leaving:
-     the name takes a full row, and the discs sit under it, hard right, at the
-     size of a mark rather than a plate. */
+  /* Narrow sheet: the name takes the full first row, and the discs drop down
+     to sit beside the tagline — a small mark, vertically centred on it, on the
+     right so the tagline keeps the left edge the name and the bio share. The
+     row wrapper dissolves (display: contents) so the name and the discs can
+     take their own grid cells. */
+  .masthead {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    column-gap: 16px;
+    align-items: center;
+  }
   .masthead__row {
-    flex-wrap: wrap;
+    display: contents;
   }
   .masthead__wrap {
-    flex: 1 1 100%;
+    grid-column: 1 / -1;
+  }
+  .bridge {
+    grid-column: 1;
+    grid-row: 2;
+    margin-top: 6px;
   }
   .masthead__art {
-    flex: 0 0 auto;
-    width: 92px;
-    margin-left: auto;
+    grid-column: 2;
+    grid-row: 2;
+    width: 64px;
+    margin: 6px 0 0;
     align-self: center;
+  }
+  .masthead .lead {
+    grid-column: 1 / -1;
   }
   .masthead,
   .projects,
@@ -970,13 +1012,37 @@ html:has(.sheet) ::-webkit-scrollbar-thumb {
   /* The contacts keep their old mobile size. The larger step is a desktop
      statement about rank — the address outranking the row titles — and at 36px
      two of them no longer fit a 326px column. Mobile was signed off as-is. */
+  /* Email / LinkedIn / Resume on one line: three links at 30px with the
+     desktop gap need ~436px against a ~326px column, so both come down. */
+  .contacts {
+    flex-wrap: nowrap;
+    gap: clamp(12px, 5vw, 20px);
+  }
   .contact {
-    font-size: 30px;
-    line-height: 32px;
+    font-size: clamp(19px, 6.2vw, 24px);
+    line-height: 1.2;
   }
   .bridge {
     font-size: 34px;
     line-height: 38px;
+  }
+  /* two lines on a phone: "Data Scientist and / AI Engineer". The tagline
+     takes the full width (beside the discs, "Data Scientist and" can't fit and
+     wraps to three lines), and the discs tuck in beside the short second line,
+     pulled in from the edge. */
+  .bridge__break {
+    display: block;
+  }
+  .bridge {
+    grid-column: 1 / -1;
+  }
+  .masthead__art {
+    width: 50px;
+    align-self: end;
+    margin: 0 40px -12px 0;
+  }
+  .masthead .lead.mt3 {
+    margin-top: calc(1.5 * var(--base));
   }
   /* Same reasoning as the masthead above: on artwork that is already small, the
      take-up layer reads as dirt rather than as ink, so it thins. The print-in
@@ -1066,7 +1132,11 @@ html:has(.sheet) ::-webkit-scrollbar-thumb {
   }
 }
 .picker-sentence__stop {
+  color: var(--ink);
   opacity: 0.55;
+}
+.picker-sentence__placeholder {
+  white-space: nowrap;
 }
 /* while a stamp is carried, the sentence shows it's listening; over it, the
    rectangle firms up so you know a release will land in the sentence */
@@ -1105,7 +1175,8 @@ html:has(.sheet) ::-webkit-scrollbar-thumb {
   display: inline-block;
   cursor: grab;
   background: none;
-  touch-action: none;
+  touch-action: pan-x pan-y; /* touch picks up on press-and-hold, so a swipe still scrolls */
+  -webkit-touch-callout: none;
   user-select: none;
   -webkit-user-select: none;
   border: 2px solid var(--ink);
@@ -1259,6 +1330,16 @@ body.is-picker-dragging {
 .picker-impression--key {
   color: var(--ink);
 }
+/* Yellow and green join the stamping inks: pale ones, and they print pale on
+   purpose — a stamp impression is a mark on the sheet, not a word to be read,
+   and the existing pink already ran lighter than the key. The impression is
+   aria-hidden and its phrase is carried by the sentence above it. */
+.picker-impression--yellow {
+  color: var(--yellow);
+}
+.picker-impression--green {
+  color: var(--green);
+}
 @keyframes picker-impression-press {
   from {
     opacity: 0;
@@ -1316,10 +1397,24 @@ body.is-picker-dragging {
   .picker-sentence {
     font-size: 24px;
   }
+  /* On a phone a subtitle runs five-plus lines, so a fixed reserve can't stop
+     the tray moving anyway — drop it and let the gap hug the text. */
   .picker-proof {
     font-size: 16px;
     line-height: 24px;
-    min-height: 120px;
+    min-height: 0;
+    margin: 8px 0 20px;
+  }
+  .picker-row {
+    gap: 8px 6px;
+  }
+  /* smaller stamps, same type: the padding comes in, the text stays */
+  .picker-chip {
+    padding: 5px 9px;
+  }
+  .picker-impression {
+    padding: 6px 10px;
+    border-width: 2.5px;
   }
 }
 
@@ -1333,6 +1428,315 @@ body.is-picker-dragging {
   .picker-chip__ink.is-pressed,
   .picker-chip.is-jiggling,
   .picker-sentence__clause {
+    animation: none;
+  }
+}
+
+/* ---- the press marks: small things to touch ---------------------------------
+ * Three toys, one vocabulary: each answers the hand the way the stamps and the
+ * discs already do — the plates pull off true, ink moves, then it settles.
+ */
+
+/* ---- the halftone sketch, in the run's empty last cell ---- */
+.projects__aside {
+  display: flex;
+  align-self: stretch;
+  /* The run aligns its cells to the top; this one stretches to the whole row
+     and sets the sketch on the BOTTOM of the cards section, rather than
+     floating at the height of the card's middle. */
+  align-items: flex-end;
+  justify-content: center;
+}
+.scatter {
+  width: 384px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  color: inherit;
+  /* how far the impressions of every dot sit apart; hovering widens it */
+  --sep: 1;
+  /* The plot is bottom-anchored to the cards, so extra height would normally
+     climb UP into the last card. The negative bottom margin instead drops the
+     box: the top edge stays put and the growth runs DOWNWARD, so the sketch
+     gets bigger without its centre climbing. It hangs past the bottom of the
+     run, which is where a printer's mark wants to sit anyway — the 30px left
+     below is to the picker's top edge. */
+  margin-bottom: -90px;
+}
+.scatter:hover {
+  --sep: 2.1;
+}
+.scatter svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+/* the group carries the dot's POSITION; the two ink layers inside it carry the
+   print. Splitting them is what lets one dot run a different ink pair from its
+   neighbour instead of the whole field being locked to two flat plates. */
+.scatter__dotgroup {
+  transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.scatter__dot {
+  mix-blend-mode: multiply;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+/* Three inks, each pulled its own way, so a dot's two impressions miss
+   registration — and multiply into a third colour where they cross:
+   pink+blue goes violet, pink+yellow a warm orange, blue+yellow an olive. */
+.scatter__dot--pink {
+  fill: var(--pink);
+  opacity: 0.8;
+  transform: translate(calc(-1.6px * var(--sep)), calc(-0.9px * var(--sep)));
+}
+.scatter__dot--blue {
+  fill: var(--blue);
+  opacity: 0.85;
+  transform: translate(calc(1.4px * var(--sep)), calc(0.6px * var(--sep)));
+}
+.scatter__dot--yellow {
+  fill: var(--yellow);
+  opacity: 0.9;
+  transform: translate(calc(-0.3px * var(--sep)), calc(1.6px * var(--sep)));
+}
+/* each shape's key-ink guide draws itself in once the points have arrived */
+.scatter__guide {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 1.8;
+  /* a dash longer than any guide (≤ ~400 user units), offset by its own
+     length so the guide starts hidden and draws in */
+  stroke-dasharray: 600;
+  stroke-dashoffset: 600;
+  transition: stroke-dashoffset 0.25s ease-in;
+}
+.scatter--line .scatter__guide--line,
+.scatter--bars .scatter__guide--bars,
+.scatter--curve .scatter__guide--curve {
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 0.6s ease-out 0.5s;
+}
+.scatter:focus-visible {
+  outline: 2px solid var(--blue-deep);
+  outline-offset: 4px;
+}
+
+/* ---- the ink roller, at the foot of the sheet ---- */
+.contacts {
+  align-items: center;
+}
+.contacts__roller {
+  margin-left: var(--base); /* sits just past the links, a touch further than they sit from each other */
+}
+.roller {
+  display: block;
+  width: 72px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.roller--docked.is-away {
+  visibility: hidden;
+}
+.roller--loose {
+  z-index: 51;
+}
+.roller--loose.is-carried {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  will-change: transform;
+  filter: drop-shadow(8px 12px 10px rgba(11, 11, 11, 0.28));
+}
+.roller svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+.roller__drum {
+  mix-blend-mode: multiply;
+}
+.roller__drum--pink { fill: var(--pink); }
+.roller__drum--blue { fill: var(--blue); }
+.roller__drum--yellow { fill: var(--yellow); }
+.roller__drum--green { fill: var(--green); }
+.roller__drum-key,
+.roller__frame {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 2;
+}
+.roller__ribs line {
+  stroke: var(--ink);
+  stroke-width: 1;
+  opacity: 0.35;
+}
+.roller__handle {
+  fill: var(--ink);
+}
+/* a plain click: the drum turns over in place */
+.roller.is-nudged .roller__art {
+  animation: roller-nudge 0.5s ease-in-out;
+  transform-origin: 50% 25%;
+  transform-box: fill-box;
+}
+@keyframes roller-nudge {
+  0% { transform: translateX(0) rotate(0deg); }
+  25% { transform: translateX(-4px) rotate(-3deg); }
+  55% { transform: translateX(3px) rotate(2deg); }
+  100% { transform: translateX(0) rotate(0deg); }
+}
+/* the drum's ribs roll while it's carried */
+.roller.is-carried .roller__ribs {
+  animation: roller-ribs 0.35s linear infinite;
+}
+@keyframes roller-ribs {
+  from { transform: translateX(0); }
+  to { transform: translateX(14px); }
+}
+body.is-roller-carrying {
+  cursor: grabbing;
+  user-select: none;
+  -webkit-user-select: none;
+}
+/* the ink it lays down: a band the drum's length, speckled through the tone
+   plate (the layer's mask), wavered at the edges, lifting away slowly */
+.roller-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 35;
+  pointer-events: none;
+  overflow: visible;
+}
+.roller-stroke {
+  fill: none;
+  stroke-width: 42;
+  stroke-linecap: butt;
+  stroke-linejoin: round;
+  mix-blend-mode: multiply;
+  opacity: 0.62;
+  filter: url(#roller-rough);
+  animation: roller-stroke-fade 4s ease-in 7s forwards;
+}
+.roller-stroke--live {
+  animation: none;
+}
+.roller-stroke--pink { stroke: var(--pink); }
+.roller-stroke--blue { stroke: var(--blue); }
+.roller-stroke--yellow { stroke: var(--yellow); }
+.roller-stroke--green { stroke: var(--green); }
+@keyframes roller-stroke-fade {
+  from { opacity: 0.62; }
+  to { opacity: 0; }
+}
+
+/* ---- the colour bar: a press check on hover ---- */
+.colourbar__chip {
+  display: block;
+  padding: 0;
+  border: 0;
+  cursor: default;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.colourbar__chip:hover {
+  transform: scale(1.35);
+}
+.colourbar__chip.is-pressed {
+  transform: scale(0.8);
+}
+.colourbar__chip:focus-visible {
+  outline: 2px solid var(--blue-deep);
+  outline-offset: 2px;
+}
+/* one ink knocks out of register across the sheet — every plate printed in
+   it — then settles back through each element's own easing. The wordmark's
+   plates sit in a scaled-down SVG, so they take bigger numbers. */
+body.press-pink .masthead__wrap .ink--pink {
+  transform: translate(-36px, 24px) rotate(-0.6deg);
+}
+body.press-blue .masthead__wrap .ink--blue {
+  transform: translate(34px, -24px) rotate(0.6deg);
+}
+body.press-pink .masthead__art .ink--pink {
+  transform: translate(24px, 16px);
+}
+body.press-blue .masthead__art .ink--blue {
+  transform: translate(-22px, -15px);
+}
+body.press-pink .proj__title::before {
+  transform: translate(-4px, 3px);
+}
+body.press-blue .proj__title::after {
+  transform: translate(4px, -3px);
+}
+body.press-pink .picker-chip::before {
+  transform: translate(-6px, 4px);
+}
+body.press-blue .picker-chip::after {
+  transform: translate(6px, -4px);
+}
+body.press-pink .scatter__dot--pink {
+  transform: translate(-6px, 3.5px);
+}
+body.press-blue .scatter__dot--blue {
+  transform: translate(5px, -3px);
+}
+body.press-yellow .scatter__dot--yellow {
+  transform: translate(-1px, 6px);
+}
+.lead::before {
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+/* yellow carries the bio's plate — it can slide right off its text */
+body.press-yellow .lead::before {
+  transform: translate(30px, 18px) rotate(0.6deg);
+}
+
+@media (max-width: 1080px) {
+  /* one column: a flat strip between the last card and the picker */
+  .projects__aside {
+    justify-content: flex-start;
+    /* In one column the grid's 72px row gap lands above the strip and the
+       picker's own top margin lands below it, so the little chart sat in 62px
+       of air above and 120px below — more room than the drawing itself takes.
+       Both come in to 38px, so the padding above and below it matches. */
+    margin: -34px 0 -82px;
+  }
+  .scatter {
+    width: 100%;
+    max-width: 520px;
+    /* the strip is not bottom-anchored against a tall card, so the desktop
+       drop does not apply to it */
+    margin-bottom: 0;
+  }
+}
+
+/* the roller is a desktop toy: hidden on phones and on touch-only screens */
+@media (max-width: 620px), (hover: none) {
+  .contacts__roller {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scatter__dotgroup,
+  .scatter__dot,
+  .scatter__guide,
+  .colourbar__chip,
+  .lead::before {
+    transition: none !important;
+  }
+  .roller.is-nudged .roller__art,
+  .roller.is-carried .roller__ribs {
     animation: none;
   }
 }

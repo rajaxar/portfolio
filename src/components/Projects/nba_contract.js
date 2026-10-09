@@ -14,8 +14,11 @@ function NBAWireframe() {
                 marginBottom: "0rem"
             }}
         >
-            {/* Button that returns back to main page, stickied on top left. */}
-            <a href="?ref=projects" className="nba-back-button">
+            {/* Button that returns to the portfolio sheet, stickied on top left.
+                It used to point at ?ref=projects — the retired second surface
+                for the same work, which sent readers to an older answer than
+                the front sheet. */}
+            <a href="?ref=home" className="nba-back-button">
                 Back
             </a>
             <div
