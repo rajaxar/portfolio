@@ -75,8 +75,10 @@ class NBAKDEPlot extends Component {
             .call(d3.axisLeft(yScale).tickFormat(d3.format('.0%')));
 
         staticGroup.append('text')
-            .attr('text-anchor', 'end')
-            .attr('x', width - margin.left)
+            // 'end' anchored at width - margin.left sat the title left of the
+            // plot's centre; centre it under the plot instead
+            .attr('text-anchor', 'middle')
+            .attr('x', width / 2)
             .attr('y', height + margin.bottom)
             .text('Performance (WAR) Values')
             .style('font-family', 'Graphik')
@@ -84,10 +86,13 @@ class NBAKDEPlot extends Component {
             .style('font-size', '20px');
 
         staticGroup.append('text')
-            .attr('text-anchor', 'end')
+            // rotate(-90) about the group's origin: this anchor's x is the
+            // vertical position, so -height/3 let the label run off the top of
+            // the svg. Mid-axis anchoring keeps all of it inside.
+            .attr('text-anchor', 'middle')
             .attr('transform', 'rotate(-90)')
             .attr('y', -margin.left + 25)
-            .attr('x', -height / 3)
+            .attr('x', -height / 2)
             .text('Percentage of Players')
             .style('fill', 'black')
             .style('font-family', 'Graphik')

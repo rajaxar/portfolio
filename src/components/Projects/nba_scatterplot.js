@@ -166,8 +166,10 @@ class NBASalaryScatterplot extends Component {
 
     // X-axis label
     svg.append("text")
-      .attr("text-anchor", "end")
-      .attr("x", width - margin.left)
+      // text-anchor 'end' at width - margin.left parked this label over the
+      // middle-left of the plot instead of under its centre
+      .attr("text-anchor", "middle")
+      .attr("x", width / 2)
       .attr("y", height + margin.bottom)
       .text("Deviation in WAR")
       .style("font-family", "Graphik")
@@ -176,10 +178,14 @@ class NBASalaryScatterplot extends Component {
 
     // Y-axis label
     svg.append("text")
-      .attr("text-anchor", "end")
+      // rotate(-90) turns about the svg's own origin, so this anchor's x
+      // becomes the vertical position and its y the horizontal one. At
+      // -height/3 the label ran off the top of the svg and rendered as "ary".
+      // Anchor it mid-axis instead.
+      .attr("text-anchor", "middle")
       .attr("transform", "rotate(-90)")
       .attr("y", 30)
-      .attr("x", -height / 3)
+      .attr("x", -height / 2)
       .text("Change in Salary")
       .style("fill", "black")
       .style("font-family", "Graphik")

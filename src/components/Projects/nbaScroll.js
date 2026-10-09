@@ -49,6 +49,26 @@ const styles = {
     '&:last-child': {
       marginBottom: '18rem',
     },
+  },
+  /* The opening block — the intro copy and its "Scroll Down" prompt — is one
+     screen tall with its content centred in it, so the reader meets the whole
+     thing in the middle of the glass, arrow included, instead of half of it
+     sitting below the fold. The negative top margin cancels the container's
+     40vh of leading space, so the centring is against the viewport rather than
+     against that padding. */
+  stepIntro: {
+    height: '100vh',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 0,
+    margin: '-40vh auto 0',
+    // the shared step rule hangs 10rem of margin under the paragraph, which
+    // pulled the centred block ~80px above the middle of the screen
+    '& p': {
+      marginBottom: 0,
+    },
   }
 };
 
@@ -61,7 +81,6 @@ class NBAScroll extends PureComponent {
   state = {
     data: 0,
     steps: [0, 1, 2, 3, 4],
-    progress: 0,
     stepLines: {
       1: [{
         0: 14.34,
@@ -504,38 +523,58 @@ class NBAScroll extends PureComponent {
   };
 
   componentDidMount() {
-    const width = this.chartRef.current.getBoundingClientRect().width;
-    this.initLineChart({
-      width,
-      height: 400
-    });
     this.onStepEnter({ data: this.state.steps[0] });
-    window.addEventListener('resize', this.handleResize);
+    window.addEventListener('resize', this.buildChart);
+    // The chart cannot be built by measuring the container here. At this moment
+    // `data` is 0, the container is `display: none`, and a measurement of a
+    // display:none box is 0 — which gave the x scale a NEGATIVE plot width and
+    // built the svg 90px wide. The story's chart was a broken sliver until the
+    // reader happened to resize the window, the only thing that rebuilt it.
+    // An observer waits for a real width instead, and rebuilds if it changes.
+    this.buildChart();
+    if (typeof ResizeObserver !== 'undefined') {
+      this.observer = new ResizeObserver(() => this.buildChart());
+      this.observer.observe(this.chartRef.current);
+    }
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this.handleResize);
+    window.removeEventListener('resize', this.buildChart);
+    if (this.observer) this.observer.disconnect();
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.data !== this.state.data) {
+      // step 0 hides the container, so this is also the first moment a real
+      // width exists
+      this.buildChart();
       this.updateLineChart();
     }
   }
 
-  handleResize = () => {
-    const width = this.chartRef.current.getBoundingClientRect().width;
-    d3.select(this.chartRef.current).select('svg').remove();
+  /* Build (or rebuild) the chart at the container's current width. No-ops when
+     the width has not moved, so the observer, the resize listener and the step
+     change cannot fight each other into rebuilding in a loop. */
+  buildChart = () => {
+    const node = this.chartRef.current;
+    if (!node) return;
+    const width = node.getBoundingClientRect().width;
+    if (!width || width === this.chartWidth) return;
+    this.chartWidth = width;
+    d3.select(node).select('svg').remove();
     this.initLineChart({ width, height: 400 });
-    if (this.state.data !== 0) {
-      this.updateLineChart();
-    }
+    if (this.state.data !== 0) this.updateLineChart();
   };
 
   initLineChart = (config) => {
     config = {
       ...config,
-      xScale: d3.scaleLinear().domain([-0.3, 2.3]),
+      // The domain used to run out to ±0.3 of padding, which left about a tenth
+      // of the plot empty past the last data point: the lines stopped well short
+      // of the axis' right end and read as though the final year were missing.
+      // The data sits at x = 0, 1, 2 and the gridlines at 0.05/1/1.95, so a hair
+      // of padding each side is all the plot needs.
+      xScale: d3.scaleLinear().domain([-0.05, 2.05]),
       yScale: d3.scaleLinear().domain([0, 30]),
       margin: {
         top: 10,
@@ -545,6 +584,7 @@ class NBAScroll extends PureComponent {
       }
     };
     const { width, height, margin } = config;
+    this.margin = margin; // the tooltip needs it to put a pointer into chart space
 
     const w = width - margin.left - margin.right;
     const h = height - margin.top - margin.bottom;
@@ -554,8 +594,14 @@ class NBAScroll extends PureComponent {
     const svg = d3
       .select(this.chartRef.current)
       .append("svg")
-      .attr("width", width + margin.left + margin.right + margin.right)  // Increase the width of the SVG
-      .attr("height", height + margin.top + margin.bottom)  // Increase the height of the SVG
+      // The right margin used to be counted twice here, which built the svg 80px
+      // wider than the box it sits in. The measurement IS the box, and the
+      // margins live inside it, so this is the whole width.
+      .attr("width", width)
+      // +20: the bottom margin held the tick labels and the axis title, and the
+      // title's descenders were landing past the svg's own edge and being
+      // clipped. The extra strip gives them room without moving the plot.
+      .attr("height", height + margin.top + margin.bottom + 20)
       .append("g")
       .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
@@ -570,19 +616,29 @@ class NBAScroll extends PureComponent {
 
     const xLabels = ["Year Before Contract Expires", "End of Contract", "Year After Contract"];
 
-    svg
+    const xAxis = svg
       .append("g")
       .attr("transform", `translate(0, ${h})`)
       .attr("class", "x axis")
-      .style("font-size", "16px")
+      .style("font-size", "14px")
       .style("font-family", "Graphik")
       .call(
         d3.axisBottom(this.xScale)
-          .tickValues([0.05, 1, 1.95])  // Set the tick values
-          .tickFormat((d, i) => xLabels[i])  // Set the tick labels
+          // The gridlines and the data share these three x positions. The ticks
+          // used to sit at 0.05/1/1.95 while the data sat at 0/1/2, which is why
+          // every line started a hair to the LEFT of the first gridline and
+          // finished to the right of the last.
+          .tickValues([0, 1, 2])
+          .tickFormat((d, i) => xLabels[i])
       );
 
-    [.05, 1, 1.95].forEach((x) => {
+    // These labels are wider than the plot. Centred on their ticks, the outer
+    // two ran off the svg and rendered as "'ear Before Contract Expires" and
+    // "Year After Cont". Let them grow inward over the plot instead.
+    xAxis.selectAll('.tick text')
+      .attr('text-anchor', (d, i) => (i === 0 ? 'start' : i === 2 ? 'end' : 'middle'));
+
+    [0, 1, 2].forEach((x) => {
       svg
         .append("line")
         .attr("x1", config.xScale(x))
@@ -632,10 +688,15 @@ class NBAScroll extends PureComponent {
       return;
     }
 
+    // The group is already translated by the margins, so the path must not carry
+    // them a second time: the +70 put every line 70px right of the axes and the
+    // gridlines it is meant to answer to, and the -20 lifted it clear of its own
+    // scale. The random wobble went too — it re-rolled on every redraw, so the
+    // same step drew a different shape each time you scrolled back to it.
     const line = d3.line()
       .curve(d3.curveBasis)
-      .x(d => this.xScale(d.x) + 70)
-      .y(d => this.yScale(d.y + Math.random() - 0.5) - 20);
+      .x(d => this.xScale(d.x))
+      .y(d => this.yScale(d.y));
 
     const data = rawData.map((dict, index) => {
       const points = Object.entries(dict).map(([x, y]) => ({ x: Number(x), y }));
@@ -647,12 +708,23 @@ class NBAScroll extends PureComponent {
       .data(data, (_, i) => i)
       .join(
         enter => {
-          const g = enter.append('g').attr('class', `step-${step}`);
+          // The axes and gridlines are drawn inside a group translated by the
+          // chart margins; these step groups are appended to the svg itself, so
+          // they need the same transform. Without it every line was rendered
+          // margin.left (70px) to the left and margin.top (10px) above its own
+          // gridlines — the lines began on the first x-axis label and stopped
+          // short of the last one.
+          const { left, top } = this.margin || { left: 70, top: 10 };
+          const g = enter.append('g')
+            .attr('class', `step-${step}`)
+            .attr('transform', `translate(${left}, ${top})`);
           const path = g.append('path')
             .attr('class', `line step-${step}`)
             .attr('fill', 'none')
             .attr('stroke', d => {
-              const rgb = hexToRgb(d.tooltip.teamColor);
+              // a step whose metadata carries no tooltip used to throw here: the
+              // colour lookup returned null and the next line read `.r` off it
+              const rgb = hexToRgb(d.tooltip && d.tooltip.teamColor) || { r: 11, g: 11, b: 11 };
               const opacity = step === 4 ? 0.5 : 0.75;
               return `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${opacity})`;
             })
@@ -676,9 +748,20 @@ class NBAScroll extends PureComponent {
             .attr('stroke-width', 25)
             .attr('d', d => line(d.points))
             .on('mouseover', (event, d) => {
-              const mouseX = event.clientX;
-              const closestXValue = Math.round(this.xScale.invert(mouseX) - 2);
-              const closestDataPoint = d.points.find(p => p.x === closestXValue);
+              // The scales are chart-local, so inverting a raw clientX through
+              // them meant nothing: the lookup almost never matched a point, and
+              // the tooltip line then read `.y` off undefined and threw on every
+              // hover. Convert to chart space first, then take the nearest of the
+              // three contract years.
+              const bounds = this.chartRef.current.getBoundingClientRect();
+              const marginLeft = (this.margin && this.margin.left) || 70;
+              const domX = this.xScale.invert(event.clientX - bounds.left - marginLeft);
+              const nearest = [0, 1, 2].reduce(
+                (best, x) => (Math.abs(x - domX) < Math.abs(best - domX) ? x : best),
+                0
+              );
+              const closestDataPoint = d.points.find(p => p.x === nearest);
+              if (!closestDataPoint || !d.tooltip) return;
               d3.select('#tooltip')
                 .style('visibility', 'visible')
                 .html(`<p style="font-family: Futura Condensed; font-size: 1rem; font-weight: 600; margin: 0;">${d.tooltip.name}</p>` +
@@ -723,17 +806,17 @@ class NBAScroll extends PureComponent {
     }
   };
 
-  onStepProgress = ({ progress }) => {
-    this.setState({ progress });
-  };
-
   render() {
-    const { data, steps, progress } = this.state;
+    const { data, steps } = this.state;
     const { classes } = this.props;
     return (
       <div
         style={{
-          marginBottom: '-10rem',
+          // This used to pull itself 10rem up, which dragged the title card
+          // into the scrollytelling above it — the image's top edge landed
+          // inside the story's closing section. The card gets its own top
+          // margin below instead, and none of it is borrowed back.
+          marginBottom: '0rem',
         }}
       >
         <div className={classes.graphicContainer}>
@@ -741,9 +824,6 @@ class NBAScroll extends PureComponent {
             <Scrollama
               onStepEnter={this.onStepEnter}
               onStepExit={this.onStepExit}
-              progress
-              onStepProgress={this.onStepProgress}
-              // debug
               offset={0.4}
             >
               {steps.map(value => {
@@ -751,7 +831,7 @@ class NBAScroll extends PureComponent {
                 const visibility = isVisible ? 'visible' : 'hidden';
                 return (
                   <Step data={value} key={value}>
-                    <div className={classes.step} >
+                    <div className={`${classes.step}${value === 0 ? ` ${classes.stepIntro}` : ''}`}>
                       <p
                         style={{
                           visibility,

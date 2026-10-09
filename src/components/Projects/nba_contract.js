@@ -21,11 +21,15 @@ function NBAWireframe() {
             <a href="?ref=home" className="nba-back-button">
                 Back
             </a>
+            {/* No negative top margin: this wrapper used to pull itself 20rem up
+                the page, which parked the first 320px of the story above the
+                top of the scroll container — clipped, and impossible to scroll
+                back to. It was compensating for the old navbar, which the story
+                surfaces no longer render. */}
             <div
                 style={{
                     display: 'flex',
                     flexDirection: 'column',
-                    marginTop: '-20rem',
                 }}
             >
                 <NBAScroll />
@@ -33,6 +37,9 @@ function NBAWireframe() {
                     src={process.env.PUBLIC_URL + "/title_nba.png"}
                     alt="The Contract Year Phenomenon"
                     className="nba-title-image"
+                    // the card sat hard against the closing frame of the story
+                    // above it; it wants real air before it, not a hairline
+                    style={{ marginTop: '10rem' }}
                 />
                 <h3 className="nba-heading">
                     Story by Raj Shah
@@ -61,13 +68,18 @@ function NBAWireframe() {
                         flexDirection: 'column',
                         justifyContent: 'center',
                         alignItems: 'center',
-                        marginTop: '-20rem',
+                        // was -20rem, which lifted the chart 320px and ran its
+                        // x-axis straight through the paragraph above it
+                        marginTop: '2rem',
                         marginBottom: '10rem'
                     }}
                 >
                     <NBAKDE />
                 </div>
-                <p className="nba-text small pad-10" style={{ marginTop: '-5rem', marginBottom: '2rem', textAlign: 'justify' }}>
+                {/* a <div>, not a <p>: this block holds a list, and a <ul> inside
+                    a <p> is invalid markup — the parser closes the paragraph
+                    early and the list loses the text styling */}
+                <div className="nba-text small pad-10" style={{ marginTop: '-5rem', marginBottom: '2rem', textAlign: 'justify' }}>
                     Not exactly - there has been a lot of prior research on this topic, showing different methodologies, and coming to some different conclusions.
                     <ul>
                         <li>
@@ -99,7 +111,7 @@ function NBAWireframe() {
                         </li>
                     </ul>
                     So what does this all mean? <br /> There are a lot of factors that go into seeing the relationship between player performance and contract year.<br /><br />What might make it easier to understand is to see the data for ourselves.
-                </p>
+                </div>
                 <p className="nba-text small pad-10" style={{ marginBottom: '10rem', textAlign: 'justify' }}>
                     One of the graphs below covers what we’ve already seen - the estimated percentage distributions for player performance, delineated by year related to contract. The other is a new one - this one shows how much a player's salary increases based on their change in performance during the contract year.
                     <br /><br />
@@ -113,7 +125,9 @@ function NBAWireframe() {
                 <div className="nba-diy-container">
                     <NBADIY />
                 </div>
-                <p className="nba-text small pad-15" style={{ marginBottom: '5rem', textAlign: 'justify' }}>
+                {/* also a <div>, for the same reason: the two lists below live
+                    inside this block */}
+                <div className="nba-text small pad-15" style={{ marginBottom: '5rem', textAlign: 'justify' }}>
                     {/* Make a Span of Centered Text */}
                     <span className="nba-section-title">
                         So What's the Takeaway?
@@ -165,7 +179,7 @@ function NBAWireframe() {
                             </a>: This link is a great resource for understanding the different types of contracts - which is something this analysis did not control for. Different types of contracts might lead to different motivations for players.
                         </li>
                     </ul>
-                </p>
+                </div>
                 {/* Data Sources */}
                 <div className="nba-sources-container">
                 <span className="nba-highlight">

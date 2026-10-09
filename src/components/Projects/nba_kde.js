@@ -46,7 +46,10 @@ const styles = {
             textAlign: 'left',
             paddingBlock: '1rem',
             paddingRight: '4rem',
-            marginLeft: '-8rem',
+            // The step copy used to carry marginLeft: -8rem, which dragged it
+            // 128px left out of its own column and over the density chart — at
+            // wide widths the chart is over 1100px across, so the copy and the
+            // axis landed on top of each other. It stays inside its column now.
             fontSize: '1.8rem',
             marginBottom: '7rem',
         },
@@ -315,7 +318,7 @@ class NBAKDE extends Component {
 
 
     onStepEnter = e => {
-        const { data, entry, direction } = e;
+        const { data } = e;
         this.setState({ data: data });
         if (data === 1 && maxData < 1) {
             this.handleStepOne();
