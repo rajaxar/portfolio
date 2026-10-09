@@ -2,6 +2,7 @@ import NBAScroll from "./nbaScroll";
 import NBAKDE from "./nba_kde";
 import NBADIY from "./nba_diy";
 import "./nba_contract.css";
+import { urlFor } from "../../lib/seo";
 
 function NBAWireframe() {
     return (
@@ -18,7 +19,7 @@ function NBAWireframe() {
                 It used to point at ?ref=projects — the retired second surface
                 for the same work, which sent readers to an older answer than
                 the front sheet. */}
-            <a href="?ref=home" className="nba-back-button">
+            <a href={urlFor('home')} className="nba-back-button">
                 Back
             </a>
             {/* No negative top margin: this wrapper used to pull itself 20rem up

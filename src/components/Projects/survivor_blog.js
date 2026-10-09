@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import * as d3 from 'd3';
 import { Scrollama, Step } from 'react-scrollama';
+import { urlFor } from '../../lib/seo';
 
 // ─── Design tokens ────────────────────────────────────────────────────────
 const T = {
@@ -1324,7 +1325,7 @@ function SurvivorBlog() {
       {/* Back to the portfolio. The story renders as a standalone artifact with
           no shell around it, so the way out is part of the story's own furniture
           rather than borrowed from the sheet. */}
-      <a className="sv-back" href="?ref=home">
+      <a className="sv-back" href={urlFor('home')}>
         <span aria-hidden="true">&larr;</span> Portfolio
       </a>
 
