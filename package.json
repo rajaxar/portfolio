@@ -32,7 +32,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "postbuild": "node scripts/prerender.js",
-    "cards": "node scripts/serve.js . \"\" 3456",
+    "cards": "node scripts/make-cards.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

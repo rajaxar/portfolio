@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 
 /**
  * The halftone sketch: a small printed dot cloud that keeps re-plotting
@@ -423,6 +423,16 @@ export default function Scatter() {
     if (seq[next] === 'cloud') setPoints((prev) => replot(prev, box));
     setStep(next);
   };
+
+  // Every claim stamped into "Raj can ___" re-plots the sketch once, as if
+  // it had been pressed. The ref keeps the listener on the current step.
+  const advanceRef = useRef(advance);
+  advanceRef.current = advance;
+  useEffect(() => {
+    const onStamp = () => advanceRef.current();
+    window.addEventListener('picker:stamp', onStamp);
+    return () => window.removeEventListener('picker:stamp', onStamp);
+  }, []);
 
   const curvePath = (() => {
     let d = '';
