@@ -30,7 +30,7 @@ export const ROUTES = {
     title: 'Raj Shah',
     description:
       'Whether NBA players really play better in their contract year, and who gets voted out on Survivor — long-form data pieces by Raj Shah.',
-    image: '/og/home.png',
+    image: '/og/home.jpg',
     kind: 'website',
   },
   nba_contract: {
@@ -38,7 +38,7 @@ export const ROUTES = {
     title: 'Does the NBA’s contract year phenomenon exist? — Raj Shah',
     description:
       'Do NBA players really play better in the final year of their contract? RAPTOR WAR and twenty seasons of salary data, told as a scrolling story.',
-    image: '/og/nba-contract-year.png',
+    image: '/og/nba-contract-year.jpg',
     kind: 'article',
   },
   survivor: {
@@ -46,7 +46,7 @@ export const ROUTES = {
     title: 'Did Survivor’s diversity mandate change who gets voted out? — Raj Shah',
     description:
       'CBS mandated a 50% BIPOC cast. A data story on forty seasons of Survivor: who gets targeted before the merge, and how the casting changed the game.',
-    image: '/og/survivor-diversity.png',
+    image: '/og/survivor-diversity.jpg',
     kind: 'article',
   },
 };
