@@ -16,6 +16,8 @@
  * entries.
  */
 
+import { urlFor } from '../lib/seo';
+
 /* Labels only. An earlier version carried a per-facet ink for a colour swatch on
    each tag; nothing on the page decoded those four inks, so the swatches were
    colour that could not be read. The label is the information.
@@ -37,7 +39,10 @@ export const projects = [
       'An interactive data journalism piece examining race, gender, and age representation across all 49 seasons of Survivor. ' +
       'Built with D3.js, featuring KDE ridge plots, funnel charts, stacked bars, and wage trend lines showing how the New Era changed casting.',
     image: '/survivor_title_red.png',
-    link: '?ref=survivor',
+    // The two on-site stories own real paths now, so the cards point at them
+    // rather than at the ?ref= form — a crawler follows a href, and the old
+    // form is an alias rather than an address.
+    link: urlFor('survivor'),
     external: false,
     where: 'Read it on this site',
     facets: ['viz'],
@@ -52,7 +57,7 @@ export const projects = [
       ' years and player performance in the NBA. The project includes animated components and interactive components that allow' +
       ' the user to explore the data in a more engaging way.',
     image: '/title_nba.png',
-    link: '?ref=nba_contract',
+    link: urlFor('nba_contract'),
     external: false,
     where: 'Read it on this site',
     facets: ['viz'],

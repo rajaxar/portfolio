@@ -1,10 +1,10 @@
-# Codebase Guide for `/portfolio`
+# Codebase Guide for `raj-shah-portfolio`
 
-This repository hosts a personal portfolio site built with [Create React App](https://create-react-app.dev/). It combines React components, Mantine UI, Material UI, D3 visualisations and custom styles to showcase projects and learnings.
+This repository hosts a personal portfolio site built with [Create React App](https://create-react-app.dev/) and deployed to [rajshah.me](https://rajshah.me). It combines React components, Mantine UI, Material UI, D3 visualisations and custom styles to present the work.
 
 ## Getting Started
 
-1. **Install dependencies** – use the legacy peer dependency flag to bypass the React 15 requirement of `tableau-react`
+1. **Install dependencies** – use the legacy peer dependency flag to bypass the React 15 requirement of `tableau-react`
    ```bash
    npm install --legacy-peer-deps
    ```
@@ -16,7 +16,7 @@ This repository hosts a personal portfolio site built with [Create React App](ht
    ```bash
    npm test -- --watchAll=false --passWithNoTests
    ```
-4. **Create a production build**
+4. **Create a production build** – `react-scripts build`, then the prerender step below runs automatically
    ```bash
    npm run build
    ```
@@ -28,19 +28,72 @@ This repository hosts a personal portfolio site built with [Create React App](ht
 ## Project Structure
 
 - `src/` – React source
-  - `App.js` sets up routing via query parameters rather than `<Route>` components.
-  - `components/` – feature components (Home, About, Projects, D3 visualisations, etc.)
-  - `pages/` – simple wrappers around component views
-  - `styles/` – global CSS (`styles.css`) and font assets
-- `public/` – static assets, images and `index.html`
+  - `App.js` resolves which surface renders from the address (`src/lib/seo.js`).
+  - `components/` – feature components (Home, the two story surfaces, D3 visualisations)
+  - `data/` – the project and contact records
+  - `lib/seo.js` – the route table: paths, titles, descriptions, share cards, head writer
+  - `styles/` – global CSS (`styles.css`, `riso.css`) and font assets
+- `public/` – static assets, images, `index.html`, `sitemap.xml`, `robots.txt`, `CNAME`
+  - `public/og/` – the link-preview cards and the site icons
+- `scripts/` – build-time helpers (static server, prerender, share-card source)
+
+### Routing
+
+Three addresses exist, and they are listed once in `src/lib/seo.js` and once in
+`public/sitemap.xml` (the prerender step reads the sitemap, so the two must agree):
+
+| surface | path | source |
+| --- | --- | --- |
+| front sheet | `/` | `components/Home` |
+| NBA story | `/nba-contract-year/` | `components/Projects/nba_contract` |
+| Survivor story | `/survivor-diversity/` | `components/Projects/survivor_blog` |
+
+`?ref=home`, `?ref=nba_contract` and `?ref=survivor` still resolve, because every
+link shared before the paths existed points at them. The legacy form is checked
+first, then the path; on arrival the address bar is rewritten to the real path
+with `replaceState`. In-app navigation goes through `App.js`'s `navigate`, which
+pushes the path so a copied URL always names the page it points at.
 
 ### Styling and UI
-- Global styles live in `src/styles/styles.css`; fonts are loaded from the `assets/` folder.
-- Components primarily use inline styles and `styled-components`; Mantine and Material UI are available for higher‑level UI primitives.
+- Global styles live in `src/styles/styles.css` and `src/styles/riso.css`; fonts are loaded from the `assets/` folder.
+- Components primarily use inline styles and `styled-components`; Mantine and Material UI are available for higher-level UI primitives.
 - When referencing static assets inside React code, prefer `process.env.PUBLIC_URL` (e.g. `process.env.PUBLIC_URL + '/image.png'`).
 
 ### Data Visualisations
-- `src/components/Projects` contains D3 and Scrollama based visualisations. Many of these render full‑screen stories and should maintain existing styling and scrolling behaviour.
+- `src/components/Projects` contains D3 and Scrollama based visualisations. Many of these render full-screen stories and should maintain existing styling and scrolling behaviour.
+- Verify chart alignment in **screen** coordinates (`getScreenCTM`, `getBoundingClientRect`), never by comparing `getBBox()` against axis attributes: the axes usually live in a margin-translated group and the numbers will agree while the pixels do not.
+
+## SEO, share cards and the prerender step
+
+The app is a single-page app, so a raw `react-scripts build` produces one shell
+for every address: one title, no per-page description, and no text in the body.
+Two mechanisms fix that:
+
+- **`src/lib/seo.js`** owns the head. `applyHead(page)` sets title, description,
+  canonical, Open Graph, Twitter card and JSON-LD. `SITE_URL` is the one constant
+  to change if the domain moves — canonicals and share images must be absolute.
+- **`scripts/prerender.js`** (run as `postbuild`) serves `build/`, loads each
+  address in a real Chrome (puppeteer-core, driving the browser already on the
+  machine), lets React render, and writes the resulting HTML back over the shell.
+  It also writes `404.html` as a copy of the front sheet, so unknown addresses
+  still land on the app. If no Chrome is found it warns and skips rather than
+  failing the build (set `CHROME_PATH` to point at one).
+
+Result: each address is served its own title, description, canonical, share card
+and its own story copy — 510 / 1320 / 867 words where the shell had nine.
+
+Preview cards and icons live in `public/og/` and are committed. They are
+generated by screenshotting `scripts/og-cards.html`, which is written in the same
+riso language as the site:
+
+```bash
+npm run cards                      # serves the repo root on :3456 (fonts need http, not file://)
+# then open http://127.0.0.1:3456/scripts/og-cards.html?card=home      → screenshot at 1200x630
+#           http://127.0.0.1:3456/scripts/og-cards.html?card=nba       → screenshot at 1200x630
+#           http://127.0.0.1:3456/scripts/og-cards.html?card=survivor  → screenshot at 1200x630
+#           http://127.0.0.1:3456/scripts/og-cards.html?card=favicon   → screenshot at 512x512
+sips -Z 192 mark-512.png --out favicon.png   # then resize for the icon set
+```
 
 ## Development Notes
 
@@ -51,7 +104,16 @@ This repository hosts a personal portfolio site built with [Create React App](ht
 
 ## Deployment
 
-The site is deployed to GitHub Pages via the `gh-pages` package. Running `npm run deploy` builds the application and pushes the contents of `build/` to the `gh-pages` branch, making the site available at `https://rajaxar.github.io/portfolio/`.
+`npm run deploy` builds (including the prerender step) and pushes `build/` to the
+`gh-pages` branch. The published address is **https://rajshah.me**, served by
+GitHub Pages for the `rajaxar` account with `public/CNAME` (`rajshah.me`) in the
+output. The old `https://rajaxar.github.io/portfolio/` address continues to
+resolve to the same site.
+
+DNS lives at the registrar, not in this repo: the apex needs GitHub's four A
+records (`185.199.108.153`, `.109.153`, `.110.153`, `.111.153`) and `www` a CNAME
+to `rajaxar.github.io`. HTTPS is provisioned by GitHub once DNS resolves;
+"Enforce HTTPS" in the repository's Pages settings completes it.
 
 ---
 Use this document to record future findings or conventions so that subsequent agents have a clear starting point.

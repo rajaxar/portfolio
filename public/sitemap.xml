@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  The three addresses that exist. Keep in sync with src/lib/seo.js — the routes
+  and this file are the same list stated twice.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://rajshah.me/</loc>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://rajshah.me/nba-contract-year/</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://rajshah.me/survivor-diversity/</loc>
+    <priority>0.8</priority>
+  </url>
+</urlset>

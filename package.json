@@ -1,7 +1,7 @@
 {
   "name": "raj-portfolio",
   "version": "0.1.0",
-  "homepage": "https://rajaxar.github.io/portfolio/",
+  "homepage": "https://rajshah.me/",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.11.3",
@@ -31,6 +31,8 @@
     "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "postbuild": "node scripts/prerender.js",
+    "cards": "node scripts/serve.js . \"\" 3456",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -53,6 +55,7 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^6.1.1"
+    "gh-pages": "^6.1.1",
+    "puppeteer-core": "^25.13.0"
   }
 }
