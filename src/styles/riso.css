@@ -1138,6 +1138,14 @@ html:has(.sheet) ::-webkit-scrollbar-thumb {
 .picker-sentence__placeholder {
   white-space: nowrap;
 }
+/* the blank is a drawn rule rather than underscores, so the hint arrow can
+   find exactly where it sits */
+.picker-sentence__blank {
+  display: inline-block;
+  width: 1.8em;
+  border-bottom: 0.09em solid currentColor;
+  vertical-align: -0.1em;
+}
 /* while a stamp is carried, the sentence shows it's listening; over it, the
    rectangle firms up so you know a release will land in the sentence */
 .picker-sentence.is-drop-ready {
@@ -1160,6 +1168,50 @@ html:has(.sheet) ::-webkit-scrollbar-thumb {
   font-size: 19px;
   line-height: 30px;
   opacity: 0.82;
+}
+
+/* The first-visit hint: a pencilled arrow from the blank down to the tray,
+   sitting in the proof's empty slot. Retires once a stamp is lifted. */
+.picker-hint {
+  position: relative;
+  display: block;
+  color: var(--blue-deep);
+  opacity: 0.55;
+  transition: opacity 0.4s ease;
+}
+.picker-hint.is-gone {
+  opacity: 0;
+}
+/* placed and sized from the blank and the tray in Picker.js */
+.picker-hint__arrow {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 76px;
+  overflow: visible;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: url(#stamp-rough);
+}
+.picker-hint__text {
+  display: inline-block;
+  margin-top: 30px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 21px;
+  transform: rotate(-3deg);
+}
+.picker-hint__shaft {
+  stroke-dasharray: 7 6;
+  /* the dashes march from the blank down to the tray; the tail itself never
+     leaves the underline */
+  animation: picker-hint-march 1.1s linear infinite;
+}
+@keyframes picker-hint-march {
+  to { stroke-dashoffset: -13; }
 }
 
 .picker-row {
@@ -1408,6 +1460,16 @@ body.is-picker-dragging {
   .picker-row {
     gap: 8px 6px;
   }
+  .picker-hint {
+    padding-bottom: 14px;
+  }
+  .picker-hint__arrow {
+    width: 52px;
+  }
+  .picker-hint__text {
+    margin-top: 10px;
+    font-size: 16px;
+  }
   /* smaller stamps, same type: the padding comes in, the text stays */
   .picker-chip {
     padding: 5px 9px;
@@ -1423,6 +1485,9 @@ body.is-picker-dragging {
   .picker-sentence,
   .picker-chip {
     transition: none;
+  }
+  .picker-hint__shaft {
+    animation: none;
   }
   .picker-impact.is-active,
   .picker-chip__ink.is-pressed,

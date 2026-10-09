@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { chips } from '../../data/picker';
 
@@ -35,6 +35,7 @@ const PRESS_INK_MS = 320;
 const JIGGLE_MS = 460;
 const MAX_IMPRESSIONS = 8;
 const INKS = ['blue', 'pink', 'key', 'yellow', 'green'];
+const ARROW_VIEW_W = 64; // the hint arrow's viewBox width; its height is measured
 
 export default function Picker() {
   const [activeId, setActiveId] = useState(null);
@@ -43,6 +44,7 @@ export default function Picker() {
   const [impressions, setImpressions] = useState([]);
   const [reduced, setReduced] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [handled, setHandled] = useState(false); // once a stamp has been lifted, the hint retires
 
   const ghostRef = useRef(null);
   const sentenceRef = useRef(null);
@@ -63,6 +65,12 @@ export default function Picker() {
   const carriedRef = useRef(false); // button came up but we never saw the release
   const holdTimerRef = useRef(0);
   const touchRef = useRef(false);
+  const blankRef = useRef(null);
+  const hintRef = useRef(null);
+  const arrowRef = useRef(null);
+  const shaftRef = useRef(null);
+  const headRef = useRef(null);
+  const rowRef = useRef(null);
 
   // Once a stamp is lifted on touch, the page must not scroll under the
   // finger. React's touch listeners are passive, so this is a native one.
@@ -76,6 +84,40 @@ export default function Picker() {
       window.clearTimeout(holdTimerRef.current);
     };
   }, []);
+
+  // The hint arrow leaves the blank straight down from the middle of its
+  // underline and stops just short of the tray, at any width or font size:
+  // measure both and draw the arrow to fit between them.
+  useLayoutEffect(() => {
+    if (activeId) return undefined;
+    const fit = () => {
+      const blank = blankRef.current;
+      const hint = hintRef.current;
+      const svg = arrowRef.current;
+      const row = rowRef.current;
+      if (!blank || !hint || !svg || !row || !shaftRef.current || !headRef.current) return;
+      const b = blank.getBoundingClientRect();
+      const h = hint.getBoundingClientRect();
+      const w = svg.getBoundingClientRect().width;
+      const scale = w / ARROW_VIEW_W;
+      const top = b.bottom + 3; // a hair under the rule
+      const len = Math.max(30, (row.getBoundingClientRect().top - 6 - top) / scale);
+      // tail at x=40 of the viewBox, under the blank's centre
+      const tailX = b.left + b.width / 2 - h.left;
+      svg.style.left = `${tailX - 40 * scale}px`;
+      svg.style.top = `${top - h.top}px`;
+      svg.style.height = `${len * scale}px`;
+      svg.setAttribute('viewBox', `0 0 ${ARROW_VIEW_W} ${len}`);
+      // leaves the rule vertically, swings left, comes down onto the tray
+      shaftRef.current.setAttribute('d', `M40 1 C 40 ${len * 0.42}, 10 ${len * 0.36}, 14 ${len - 2}`);
+      headRef.current.setAttribute('d', `M5 ${len - 11} L14 ${len - 1} L23 ${len - 11}`);
+      hint.style.paddingLeft = `${tailX + 2 * scale}px`;
+    };
+    fit();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+    window.addEventListener('resize', fit);
+    return () => window.removeEventListener('resize', fit);
+  }, [activeId]);
 
   useEffect(() => {
     setMounted(true);
@@ -216,6 +258,7 @@ export default function Picker() {
     leanRef.current = 0;
     lastXRef.current = pointerRef.current.x;
     setDragId(chip.id);
+    setHandled(true);
     attachGlobal();
     document.body.classList.add('is-picker-dragging');
     if (sentenceRef.current) sentenceRef.current.classList.add('is-drop-ready');
@@ -420,16 +463,33 @@ export default function Picker() {
           </span>
         ) : (
           <span className="picker-sentence__placeholder">
-            ___<span className="picker-sentence__stop">.</span>
+            <span className="picker-sentence__blank" ref={blankRef}>
+              <span className="sr-only">blank</span>
+            </span>
+            <span className="picker-sentence__stop">.</span>
           </span>
         )}
       </p>
 
       {/* Always rendered, with room reserved for three lines, so the tray
           never jumps when a claim's proof arrives. */}
-      <p className="picker-proof">{activeChip ? activeChip.proof : ''}</p>
+      <p className="picker-proof">
+        {activeChip ? (
+          activeChip.proof
+        ) : (
+          // until a stamp is lifted: a pencilled arrow from the blank down to
+          // the tray
+          <span className={`picker-hint${handled ? ' is-gone' : ''}`} ref={hintRef}>
+            <svg className="picker-hint__arrow" ref={arrowRef} aria-hidden="true" focusable="false" preserveAspectRatio="xMinYMin meet">
+              <path className="picker-hint__shaft" ref={shaftRef} />
+              <path ref={headRef} />
+            </svg>
+            <span className="picker-hint__text">Pick up a stamp!</span>
+          </span>
+        )}
+      </p>
 
-      <div className="picker-row" role="group" aria-label="Things Raj can do — drag one onto the page">
+      <div className="picker-row" ref={rowRef} role="group" aria-label="Things Raj can do — drag one onto the page">
         {chips.map((c) => {
           const active = activeId === c.id;
           const dragging = dragId === c.id;
