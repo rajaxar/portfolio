@@ -26,6 +26,15 @@ import { chips } from '../../data/picker';
  * no ancestor's transform or filter can re-anchor them.
  */
 
+// The build's baked HTML (scripts/prerender.js) includes this component's
+// <body> portal; the app renders fresh rather than hydrating, so clear the
+// stale copy (duplicate filter ids, a dead ghost) before React mounts its own.
+if (typeof document !== 'undefined') {
+  document
+    .querySelectorAll('body > .picker-defs, body > .picker-impression, body > .picker-ghost, body > .picker-impact')
+    .forEach((n) => n.remove());
+}
+
 const DRAG_THRESHOLD = 6; // px of movement before a mouse press counts as a drag
 const HOLD_MS = 260; // touch: how long to hold before the stamp lifts
 const TOUCH_SLOP = 10; // touch: movement before the hold lands means "scroll"

@@ -18,6 +18,15 @@ import tone from '../../assets/tone.png';
  * re-renders.
  */
 
+// The build bakes each page's HTML (scripts/prerender.js), and that snapshot
+// includes this component's <body> portal. The app renders fresh rather than
+// hydrating, so the baked copy would linger — and its empty 0×0 #roller-mask,
+// first in the document, would win the id lookup and mask every stroke out.
+// Clear it before React mounts the live one.
+if (typeof document !== 'undefined') {
+  document.querySelectorAll('body > .roller-layer, body > .roller--loose').forEach((n) => n.remove());
+}
+
 const THRESHOLD = 4;
 const MAX_STROKES = 4;
 const INKS = ['pink', 'blue', 'yellow', 'green'];
