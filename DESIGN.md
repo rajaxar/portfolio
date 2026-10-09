@@ -12,7 +12,7 @@ colors:
   blue-deep: "#1b3a8f"
 typography:
   display:
-    fontFamily: "Bricolage Grotesque, Archivo, system-ui, sans-serif"
+    fontFamily: "Bricolage Grotesque, Big Shoulders Display, Archivo, system-ui, sans-serif"
     fontSize: "210px"
     fontWeight: 800
     lineHeight: 1
@@ -22,25 +22,35 @@ typography:
     fontSize: "52px"
     fontWeight: 800
     lineHeight: "58px"
-    letterSpacing: "normal"
+    letterSpacing: "-0.02em"
+  headline-compact:
+    fontFamily: "Bricolage Grotesque, Archivo, system-ui, sans-serif"
+    fontSize: "34px"
+    fontWeight: 800
+    lineHeight: "38px"
   title:
     fontFamily: "Bricolage Grotesque, Archivo, system-ui, sans-serif"
     fontSize: "28px"
     fontWeight: 800
     lineHeight: "32px"
-    letterSpacing: "0.01em"
+    letterSpacing: "-0.012em"
   lead:
     fontFamily: "Archivo, system-ui, -apple-system, sans-serif"
     fontSize: "20px"
     fontWeight: 400
     lineHeight: "32px"
     letterSpacing: "-0.004em"
-  body:
+  lead-compact:
+    fontFamily: "Archivo, system-ui, -apple-system, sans-serif"
+    fontSize: "18px"
+    fontWeight: 400
+    lineHeight: "28px"
+  sheet-base:
     fontFamily: "Archivo, system-ui, -apple-system, sans-serif"
     fontSize: "16px"
     fontWeight: 400
     lineHeight: "24px"
-  body-small:
+  body:
     fontFamily: "Archivo, system-ui, -apple-system, sans-serif"
     fontSize: "14px"
     fontWeight: 400
@@ -56,6 +66,7 @@ typography:
     fontSize: "36px"
     fontWeight: 800
     lineHeight: "38px"
+    letterSpacing: "-0.01em"
   contact-compact:
     fontFamily: "Bricolage Grotesque, Archivo, system-ui, sans-serif"
     fontSize: "30px"
@@ -68,20 +79,10 @@ typography:
     lineHeight: "17.55px"
   spine:
     fontFamily: "Bricolage Grotesque, Archivo, system-ui, sans-serif"
-    fontSize: "12px"
-    fontWeight: 400
-    lineHeight: "1.35"
-    letterSpacing: "normal"
-  lead-compact:
-    fontFamily: "Archivo, system-ui, -apple-system, sans-serif"
-    fontSize: "18px"
-    fontWeight: 400
-    lineHeight: "28px"
-  headline-compact:
-    fontFamily: "Bricolage Grotesque, Archivo, system-ui, sans-serif"
-    fontSize: "34px"
-    fontWeight: 800
-    lineHeight: "38px"
+    fontSize: "11px"
+    fontWeight: 600
+    lineHeight: "14.85px"
+    letterSpacing: "0.12em"
 rounded:
   none: "0px"
 spacing:
@@ -109,16 +110,17 @@ components:
     rounded: "{rounded.none}"
   masthead-plate:
     typography: "{typography.display}"
+    textColor: "{colors.rich-black}"
     rounded: "{rounded.none}"
   entry-number:
     typography: "{typography.apparatus}"
     textColor: "{colors.rich-black}"
   spine:
-    typography: "{typography.label}"
+    typography: "{typography.spine}"
     textColor: "{colors.rich-black}"
   ink-chip:
-    # one per entry, set to that entry's own ink; the mustard is shown as the value
-    backgroundColor: "{colors.mustard-yellow}"
+    # one per entry, set to that entry's own ink; pink is shown as the value
+    backgroundColor: "{colors.riso-pink}"
     rounded: "{rounded.none}"
     width: "12px"
     height: "12px"
@@ -130,247 +132,269 @@ components:
 
 **Creative North Star: "The Riso Drum"**
 
-The whole shell is one press sheet. Not a page that contains printed things — a
-single sheet that was printed: paper with a real stock, ink that owns fields,
-registration marks in the border, and a masthead built from three plates that
-were misaligned by a millimetre on purpose. The interface never apologises for
-being a website, but it never stops behaving like an object either.
+The shell is one press sheet. Not a page that contains printed things — a single
+sheet that was printed: paper with a real stock, ink that owns fields, and a
+masthead built from three plates that were misaligned on purpose. The interface
+never apologises for being a website, but it never stops behaving like an object
+either.
 
 The world arrives out of a refusal. It refuses the arrangement this category
 always ships — cream ground, one accent, high-contrast serif, a "Hi, I'm Raj"
 hero, a uniform card grid, gradient mesh, smooth scroll — and it refuses that
-arrangement's twin just as hard: the fake terminal, the mono-everything
-developer page. What is left is print discipline. Space is measured, type is
-set, and the only visual special effects are the ones a press actually makes.
+arrangement's twin just as hard: the fake terminal, the mono-everything developer
+page. What is left is print discipline: space is measured, type is set, and the
+only visual effects are the ones a press makes — displaced edges, ink laid at a
+density, and two plates crossing into a third colour where they overlap.
 
-Density is high but the page is quiet: seven projects run as one ruled column of
+Density is high but the page is quiet: seven projects run as one ruled run of
 entries, each an image field, a title, and the project's own words. Nothing is
 decorated to look important. Colour does a job — it fills a plate, a chip, an
-image field, a band — and black does all the talking, because on this paper black
-is the only ink that can be read.
+image field, a band — and black does all the talking, because black is the only
+ink here that can be read.
 
 **Key Characteristics:**
-- One press sheet: a single 12-column sheet, top rule down to the last project entry.
-- Three screened plates in the masthead, deliberately misregistered.
-- Paper `#F7F3E8`, never white — it renders about `#E6E2D8` under the grain. Black `#0B0B0B`, never pure.
-- Colour is field-only. Black carries every word below display size.
-- No shadows, no gradients, no blur. Depth is layer offset and ink density.
+- One press sheet: a single 12-column sheet, top rule down to the last entry.
+- Three plates in the masthead, deliberately misregistered, printed **solid**.
+- Paper `#f6f0e2`, never white — it measures about `#e4dfd2` as it renders under
+  the grain plate. Black `#0b0b0b`, never pure.
+- Colour is field-only. Black carries every word.
+- No shadows, and no blur or gradient used as elevation. Depth is layer offset and
+  ink density. Softness is a separate device: edge displacement, feathering and
+  gaussian tone plates, never a shadow.
 - Hard edges everywhere: zero corner radius anywhere in the system.
-- Nearly all type is uppercase; display is condensed and very heavy.
+- One display family (Bricolage Grotesque), one text family (Archivo), one
+  apparatus face (Redaction 20) used for a single thing.
 
 ## Colors
 
-A press operator's palette: two paper neutrals and five printing inks, none of
-which carries small text. The inks are read off reference sheets rather than a
-swatch book, which is why they are mustard, cornflower, a dusty pink, sage and a
-soft teal instead of the riso primaries — those read as packaging rather than as
-print.
+A press operator's palette: two paper neutrals and six printing inks, none of
+which carries type except the deepest blue. The inks are the true riso primaries
+rather than a swatch-book approximation — an earlier pass used muted mustard,
+cornflower and sage, and it read as a vintage newspaper instead of a riso print.
 
 ### Primary
-- **Cornflower Blue** (#718FC4): the structural ink. The masthead's second plate,
-  and — at higher density — the only ink allowed anywhere near type. The
-  cornflower itself measures 2.95:1 on paper, so it fails even the 3:1 large-text
-  threshold. `--blue-deep` (#4A6BA8, 4.78:1) is the same ink at print density, and
-  it is what the focus ring, the hovered title and the contact hover actually use.
-- **Dusty Pink** (#DE56A9): the ink that runs through the most of the sheet. The
-  masthead's first plate, image fields, `::selection`. At 3.15:1 on paper it fails
-  the 3:1 large-text threshold, which is why it is only ever a field.
+- **Riso Pink** (#fb79b1): the ink that runs through the most of the sheet. The
+  masthead's first plate, image fields, `::selection`, and the left impression of
+  every project title's printed fringe. 1.86:1 on the rendered paper — never text.
+- **Riso Blue** (#5285e3): the second of the two inks that carry the page. The
+  masthead's second plate, the right impression of every title's fringe, and a
+  field ink. Luminous on purpose: the field's soft tone mask collapses a dark navy
+  to a muddy lavender, so the ink has to be bright to survive the mask and still
+  overprint the pink into a true violet where the two cross. 2.71:1 — field only.
+- **Blue at Print Density** (#1b3a8f): the same ink taken down to a working
+  weight, and **the only colour on the sheet allowed to carry type** — 7.71:1 on
+  the rendered paper. It is the focus ring, the hovered project title, the hovered
+  entry number and the hovered contact link and rule.
 
 ### Secondary
-- **Sage Green** (#6F907A): taken from the botanical reference sheet, and it takes
-  the fourth turn in the image-field cycle. 3.19:1 on paper.
-- **Soft Teal** (#2F8FA1): light enough to print dark artwork on, which is why it
-  takes a turn in the image-field cycle alongside the mustard and the pink.
-  3.40:1 on paper.
+- **Riso Yellow** (#f6ce5c): the page's widest field. It fills the bio's plate
+  (80% into paper, rendering `#e6c870`), takes a turn in the image-field cycle,
+  and is one of the three colour-bar chips. 1.14:1 — a ground, never a mark; black
+  on it measures 12.05:1.
+- **Riso Green** (#4caf85): a spot accent carrying a declared field class with no
+  current assignment in the run. 2.03:1.
 
 ### Tertiary
-- **Mustard Yellow** (#DEB250): the page's widest field. Image fields, the band
-  behind block elements. 1.79:1 on paper — it is a ground, never a mark. Rich
-  black on it measures 9.93:1, so type printed *on* the mustard band is at home.
+- **Riso Teal** (#3f97a0): declared and unassigned, kept as a reserved field ink
+  rather than deleted — it is light enough to print dark artwork on, which is the
+  entry requirement for a field ink. 2.57:1.
 
 ### Neutral
-- **Press Paper** (#F7F3E8): the sheet itself, and deliberately lighter than the
-  references it was read from — those are photographs, and this stock photographs
-  darker than it prints. It also has to survive the grain plate, which multiplies
-  the whole page; it renders about #E6E2D8.
-- **Rich Black** (#0B0B0B): all text, all rules, all borders. ≈15.3:1 on the paper
-  **as it renders** under the grain plate (17.75:1 on the bare token, before the
-  multiply) — the only ink in the set that clears small-text contrast.
+- **Press Paper** (#f6f0e2): the sheet itself, deliberately lighter than the
+  reference stock, because the grain plate multiplies the whole page — it measures
+  `#e4dfd2` as it renders.
+- **Rich Black** (#0b0b0b): all text, all rules, all borders. 14.79:1 on the
+  rendered paper — the only ink that clears small-text contrast by a wide margin.
 
 ### Named Rules
 **The Colour Owns Fields Rule.** An ink fills a plate, a chip, a rule, an image
-field or a band. It never colours a word smaller than display size: against paper
-none of the five inks clears 4.5:1, and the best of them (teal) reaches only
-3.40:1. Black does all the talking, and it may sit *on* any of the five — measured
-after the grain plate has multiplied both the type and its background, the worst
-case is teal at 4.59:1.
+field or a band. It never colours a word: against the rendered paper the best of
+the five spot inks is blue at 2.71:1, and all five fail even the 3:1 large-text
+floor. Black does all the talking, and it may sit *on* any field — black over the
+field inks as they render measures 11.65:1 on yellow, 7.79:1 on pink and 6.10:1 on
+blue, which is the worst case.
 
-**The Never-White Rule.** Paper is #F7F3E8, never #FFF. Black is #0B0B0B, never
-#000. Pure white and pure black are the two things a press never gives you.
+**The Never-White Rule.** Paper is `#f6f0e2`, never `#FFF`. Black is `#0b0b0b`,
+never `#000`. Pure white and pure black are the two things a press never gives
+you. The retired Learnings surface still hardcodes `#ffffff`; it is not part of
+this sheet.
 
 ## Typography
 
-**Display Font:** Big Shoulders Display (with Archivo, system-ui)
+**Display Font:** Bricolage Grotesque (with Big Shoulders Display, Archivo, system-ui)
 **Body Font:** Archivo (with system-ui, -apple-system)
-**Label/Mono Font:** Martian Mono (with JetBrains Mono, ui-monospace)
 **Apparatus Font:** Redaction 20 (with Archivo, system-ui) — entry numbers only
 
-**Character:** A condensed, extremely heavy display face against a neutral
-grotesque, with a wide-tracked mono for every annotation. Big Shoulders at 900
-weight is the entire display voice. Note that with this face the weight is the only
-axis that does anything: the family is requested as `wght@100..900` with no width
-axis, so the `font-stretch: 82%` carried on all four display rules is inert — the
-face is a condensed American Gothic by design, which is why nothing looks wrong.
-Martian Mono's extra tracking (0.16em at 11px) is what makes a whisper of labels
-feel stamped rather than typed.
+**Character:** One heavy grotesque against one neutral grotesque, with a decayed
+apparatus face reserved for catalogue marks. Bricolage Extra Bold carries the
+display *and* every label — an earlier build ran a separate mono for the runtime
+and the tags, and folding both into the display family is what turned the labels
+from a techno caption into an editorial one. The name is set in **mixed case**, not
+caps: Bricolage's whimsy — the ink-trap notches, the slight irregularity in its
+curves — lives in the lowercase, and caps flattened it into a poster shout.
 
 **The apparatus face.** Redaction is a typeface *about* photocopy decay: Jeremy
 Mickel and Forest Young made it for Titus Kaphar and Reginald Dwayne Betts'
 Redaction project at MoMA PS1, building bitmap flecks and inktrap logic into the
-letterforms across seven grades from clean to nearly illegible. Grade 20 is the one
-used, because the apparatus sets at 13px and has to stay legible — it takes the
-decay as texture rather than as damage. It is vendored from
-`@fontsource/redaction-20` under the SIL OFL and self-hosted, so the deploy carries
-no runtime dependency and no third party can withdraw the face. It is the press's
-apparatus, not a second display face, which is why the rule below still holds.
+letterforms across seven grades. Grade 20 is the one used — the apparatus sets at
+13px and has to stay legible, so it takes the decay as texture rather than as
+damage. It is vendored from `@fontsource/redaction-20` under the SIL OFL and
+self-hosted, so the deploy carries no runtime dependency and no third party can
+withdraw the face. It is the press's apparatus, not a second display face.
 
 ### Hierarchy
-- **Display** (900, 210px, leading 1, tracking -0.033em, width 82%): the masthead
-  only. One line, RAJ SHAH, the single largest object on the site.
-- **Headline** (900, 52/58px, uppercase): the bridge line under the masthead —
-  the line a screening reader actually reads, so it stays a display step rather
-  than a caption. Drops to 34/38px below 620px.
-- **Title** (900, 28/32px, uppercase, tracking +0.01em): project titles. The
-  leading is 32 rather than 30 because the longest title already fills 90.5% of
-  its column, and a wrapped two-line uppercase title at 1.07 crosses itself.
-- **Lead** (400, 20/32px): the bio paragraph, capped to a 66-character measure.
-  Drops to 18/28px below 620px.
+- **Display** (800, 210px, leading 1, tracking -0.033em): the masthead only. One
+  line, `Raj Shah`, the single largest object on the site, printed as three plates.
+- **Headline** (800, 52/58px): the bridge line under the masthead — the line a
+  screening reader actually reads, so it stays a display step rather than a
+  caption. Drops to 34/38px below 620px. It carries **no top margin**: the plates'
+  own boxes already hold about 55px of dead air below the ink, so a declared gap on
+  top of that put the tagline 139px from the name while its own ink sat 113px above
+  the bio — further from the line it belongs to than from the block below it.
+  Flush against the plate, the name-to-tagline ink gap is 67px.
+- **Title** (800, 28/32px, tracking -0.012em): project titles, in Title Case. The
+  leading is 32 rather than 30 because the longest title already fills 90.5% of its
+  column, and a wrapped two-line title at 1.07 crosses itself.
+- **Lead** (400, 20/32px, tracking -0.004em): the bio paragraph, capped to a
+  66-character measure (796px at this size). Drops to 18/28px below 620px.
 - **Body** (400, 14/20px, 88% opacity): the project descriptions, and the page's
-  real reading surface — capped to the same 66-character measure as the lead.
-  The sheet's *inherited* base is 16/24px; no role on this surface renders at 16.
-- **Body small** (400, 14/20px): retained as a token; identical to Body above.
-- **Label** (400, 11px, tracking 0.16em, uppercase): the runtime and the facet tags —
-  always Martian Mono, always uppercase, and **one** rank: both the stamp and the
-  tag carry 0.16em, so they no longer differ by sub-pixel tracking nor across
-  breakpoints. A destination line ("Opens Google Drive")
-  sat here until Raj cut it; the `where` field is still in the data and nothing
-  prints it.
-- **Contact** (900, 36/38px, uppercase): the contact links, one full step above
-  Title so the sheet's last line reads as an address rather than a heading. Held
-  at 30/32 below 620px, where two of them no longer fit a 326px column.
-- **Apparatus** (400, 13/17.55px, sentence case, Redaction 20): the entry numbers in
-  the running heads. Leading is 1.35 rather than a lattice step, deliberately: a
-  fallback face with taller metrics would clip a numeral otherwise.
-- **Spine** (400, 12px, Title Case, Martian Mono): the four competencies running
-  up the paper border, bottom to top, at normal tracking. 12px because the 11px
-  Floor Rule puts roman case on the higher step.
+  real reading surface — capped to the same 66-character measure (529px). The
+  sheet's *inherited* base is 16/24px; no role on this surface renders at 16.
+- **Label** (400, 11px, tracking 0.16em, uppercase): the runtime stamp and the
+  facet tags — one rank, one face. The tags carry the same size in the display
+  face at 600 weight and 0.12em tracking.
+- **Contact** (800, 36/38px, tracking -0.01em): the contact links, one full step
+  above Title so the sheet's last line reads as an address rather than a heading.
+  Held at 30/32 below 620px, where two of them no longer fit a 326px column.
+- **Apparatus** (400, 13/17.55px, Redaction 20): the entry numbers, and nothing
+  else. Leading is 1.35 rather than a lattice step, deliberately: a fallback face
+  with taller metrics would clip a numeral otherwise.
+- **Spine** (600, 11px, tracking 0.12em, uppercase): the four competencies running
+  up the paper border, bottom to top.
 
 ### Named Rules
-**The One Display Mass Rule.** 210px display type appears exactly once per page,
-in the masthead. Nothing else is allowed to compete with it.
+**The One Display Mass Rule.** 210px display type appears exactly once per page, in
+the masthead. Nothing else is allowed to compete with it.
 
-**The 11px Floor Rule.** Functional text never sets below 11px, and 12px is the
-floor once a line is set in roman case rather than uppercase.
+**The 11px Floor Rule.** Functional text never sets below 11px.
 
 **The Optical Leading Rule.** The 24px lattice governs space — margins, padding,
 gaps, the rhythm units. It does not govern the type ladder's leading: each size
-carries the leading that size needs (.lead 20/32, .proj__title 28/32,
-.proj__body 14/20, .contact 36/38). Rounding those onto 24px would break the
-faces rather than align them.
+carries the leading that size needs (lead 20/32, title 28/32, body 14/20, contact
+36/38). Rounding those onto 24px would break the faces rather than align them.
+
+**The Retained-But-Inert Rule.** A declaration that does nothing may only be kept
+where it becomes live the moment a dependency changes — the display rules carry
+`font-stretch` for a face with a width axis, and it is inert today because
+Bricolage is requested as `opsz,wght` with no `wdth`. Anything else is dead code to
+remove: the masthead's three scatter screens, its three masks and the `riso-soften`
+filter are unreferenced now that the plates print solid, and the `mask: none` below
+620px points at a mask nothing sets.
 
 ## Layout
 
-One sheet, 12 columns on a 24px gutter, with page margins of 72px top and 96px
-sides and bottom at full width. **Both** prose blocks are capped at the
-66-character measure — the 20px lead (756px) and the 14px project bodies (529px).
-Until the typeset pass only the lead carried the cap, so the bodies ran 75.5 of
-their own characters in a 612px column, 102 at 1920px and 144 at 2560px, and the
-one-column breakpoint at 1080px set them at 122. The cap holds the measure inside
-45–75 at every width — the classic print maximum for a single column.
+One sheet, 12 columns on a 24px gutter (68.66px columns at a 1280px viewport),
+with page margins of 72px top and 96px sides and bottom. **Both** prose blocks are
+capped at the 66-character measure — the 20px lead (796px) and the 14px project
+bodies (529px).
 
-Four crosshair registration marks sit in the paper border, one per corner, drawn
-as two 1.5px arms meeting at a 5px centre square. They are the sheet's proof-mark:
-they make the page read as a press proof rather than a page with a printed header.
-They are suppressed below 1080px, where the border narrows to 32px and a mark
-would land on the copy.
+The home surface is a grid whose children claim columns: the masthead spans all
+12, the project run spans all 12 as its own 2-column grid, and the contacts span
+all 12. The running text sits on a yellow plate that bleeds 20px into the left
+margin so the copy stays optically aligned with the masthead beyond it. That plate
+is printed through the tone plate and wavered by the same displacement filter the
+image fields use, so it renders as a soft pale yellow (`#e6c870`) rather than a
+flat saturated band — black on it measures 12.05:1.
 
-The home surface is a grid whose children claim columns: the masthead spans 7, and
-the project run spans all 12 as its own 2-column grid. The running text sits on a
-mustard plate that bleeds 20px into the left margin so the copy stays
-optically aligned with the masthead. That plate is printed through the tone plate
-like every other ink here, at 57% ink against paper, so it renders as a soft pale
-yellow (~`#d8bf87`) rather than the flat saturated band it was: 1.31x lighter, with
-grain, and black type on it now measures 10.99:1.
+Two printed apparatus marks live in the 96px paper border: the **colour bar**, the
+ink-calibration strip a printer prints down a sheet's edge (three 11px spot chips
+at `left: 24px`, under the top margin), and the **spine**, the four competencies
+set vertically and running bottom-to-top. Both withdraw below 1080px, where the
+border narrows to 32px and they would land on the copy.
 
-Responsive behaviour is print-faithful corrections rather than a gradual shrink.
-Below 1080px the side margin drops to 32px, the registration marks withdraw, and
-the run collapses to one column. Below 620px three things change character: the
-runtime wraps to its own row instead of clipping, the masthead prints **solid**
-(at that size the scatter merges into grey mush, so the misregistration is what
-remains), and the field's ink take-up thins from 0.16 to 0.08.
+Responsive behaviour is print-faithful correction rather than gradual shrink. Below
+1080px the side margin drops to 32px, the colour bar and spine withdraw, the ink
+block withdraws (in one column it would only crush the name), and the run collapses
+to one column. Below 620px three things change character: the runtime wraps to its
+own row instead of clipping, the bridge and contacts drop one step, and the field's
+take-up layer thins from 0.16 to 0.08 — on artwork that is already small, that layer
+reads as dirt rather than as ink.
 
 ## Elevation & Depth
 
-**No shadows. None anywhere.** This is a flat system, and the flatness is
-doctrinal rather than a preference: a press does not cast shadows, so neither
-does the interface. There is no shadow vocabulary to document because there are
-no shadows.
+**No shadows. None anywhere.** A press does not cast shadows, so neither does the
+interface, and there is no shadow vocabulary to document because there are no
+shadows. "No gradients, no blur" is scoped the same way: neither may stand in for
+elevation. Both are permitted as material — the ink washes are radial gradients and
+the screens are gaussian-blurred — and neither is a light source.
 
-Depth is conveyed by two press-native means instead. **Layer offset** — the
-masthead's three plates are transformed at different offsets and deliberately not
-aligned, so the type reads as three impressions that missed registration. The
-project titles carry the same device at their own scale, as a whisper rather than
-at volume: a pink impression pulled one way, a blue one the other, the rich-black
-key on top, all multiplied so the overlaps darken like ink.
+Depth is conveyed by two press-native means. **Layer offset** — the masthead's three
+plates are transformed at different offsets and deliberately not aligned, so the
+type reads as three impressions that missed registration. The project titles carry
+the same device at their own scale, as a whisper: a pink impression pulled one way,
+a blue one the other, the rich-black key on top, all multiplied so the overlaps
+darken like ink.
 
-**Ink density** — the second means, and the one that earns the word "printed". A
+**Ink density** is the second means, and the one that earns the word "printed". A
 field is not a solid colour with texture sprinkled over it; the ink is laid down
 *through* a soft gaussian plate (`src/assets/tone.png`, alpha mean 0.70), so
-roughly 70% of any field is ink and the remaining 30% is paper reading through.
-That is what keeps the fills light, less saturated and translucent instead of
-opaque, and it is why the inks can sit at their reference values instead of being
-tinted down. The same plate read large — 1200px against the 400px grain — is laid
-over the top for uneven take-up, because ink never goes down evenly. Three deposit
-densities cycle through the run by position. The masthead's plates are toned by
-scatter screens rather than dot lattices: a lattice only exists to stop three
-plates moiréing, and with a scatter there are no angles to hold apart.
+roughly 70% of any field is ink and the remaining 30% is paper reading through. That
+is what keeps the fills light, less saturated and translucent instead of opaque, and
+it is why the inks can sit at their reference values instead of being tinted down.
+The same plate read large — 1200px against the 400px tile — is laid over the top for
+uneven take-up, because ink never goes down evenly. Three deposit densities cycle
+through the run by position (1 / 0.86 / 0.94).
+
+Softness belongs in this section too, because it is made of the same materials and
+nothing else. A field edge dissolves rather than ends — the image frames and the bio
+plate carry a long-wavelength displacement, so they waver a few pixels off true. The
+grain plate multiplies the whole page at 0.68. The ink washes pool three spot inks
+into the empty corners, multiplied, at 46% pink, 42% blue and 40% yellow. Paper
+reads through every field. **Nothing here is feathered by a blur standing in for
+depth; everything is feathered the way ink is.**
 
 ### Named Rules
-**The Flat-By-Doctrine Rule.** No `box-shadow`, no `filter: blur()`, no
-gradient-as-elevation. If a surface needs to feel closer, it gets more ink or a
-heavier deposit — never a shadow.
+**The Flat-By-Doctrine Rule.** No `box-shadow`, no gradient-as-elevation, no
+blur-as-elevation. If a surface needs to feel closer, it gets more ink or a heavier
+deposit — never a shadow.
 
-**The Scale-Relative Offset Rule.** Misregistration is a ratio, not a
-measurement. The masthead's 6.5px offset is 3.1% of a 210px cap height; the same
-3.1% at a 28px title is 0.87px, i.e. invisible. Each size carries the offset it
-needs to read, which means the ratio grows as the type shrinks — the titles use
-±0.55 to 0.7px, and then take the colour impressions down to `opacity: .5` so the
-result reads as a press halo rather than a colour split.
+**The Scale-Relative Offset Rule.** Misregistration is a ratio, not a measurement.
+The masthead's 6.5px offset is 3.1% of a 210px cap height; the same 3.1% at a 28px
+title is 0.87px, i.e. invisible. Each size carries the offset it needs to read,
+which is why the titles use ±0.55 to 0.7px and take the colour impressions down to
+`opacity: .5` so the result reads as a press halo rather than a colour split.
 
-**The One Device Rule.** Every interaction on this surface moves the same
-per-layer offset the print is built from. `--slip` is the state (9px at rest, 16px
-on hover, 30px while Alt is held); `--drift` is what the scroll and the knock add.
-The plates read their sum, so the page never grows a second vocabulary in order to
-be playful. Nothing animates a layout property — only `transform` and `opacity` —
-and every one of them is disarmed under `prefers-reduced-motion`.
+**The One Device Rule.** Every interaction on this surface moves the same per-layer
+offset the print is built from. `--slip` is the state (9px at rest, 16px on hover,
+30px while Alt is held); `--drift` is what the scroll and the knock add. The plates
+read their sum, so the page never grows a second vocabulary in order to be playful.
+Nothing animates a layout property — only `transform` and `opacity` — and every one
+of them is disarmed under `prefers-reduced-motion`.
+
+**The Delight-Not-Volume Rule.** An interaction is worth having when it rewards
+curiosity and costs nothing: the press knocks out of register when the name is
+touched and settles back, and the plates drift with the scroll and come into
+register when it stops. Intensity stays proportional to how often the gesture
+repeats.
 
 ## Shapes
 
 Hard-edged and rectangular throughout: a single `rounded` step, `0px`. Nothing in
-the system has a corner radius, including image fields, tags, plates and the
-sheet itself.
-
-The registration marks are the one place the conventional form was refused. A
-printer's mark is normally a cross inside a circle, and a circle is the one shape
-this system cannot draw — so they are crosses meeting at a 5px centre square, which
-keeps the mark and the law.
+the system has a corner radius, including image fields, tags, plates and the sheet
+itself. A press cuts paper square, and that discipline is what keeps a rounded
+element from reading as pasted in from another page.
 
 Form is carried by rules instead of radii. A 1px hairline
 (`rgba(11,11,11,0.24)`) underlines the runtime links; a heavier
-`rgba(11,11,11,0.55)` draws facet tag borders; a 2px solid rich black closes the
-top of every project entry. Image fields are clipped rectangles with a fixed
-2.6:1 aspect ratio, so a run of them reads as a set of printed plates rather than
-a gallery of arbitrary thumbnails.
+`rgba(11,11,11,0.55)` draws facet tag borders; a 2px solid rich black closes the top
+of every project entry. Every one of those rules is drawn through a displacement
+filter, so a 2px line reads as pulled ink rather than as a ruler. Image fields are
+clipped rectangles with a fixed 2.6:1 aspect ratio, so a run of them reads as a set
+of printed plates rather than a gallery of arbitrary thumbnails.
+
+Curves are allowed where the material is ink rather than paper. The ink block's two
+drums are circles and its key ring is an ellipse, each displaced so neither is a
+true circle — the form is refused *in the mark*, not forbidden in the drawing.
 
 ## Components
 
@@ -379,9 +403,9 @@ interactive parts are typeset labels with a rule under them, not buttons.
 
 ### Runtime links (nav)
 - **Shape:** zero radius, no background, no padding; a 1px hairline underline
-  (`{colors.rich-black}` at 24% via the rule token).
-- **Primary:** Martian Mono at the label step — 11px, 0.16em tracking, uppercase,
-  in `{colors.rich-black}`. The runtime is type, not a control bar.
+  (`{colors.rich-black}` at 24%).
+- **Primary:** Bricolage at the label step — 11px, 0.16em tracking, uppercase, in
+  `{colors.rich-black}`. The runtime is type, not a control bar.
 - **Hover / Focus:** the underline goes to full rich black; `aria-current="page"`
   renders the same treatment, so the current page and the hovered link read
   identically by design.
@@ -390,141 +414,163 @@ interactive parts are typeset labels with a rule under them, not buttons.
   printing the runtime as type rather than as a toolbar.
 
 ### Contact links
-- **Shape:** zero radius, uppercase display type, 4px padding below the baseline
-  with a 2px rule under it.
-- **Primary:** Big Shoulders Display 900, one full step above the title step
-  (36/38px) in `{colors.rich-black}`. Held at 30/32 below 620px, where two of
-  them no longer fit a 326px column.
-- **Hover / Focus:** the 2px rule takes `{colors.riso-blue}`.
+- **Shape:** zero radius, display type, 4px padding below the baseline with a 2px
+  hand-printed rule under it.
+- **Primary:** Bricolage 800 at 36/38px in `{colors.rich-black}`. Held at 30/32
+  below 620px, where two of them no longer fit a 326px column.
+- **Hover / Focus:** the rule and the word take `{colors.blue-deep}` together.
 - **The imprint (delight pass):** hovering or focusing a contact link sets its
-  address beneath it in the apparatus face — Redaction 20, 13px, 0.75 opacity —
-  which is the press's own convention of setting the imprint at the foot of the
-  sheet. It is a `::after` with `content: attr(data-imprint)`, fed from
-  `src/data/contacts.js`, and it is **absolutely positioned** so the reveal can
-  never shift the layout under the cursor. Two declarations are load-bearing:
-  `text-transform: none`, because the link is uppercase and an uppercased email
-  is a wrong address, and `font-weight: 400`, because Redaction 20 ships one
-  weight and the inherited 900 would be synthesised. It also lands in the link's
-  accessible name ("EMAIL rajvshahjax@gmail.com"), so it is the one place on the
-  surface that tells a screen reader where a link actually goes.
+  address beneath it in the apparatus face — Redaction 20, 13px, 0.75 opacity — the
+  press's convention of setting the imprint at the foot of the sheet. It is a
+  `::after` with `content: attr(data-imprint)`, fed from `src/data/contacts.js`, and
+  it is **absolutely positioned** so the reveal can never shift the layout under the
+  cursor. Two declarations are load-bearing: `text-transform: none`, because the
+  link is display type and an uppercased email is a wrong address, and
+  `font-weight: 400`, because Redaction 20 ships one weight and the inherited 800
+  would be synthesised. It lands in the link's accessible name, so it is the one
+  place on the surface that tells a screen reader where a link actually goes.
 
 ### Facet tags
-- **Shape:** zero radius, 4px / 9px padding, 1px border at
-  `rgba(11,11,11,0.55)`, no fill.
-- **Style:** Martian Mono 11px, 0.12em tracking, uppercase, `{colors.rich-black}`.
-- **State:** static labels. They deliberately carry no colour fill — an earlier
-  pass colour-coded them per competency and was cut, because the colour decoded
-  to nothing a reader could learn.
+- **Shape:** zero radius, 4px / 9px padding, 1px border at `rgba(11,11,11,0.55)`,
+  no fill.
+- **Style:** Bricolage 11px, 0.12em tracking, uppercase, `{colors.rich-black}`.
+- **State:** static at rest. On hovering the entry they belong to, the border goes
+  to full black; a tag hovered directly inks in solid — black fill, paper text —
+  like an uninked stamp pressed down. They deliberately carry no colour fill: an
+  earlier pass colour-coded them per competency and it was cut, because the colour
+  decoded to nothing a reader could learn.
 
 ### Project entry
 - **Corner Style:** none.
-- **Background:** `{colors.press-paper}`; the image field behind it cycles the
-  light inks only (mustard, dusty pink, soft teal, sage) — never the cornflower,
-  which is too dark to print dark artwork on.
+- **Background:** `{colors.press-paper}`; the image field behind it cycles the light
+  inks only. The run currently uses pink, yellow and blue; green and teal carry
+  declared field classes but no assignment.
 - **Shadow Strategy:** none; see Elevation & Depth.
 - **Border:** a 2px rich black rule across the top of each entry, and a 2px rule
-  under the image field.
+  under the image field, both displaced so neither is straight.
 - **Internal Padding:** spacing in whole 24px units; the run's row gap is 72px.
 - **Title:** the misregistered plate treatment at title scale, dialled down to a
-  hint — a dusty pink impression at `translate(-0.7px, 0.55px)`, a cornflower one
-  at `translate(0.55px, -0.45px)`, both at `opacity: .5`, the rich-black key on
-  top, all multiplied so overlaps darken. At full strength this read as anaglyph
-  rather than as a press. The type stays live, selectable and searchable; the
-  impressions are pseudo-elements carrying the title via `attr()`, not images.
+  hint — a pink impression at `translate(-0.7px, 0.55px)`, a blue one at
+  `translate(0.55px, -0.45px)`, both at `opacity: .5`, the rich-black key on top,
+  all multiplied so overlaps darken. At full strength this read as anaglyph rather
+  than as a press. The type stays live, selectable and searchable; the impressions
+  are pseudo-elements carrying the title via `attr()`, not images.
 - **Image field:** the ink is laid *through* `tone.png` at 400px — the grain, alpha
   mean 0.70 — so paper reads through roughly 30% of the field, with the same plate
   at 1200px multiplied over it at 0.16 for uneven take-up. Three deposit densities
-  cycle by position (1 / 0.86 / 0.94). The texture sits on the field and never
-  behind type.
+  cycle by position (1 / 0.86 / 0.94). A chroma floor of the same ink at 26% into
+  paper sits underneath, so the masked deposit reads as saturated printed ink rather
+  than a pastel. The texture sits on the field and never behind type.
 - **Motion:** a row prints as it arrives — the artwork takes its ink, then the fill
   resolves over the field, over 0.7–0.9s. Hovering a printed entry pulls its title
-  plates a little further apart (±1.4px / ±1.1px) and takes up more ink — the
-  take-up layer goes 0.16 → 0.22. Under `prefers-reduced-motion` the row is simply
-  present.
+  plates a little further apart (±1.4px / ±1.1px), takes up more ink (0.16 → 0.22),
+  settles the artwork a hair closer, wakes the running head and inks the tags. Under
+  `prefers-reduced-motion` the row is simply present.
 - **Uniformity:** all seven entries are identical in width and treatment. The run
   ends on a ragged half-row rather than promoting an entry to full width — an
-  earlier build made the seventh card a two-column feature and it was cut, because
-  a run of printed plates reads as a set or not at all.
+  earlier build made the seventh card a two-column feature and it was cut, because a
+  run of printed plates reads as a set or not at all.
 
-### Registration mark
-Four per sheet, one in each corner of the paper border.
-- **Shape:** two 1.5px arms crossing at a 5px filled square. No circle — see Shapes.
-- **Style:** `{colors.rich-black}` at 80% opacity, 26px overall.
-- **State:** static and decorative. `aria-hidden`, and suppressed below 1080px where
-  the border is too narrow to hold one without landing on the copy.
+### Ink chip
+A 12px square in the entry's own ink, set from the same `--field-ink` custom
+property that prints the field. A press declares which ink each plate runs on, and
+this is that declaration — colour doing a job at the smallest scale on the page. It
+carries no text, so it answers to no contrast ratio. On hovering its entry it grows
+to a 1.4 swatch.
 
 ### Running head
-The first line of every project entry: its number at the left, its ink chip at the right.
-- **Number:** `01`–`07`, zero-padded, in the apparatus face. Catalogue discipline —
-  a printed run is numbered, and numbering is also how a reader says "the third one".
-- **Case and tracking, deliberately plain.** The numbers were briefly not the only
-  apparatus on the sheet; when a slug sat at the foot it taught the lesson that
-  applies here too: caps and wide tracking read worse once a string is long enough
-  to read rather than scan. The number is two characters, so it is set plainly.
-- **Ink chip:** a 12px square in the entry's own ink, set from the same
-  `--field-ink` custom property that prints the field. A press declares which ink
-  each plate runs on, and this is that declaration. It is a mark rather than a
-  field, and it carries no text, so it answers to no contrast ratio.
-- **Rule:** the entry's existing 2px rich-black top rule sits above it.
+The first line of every project entry: its number at the left, its ink chip at the
+right. The number is `01`–`07`, zero-padded, in the apparatus face — catalogue
+discipline, and also how a reader says "the third one". It is set plainly, without
+caps or wide tracking, because a two-character string is scanned rather than read;
+on hover it takes `{colors.blue-deep}`. The entry's 2px rich-black top rule sits
+above it.
 
-### Spine
-The four competencies, running up the paper border.
-- **Type:** `{typography.label}`, rotated to read bottom-to-top, Title Case at
-  normal tracking. It was all caps and widely tracked to begin with; the detector
-  flagged 53 characters of caps as harder to read and then flagged the wide
-  tracking once the caps went, and it was right both times. Raj then asked for
-  Title Case, which is where it settled — a spine is a reading string before it is
-  a label.
-- **Placement:** 26px into the 96px paper border, starting at the top margin.
-- **Accessibility:** `aria-hidden`. The same four facets are already carried by the
-  entry tags, so this copy is marked decorative rather than read twice.
-- **Responsive:** withdrawn below 1080px, where the border drops to 32px and the
-  spine would land on the copy.
+### Bio plate
+The running text owns an ink, like every other field on the sheet. The plate bleeds
+one 24px step into the left margin so the copy stays optically aligned with the
+masthead above it, and it is printed through the tone plate with wavering edges
+rather than poured on as a flat hex — paper reads through roughly 43% of it. The
+mass is deliberately tight: a roomier plate was read as a third focal point
+competing with the masthead, so the padding came down while the field stayed.
 
 ### Masthead plate (signature)
-The one place the world explains itself. Three `<text>` elements carry the same
-string in three inks, each toned by its own scatter screen applied as a **mask on
-the glyphs**, each at its own offset, with the black key plate at `opacity: .86`
-so the pink and blue read through it. The screens hold the ink-density hierarchy
-the old lattices encoded — key ~68%, pink ~66%, blue ~39% — but their specks are
-unequal and blurred by 0.7, so overlapping specks merge into grain instead of
-reading as dots. The type stays live, selectable and searchable — the screen is a
-mask, never a texture behind text.
-On hover the plates separate further; holding Alt latches them fully apart;
-scrolling drifts them apart in proportion to velocity and they settle back into
-register when the scroll stops. The one secret: a pointer-down on the name (or
-`r`) knocks the whole press out of register for a beat, then it settles.
+Three SVG `<text>` elements carry the same string in three inks, each at its own
+offset, each displaced by the same turbulence filter so the glyph edges read as ink
+spread rather than as a cut vector, with the black key at `opacity: .86` so the pink
+and blue read through it. **The three plates print solid, and that is the decision,
+not a defect** — an earlier build toned each plate with its own scatter screen applied
+as a mask on the glyphs, and that treatment was dropped deliberately. The type
+is live SVG text — selectable, searchable, and named once to assistive technology by
+the `h1`. On hover the plates separate further; holding Alt latches them fully apart;
+scrolling drifts them apart in proportion to velocity, and they settle back into
+register when the scroll stops. The one secret: a pointer-down on the name (or `r`)
+knocks the whole press out of register for a beat, then it settles.
+
+**Removable dead code.** The dropped treatment's apparatus is still in the tree —
+three scatter `<pattern>`s, three `<mask>`es and the `riso-soften` filter in
+`Masthead.js`, plus a matching `mask: none` at ≤620px in `riso.css` — and nothing
+references any of it. All of it is safe to delete. It is left in place only until the
+owner says otherwise, and this record documents the render, which is solid.
+
+### Ink block (signature)
+The masthead's companion: two overlapping ink discs, pink and blue, each displaced
+and multiplied so that where they cross they overprint into a deep magenta, with a
+key-black ellipse ring a hair out of register. The motif is the colour test a printer
+pulls to check registration before a run. It holds a fixed measure (clamp 190–300px)
+so it reads as a plate rather than a stretch, and withdraws below 1080px. Hovering
+it pulls the two drums apart the way a press knocks out of register, with the key
+ring holding still so the spread reads against a fixed register.
+
+### Spine
+The four competencies, running up the paper border, withdrawn below 1080px. Set at
+11px Bricolage, 600 weight, uppercase, 0.12em tracking — the same rank as the
+runtime and the tags. It is `aria-hidden`, because the same four facets are already
+carried by the entry tags and this copy would otherwise be read twice.
+
+### Colour bar
+The ink-calibration strip a printer prints down a sheet's edge: three 11px spot
+chips stacked at the top of the paper border. Static and decorative.
+
+### Registration marks (removed)
+Four corner crop-crosses sat in the paper border for a round and were cut — they
+read as print cosplay rather than as this sheet's own world. They are documented here
+only so they are not reinstated as decoration.
 
 ## Do's and Don'ts
 
 ### Do:
-- **Do** keep every word below display size in `{colors.rich-black}`. It is the
-  only ink that clears small-text contrast on this paper (≈15.3:1 as it renders,
-  17.75:1 on the bare token), and it clears
-  4.5:1 against all five field inks as they actually render under the grain — worst
-  case teal at 4.59:1.
+- **Do** keep every word in `{colors.rich-black}`. It is the only ink that clears
+  small-text contrast on this paper (14.79:1 as it renders), and the only other
+  colour allowed to carry type is `{colors.blue-deep}` at 7.71:1.
 - **Do** give an ink a field: a plate, chip, rule, band or image field.
 - **Do** size misregistration as a ratio. The offset that reads at 210px is
-  invisible at 28px; each size carries the offset it needs (see the
-  Scale-Relative Offset Rule).
-- **Do** set functional text at 11px or above, and 12px or above once it is roman
-  rather than uppercase.
+  invisible at 28px; each size carries the offset it needs.
+- **Do** set functional text at 11px or above.
 - **Do** keep spacing on the 24px lattice, and let leading follow the size.
-- **Do** reach for layer offset or ink density when something needs weight.
+- **Do** reach for layer offset, ink density or edge displacement when something
+  needs weight or softness. A displaced edge and an alpha-masked deposit are this
+  system's two softness devices.
 - **Do** keep the 2.6:1 image field ratio so a run of projects reads as a set.
+- **Do** check that a declaration is still referenced before trusting it, and delete
+  it when it is not. The masthead's scatter screens and the `mask: none` override are
+  unreferenced today. An unreferenced mechanism is not evidence of a lost intent —
+  ask before restoring a treatment, because a removed one may have been removed on
+  purpose.
 
 ### Don't:
 - **Don't** use white or pure black. `#FFF` and `#000` are both wrong here.
-- **Don't** put colour on small text — mustard (1.79:1), pink (3.15:1), green
-  (3.19:1), teal (3.40:1) and the cornflower (2.95:1) all fail, and all five fail
-  even the 3:1 large-text threshold. `{colors.blue-deep}` is the single exception
-  (4.78:1) and is used only where it is needed.
-- **Don't** add a shadow, a blur, or a gradient standing in for elevation.
+- **Don't** put colour on text — pink (1.86:1), blue (2.71:1), green (2.03:1), teal
+  (2.57:1) and yellow (1.14:1) all fail even the 3:1 large-text floor.
+  `{colors.blue-deep}` is the single exception.
+- **Don't** add a shadow, or use a blur or a gradient standing in for elevation.
+  Softness comes from displacement, feathering and the tone plate instead.
 - **Don't** round a corner. The system has exactly one radius, and it is `0px`.
-- **Don't** add a second display face or introduce an italic.
+- **Don't** add a second display family or introduce an italic. One display face,
+  one text face, one apparatus face.
 - **Don't** add a second 210px display mass; the masthead is the page's only one.
 - **Don't** let a decorative screen or a deposit layer sit behind type anywhere.
-- **Don't** let a registration mark land on the copy. Below 1080px the paper border
-  is 32px and the marks withdraw rather than crowd the text.
 - **Don't** apply the masthead's offset numbers to smaller type. The device is the
   ratio, not the measurement.
+- **Don't** give the bridge a top margin. The plate's own box already supplies the
+  air; adding to it inverts the hierarchy and reads as a detached block.

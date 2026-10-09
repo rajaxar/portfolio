@@ -27,6 +27,7 @@ yarn-error.log*
 # Everything else under .impeccable/ is working evidence — review captures (18MB),
 # the critique snapshots and the dev-only status record. This repo is public, so
 # they stay on disk and off the remote.
+.impeccable/*
 /.impeccable/*
 !/.impeccable/design.json
 !/.impeccable/config.json

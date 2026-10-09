@@ -271,6 +271,12 @@
   height: auto;
   overflow: visible;
 }
+/* The drums' collapse gets the longer easing to match the orbit's coast-down:
+   the pull must not snap shut while the drums are still turning. Scoped to the
+   art, because the wordmark's plates use the same .ink class at 0.55s. */
+.masthead__art-svg .ink {
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
 /* A moment of interaction: hover the ink block and the two drums pull apart the
    way a press knocks out of register, then settle back on leave. Same language
    as the wordmark's slip — the discs already carry the ink classes, so this only
@@ -291,21 +297,14 @@
   height: auto;
   overflow: visible;
 }
-/* The four display rules on this sheet all carry `font-stretch: 82%`, and
-   measured on the built page it does nothing: Big Shoulders Display is requested
-   from Google with a weight axis only (`wght@100..900`), so there is no width
-   axis to address — a test string measures 1144.7px at 50%, 82%, 100% and 150%
-   alike, while the wght axis does move it. The face is a condensed American
-   Gothic by design, so the intent is satisfied by the typeface itself and
-   nothing looks wrong; that is why this survived four rounds.
-   The declarations are kept rather than deleted because they become live the
-   moment the display face has a width axis — Bricolage Grotesque (wdth 75–100)
-   is the candidate. DESIGN.md is written to match what renders, not this. */
+/* Mixed case now (see Masthead.js): the name is the one place caps were dropped
+   entirely, since Bricolage Extra Bold's whimsy — the ink-trap notches, the
+   slight curve irregularity — reads in the lowercase and caps flattened it into
+   a poster shout. */
 .masthead__plate text {
   font-family: var(--font-display);
   font-weight: 800;
   font-stretch: normal;
-  text-transform: uppercase;
 }
 /* Each plate drifts on its own: its own magnitude, its own direction, a hair of
  * scale. Registration error is a mechanical event, never symmetric. */
@@ -918,11 +917,23 @@ html:has(.sheet) ::-webkit-scrollbar-thumb {
   .spine {
     display: none;
   }
-  /* The ink block only existed to close the desktop right-void. In one column
-     the name already fills the width, so the art would only crush it — it
-     withdraws and the wordmark takes the whole measure. */
+  /* The ink block only ever closed the desktop right-void, so it used to
+     withdraw entirely here, where one column would crush the name. That left
+     the narrow sheet with no printed mark of its own — the colour bar and the
+     spine are gone too — so it now stays as a small plate instead of leaving:
+     the name takes a full row, and the discs sit under it, hard right, at the
+     size of a mark rather than a plate. */
+  .masthead__row {
+    flex-wrap: wrap;
+  }
+  .masthead__wrap {
+    flex: 1 1 100%;
+  }
   .masthead__art {
-    display: none;
+    flex: 0 0 auto;
+    width: 92px;
+    margin-left: auto;
+    align-self: center;
   }
   .masthead,
   .projects,
@@ -1004,5 +1015,324 @@ html:has(.sheet) ::-webkit-scrollbar-thumb {
   }
   .masthead__wrap {
     cursor: default;
+  }
+}
+
+/* ---- the picker: "Raj can ___", stamped into being -------------------------
+ * Pick a chip up, carry it, let go anywhere: it leaves an inked impression
+ * where it lands, fills the blank, and prints its proof underneath. A plain
+ * click only jiggles the chip — the hint that it can be picked up. Sits below
+ * the project run, above the contact route. Behaviour lives in Picker.js.
+ */
+.picker {
+  grid-column: 1 / span 12;
+  margin-top: calc(4 * var(--base));
+  padding-bottom: calc(2 * var(--base));
+}
+.picker-sentence {
+  position: relative;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-stretch: normal;
+  font-size: 34px;
+  line-height: 1.3;
+  letter-spacing: -0.012em;
+  max-width: 1040px;
+  margin: 0 0 0 -12px;
+  padding: 6px 12px;
+  border: 2px dashed transparent;
+  transition: border-color 0.2s ease;
+}
+.picker-sentence__stem {
+  opacity: 0.55;
+}
+.picker-sentence__placeholder {
+  opacity: 0.4;
+}
+/* every stamp presses the clause in: re-keyed per stamp so it replays */
+.picker-sentence__clause {
+  display: inline-block;
+  color: var(--blue-deep);
+  animation: picker-clause 0.3s cubic-bezier(0.2, 1.4, 0.4, 1);
+}
+@keyframes picker-clause {
+  from {
+    opacity: 0.3;
+    transform: scale(1.08);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.picker-sentence__stop {
+  opacity: 0.55;
+}
+/* while a stamp is carried, the sentence shows it's listening; over it, the
+   rectangle firms up so you know a release will land in the sentence */
+.picker-sentence.is-drop-ready {
+  border-color: var(--rule-strong);
+}
+.picker-sentence.is-drop-hover {
+  border-color: var(--blue-deep);
+  border-style: solid;
+  background: color-mix(in srgb, var(--blue) 8%, transparent);
+}
+
+/* The proof for the active claim: one plain paragraph straight under the
+   sentence, undecorated. Always rendered, with three lines' height reserved,
+   so the tray below never jumps when a claim arrives. */
+.picker-proof {
+  margin: 12px 0 calc(1.5 * var(--base));
+  padding: 0;
+  max-width: 1040px;
+  min-height: 90px;
+  font-size: 19px;
+  line-height: 30px;
+  opacity: 0.82;
+}
+
+.picker-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 10px;
+}
+/* A rubber stamp waiting on the tray: the key impression is the element
+   itself, with two ghost outlines in the drums' inks pulled off true. */
+.picker-chip {
+  position: relative;
+  isolation: isolate;
+  display: inline-block;
+  cursor: grab;
+  background: none;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  border: 2px solid var(--ink);
+  padding: 8px 14px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-stretch: normal;
+  font-size: 18px;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.picker-chip::before,
+.picker-chip::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border: 2px solid;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+  opacity: 0.6;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.picker-chip::before {
+  border-color: var(--pink);
+  transform: translate(-2px, 1.5px);
+}
+.picker-chip::after {
+  border-color: var(--blue);
+  transform: translate(2px, -1.5px);
+}
+.picker-chip:hover:not(.is-stamped) {
+  border-color: var(--blue-deep);
+}
+.picker-chip.is-stamped {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+.picker-chip.is-stamped::before {
+  transform: translate(-4px, 3px);
+}
+.picker-chip.is-stamped::after {
+  transform: translate(4px, -3px);
+}
+.picker-chip:focus-visible {
+  outline: 2px solid var(--blue-deep);
+  outline-offset: 3px;
+}
+/* the tray original dims in place (no reflow) while its ghost is carried */
+.picker-chip.is-dragging {
+  opacity: 0.35;
+}
+/* a plain click: a little jiggle in place — "pick me up" */
+.picker-chip.is-jiggling {
+  animation: picker-jiggle 0.46s ease-in-out;
+}
+@keyframes picker-jiggle {
+  0% { transform: rotate(0deg); }
+  18% { transform: rotate(-3deg) translateY(-1px); }
+  38% { transform: rotate(2.5deg); }
+  58% { transform: rotate(-1.6deg); }
+  78% { transform: rotate(0.8deg); }
+  100% { transform: rotate(0deg); }
+}
+/* a very slight bead of ink right where the chip is pressed — a real child,
+   since ::before/::after already carry the misregistration outlines */
+.picker-chip__ink {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle, var(--ink) 0%, transparent 65%);
+  opacity: 0;
+  z-index: 2;
+}
+.picker-chip__ink.is-pressed {
+  animation: picker-press-ink 0.32s ease-out;
+}
+@keyframes picker-press-ink {
+  0% {
+    opacity: 0.22;
+    transform: scale(0.4);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+}
+
+body.is-picker-dragging {
+  cursor: grabbing;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* The floating stamp: a clone of the chip mid-drag, positioned imperatively
+   via a ref (no re-render per move), lifted off the paper with a real
+   offset+blur shadow and a small tilt. Portalled to <body>. */
+.picker-ghost {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  pointer-events: none;
+  background: var(--paper);
+  opacity: 0;
+  transform-origin: 50% 50%; /* wobbles about its own centre, not an edge */
+  will-change: transform;
+  box-shadow: 10px 14px 22px -6px rgba(11, 11, 11, 0.35);
+}
+.picker-ghost.is-active {
+  opacity: 1;
+}
+
+/* The impression: what the stamp leaves on the sheet. The phrase in a single
+   spot ink, at its own angle, its edges wavered and its ink speckled through
+   the tone plate like a rubber stamp that never quite takes up evenly. It
+   presses in, holds, then slowly lifts away. Absolute on the document, so it
+   stays where it was stamped as the page scrolls. */
+.picker-impression {
+  position: absolute;
+  z-index: 40;
+  pointer-events: none;
+  white-space: nowrap;
+  padding: 9px 16px;
+  border: 3px solid currentColor;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-stretch: normal;
+  font-size: 21px;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  mix-blend-mode: multiply;
+  opacity: 0.88;
+  transform: translate(-50%, -50%) rotate(var(--rot, 0deg));
+  filter: url(#stamp-rough);
+  -webkit-mask-image: url("../assets/tone.png");
+  mask-image: url("../assets/tone.png");
+  -webkit-mask-size: 260px 260px;
+  mask-size: 260px 260px;
+  animation:
+    picker-impression-press 0.24s cubic-bezier(0.2, 1.3, 0.4, 1) both,
+    picker-impression-fade 4s ease-in 8s forwards;
+}
+.picker-impression--blue {
+  color: var(--blue-deep);
+}
+.picker-impression--pink {
+  color: var(--pink);
+}
+.picker-impression--key {
+  color: var(--ink);
+}
+@keyframes picker-impression-press {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(var(--rot, 0deg)) scale(1.3);
+  }
+  to {
+    opacity: 0.88;
+    transform: translate(-50%, -50%) rotate(var(--rot, 0deg)) scale(1);
+  }
+}
+@keyframes picker-impression-fade {
+  from {
+    opacity: 0.88;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* the ink burst under the stamp at the moment it lands, at the real drop
+   point */
+.picker-impact {
+  position: fixed;
+  top: -42px;
+  left: -42px;
+  width: 84px;
+  height: 84px;
+  pointer-events: none;
+  background: radial-gradient(circle, var(--blue-deep) 0%, transparent 70%);
+  opacity: 0;
+  z-index: 45;
+  will-change: transform;
+}
+.picker-impact.is-active {
+  animation: picker-impact 0.28s ease-out;
+}
+@keyframes picker-impact {
+  from {
+    opacity: 0.38;
+    transform: scale(0.75);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.15);
+  }
+}
+
+.picker-defs {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+@media (max-width: 620px) {
+  .picker-sentence {
+    font-size: 24px;
+  }
+  .picker-proof {
+    font-size: 16px;
+    line-height: 24px;
+    min-height: 120px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .picker-ghost,
+  .picker-sentence,
+  .picker-chip {
+    transition: none;
+  }
+  .picker-impact.is-active,
+  .picker-chip__ink.is-pressed,
+  .picker-chip.is-jiggling,
+  .picker-sentence__clause {
+    animation: none;
   }
 }

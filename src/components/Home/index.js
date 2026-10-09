@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import Masthead from './Masthead';
 import MastheadArt from './MastheadArt';
 import ProjectCard from './ProjectCard';
+import Picker from './Picker';
 import { projects } from '../../data/projects';
 import contacts from '../../data/contacts';
 
@@ -216,7 +217,14 @@ function Home() {
             <MastheadArt />
           </div>
         </div>
-        <p className="bridge mt3">Data Scientist and AI Engineer</p>
+        {/* No top margin. The plates' own boxes already carry ~55px of dead air
+            below the ink — the font's descent box under the "j" tail, the
+            viewBox tail, and a masthead row taller than the plate — so the
+            tagline used to land 139px from the name while its own ink sat 113px
+            above the bio: further from the line it belongs to than from the
+            block below it. Flush against the plate puts the name-to-tagline ink
+            gap at 67px, which inverts that back the right way round. */}
+        <p className="bridge">Data Scientist and AI Engineer</p>
         <p className="lead mt3">
           My name is Raj Shah. I work on backend architecture, quasi-experimental work, and AI
           systems, and I have a passion in civic tech. I thrive in the intersection of classical
@@ -234,6 +242,8 @@ function Home() {
           <ProjectCard key={project.id} project={project} index={i} />
         ))}
       </div>
+
+      <Picker />
 
       <div className="contacts mt2">
         {contacts.map((c) => (
