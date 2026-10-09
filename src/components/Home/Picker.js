@@ -195,6 +195,8 @@ export default function Picker() {
   const stamp = (id) => {
     setActiveId(id);
     setStampCount((n) => n + 1);
+    // the rest of the sheet can answer a new claim (the scatter re-plots)
+    window.dispatchEvent(new CustomEvent('picker:stamp', { detail: { id } }));
   };
 
   const leaveImpression = (chip, pageX, pageY, rot) => {
