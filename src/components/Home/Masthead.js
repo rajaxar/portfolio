@@ -20,7 +20,12 @@ import React from 'react';
  * which is ink spread — not a blur, and deliberately not a drop shadow.
  */
 function Masthead() {
-  const label = 'RAJ SHAH';
+  /* Mixed case, not caps: Bricolage Extra Bold's whimsy — the ink-trap notches,
+     the slight irregularity in its curves — lives in the lowercase, and caps
+     flattened it into a generic poster shout. The viewBox and screen rects
+     below are sized for the caps-only glyph run and are wider than mixed case
+     needs, which is fine — the text starts flush left regardless. */
+  const label = 'Raj Shah';
 
   return (
     <svg className="masthead__plate" viewBox="-14 -6 1010 292" aria-hidden="true" focusable="false">
@@ -94,17 +99,17 @@ function Masthead() {
       </defs>
 
       <g className="ink ink--pink" filter="url(#riso-bleed)">
-        <text x="0" y="210" fontSize="210" letterSpacing="-7" fill="var(--pink)">
+        <text x="0" y="210" fontSize="210" letterSpacing="-3" fill="var(--pink)">
           {label}
         </text>
       </g>
       <g className="ink ink--blue" filter="url(#riso-bleed)">
-        <text x="0" y="210" fontSize="210" letterSpacing="-7" fill="var(--blue)">
+        <text x="0" y="210" fontSize="210" letterSpacing="-3" fill="var(--blue)">
           {label}
         </text>
       </g>
       <g className="ink ink--key" filter="url(#riso-bleed)">
-        <text x="0" y="210" fontSize="210" letterSpacing="-7" fill="var(--ink)">
+        <text x="0" y="210" fontSize="210" letterSpacing="-3" fill="var(--ink)">
           {label}
         </text>
       </g>

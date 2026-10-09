@@ -24,6 +24,13 @@ const contacts = [
     external: true,
     imprint: 'linkedin.com/in/raj-v-shah',
   },
+  {
+    id: 'resume',
+    label: 'Resume',
+    href: process.env.PUBLIC_URL + '/Raj_Shah_Resume.pdf',
+    external: true,
+    imprint: 'My Resume',
+  },
 ];
 
 export default contacts;

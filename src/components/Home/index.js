@@ -2,8 +2,34 @@ import React, { useEffect, useRef, useState } from 'react';
 import Masthead from './Masthead';
 import MastheadArt from './MastheadArt';
 import ProjectCard from './ProjectCard';
+import Picker from './Picker';
+import Scatter from './Scatter';
+import Roller from './Roller';
 import { projects } from '../../data/projects';
 import contacts from '../../data/contacts';
+
+const PRESS_MS = 720;
+const pressTimers = {};
+
+// The colour bar's press check: one plate knocks out of register across the
+// sheet, then settles. A body class, so every element printed in that ink —
+// the wordmark plates, the discs, the bio's plate — answers it at once.
+function pressInk(ink, chipEl) {
+  const cls = `press-${ink}`;
+  document.body.classList.remove(cls);
+  // eslint-disable-next-line no-unused-expressions
+  document.body.offsetWidth;
+  document.body.classList.add(cls);
+  window.clearTimeout(pressTimers[ink]);
+  pressTimers[ink] = window.setTimeout(() => document.body.classList.remove(cls), PRESS_MS);
+  if (chipEl) {
+    chipEl.classList.remove('is-pressed');
+    // eslint-disable-next-line no-unused-expressions
+    chipEl.offsetWidth;
+    chipEl.classList.add('is-pressed');
+    window.setTimeout(() => chipEl.classList.remove('is-pressed'), 260);
+  }
+}
 
 /**
  * The shell: one press sheet, masthead over a ruled run of the work.
@@ -189,12 +215,20 @@ function Home() {
       </svg>
 
       {/* The ink-calibration strip a printer prints down a sheet's edge: three
-          spot inks stacked at the top of the paper border. A real press device,
-          and the one place the inks appear as themselves at the margin. */}
-      <div className="colourbar" aria-hidden="true">
-        <span className="colourbar__chip colourbar__chip--pink" />
-        <span className="colourbar__chip colourbar__chip--blue" />
-        <span className="colourbar__chip colourbar__chip--yellow" />
+          spot inks stacked at the top of the paper border. Pass over one (or
+          tab to it) and only that ink's plate knocks out of register across
+          the sheet, then settles — a press check you can run yourself. */}
+      <div className="colourbar" role="group" aria-label="Press check">
+        {['pink', 'blue', 'yellow'].map((ink) => (
+          <button
+            key={ink}
+            type="button"
+            className={`colourbar__chip colourbar__chip--${ink}`}
+            aria-label={`Knock the ${ink} plate out of register`}
+            onPointerEnter={(e) => e.pointerType !== 'touch' && pressInk(ink, e.currentTarget)}
+            onFocus={(e) => pressInk(ink, e.currentTarget)}
+          />
+        ))}
       </div>
 
       {/* The spine: the four competencies run down the paper border, below the
@@ -216,7 +250,16 @@ function Home() {
             <MastheadArt />
           </div>
         </div>
-        <p className="bridge mt3">Data Scientist and AI Engineer</p>
+        {/* No top margin. The plates' own boxes already carry ~55px of dead air
+            below the ink — the font's descent box under the "j" tail, the
+            viewBox tail, and a masthead row taller than the plate — so the
+            tagline used to land 139px from the name while its own ink sat 113px
+            above the bio: further from the line it belongs to than from the
+            block below it. Flush against the plate puts the name-to-tagline ink
+            gap at 67px, which inverts that back the right way round. */}
+        <p className="bridge">
+          Data Scientist and <span className="bridge__break">AI Engineer</span>
+        </p>
         <p className="lead mt3">
           My name is Raj Shah. I work on backend architecture, quasi-experimental work, and AI
           systems, and I have a passion in civic tech. I thrive in the intersection of classical
@@ -233,7 +276,15 @@ function Home() {
         {projects.map((project, i) => (
           <ProjectCard key={project.id} project={project} index={i} />
         ))}
+        {/* The run has seven entries, so the last row leaves a cell empty on
+            desktop: the halftone sketch fills it. In one column it sits
+            between the last card and the picker. */}
+        <div className="projects__aside">
+          <Scatter />
+        </div>
       </div>
+
+      <Picker />
 
       <div className="contacts mt2">
         {contacts.map((c) => (
@@ -247,6 +298,10 @@ function Home() {
             {c.label}
           </a>
         ))}
+        {/* the ink roller rests at the foot of the sheet, after the links */}
+        <div className="contacts__roller">
+          <Roller />
+        </div>
       </div>
     </>
   );

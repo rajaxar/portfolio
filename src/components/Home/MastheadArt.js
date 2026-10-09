@@ -1,4 +1,5 @@
 import React from 'react';
+import { useOrbit } from './Marks';
 
 /**
  * The masthead's companion: a block of printed ink where the sheet used to run
@@ -12,18 +13,29 @@ import React from 'react';
  * The motif is the colour test a printer pulls to check registration before a
  * run — the most honest image a two-drum press can make of itself. It carries
  * the page's discipline too: two inks and the key, no third hue, so it amplifies
- * the world instead of turning it into a rainbow.
+ * the world instead of turning it into a rainbow. A yellow third drum was tried
+ * on the ink block and taken out again on Raj's call — the pair plus the key is
+ * what makes this read as a registration test rather than as a colour wheel.
+ *
+ * Hovering runs the test: the two drums orbit the ring, slowly, and separate a
+ * little as they go. Let go and they collapse back in, keeping the angle they
+ * reached — the press stopped mid-pull, not reset. The ring holds still, so the
+ * spread always reads against a fixed register. The orbit is the SAME device as
+ * the record's key mark (Marks.js), not a second motion bolted on here.
  *
  * Decorative: the masthead is already named to assistive tech by the h1.
  */
 function MastheadArt() {
+  const { orbitRef, spinning, orbitProps } = useOrbit(24, 202, 200);
+
   return (
     <svg
-      className="masthead__art-svg"
+      className={`masthead__art-svg${spinning ? ' is-spinning' : ''}`}
       viewBox="0 0 400 400"
       aria-hidden="true"
       focusable="false"
       preserveAspectRatio="xMidYMid meet"
+      {...orbitProps}
     >
       <defs>
         {/* Ink spread: the same device the wordmark uses, so the discs belong to
@@ -53,15 +65,20 @@ function MastheadArt() {
         </mask>
       </defs>
 
-      {/* blue drum, pulled up-left — larger now, so it fills most of the ring */}
-      <g className="ink ink--blue" filter="url(#art-bleed)">
-        <circle cx="184" cy="190" r="146" fill="var(--blue)" mask="url(#art-disc-mask)" />
+      {/* The two drums ride one group so the orbit turns them together, about
+          the ring's own centre. Their separation on hover stays on the inner
+          groups, so the pull and the turn never fight over one transform. */}
+      <g ref={orbitRef}>
+        {/* blue drum, pulled up-left — larger now, so it fills most of the ring */}
+        <g className="ink ink--blue" filter="url(#art-bleed)">
+          <circle cx="184" cy="190" r="146" fill="var(--blue)" mask="url(#art-disc-mask)" />
+        </g>
+        {/* pink drum, pulled down-right — the overlap overprints to a deep magenta */}
+        <g className="ink ink--pink" filter="url(#art-bleed)">
+          <circle cx="220" cy="212" r="146" fill="var(--pink)" mask="url(#art-disc-mask)" />
+        </g>
       </g>
-      {/* pink drum, pulled down-right — the overlap overprints to a deep magenta */}
-      <g className="ink ink--pink" filter="url(#art-bleed)">
-        <circle cx="220" cy="212" r="146" fill="var(--pink)" mask="url(#art-disc-mask)" />
-      </g>
-      {/* the key: a registration ring, a hair out of true */}
+      {/* the key: a registration ring, a hair out of true — never orbits */}
       <g className="ink ink--key">
         <ellipse cx="202" cy="200" rx="151" ry="146" transform="rotate(-2.5 202 200)" fill="none" stroke="var(--ink)" strokeWidth="2.4" opacity="0.7" filter="url(#ring-rough)" />
       </g>

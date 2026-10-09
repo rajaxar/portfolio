@@ -18,6 +18,10 @@ import Topbar from '../Navbar';
 
 const STORY_PAGES = ['nba_contract', 'survivor'];
 
+// Surfaces that compose themselves on the twelve-column sheet grid. Everything
+// else predates this world and lays out full width.
+const GRID_PAGES = ['home', '', 'record_variants'];
+
 function Layout({ children, setPage, page }) {
   if (STORY_PAGES.includes(page)) {
     return (
@@ -51,7 +55,7 @@ function Layout({ children, setPage, page }) {
           paper and the runtime without the grid — squeezing them into one
           column track would have broken them. They still wear the old world's
           type and colours and want their own pass. */}
-      <div className={page === 'home' || page === '' ? 'sheet__grid' : 'sheet__flow'}>
+      <div className={GRID_PAGES.includes(page) ? 'sheet__grid' : 'sheet__flow'}>
         <Topbar setPage={setPage} page={page} />
         {children}
       </div>
